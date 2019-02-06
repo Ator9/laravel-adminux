@@ -1,4 +1,4 @@
-# Install
+# Install Laravel
 New Project
 ```sh
 composer create-project laravel/laravel .
@@ -14,6 +14,12 @@ composer install
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
+```
+
+# Install Laravel Admin Bootstrap
+New Project
+```sh
+git init && git remote add admin https://github.com/Ator9/laravel-admin-bootstrap.git && git pull admin master
 ```
 
 ## Artisan Console
