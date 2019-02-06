@@ -108,6 +108,15 @@ Extended
     <p>This is my body content.</p>
 @stop
 ```
+## Links
+```git
+*
+!public
+!public/adminux
+!public/adminux/*
+!public/adminux/resources
+!public/adminux/resources/*
+```
 
 ## Links
 <a href="http://www.php-fig.org/psr/psr-2/" target="_blank">Coding Style Guide</a>
