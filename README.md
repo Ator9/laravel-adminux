@@ -30,6 +30,7 @@ Make Files
 ```sh
 php artisan list make
 php artisan help make:migration
+php artisan route:list
 
 php artisan make:controller PagesController
 php artisan make:controller Pages/PagesController
