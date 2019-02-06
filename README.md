@@ -27,7 +27,8 @@ Make Files
 php artisan list make
 php artisan help make:migration
 
-php artisan make:controller PagesController --plain
+php artisan make:controller PagesController
+php artisan make:controller Pages/PagesController
 
 php artisan make:migration create_xxx_table
 php artisan make:migration add_column_to_xxx_table --table="xxx"
