@@ -73,9 +73,21 @@ $users = DB::table('users')->get();
 ## .git/info/exclude
 ```sh
 *
+
+!app
+!app/Http
+!app/Http/Controllers
+!app/Http/Controllers/Adminux
+!app/Http/Controllers/Adminux/*
+
 !public
 !public/adminux
 !public/adminux/*
 !public/adminux/resources
 !public/adminux/resources/*
+
+!resources
+!resources/views
+!resources/views/adminux
+!resources/views/adminux/*
 ```
