@@ -108,8 +108,8 @@ Extended
     <p>This is my body content.</p>
 @stop
 ```
-## Links
-```git
+## Git info/exclude
+```sh
 *
 !public
 !public/adminux
