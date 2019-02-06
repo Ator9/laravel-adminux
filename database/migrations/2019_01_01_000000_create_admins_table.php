@@ -27,7 +27,7 @@ class CreateAdminsTable extends Migration
             $table->timestamps();
         });
 
-        // Insert admin:
+        // Insert admins:
         DB::table('admins')->insert([
             'username'  => 'admin',
             'password'  => 'test',
