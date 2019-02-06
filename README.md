@@ -18,7 +18,7 @@ php artisan db:seed
 
 # Install Laravel AdminUX
 ```sh
-git init && git remote add adminux https://github.com/Ator9/laravel-adminux.git && git pull adminux master
+git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
 
 ## Artisan Console
