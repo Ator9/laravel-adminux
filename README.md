@@ -77,25 +77,15 @@ $users = DB::table('users')->get();
 ```sh
 *
 
-!app
-!app/Http
-!app/Http/Controllers
-!app/Http/Controllers/Adminux
+app/Http/Controllers/Adminux
 !app/Http/Controllers/Adminux/*
 
-!database
-!database/migrations
 database/migrations/*
 !database/migrations/2019_01_01_000000_create_admins_table.php
 
-!public
-!public/adminux
-!public/adminux/*
-!public/adminux/resources
+public/adminux/resources
 !public/adminux/resources/*
 
-!resources
-!resources/views
-!resources/views/adminux
+resources/views/adminux
 !resources/views/adminux/*
 ```
