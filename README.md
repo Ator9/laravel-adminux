@@ -16,9 +16,9 @@ php artisan migrate
 php artisan db:seed
 ```
 
-# Install Laravel Admin Bootstrap
+# Install Laravel AdminUX
 ```sh
-git init && git remote add admin https://github.com/Ator9/laravel-admin-bootstrap.git && git pull admin master
+git init && git remote add adminux https://github.com/Ator9/laravel-adminux.git && git pull adminux master
 ```
 
 ## Artisan Console
