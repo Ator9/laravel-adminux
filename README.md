@@ -33,7 +33,7 @@ php artisan make:migration create_xxx_table
 php artisan make:migration add_column_to_xxx_table --table="xxx"
 ```
 
-Database Migrations - <a href="http://laravel.com/docs/migrations" target="_blank">Documentation</a>
+Database Migrations - <a href="http://laravel.com/docs/migrations">Documentation</a>
 ```sh
 php artisan migrate
 php artisan migrate:rollback
@@ -63,14 +63,14 @@ class Admin extends Model
 }
 ```
 
-## Query Builder - <a href="http://laravel.com/docs/queries" target="_blank">Docs</a>
+## Query Builder - <a href="http://laravel.com/docs/queries">Docs</a>
 ```php
 use DB;
 $users = DB::table('users')->get();
 ```
 
 
-## Blade Templates - <a href="http://laravel.com/docs/blade" target="_blank">Docs</a>
+## Blade Templates - <a href="http://laravel.com/docs/blade">Docs</a>
 ```html
 {{ $varname }} // echo with htmlentities
 {!! $varname !!} // echo without htmlentities
@@ -119,4 +119,4 @@ Extended
 ```
 
 ## Links
-<a href="http://www.php-fig.org/psr/psr-2/" target="_blank">Coding Style Guide</a>
+<a href="http://www.php-fig.org/psr/psr-2/">Coding Style Guide</a>
