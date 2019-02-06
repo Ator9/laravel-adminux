@@ -69,45 +69,6 @@ use DB;
 $users = DB::table('users')->get();
 ```
 
-
-## Blade Templates - <a href="http://laravel.com/docs/blade">Docs</a>
-```html
-{{ $varname }} // echo with htmlentities
-{!! $varname !!} // echo without htmlentities
-```
-Master Layout
-```html
-<html>
-<head>
-<title>App Name - @yield('title')</title>
-</head>
-<body>
-@section('sidebar')
-    This is the master sidebar.
-@show
-
-<div class="container">
-    @yield('content')
-</div>
-</body>
-</html>
-```
-Extended
-```html
-@extends('master')
-
-@section('title', 'Page Title')
-
-@section('sidebar')
-    @parent
-
-    <p>This is appended to the master sidebar.</p>
-@stop
-
-@section('content')
-    <p>This is my body content.</p>
-@stop
-```
 ## .git/info/exclude
 ```sh
 *
@@ -117,6 +78,3 @@ Extended
 !public/adminux/resources
 !public/adminux/resources/*
 ```
-
-## Links
-<a href="http://www.php-fig.org/psr/psr-2/">Coding Style Guide</a>
