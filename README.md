@@ -20,7 +20,7 @@ php artisan db:seed
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
-Web Route
+Routes - web.php
 ```php
 Route::get('/admin', 'Adminux\AdminuxController@index');
 ```
