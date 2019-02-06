@@ -1,4 +1,4 @@
-# Laravel Install
+# Install
 New Project
 ```sh
 composer create-project laravel/laravel .
