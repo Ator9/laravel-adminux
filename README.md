@@ -108,7 +108,7 @@ Extended
     <p>This is my body content.</p>
 @stop
 ```
-## Git info/exclude
+## .git/info/exclude
 ```sh
 *
 !public
