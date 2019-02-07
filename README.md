@@ -83,7 +83,16 @@ $users = DB::table('users')->get();
 !app/*
 app/*
 !app/Admin.php
+
+!app/Http/*
+app/Http/*
+
+!app/Http/Controllers/*
+app/Http/Controllers/*
 !app/Http/Controllers/Adminux/*
+
+!app/Http/Middleware/*
+app/Http/Middleware/*
 !app/Http/Middleware/Adminux/*
 
 !database/*
@@ -92,6 +101,13 @@ database/*
 database/migrations/*
 !database/migrations/2019_01_01_000000_create_admins_table.php
 
-!public/adminux/resources/*
+!public/*
+public/*
+!public/adminux/*
+
+!resources/*
+resources/*
+!resources/views/*
+resources/views/*
 !resources/views/adminux/*
 ```
