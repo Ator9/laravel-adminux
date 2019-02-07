@@ -3,6 +3,7 @@
 namespace App\Http\Middleware\Adminux;
 
 use Closure;
+use Auth;
 
 class Authenticate
 {
@@ -15,11 +16,14 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
 
-        if(auth()->user()->isAdmin == 1) {
-            return $next($request);
-        }
-        return redirect('home')->with('error', 'You have not admin access');
+        $user = Auth::user();
+        dd($user);exit;
+        // return $next($request);
+        // dd(auth()::hasUser());exit;
+        // dd(auth());exit;
+
+        if(auth()->user()->id) return $next($request);
+        return redirect('login');
     }
 }
