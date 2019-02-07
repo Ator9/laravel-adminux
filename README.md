@@ -80,6 +80,9 @@ $users = DB::table('users')->get();
 ```sh
 *
 
+!app/*
+app/*
+!app/Admin.php
 !app/Http/Controllers/Adminux/*
 !app/Http/Middleware/Adminux/*
 
