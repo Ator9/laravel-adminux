@@ -79,19 +79,9 @@ $users = DB::table('users')->get();
 ## .git/info/exclude
 ```sh
 *
-
-app/Http/Controllers/Adminux
 !app/Http/Controllers/Adminux/*
-
-app/Http/Middleware/Adminux
 !app/Http/Middleware/Adminux/*
-
-database/migrations/*
 !database/migrations/2019_01_01_000000_create_admins_table.php
-
-public/adminux/resources
 !public/adminux/resources/*
-
-resources/views/adminux
 !resources/views/adminux/*
 ```
