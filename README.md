@@ -22,6 +22,7 @@ git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git 
 ```
 /routes/web.php
 ```php
+Auth::routes();
 Route::resource('admin', 'Adminux\AdminuxController');
 ```
 /app/Http/Kernel.php - $routeMiddleware:
