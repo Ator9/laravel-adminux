@@ -16,7 +16,7 @@ php artisan migrate
 php artisan db:seed
 ```
 
-# Install Laravel AdminUX
+# Install AdminUX
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
