@@ -20,9 +20,13 @@ php artisan db:seed
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
-Routes - web.php
+/routes/web.php
 ```php
 Route::resource('admin', 'Adminux\AdminuxController');
+```
+/app/Http/Kernel.php - $routeMiddleware:
+```php
+'adminux' => \App\Http\Middleware\Adminux\Authenticate::class,
 ```
 
 ## Artisan Console
