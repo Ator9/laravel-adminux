@@ -30,8 +30,8 @@ Route::resource('admin', 'Adminux\AdminuxController');
 ```sh
 php artisan route:list
 
-php artisan make:controller PagesController
-php artisan make:controller Pages/PagesController -r
+php artisan make:controller AdminController
+php artisan make:controller Admin/AdminController -r
 
 php artisan make:migration create_xxx_table
 php artisan make:migration add_column_to_xxx_table --table="xxx"
