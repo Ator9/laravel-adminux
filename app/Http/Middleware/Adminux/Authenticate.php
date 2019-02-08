@@ -16,11 +16,7 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guard('adminux')->check())
-        {
-            dd($request);
-            return view('admin/index');
-        }
+        if(Auth::guard('adminux')->check()) return $next($request);
         return redirect('admin/login');
     }
 }
