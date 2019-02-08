@@ -16,7 +16,7 @@
                         <div class="card">
                             <div class="card-header">{{ config('app.name', 'Admin') }} - {{ __('Login') }}</div>
                             <div class="card-body">
-                                <form method="POST" action="">
+                                <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
                                     <div class="form-group row">
