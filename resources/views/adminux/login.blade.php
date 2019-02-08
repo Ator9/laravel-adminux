@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{ config('app.name', 'Admin') }}</title>
-<script src="{{ asset('adminux/resources/login.js') }}" defer></script>
 <link href="{{ asset('adminux/resources/login.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -81,5 +80,7 @@
             </div>
         </main>
     </div>
+    <script src="{{ asset('adminux/resources//libs/jquery.min.js') }}"></script>
+    <script src="{{ asset('adminux/resources//libs/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
