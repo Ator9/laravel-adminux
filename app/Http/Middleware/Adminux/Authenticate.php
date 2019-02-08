@@ -2,22 +2,20 @@
 
 namespace App\Http\Middleware\Adminux;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
 
-class Authenticate extends Middleware
+class Authenticate
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string
+     * @param  \Closure  $next
+     * @return mixed
      */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next)
     {
-        // Auth::guard('admin')->check();exit;
-
-        if (! $request->expectsJson()) {
-            return route('adminux/login');
-        }
+        // dd($request);
+        return redirect('admin/login');
     }
 }
