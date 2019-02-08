@@ -3,6 +3,7 @@
 namespace App\Http\Middleware\Adminux;
 
 use Closure;
+use Auth;
 
 class Authenticate
 {
@@ -15,7 +16,11 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        // dd($request);
+        if(Auth::guard('adminux')->check())
+        {
+            dd($request);
+            return view('admin/index');
+        }
         return redirect('admin/login');
     }
 }

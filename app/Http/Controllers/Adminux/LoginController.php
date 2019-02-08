@@ -11,6 +11,8 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
+    protected $redirectTo = '/admin';
+
     protected function guard()
     {
         return Auth::guard('adminux');
@@ -25,14 +27,4 @@ class LoginController extends Controller
     {
         return view('adminux/login');
     }
-
-    // protected function guard()
-    // {
-    //     return Auth::guard('adminux');
-    // }
-    //
-    // public function login()
-    // {
-    //     return view('adminux/login');
-    // }
 }
