@@ -22,7 +22,8 @@ git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git 
 ```
 /routes/web.php
 ```php
-Route::get('admin/login', 'Adminux\LoginController@login')->name('login');
+Route::get('admin/login', 'Adminux\LoginController@showLoginForm')->name('showLoginForm');
+Route::post('admin/login', 'Adminux\LoginController@login')->name('login');
 Route::resource('admin', 'Adminux\AdminController');
 ```
 /app/Http/Kernel.php - $routeMiddleware:
