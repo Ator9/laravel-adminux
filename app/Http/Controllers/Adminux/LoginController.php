@@ -12,6 +12,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $redirectTo = '/admin';
+    protected $redirectAfterLogout = '/admin';
 
     protected function guard()
     {
@@ -26,5 +27,10 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('adminux/login');
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        return redirect('/admin');
     }
 }
