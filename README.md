@@ -20,15 +20,29 @@ php artisan db:seed
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
+/app/Http/Kernel.php - $routeMiddleware:
+```php
+'adminux' => \App\Http\Middleware\Adminux\Authenticate::class,
+```
+/config/auth.php
+```php
+// guards:
+'adminux' => [
+    'driver' => 'session',
+    'provider' => 'adminux',
+],
+
+// providers:
+'adminux' => [
+    'driver' => 'eloquent',
+    'model' => App\Admin::class,
+],
+```
 /routes/web.php
 ```php
 Route::get('admin/login', 'Adminux\LoginController@showLoginForm')->name('showLoginForm');
 Route::post('admin/login', 'Adminux\LoginController@login')->name('login');
 Route::resource('admin', 'Adminux\AdminController');
-```
-/app/Http/Kernel.php - $routeMiddleware:
-```php
-'adminux' => \App\Http\Middleware\Adminux\Authenticate::class,
 ```
 
 ## Artisan Console
