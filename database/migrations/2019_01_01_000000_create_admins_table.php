@@ -30,7 +30,7 @@ class CreateAdminsTable extends Migration
         // Insert admins:
         DB::table('admins')->insert([
             'email'     => 'admin@localhost',
-            'password'  => Hash::make('test'),
+            'password'  => Hash::make('test'), // $2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..
             'superuser' => 'Y',
             'active'    => 'Y',
         ]);
