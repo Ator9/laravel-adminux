@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>{{ config('app.name', 'Admin') }}</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha256-azvvU9xKluwHFJ0Cpgtf0CYzK7zgtOznnzxV4924X1w=" crossorigin="anonymous" rel="stylesheet" />
+<link href="{{ asset('adminux/resources//libs/bootstrap.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('adminux/resources/admin.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <span class="text-white px-3">{{ Auth::guard('adminux')->user()->email }}</span>
     <ul class="navbar-nav mr-3">
-        <li class="nav-item text-nowrap">
+        <li class="nav-item">
             <a class="nav-link" href="{{ asset('admin/logout') }}"><span data-feather="log-out"></span></a>
         </li>
     </ul>
@@ -245,10 +245,10 @@
         </main>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha256-MSYVjWgrr6UL/9eQfQvOyt6/gsxb6dpwI1zqM5DbLCs=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="{{ asset('adminux/resources//libs/jquery.min.js') }}"></script>
+<script src="{{ asset('adminux/resources//libs/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('adminux/resources//libs/feather.min.js') }}"></script>
+<script src="{{ asset('adminux/resources//libs/Chart.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/admin.js') }}"></script>
 </body>
 </html>
