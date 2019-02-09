@@ -11,17 +11,11 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/admin';
-    protected $redirectAfterLogout = '/admin';
+    protected $redirectTo = 'admin';
 
     protected function guard()
     {
         return Auth::guard('adminux');
-    }
-
-    public function username()
-    {
-        return 'username';
     }
 
     public function showLoginForm()
@@ -31,6 +25,6 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
-        return redirect('/admin');
+        return redirect('admin');
     }
 }
