@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>@yield('title')</title>
 <link href="{{ asset('adminux/resources//libs/bootstrap.min.css') }}" rel="stylesheet" />
-<link href="{{ asset('adminux/resources/admin.css') }}" rel="stylesheet">
+@auth('adminux')<link href="{{ asset('adminux/resources/admin.css') }}" rel="stylesheet">@endauth
 @yield('head')
 </head>
 <body>

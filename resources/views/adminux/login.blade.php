@@ -4,7 +4,6 @@
 
 @section('head')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link href="{{ asset('adminux/resources/login.css') }}" rel="stylesheet">
 @endsection
 
 @section('body')
