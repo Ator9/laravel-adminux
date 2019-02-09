@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('adminux.layout')
+
+@section('title', config('app.name', 'Admin'))
+
+@section('head')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ config('app.name', 'Admin') }}</title>
 <link href="{{ asset('adminux/resources/login.css') }}" rel="stylesheet">
-</head>
-<body>
+@endsection
+
+@section('body')
 <div id="app">
     <main class="py-4">
         <div class="container">
@@ -57,7 +57,4 @@
         </div>
     </main>
 </div>
-<script src="{{ asset('adminux/resources//libs/jquery.min.js') }}"></script>
-<script src="{{ asset('adminux/resources//libs/bootstrap.bundle.min.js') }}"></script>
-</body>
-</html>
+@endsection
