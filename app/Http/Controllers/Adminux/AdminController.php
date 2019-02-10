@@ -14,6 +14,16 @@ class AdminController extends Controller
     }
 
     /**
+     * Display admin dashboard
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+        return view('adminux.dashboard');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -22,17 +32,7 @@ class AdminController extends Controller
     {
         // $admins = Admin::all();
         // dd($admins);
-        return view('adminux.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        return view('adminux.dashboard');
+        return view('adminux.admins.index');
     }
 
     /**
