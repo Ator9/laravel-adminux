@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = 'admin/dashboard';
+    protected $redirectTo = 'admin';
 
     protected function guard()
     {
@@ -20,7 +20,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if(Auth::guard('adminux')->check()) return redirect('admin/dashboard');
+        if(Auth::guard('adminux')->check()) return redirect('admin');
         return view('adminux.login');
     }
 
