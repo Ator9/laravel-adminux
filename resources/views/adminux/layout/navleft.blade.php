@@ -9,7 +9,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link{{ Request::is('admin/admins') ? ' active' : '' }}" href="{{ asset('admin/admins') }}">
-                    <span data-feather="file"></span>
+                    <span data-feather="settings"></span>
                     Admins
                 </a>
             </li>
