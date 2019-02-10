@@ -2,13 +2,13 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link{{ Request::path() == 'admin' ? ' active' : '' }}" href="{{ asset('admin') }}">
+                <a class="nav-link{{ Request::is('admin') ? ' active' : '' }}" href="{{ asset('admin') }}">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link{{ Request::path() == 'admin/admins' ? ' active' : '' }}" href="{{ asset('admin/admins') }}">
+                <a class="nav-link{{ Request::is('admin/admins') ? ' active' : '' }}" href="{{ asset('admin/admins') }}">
                     <span data-feather="file"></span>
                     Admins
                 </a>
