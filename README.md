@@ -40,10 +40,11 @@ git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git 
 ```
 /routes/web.php
 ```php
+Route::post('admin/login', 'Adminux\LoginController@login')->name('login');
 Route::get('admin/login', 'Adminux\LoginController@showLoginForm')->name('showLoginForm');
 Route::get('admin/logout', 'Adminux\LoginController@logout')->name('logout');
-Route::post('admin/login', 'Adminux\LoginController@login')->name('login');
-Route::resource('admin', 'Adminux\AdminController');
+Route::get('admin', 'Adminux\AdminController@dashboard')->name('admin.dashboard');
+Route::resource('admin/admins', 'Adminux\AdminController');
 ```
 
 ## Artisan Console
