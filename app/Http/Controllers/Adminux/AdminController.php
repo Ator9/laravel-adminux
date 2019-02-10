@@ -22,7 +22,17 @@ class AdminController extends Controller
     {
         // $admins = Admin::all();
         // dd($admins);
-        return view('adminux/index');
+        return view('adminux.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+        return view('adminux.dashboard');
     }
 
     /**
