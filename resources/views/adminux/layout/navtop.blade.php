@@ -5,7 +5,7 @@
             <a class="nav-link text-white disabled" href="#">Admins</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="#">Partners</a>
+            <a class="nav-link" href="#">Partners</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Logs</a>
