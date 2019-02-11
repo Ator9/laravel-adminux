@@ -28,10 +28,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Admin $admin)
     {
         // $admins = Admin::all();
-        // dd($admins);
+        // dd($admin::all());
         return view('adminux.admins.index');
     }
 

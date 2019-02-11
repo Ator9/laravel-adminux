@@ -8,7 +8,10 @@
         @include('adminux.layout.navleft')
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-                <h1 class="h2">Admins</h1>
+                <div class="d-flex align-items-center">
+                    <h5 class="mt-1 mr-3">Admins</h5>
+                    <input class="mb-1 p-1" type="text" placeholder="Search" aria-label="Search">
+                </div>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -147,6 +150,27 @@
                         </tr>
                     </tbody>
                 </table>
+
+                    <!-- <ul class="pagination" role="navigation">
+                            <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                            </li>
+
+                                <li class="page-item disabled" aria-disabled="true"><span class="page-link">2</span></li>
+
+                                        <li class="page-item active" aria-current="page"><span class="page-link">2</span></li>
+                                        <li class="page-item"><a class="page-link" href="">1</a></li>
+
+                            <li class="page-item">
+                                <a class="page-link" href="" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                            </li>
+                            <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                                <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                            </li>
+                    </ul> -->
             </div>
         </main>
     </div>
