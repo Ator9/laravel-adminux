@@ -20,11 +20,11 @@ php artisan db:seed
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
-/app/Http/Kernel.php - $routeMiddleware:
+Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
 'adminux' => \App\Http\Middleware\Adminux\Authenticate::class,
 ```
-/config/auth.php
+Add to /config/auth.php:
 ```php
 // guards:
 'adminux' => [
@@ -38,7 +38,7 @@ git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git 
     'model' => App\Admin::class,
 ],
 ```
-/routes/web.php
+Add to /routes/web.php:
 ```php
 Route::post('admin/login', 'Adminux\LoginController@login')->name('login');
 Route::get('admin/login', 'Adminux\LoginController@showLoginForm')->name('showLoginForm');
