@@ -1,5 +1,7 @@
 <?php
 
+// Route::prefix('admin')->group(base_path('app/Adminux/routes.php'));
+
 Route::namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
     Route::get('login', 'LoginController@showLoginForm')->name('showLoginForm');
