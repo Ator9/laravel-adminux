@@ -45,7 +45,9 @@ Route::namespace('\App\Adminux')->prefix('admin')->group(function() {
     Route::get('login', 'LoginController@showLoginForm')->name('showLoginForm');
     Route::get('logout', 'LoginController@logout')->name('logout');
     Route::get('', 'Admins\Controllers\AdminController@dashboard')->name('admin.dashboard');
+    
     Route::resource('admins', 'Admins\Controllers\AdminController');
+    Route::resource('partners', 'Partners\Controllers\PartnerController');
 });
 ```
 
