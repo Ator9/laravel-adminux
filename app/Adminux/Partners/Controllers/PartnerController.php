@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Adminux\Admins\Controllers;
+namespace App\Adminux\Partners\Controllers;
 
 use App\Adminux\Partners\Models\Partner;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PartnerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminux');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        //
+        dd(1);
     }
 
     /**

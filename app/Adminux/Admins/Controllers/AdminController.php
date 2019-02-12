@@ -14,16 +14,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Display admin dashboard
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        return view('adminux.dashboard');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -99,5 +89,15 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    /**
+     * Display admin dashboard
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+        return view('adminux.dashboard');
     }
 }
