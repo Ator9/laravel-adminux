@@ -110,6 +110,7 @@ database/*
 !database/migrations
 database/migrations/*
 !database/migrations/2019_01_01_000000_create_admins_table.php
+!database/migrations/2019_01_01_000001_create_partners_table.php
 
 !public/*
 public/*
