@@ -102,18 +102,8 @@ $users = DB::table('users')->get();
 
 !app/*
 app/*
-!app/Admin.php
-
-!app/Http/*
-app/Http/*
-
-!app/Http/Controllers/*
-app/Http/Controllers/*
-!app/Http/Controllers/Adminux/*
-
-!app/Http/Middleware/*
-app/Http/Middleware/*
-!app/Http/Middleware/Adminux/*
+!app/Adminux
+!app/Adminux/*
 
 !database/*
 database/*
