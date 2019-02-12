@@ -22,7 +22,7 @@ git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git 
 ```
 Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
-'adminux' => \App\Http\Middleware\Adminux\Authenticate::class,
+'adminux' => \App\Adminux\Authenticate::class,
 ```
 Add to /config/auth.php:
 ```php
@@ -35,16 +35,18 @@ Add to /config/auth.php:
 // providers:
 'adminux' => [
     'driver' => 'eloquent',
-    'model' => App\Admin::class,
+    'model' => App\Adminux\Admins\Models\Admin::class,
 ],
 ```
 Add to /routes/web.php:
 ```php
-Route::post('admin/login', 'Adminux\LoginController@login')->name('login');
-Route::get('admin/login', 'Adminux\LoginController@showLoginForm')->name('showLoginForm');
-Route::get('admin/logout', 'Adminux\LoginController@logout')->name('logout');
-Route::get('admin', 'Adminux\AdminController@dashboard')->name('admin.dashboard');
-Route::resource('admin/admins', 'Adminux\AdminController');
+Route::namespace('\App\Adminux')->group(function() {
+    Route::post('admin/login', 'LoginController@login')->name('login');
+    Route::get('admin/login', 'LoginController@showLoginForm')->name('showLoginForm');
+    Route::get('admin/logout', 'LoginController@logout')->name('logout');
+    Route::get('admin', 'Admins\Controllers\AdminController@dashboard')->name('admin.dashboard');
+    Route::resource('admin/admins', 'Admins\Controllers\AdminController');
+});
 ```
 
 ## Artisan Console
