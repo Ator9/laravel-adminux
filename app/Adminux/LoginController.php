@@ -20,12 +20,12 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if(Auth::guard('adminux')->check()) return redirect('admin');
+        if($this->guard()->check()) return redirect($this->redirectTo);
         return view('adminux.login');
     }
 
     protected function loggedOut(Request $request)
     {
-        return redirect('admin');
+        return redirect($this->redirectTo);
     }
 }
