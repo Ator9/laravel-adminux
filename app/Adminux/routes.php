@@ -10,6 +10,11 @@ Route::namespace('\App\Adminux')->group(function() {
 
     Route::resource('admins', 'Admins\Controllers\AdminController');
     Route::resource('partners', 'Partners\Controllers\PartnerController');
+
+    // foreach(File::directories(__DIR__) as $dir) {
+    //     $module = basename($dir);
+    //     Route::resource(strtolower($module), $module.'\Controllers\\'.$module.'Controller');
+    // }
 });
 
 if(file_exists(__DIR__.'/routescustom.php')) include __DIR__.'/routescustom.php';
