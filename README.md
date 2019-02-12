@@ -40,12 +40,12 @@ Add to /config/auth.php:
 ```
 Add to /routes/web.php:
 ```php
-Route::namespace('\App\Adminux')->prefix('admin')->group(function() {
+Route::prefix('admin')->namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
     Route::get('login', 'LoginController@showLoginForm')->name('showLoginForm');
     Route::get('logout', 'LoginController@logout')->name('logout');
     Route::get('', 'Admins\Controllers\AdminController@dashboard')->name('admin.dashboard');
-    
+
     Route::resource('admins', 'Admins\Controllers\AdminController');
     Route::resource('partners', 'Partners\Controllers\PartnerController');
 });
