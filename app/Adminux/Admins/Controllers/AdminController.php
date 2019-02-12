@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Adminux;
+namespace App\Adminux\Admins\Controllers;
 
-use App\Admin;
+use App\Adminux\Admins\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

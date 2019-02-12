@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware\Adminux;
+namespace App\Adminux;
 
 use Closure;
 use Auth;
