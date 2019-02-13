@@ -3,6 +3,8 @@
 namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Admin;
+use App\Adminux\Helpers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
