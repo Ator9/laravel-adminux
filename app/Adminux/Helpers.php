@@ -4,7 +4,7 @@ namespace App\Adminux;
 
 class Helpers
 {
-    static function path()
+    static function getNavLeft()
     {
         echo 'hi';
     }

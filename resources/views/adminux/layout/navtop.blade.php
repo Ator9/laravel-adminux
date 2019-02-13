@@ -1,6 +1,7 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ asset('admin') }}">{{ config('app.name', 'Admin') }}</a>
     <ul class="nav w-100 ml-2 h6">
+        @inject('Helpers', 'App\Adminux\Helpers')
         <li class="nav-item">
             <a class="nav-link text-white disabled" href="{{ asset('admin/admin') }}">Admins</a>
         </li>

@@ -3,8 +3,6 @@
 namespace App\Adminux\Partner\Controllers;
 
 use App\Adminux\Partner\Models\Partner;
-use App\Adminux\Helpers;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +20,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        Helpers::path();
+        // Helpers::path();
         // dd(1);
         return view('adminux.partner.index');
     }
