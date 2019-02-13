@@ -35,7 +35,7 @@ Add to /config/auth.php:
 // providers:
 'adminux' => [
     'driver' => 'eloquent',
-    'model' => App\Adminux\Admins\Models\Admin::class,
+    'model' => App\Adminux\Admin\Models\Admin::class,
 ],
 ```
 Add to /routes/web.php:
@@ -44,10 +44,10 @@ Route::prefix('admin')->namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
     Route::get('login', 'LoginController@showLoginForm')->name('showLoginForm');
     Route::get('logout', 'LoginController@logout')->name('logout');
-    Route::get('', 'Admins\Controllers\AdminController@dashboard')->name('admin.dashboard');
+    Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
 
-    Route::resource('admins', 'Admins\Controllers\AdminController');
-    Route::resource('partners', 'Partners\Controllers\PartnerController');
+    Route::resource('admin', 'Admin\Controllers\AdminController');
+    Route::resource('partner', 'Partner\Controllers\PartnerController');
 });
 ```
 
