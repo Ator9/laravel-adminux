@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link{{ Request::is('admin/admins') ? ' active' : '' }}" href="{{ asset('admin/admins') }}">
+                <a class="nav-link{{ Request::is('admin/admin') ? ' active' : '' }}" href="{{ asset('admin/admin') }}">
                     <span data-feather="settings"></span>
                     Admins
                 </a>

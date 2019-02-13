@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Partners\Controllers;
+namespace App\Adminux\Partner\Controllers;
 
-use App\Adminux\Partners\Models\Partner;
+use App\Adminux\Partner\Models\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,7 +21,7 @@ class PartnerController extends Controller
     public function index()
     {
         // dd(1);
-        return view('adminux.partners.index');
+        return view('adminux.partner.index');
     }
 
     /**

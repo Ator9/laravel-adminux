@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Adminux\Partners\Models;
+namespace App\Adminux\Partner\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

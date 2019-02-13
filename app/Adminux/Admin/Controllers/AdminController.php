@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Admins\Controllers;
+namespace App\Adminux\Admin\Controllers;
 
-use App\Adminux\Admins\Models\Admin;
+use App\Adminux\Admin\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +22,7 @@ class AdminController extends Controller
     {
         // $admins = Admin::all();
         // dd($admin::all());
-        return view('adminux.admins.index');
+        return view('adminux.admin.index');
     }
 
     /**
