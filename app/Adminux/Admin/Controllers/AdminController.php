@@ -12,6 +12,10 @@ class AdminController extends Controller
     public $adminConfig = [
         'name' => 'Admins',
         'icon' => 'settings', // Feather icons
+        'submenu' => [
+            'partner' => 'Partners',
+            'logs'    => 'Logs',
+        ],
     ];
 
     public function __construct()

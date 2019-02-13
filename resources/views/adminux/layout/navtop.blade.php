@@ -1,16 +1,16 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ asset('admin') }}">{{ config('app.name', 'Admin') }}</a>
-    <ul class="nav w-100 ml-2 h6">
+    <ul class="nav w-100 ml-2">
         @inject('Helpers', 'App\Adminux\Helpers')
-        <li class="nav-item">
-            <a class="nav-link text-white disabled" href="{{ asset('admin/admin') }}">Admins</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ asset('admin/partner') }}">Partners</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Logs</a>
-        </li>
+        @foreach($Helpers->getNavTop(Request::path()) as $dir => $name)
+            <li class="nav-item">
+                @if(Request::is('admin/'.$dir))
+                    <a class="nav-link text-white disabled" href="{{ asset('admin/'.$dir) }}">{{ $name }}</a>
+                @else
+                    <a class="nav-link text-warning" href="{{ asset('admin/'.$dir) }}">{{ $name }}</a>
+                @endif
+            </li>
+        @endforeach
     </ul>
     <span class="text-white">{{ Auth::guard('adminux')->user()->email }}</span>
     <ul class="navbar-nav mx-4">
