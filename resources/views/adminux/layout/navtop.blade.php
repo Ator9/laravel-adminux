@@ -2,10 +2,10 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ asset('admin') }}">{{ config('app.name', 'Admin') }}</a>
     <ul class="nav w-100 ml-2 h6">
         <li class="nav-item">
-            <a class="nav-link text-white disabled" href="#">Admins</a>
+            <a class="nav-link text-white disabled" href="{{ asset('admin/admins') }}">Admins</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Partners</a>
+            <a class="nav-link" href="{{ asset('admin/partners') }}">Partners</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Logs</a>

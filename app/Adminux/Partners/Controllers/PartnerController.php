@@ -20,7 +20,8 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        dd(1);
+        // dd(1);
+        return view('adminux.partners.index');
     }
 
     /**
