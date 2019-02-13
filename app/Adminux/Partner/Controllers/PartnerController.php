@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class PartnerController extends Controller
 {
+    // Admin Configuration:
+    public $adminConfig = [
+        'name' => 'Partners',
+        'icon' => 'layers', // Feather icons
+    ];
+
     public function __construct()
     {
         $this->middleware('adminux');

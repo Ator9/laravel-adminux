@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    // Admin Configuration:
+    public $adminConfig = [
+        'name' => 'Admins',
+        'icon' => 'settings', // Feather icons
+    ];
+
     public function __construct()
     {
         $this->middleware('adminux');
