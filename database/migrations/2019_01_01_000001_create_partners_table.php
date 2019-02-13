@@ -14,7 +14,10 @@ class CreatePartnersTable extends Migration
     public function up()
     {
         Schema::create('partners', function (Blueprint $table) {
-            $table->increments('id');
+            $table->mediumIncrements('id');
+            $table->string('name', 100)->default('')->unique();
+            $table->enum('active', ['N', 'Y'])->default('N');
+            $table->enum('deleted', ['N', 'Y'])->default('N');
             $table->timestamps();
         });
     }
