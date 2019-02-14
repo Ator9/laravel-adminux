@@ -3,9 +3,7 @@
     <ul class="nav w-100 ml-2">
         @inject('Helpers', 'App\Adminux\Helpers')
         @foreach($Helpers->getNavTop(Request::path()) as $dir => $name)
-            @if ($loop->index > 0)
-                @php $dir = 'admin_'.$dir @endphp
-            @endif
+            @if ($loop->index > 0 and $dir = 'admin_'.$dir) @endif
             <li class="nav-item">
                 @if(Request::is('admin/'.$dir))
                     <a class="nav-link text-white disabled" href="{{ asset('admin/'.$dir) }}">{{ $name }}</a>
