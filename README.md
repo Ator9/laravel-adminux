@@ -40,15 +40,7 @@ Add to /config/auth.php:
 ```
 Add to /routes/web.php:
 ```php
-Route::prefix('admin')->namespace('\App\Adminux')->group(function() {
-    Route::post('login', 'LoginController@login')->name('login');
-    Route::get('login', 'LoginController@showLoginForm')->name('showLoginForm');
-    Route::get('logout', 'LoginController@logout')->name('logout');
-    Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
-
-    Route::resource('admin', 'Admin\Controllers\AdminController');
-    Route::resource('partner', 'Partner\Controllers\PartnerController');
-});
+Route::prefix('admin')->group(base_path('app/Adminux/routes.php'));
 ```
 
 ## Artisan Console
