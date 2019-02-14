@@ -8,14 +8,12 @@ class Helpers
     {
         $data = [];
 
-        foreach(\File::directories(__DIR__) as $dir)
-        {
+        foreach(\File::directories(__DIR__) as $dir) {
             $module    = basename($dir);
             $className = 'App\Adminux\\'.$module.'\Controllers\\' . $module.'Controller';
 
             $obj = new $className();
-            if(!empty($obj->adminConfig))
-            {
+            if(!empty($obj->adminConfig)) {
                 $row = $obj->adminConfig;
                 $row['dir'] = $module;
 
@@ -31,18 +29,21 @@ class Helpers
         $data = [];
 
         $array = explode('/', $path);
-        $class = end($array);
+        if(count($array) == 1) $data = [ '' => 'Dashboard' ];
+        else {
+            $class = end($array);
 
-        $className = 'App\Adminux\\'.ucfirst($class).'\Controllers\\'.ucfirst($class).'Controller';
+            $className = 'App\Adminux\\'.ucfirst($class).'\Controllers\\'.ucfirst($class).'Controller';
 
-        $obj = new $className();
-        if(!empty($obj->adminConfig))
-        {
-            $row = $obj->adminConfig;
+            $obj = new $className();
+            if(!empty($obj->adminConfig)) {
+                $row = $obj->adminConfig;
 
-            $data = [ $class => $row['name'] ];
-            if(!empty($row['submenu'])) $data = $data + $row['submenu'];
+                $data = [ $class => $row['name'] ];
+                if(!empty($row['submenu'])) $data = $data + $row['submenu'];
+            }
         }
+
 
         return $data;
     }
