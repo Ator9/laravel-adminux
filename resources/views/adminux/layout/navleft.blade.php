@@ -7,7 +7,6 @@
                     Dashboard
                 </a>
             </li>
-            @inject('Helpers', 'App\Adminux\Helpers')
             @foreach($Helpers->getNavLeft() as $module)
                 <li class="nav-item">
                     <a class="nav-link{{ Request::is('admin/'.strtolower($module['dir'])) ? ' active' : '' }}" href="{{ asset('admin/'.strtolower($module['dir'])) }}">
