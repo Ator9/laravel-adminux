@@ -33,6 +33,9 @@ class Helpers
         else {
             $class = end($array);
 
+            // $split = explode('_', $array[0]);
+            // $class = end($split);
+
             $className = 'App\Adminux\\'.ucfirst($class).'\Controllers\\'.ucfirst($class).'Controller';
 
             $obj = new $className();
