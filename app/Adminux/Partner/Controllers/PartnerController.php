@@ -14,11 +14,6 @@ class PartnerController extends Controller
         'icon' => 'layers', // Feather icons
     ];
 
-    public function __construct()
-    {
-        $this->middleware('adminux');
-    }
-
     /**
      * Display a listing of the resource.
      *

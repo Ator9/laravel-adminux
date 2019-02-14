@@ -17,12 +17,7 @@ class AdminController extends Controller
             'logs'    => 'Logs',
         ],
     ];
-
-    public function __construct()
-    {
-        $this->middleware('adminux');
-    }
-
+    
     /**
      * Display a listing of the resource.
      *
