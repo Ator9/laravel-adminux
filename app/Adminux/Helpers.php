@@ -31,22 +31,18 @@ class Helpers
         $array = explode('/', $path);
         if(count($array) == 1) $data = [ '' => 'Dashboard' ];
         else {
-            $class = end($array);
+            $class = explode('_', end($array));
 
-            // $split = explode('_', $array[0]);
-            // $class = end($split);
-
-            $className = 'App\Adminux\\'.ucfirst($class).'\Controllers\\'.ucfirst($class).'Controller';
+            $className = 'App\Adminux\\'.ucfirst($class[0]).'\Controllers\\'.ucfirst($class[0]).'Controller';
 
             $obj = new $className();
             if(!empty($obj->adminConfig)) {
                 $row = $obj->adminConfig;
 
-                $data = [ $class => $row['name'] ];
+                $data = [ $class[0] => $row['name'] ];
                 if(!empty($row['submenu'])) $data = $data + $row['submenu'];
             }
         }
-
 
         return $data;
     }
