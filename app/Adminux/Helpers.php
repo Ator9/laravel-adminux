@@ -13,10 +13,14 @@ class Helpers
             $module    = basename($dir);
             $className = 'App\Adminux\\'.$module.'\Controllers\\' . $module.'Controller';
 
-            $row = (new $className())->adminConfig;
-            $row['dir'] = $module;
+            $obj = new $className();
+            if(!empty($obj->adminConfig))
+            {
+                $row = $obj->adminConfig;
+                $row['dir'] = $module;
 
-            $data[] = $row;
+                $data[] = $row;
+            }
         }
 
         return $data;
@@ -31,10 +35,14 @@ class Helpers
 
         $className = 'App\Adminux\\'.ucfirst($class).'\Controllers\\'.ucfirst($class).'Controller';
 
-        $row = (new $className())->adminConfig;
+        $obj = new $className();
+        if(!empty($obj->adminConfig))
+        {
+            $row = $obj->adminConfig;
 
-        $data = [ $class => $row['name'] ];
-        if(!empty($row['submenu'])) $data = $data + $row['submenu'];
+            $data = [ $class => $row['name'] ];
+            if(!empty($row['submenu'])) $data = $data + $row['submenu'];
+        }
 
         return $data;
     }
