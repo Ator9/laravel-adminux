@@ -33,7 +33,7 @@ html,body,.container-fluid, .container-fluid .row{height:100%}
         </div>
     </div>
 
-    <div class="table-responsive border">
+    <div class="table-responsive">
         <table class="table table-striped table-sm" id="example">
             <thead>
                 <tr>
