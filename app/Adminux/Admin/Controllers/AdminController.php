@@ -12,12 +12,12 @@ class AdminController extends Controller
     public $adminConfig = [
         'name' => 'Admins',
         'icon' => 'settings', // Feather icons
-        'submenu' => [
+        'submenu' => [ // dir url => name
             'partner' => 'Partners',
             'logs'    => 'Logs',
         ],
     ];
-    
+
     /**
      * Display a listing of the resource.
      *
