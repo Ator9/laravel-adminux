@@ -2,6 +2,18 @@
 
 @section('title', 'Partners' . ' - ' . config('app.name', 'Admin'))
 
+@section('head')
+<link href="{{ asset('adminux/resources/libs/jquery.dataTables.css') }}" rel="stylesheet">
+<style>
+html,body,.container-fluid, .container-fluid .row{height:100%}
+.table-responsive {
+    height:calc(100% - 62px);
+    height:-moz-calc(100% - 62px);
+    height:-webkit-calc(100% - 62px);
+}
+</style>
+@endsection
+
 @section('body')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
@@ -373,50 +385,15 @@
 @endsection
 
 @section('scripts')
-<script>
-/*!
- ScrollResize for DataTables v1.0.0
- 2015 SpryMedia Ltd - datatables.net/license
-*/
-
-(function(a){"function"===typeof define&&define.amd?define(["jquery","datatables.net"],function(b){return a(b,window,document)}):"object"===typeof exports?module.exports=function(b,c){b||(b=window);if(!c||!c.fn.dataTable)c=require("datatables.net")(b,c).$;return a(c,b,b.document)}:a(jQuery,window,document)})(function(a,b,c){var g=function(e){var f=this,d=e.table();this.s={dt:e,host:a(d.container()).parent(),header:a(d.header()),footer:a(d.footer()),body:a(d.body()),container:a(d.container()),table:a(d.node())};
-d=this.s.host;"static"===d.css("position")&&d.css("position","relative");e.on("draw",function(){f._size()});this._attach();this._size()};g.prototype={_size:function(){var e=this.s,f=e.dt,d=f.table(),b=a(e.table).offset().top,h=e.host.height(),c=a("div.dataTables_scrollBody",d.container()),h=h-b-(e.container.height()-(b+c.height()));a("div.dataTables_scrollBody",d.container()).css({maxHeight:h,height:h});f.fixedColumns&&f.fixedColumns().relayout()},_attach:function(){var e=this,b=a("<iframe/>").css({position:"absolute",
-top:0,left:0,height:"100%",width:"100%",zIndex:-1,border:0}).attr("frameBorder","0").attr("src","about:blank");b[0].onload=function(){var a=this.contentDocument.body,b=a.offsetHeight,c=this.contentDocument;(c.defaultView||c.parentWindow).onresize=function(){var f=a.clientHeight||a.offsetHeight,g=c.documentElement.clientHeight;!f&&g&&(f=g);f!==b&&(b=f,e._size())}};b.appendTo(this.s.host).attr("data","about:blank")}};a.fn.dataTable.ScrollResize=g;a.fn.DataTable.ScrollResize=g;a(c).on("init.dt",function(b,
-c){if("dt"===b.namespace){var d=new a.fn.dataTable.Api(c);(c.oInit.scrollResize||a.fn.dataTable.defaults.scrollResize)&&new g(d)}})});
-</script>
-<style>
-html, body{
-  height: 100%;
-}
-.container-fluid, .container-fluid .row {
-  height: 100%;
-}
-.table-responsive {
-     height:calc(100% - 62px);
-    height:-moz-calc(100% - 62px);
-    height:-webkit-calc(100% - 62px);
-/* min-height:100%;
-    min-height: calc(100% - 62px);
-    min-height: -moz-calc(100% - 62px);
-    min-height: -webkit-calc(100% - 62px); */
-}
-#example{
-    /* height:inherit */
-}
-</style>
+<script src="{{ asset('adminux/resources/libs/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable( {
-        // scrollY: '65vh',
-        // pageResize: true
-        // "scrollCollapse": true,
-        // 'dom': 'lrtip'
-        // height: '99%',
+    $('#example').DataTable({
         scrollResize: true,
-   scrollY: 100,
-   scrollCollapse: true,
-   // paging: false
-    } );
-} );
+        scrollY: 100,
+        scrollCollapse: true,
+    });
+});
 </script>
 @endsection
