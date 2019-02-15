@@ -391,8 +391,7 @@ html, body{
     min-height: -webkit-calc(100% - 62px); */
 }
 #example{
-    height:100%;display: block;
-overflow: auto;
+    height:100%
 }
 </style>
 <script>
