@@ -8,12 +8,9 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::middleware('adminux')->group(function() {
         Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
 
-        $split = explode('_' , basename(Request::path()));
-        $class = end($split);
+        $split = explode('_', basename(Request::path()));
+        $class = ucfirst(end($split));
 
-        Route::resource(basename(Request::path()), ucfirst($class).'\Controllers\\'.ucfirst($class).'Controller');
-
-        // Route::resource('admin', 'Admin\Controllers\AdminController');
-        // Route::resource('partner', 'Partner\Controllers\PartnerController');
+        Route::resource(basename(Request::path()), $class.'\Controllers\\'.$class.'Controller');
     });
 });
