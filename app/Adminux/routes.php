@@ -7,7 +7,7 @@ Route::namespace('\App\Adminux')->group(function() {
 
     Route::middleware('adminux')->group(function() {
         Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
-        Route::get('admin_phpinfo', 'Admin\Controllers\AdminController@phpinfo')->name('admin.phpinfo');
+        Route::get('admin_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
 
         foreach(\File::directories(__DIR__) as $dir) {
             $module = basename($dir);
