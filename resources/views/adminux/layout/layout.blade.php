@@ -14,7 +14,9 @@
 <div class="container-fluid">
     <div class="row">
         @include('adminux.layout.navleft')
-        @yield('body')
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+            @yield('body')
+        </main>
     </div>
 </div>
 <script src="{{ asset('adminux/resources/libs/jquery.min.js') }}"></script>
