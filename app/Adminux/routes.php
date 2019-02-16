@@ -7,6 +7,7 @@ Route::namespace('\App\Adminux')->group(function() {
 
     Route::middleware('adminux')->group(function() {
         Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
+        Route::get('admin_phpinfo', 'Admin\Controllers\AdminController@phpinfo')->name('admin.phpinfo');
 
         foreach(\File::directories(__DIR__) as $dir) {
             $module = basename($dir);
@@ -19,7 +20,9 @@ Route::namespace('\App\Adminux')->group(function() {
             $split = explode('_', basename(Request::path()));
             if(count($split) == 2) {
                 $class = ucfirst(end($split));
-                Route::resource(basename(Request::path()), $class.'\Controllers\\'.$class.'Controller');
+                if(file_exists(__DIR__.'/'.$class.'/Controllers/'.$class.'Controller')) {
+                    Route::resource(basename(Request::path()), $class.'\Controllers\\'.$class.'Controller');
+                }
             }
         }
     });
