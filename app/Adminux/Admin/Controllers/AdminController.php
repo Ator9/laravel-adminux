@@ -106,4 +106,19 @@ class AdminController extends Controller
     {
         return view('adminux.dashboard');
     }
+
+    /**
+     * Display admin phpinfo
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function phpinfo()
+    {
+        if(isset($_GET['iframe'])) {
+            phpinfo();
+            return;
+        }
+
+        return view('adminux.components.blank')->withBody('<iframe src="admin_phpinfo?iframe=1" style="height:calc(100vh - 70px);width:100%;border:none"></iframe>');
+    }
 }
