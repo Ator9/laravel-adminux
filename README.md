@@ -40,7 +40,9 @@ Add to /config/auth.php:
 ```
 Add to /routes/web.php:
 ```php
-Route::prefix('admin')->group(base_path('app/Adminux/routes.php'));
+Route::prefix('admin')->group(function($router) {
+    require base_path('app/Adminux/routes.php');
+});
 ```
 
 ## Artisan Console
