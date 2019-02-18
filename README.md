@@ -19,8 +19,11 @@ php artisan db:seed
 # Install AdminUX
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
-composer require freshbitsweb/laratables
 ```
+Laratables
+```sh
+composer require freshbitsweb/laratables
+``
 Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
 'adminux' => \App\Adminux\Authenticate::class,
