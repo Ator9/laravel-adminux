@@ -20,10 +20,6 @@ php artisan db:seed
 ```sh
 git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
 ```
-Laratables
-```sh
-composer require freshbitsweb/laratables
-```
 Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
 'adminux' => \App\Adminux\Authenticate::class,
@@ -47,6 +43,11 @@ Add to /routes/web.php:
 Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.php');
 });
+```
+
+# Install AdminUX
+```sh
+composer require freshbitsweb/laratables
 ```
 
 ## Artisan Console
