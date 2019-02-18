@@ -20,6 +20,12 @@ class CreatePartnersTable extends Migration
             $table->enum('deleted', ['N', 'Y'])->default('N');
             $table->timestamps();
         });
+
+        // Insert:
+        DB::table('partners')->insert([
+            'name'     => 'General',
+            'active'    => 'Y',
+        ]);
     }
 
     /**
