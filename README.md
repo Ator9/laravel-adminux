@@ -23,7 +23,7 @@ git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git 
 Laratables
 ```sh
 composer require freshbitsweb/laratables
-``
+```
 Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
 'adminux' => \App\Adminux\Authenticate::class,
