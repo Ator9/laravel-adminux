@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function($router) {
 });
 ```
 
-# Install AdminUX
+# Install Laratables
 ```sh
 composer require freshbitsweb/laratables
 ```
