@@ -5,35 +5,18 @@
 @section('head')
 <link href="{{ asset('adminux/resources/libs/jquery.dataTables.css') }}" rel="stylesheet">
 <style>
-html,body,.container-fluid, .container-fluid .row{height:100%}
+html,body,.container-fluid,.container-fluid .row{height:100%}
 .table-responsive {
-    height:calc(100% - 62px);
-    height:-moz-calc(100% - 62px);
-    height:-webkit-calc(100% - 62px);
+    height:calc(100% - 10px);
+    height:-moz-calc(100% - 10px);
+    height:-webkit-calc(100% - 10px);
 }
 </style>
 @endsection
 
 @section('body')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-    <div class="d-flex align-items-center">
-        <h5 class="mt-1 mr-3">Partners</h5>
-        <input class="mb-1 p-1" type="text" placeholder="Search" aria-label="Search">
-    </div>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-        </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-        </button>
-    </div>
-</div>
-
-<div class="table-responsive">
-    <table class="table table-striped table-sm" id="example">
+<div class="table-responsive pt-3">
+    <table class="table table-striped table-sm" id="datatable">
         <thead>
             <tr>
                 <th>#</th>
@@ -387,9 +370,9 @@ html,body,.container-fluid, .container-fluid .row{height:100%}
 <script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable({
+    $('#datatable').DataTable({
         scrollResize: true,
-        scrollY: 100,
+        scrollY: '100vh',
         scrollCollapse: true,
     });
 });
