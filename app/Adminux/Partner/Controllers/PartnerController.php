@@ -5,6 +5,7 @@ namespace App\Adminux\Partner\Controllers;
 use App\Adminux\Partner\Models\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Freshbitsweb\Laratables\Laratables;
 
 class PartnerController extends Controller
 {
@@ -19,10 +20,10 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Partner $partner)
     {
-        // Helpers::path();
-        // dd(1);
+        if(isset($_GET['datatables'])) return Laratables::recordsOf($partner);
+
         return view('adminux.components.datatables');
     }
 
