@@ -23,7 +23,7 @@ class PartnerController extends Controller
     {
         // Helpers::path();
         // dd(1);
-        return view('adminux.partner.index');
+        return view('adminux.components.datatables');
     }
 
     /**
