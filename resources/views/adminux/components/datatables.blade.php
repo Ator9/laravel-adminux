@@ -37,23 +37,20 @@ $(document).ready(function() {
         scrollResize: true,
         scrollY: '100vh',
         scrollCollapse: true,
-        serverSide: true,
         ajax: '{{ Request::url() }}?datatables=1',
+        serverSide: true,
+        processing: true,
         columns: [
             { name: 'id' },
             { name: 'name' },
-            { name: 'active' },
+            { name: 'active' }
         ]
     });
 
-    // $('#datatable').on('click', 'tr', function () {
-    //     alert('Clicked row id is: ' + $(this).data('id'));
-    // });
-
-    // $('#datatable').on('click', 'tr', function() {
-    //     console.log($(this));
-    //     alert('Clicked row id is: ' + $(this).data('active'));
-    // });
+    $('#datatable').on('click', 'tr', function() {
+        console.log($(this));
+        alert('Clicked row id is: ' + $(this).data('id'));
+    });
 });
 </script>
 @endsection
