@@ -16,7 +16,7 @@ Route::namespace('\App\Adminux')->group(function() {
         }
 
         // Automated URL based on request (example: admin_partner):
-        if(Request::path() != '/') {
+        if(strpos(Request::path(), '_') !== false) {
             $split = explode('/', Request::path());
             $uri   = next($split);
 
