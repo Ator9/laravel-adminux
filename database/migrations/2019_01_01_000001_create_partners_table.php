@@ -23,8 +23,9 @@ class CreatePartnersTable extends Migration
 
         // Insert:
         DB::table('partners')->insert([
-            'name'     => 'General',
-            'active'    => 'Y',
+            'name'       => 'General',
+            'active'     => 'Y',
+            'created_at' => DB::raw('now()'),
         ]);
     }
 

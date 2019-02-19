@@ -29,10 +29,11 @@ class CreateAdminsTable extends Migration
 
         // Insert:
         DB::table('admins')->insert([
-            'email'     => 'admin@localhost',
-            'password'  => Hash::make('test'), // $2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..
-            'superuser' => 'Y',
-            'active'    => 'Y',
+            'email'      => 'admin@localhost',
+            'password'   => Hash::make('test'), // $2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..
+            'superuser'  => 'Y',
+            'active'     => 'Y',
+            'created_at' => DB::raw('now()'),
         ]);
     }
 
