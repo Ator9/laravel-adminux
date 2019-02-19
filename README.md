@@ -45,9 +45,9 @@ Route::prefix('admin')->group(function($router) {
 });
 ```
 
-# Install Laratables
+# Install Laravel Datatables
 ```sh
-composer require freshbitsweb/laratables
+composer require yajra/laravel-datatables-oracle
 ```
 
 ## Artisan Console
