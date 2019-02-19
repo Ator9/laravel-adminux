@@ -1,4 +1,4 @@
-@extends('adminux.layout.layout')
+@extends('adminux.components.layout.layout')
 
 @section('title', 'Partners' . ' - ' . config('app.name', 'Admin'))
 

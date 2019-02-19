@@ -10,10 +10,10 @@
 </head>
 <body>
 @inject('Helpers', 'App\Adminux\Helpers')
-@include('adminux.layout.navtop')
+@include('adminux.components.layout.navtop')
 <div class="container-fluid">
     <div class="row">
-        @include('adminux.layout.navleft')
+        @include('adminux.components.layout.navleft')
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
             @yield('body')
         </main>
