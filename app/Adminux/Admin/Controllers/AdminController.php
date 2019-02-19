@@ -30,15 +30,15 @@ class AdminController extends Controller
         if(isset($_GET['datatables'])) return Datatables::of($admin::query())->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'thead' => '<th>#</th>
+            'thead' => '<th>Id</th>
                         <th class="w-75">E-mail</th>
-                        <th>Active</th>
-                        <th>Created At</th>',
+                        <th class="text-center">Active</th>
+                        <th class="text-center">Created At</th>',
 
             'config' => "{ data: 'id', name: 'id' },
                          { data: 'email', name: 'email' },
-                         { data: 'active', name: 'active' },
-                         { data: 'created_at', name: 'created_at' }"
+                         { data: 'active', name: 'active', className: 'text-center' },
+                         { data: 'created_at', name: 'created_at', className: 'text-center' }"
         ]);
     }
 
