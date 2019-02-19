@@ -22,11 +22,11 @@ class PartnerController extends Controller
      */
     public function index(Partner $partner)
     {
-        if(isset($_GET['datatables']))
-        {
+        if(isset($_GET['datatables'])) {
             return Datatables::of($partner::query())
             ->addColumn('actions', 'adminux.components.datatables.button_edit')
-            ->rawColumns(['actions'])
+            ->addColumn('link', 'adminux.components.datatables.link_show')
+            ->rawColumns(['actions', 'link'])
             ->toJson();
         }
 
@@ -37,7 +37,7 @@ class PartnerController extends Controller
                         <th class="text-center">Created At</th>
                         <th>Action</th>',
 
-            'config' => "{ data: 'id', name: 'id' },
+            'config' => "{ data: 'link', name: 'id' },
                          { data: 'name', name: 'name' },
                          { data: 'active', name: 'active', className: 'text-center' },
                          { data: 'created_at', name: 'created_at', className: 'text-center' },
@@ -74,7 +74,7 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        //
+        dd(2);
     }
 
     /**
