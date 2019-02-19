@@ -20,8 +20,10 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
         <thead>
             <tr>
                 <th>#</th>
-                <th class="w-100">Name</th>
+                <th class="w-75">Name</th>
                 <th>Active</th>
+                <th>Created At</th>
+                <th>Updated At</th>
             </tr>
         </thead>
     </table>
@@ -40,10 +42,17 @@ $(document).ready(function() {
         ajax: '{{ Request::url() }}?datatables=1',
         serverSide: true,
         processing: true,
+        // columns: [
+        //     { name: 'id' },
+        //     { name: 'name' },
+        //     { name: 'active' }
+        // ]
         columns: [
-            { name: 'id' },
-            { name: 'name' },
-            { name: 'active' }
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'active', name: 'active' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' }
         ]
     });
 
