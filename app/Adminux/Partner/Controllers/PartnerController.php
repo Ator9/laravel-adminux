@@ -22,18 +22,26 @@ class PartnerController extends Controller
      */
     public function index(Partner $partner)
     {
-        if(isset($_GET['datatables'])) return Datatables::of($partner::query())->toJson();
+        if(isset($_GET['datatables']))
+        {
+            return Datatables::of($partner::query())
+            ->addColumn('actions', 'adminux.components.datatables.button_edit')
+            ->rawColumns(['actions'])
+            ->toJson();
+        }
 
-        return view('adminux.components.datatables')->withDatatables([
+        return view('adminux.components.datatables.index')->withDatatables([
             'thead' => '<th>#</th>
                         <th class="w-75">Name</th>
                         <th>Active</th>
-                        <th>Created At</th>',
+                        <th>Created At</th>
+                        <th>Action</th>',
 
             'config' => "{ data: 'id', name: 'id' },
                          { data: 'name', name: 'name' },
                          { data: 'active', name: 'active' },
-                         { data: 'created_at', name: 'created_at' }"
+                         { data: 'created_at', name: 'created_at' },
+                         { data: 'actions', name: 'actions' }"
         ]);
     }
 
@@ -77,7 +85,7 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        //
+        dd(1);
     }
 
     /**

@@ -29,7 +29,7 @@ class AdminController extends Controller
     {
         if(isset($_GET['datatables'])) return Datatables::of($admin::query())->toJson();
 
-        return view('adminux.components.datatables')->withDatatables([
+        return view('adminux.components.datatables.index')->withDatatables([
             'thead' => '<th>#</th>
                         <th class="w-75">E-mail</th>
                         <th>Active</th>

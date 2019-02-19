@@ -17,11 +17,14 @@ Route::namespace('\App\Adminux')->group(function() {
 
         // Automated URL based on request (example: admin_partner):
         if(Request::path() != '/') {
-            $split = explode('_', basename(Request::path()));
-            if(count($split) == 2) {
-                $class = ucfirst(end($split));
+            $split = explode('/', Request::path());
+            $uri   = next($split);
+
+            $split2 = explode('_', $uri);
+            if(count($split2) == 2) {
+                $class = ucfirst(end($split2));
                 if(file_exists(__DIR__.'/'.$class.'/Controllers/'.$class.'Controller.php')) {
-                    Route::resource(basename(Request::path()), $class.'\Controllers\\'.$class.'Controller');
+                    Route::resource($uri, $class.'\Controllers\\'.$class.'Controller');
                 }
             }
         }

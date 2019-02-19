@@ -37,11 +37,6 @@ $(document).ready(function() {
         processing: true,
         columns: [ {!! $datatables['config'] !!} ]
     });
-
-    $('#datatable').on('click', 'tr', function() {
-        console.log($(this));
-        alert('Clicked row id is: ' + $(this).data('id'));
-    });
 });
 </script>
 @endsection
