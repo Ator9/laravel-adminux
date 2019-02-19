@@ -6,11 +6,7 @@
 <link href="{{ asset('adminux/resources/libs/jquery.dataTables.css') }}" rel="stylesheet">
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
-.table-responsive {
-    height:calc(100% - 10px);
-    height:-moz-calc(100% - 10px);
-    height:-webkit-calc(100% - 10px);
-}
+.table-responsive{height:calc(100% - 10px);height:-moz-calc(100% - 10px);height:-webkit-calc(100% - 10px)}
 </style>
 @endsection
 
@@ -19,11 +15,7 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
     <table class="table table-striped table-sm" id="datatable">
         <thead>
             <tr>
-                <th>#</th>
-                <th class="w-75">Name</th>
-                <th>Active</th>
-                <th>Created At</th>
-                <th>Updated At</th>
+                {!! $datatables['thead'] !!}
             </tr>
         </thead>
     </table>
@@ -39,21 +31,11 @@ $(document).ready(function() {
         scrollResize: true,
         scrollY: '100vh',
         scrollCollapse: true,
+        pageLength: @isset ($datatables['pageLength']) {{ $datatables['pageLength'] }} @else {{ 50 }} @endisset,
         ajax: '{{ Request::url() }}?datatables=1',
         serverSide: true,
         processing: true,
-        // columns: [
-        //     { name: 'id' },
-        //     { name: 'name' },
-        //     { name: 'active' }
-        // ]
-        columns: [
-            { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'active', name: 'active' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' }
-        ]
+        columns: [ {!! $datatables['config'] !!} ]
     });
 
     $('#datatable').on('click', 'tr', function() {

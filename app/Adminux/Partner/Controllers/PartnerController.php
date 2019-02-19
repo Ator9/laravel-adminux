@@ -24,7 +24,17 @@ class PartnerController extends Controller
     {
         if(isset($_GET['datatables'])) return Datatables::of($partner::query())->make(true);
 
-        return view('adminux.components.datatables');
+        return view('adminux.components.datatables')->withDatatables([
+            'thead' => '<th>#</th>
+                        <th class="w-75">Name</th>
+                        <th>Active</th>
+                        <th>Created At</th>',
+
+            'config' => "{ data: 'id', name: 'id' },
+                         { data: 'name', name: 'name' },
+                         { data: 'active', name: 'active' },
+                         { data: 'created_at', name: 'created_at' }"
+        ]);
     }
 
     /**

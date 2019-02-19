@@ -5,6 +5,7 @@ namespace App\Adminux\Admin\Controllers;
 use App\Adminux\Admin\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
@@ -26,9 +27,19 @@ class AdminController extends Controller
      */
     public function index(Admin $admin)
     {
-        // $admins = Admin::all();
-        // dd($admin::all());
-        return view('adminux.admin.index');
+        if(isset($_GET['datatables'])) return Datatables::of($admin::query())->make(true);
+
+        return view('adminux.components.datatables')->withDatatables([
+            'thead' => '<th>#</th>
+                        <th class="w-75">E-mail</th>
+                        <th>Active</th>
+                        <th>Created At</th>',
+
+            'config' => "{ data: 'id', name: 'id' },
+                         { data: 'email', name: 'email' },
+                         { data: 'active', name: 'active' },
+                         { data: 'created_at', name: 'created_at' }"
+        ]);
     }
 
     /**
