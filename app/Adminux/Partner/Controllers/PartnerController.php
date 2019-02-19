@@ -24,7 +24,7 @@ class PartnerController extends Controller
     {
         if(isset($_GET['datatables'])) return Laratables::recordsOf($partner);
 
-        return view('adminux.components.datatables');
+        return view('adminux.components.laratables');
     }
 
     /**
