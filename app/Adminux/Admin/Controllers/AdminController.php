@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function index(Admin $admin)
     {
-        if(isset($_GET['datatables'])) return Datatables::of($admin::query())->make(true);
+        if(isset($_GET['datatables'])) return Datatables::of($admin::query())->toJson();
 
         return view('adminux.components.datatables')->withDatatables([
             'thead' => '<th>#</th>

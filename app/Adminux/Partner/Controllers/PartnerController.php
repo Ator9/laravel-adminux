@@ -22,7 +22,7 @@ class PartnerController extends Controller
      */
     public function index(Partner $partner)
     {
-        if(isset($_GET['datatables'])) return Datatables::of($partner::query())->make(true);
+        if(isset($_GET['datatables'])) return Datatables::of($partner::query())->toJson();
 
         return view('adminux.components.datatables')->withDatatables([
             'thead' => '<th>#</th>

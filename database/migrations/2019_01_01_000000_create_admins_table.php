@@ -19,11 +19,11 @@ class CreateAdminsTable extends Migration
             $table->string('password')->default('');
             $table->string('firstname', 75)->default('');
             $table->string('lastname', 75)->default('');
-            $table->string('remember_token', 100)->nullable();
             $table->enum('superuser', ['N', 'Y'])->default('N');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->enum('deleted', ['N', 'Y'])->default('N');
             $table->timestamp('last_login_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
 
