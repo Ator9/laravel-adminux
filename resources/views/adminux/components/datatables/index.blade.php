@@ -35,7 +35,8 @@ $(document).ready(function() {
         ajax: '{{ Request::url() }}?datatables=1',
         serverSide: true,
         processing: true,
-        columns: [ {!! $datatables['config'] !!} ]
+        columns: [ {!! $datatables['config'] !!} ],
+        order: @isset ($datatables['order']) {{ $datatables['order'] }} @else [[ 0, 'desc' ]] @endisset
     });
 });
 </script>
