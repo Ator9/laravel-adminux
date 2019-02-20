@@ -31,13 +31,13 @@ class PartnerController extends Controller
         }
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'thead' => '<th>Id</th>
+            'thead' => '<th class="text-center">ID</th>
                         <th class="w-75">Name</th>
                         <th>Active</th>
                         <th class="text-center">Created At</th>
                         <th>Action</th>',
 
-            'columns' => "{ data: 'link', name: 'id' },
+            'columns' => "{ data: 'link', name: 'id', className: 'text-center' },
                           { data: 'name', name: 'name' },
                           { data: 'active', name: 'active', className: 'text-center' },
                           { data: 'created_at', name: 'created_at', className: 'text-center' },

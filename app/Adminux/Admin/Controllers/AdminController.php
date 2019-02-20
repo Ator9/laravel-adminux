@@ -35,12 +35,12 @@ class AdminController extends Controller
         }
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'thead' => '<th>Id</th>
+            'thead' => '<th class="text-center">ID</th>
                         <th class="w-75">E-mail</th>
                         <th class="text-center">Active</th>
                         <th class="text-center">Created At</th>',
 
-            'columns' => "{ data: 'link', name: 'id' },
+            'columns' => "{ data: 'link', name: 'id', className: 'text-center' },
                           { data: 'email', name: 'email' },
                           { data: 'active', name: 'active', className: 'text-center' },
                           { data: 'created_at', name: 'created_at', className: 'text-center' }"
