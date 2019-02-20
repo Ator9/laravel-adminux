@@ -74,7 +74,7 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        dd(2);
+        return view('adminux.admins.show')->withModel($partner);
     }
 
     /**
