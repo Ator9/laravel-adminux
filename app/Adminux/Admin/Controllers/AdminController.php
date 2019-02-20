@@ -40,10 +40,10 @@ class AdminController extends Controller
                         <th class="text-center">Active</th>
                         <th class="text-center">Created At</th>',
 
-            'config' => "{ data: 'link', name: 'id' },
-                         { data: 'email', name: 'email' },
-                         { data: 'active', name: 'active', className: 'text-center' },
-                         { data: 'created_at', name: 'created_at', className: 'text-center' }"
+            'columns' => "{ data: 'link', name: 'id' },
+                          { data: 'email', name: 'email' },
+                          { data: 'active', name: 'active', className: 'text-center' },
+                          { data: 'created_at', name: 'created_at', className: 'text-center' }"
         ]);
     }
 

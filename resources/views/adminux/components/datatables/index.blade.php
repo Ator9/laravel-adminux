@@ -35,8 +35,9 @@ $(document).ready(function() {
         ajax: '{{ Request::url() }}?datatables=1',
         serverSide: true,
         processing: true,
-        columns: [ {!! $datatables['config'] !!} ],
-        order: @isset ($datatables['order']) {{ $datatables['order'] }} @else [[ 0, 'desc' ]] @endisset
+        columns: [ {!! $datatables['columns'] !!} ],
+        order: @isset ($datatables['order']) {{ $datatables['order'] }} @else [[ 0, 'desc' ]] @endisset,
+        dom: @isset ($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rtip' @endisset
     });
 });
 </script>
