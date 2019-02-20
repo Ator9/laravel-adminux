@@ -76,7 +76,7 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        return view('adminux.admins.show', compact('admin'));
     }
 
     /**

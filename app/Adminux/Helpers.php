@@ -31,7 +31,7 @@ class Helpers
         $array = explode('/', $path);
         if(count($array) == 1) $data = [ '' => 'Dashboard' ];
         else {
-            $class = explode('_', end($array));
+            $class = explode('_', next($array));
 
             $className = 'App\Adminux\\'.ucfirst($class[0]).'\Controllers\\'.ucfirst($class[0]).'Controller';
 
