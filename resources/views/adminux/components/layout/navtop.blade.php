@@ -5,7 +5,7 @@
             @if ($loop->index > 0 and $dir = 'admin_'.$dir) @endif
             <li class="nav-item">
                 @if(Request::is('admin/'.$dir) or $loop->count == 1 or (isset($model)))
-                    <a class="nav-link text-white disabled" href="{{ asset('admin/'.$dir) }}">{{ $name }}</a>
+                    <a class="nav-link text-white" href="{{ asset('admin/'.$dir) }}">{{ $name }}</a>
                 @else
                     <a class="nav-link text-warning" href="{{ asset('admin/'.$dir) }}">{{ $name }}</a>
                 @endif
