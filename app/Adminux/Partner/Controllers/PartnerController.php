@@ -13,6 +13,11 @@ class PartnerController extends Controller
     public $adminConfig = [
         'name' => 'Partners',
         'icon' => 'layers', // Feather icons
+        'submenu' => [ // dir url => name
+            'admin' => 'aaaaa',
+            'logs'    => 'Logs',
+            'phpinfo' => 'phpinfo',
+        ],
     ];
 
     /**
