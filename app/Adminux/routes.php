@@ -2,8 +2,8 @@
 
 Route::namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
-    Route::get('login', 'LoginController@showLoginForm')->name('showLoginForm');
-    Route::get('logout', 'LoginController@logout')->name('logout');
+    Route::get('login', 'LoginController@showLoginForm');
+    Route::get('logout', 'LoginController@logout');
 
     Route::middleware('adminux')->group(function() {
         Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
