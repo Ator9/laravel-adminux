@@ -16,7 +16,7 @@ class AdminController extends Controller
         'submenu' => [ // dir url => name
             'partner' => 'Partners',
             'logs'    => 'Logs',
-            'phpinfo' => 'phpinfo',
+            'phpinfo' => 'PHP Info',
         ],
     ];
 
