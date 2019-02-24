@@ -18,6 +18,7 @@ class CreatePartnersTable extends Migration
             $table->string('name', 100)->default('')->unique();
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->enum('deleted', ['N', 'Y'])->default('N');
+            $table->softDeletes();
             $table->timestamps();
         });
 
