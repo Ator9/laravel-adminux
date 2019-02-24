@@ -9,7 +9,7 @@
             </li>
             @foreach($Helpers->getNavLeft() as $module)
                 <li class="nav-item">
-                    <a class="nav-link{{ (Request::is('admin/'.strtolower($module['dir'])) or str_contains(Request::path(), 'admin/'.strtolower($module['dir']).'_')) ? ' active' : '' }}" href="{{ asset('admin/'.strtolower($module['dir'])) }}">
+                    <a class="nav-link{{ (Request::is('admin/'.strtolower($module['dir'])) or str_contains(Request::path(), ['admin/'.strtolower($module['dir']).'_', 'admin/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset('admin/'.strtolower($module['dir'])) }}">
                         <span data-feather="{{ $module['icon'] }}"></span>
                         {{ $module['name'] }}
                     </a>
