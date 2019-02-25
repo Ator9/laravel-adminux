@@ -1,6 +1,4 @@
-body {
-  font-size: .875rem;
-}
+body{font-size:.875rem}
 
 .feather {
   width: 16px;
@@ -8,10 +6,11 @@ body {
   vertical-align: text-bottom;
 }
 
+.feather-adminux{height:1.3em;width:1.3em}
+
 /*
  * Sidebar
  */
-
 .sidebar {
   position: fixed;
   top: 0;
