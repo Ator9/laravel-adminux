@@ -3,5 +3,7 @@
 @section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
 
 @section('body')
-2
+<div class="mt-2">
+    <small><a href="">Brief description</a> > Product name</small>
+</div>
 @endsection
