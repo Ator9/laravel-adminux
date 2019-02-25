@@ -4,7 +4,7 @@
         @foreach($Helpers->getNavTop(Request::path()) as $dir => $name)
             @php $dir2 = ($loop->index > 0) ? explode('_', request()->segment(2))[0].'_'.$dir : $dir @endphp
             <li class="nav-item">
-                @if(Request::is('admin/'.$dir2) or $loop->count == 1 or (isset($model) && basename(get_class($model)) == ucfirst($dir)))
+                @if(Request::is('admin/'.$dir2) or $loop->count == 1 or (isset($model) && (new \ReflectionClass($model))->getShortName() == ucfirst($dir)))
                     <a class="nav-link text-white" href="{{ asset('admin/'.$dir2) }}">{{ $name }}</a>
                 @else
                     <a class="nav-link text-warning" href="{{ asset('admin/'.$dir2) }}">{{ $name }}</a>
