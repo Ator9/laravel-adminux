@@ -7,6 +7,7 @@
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
 .table-responsive{height:calc(100% - 3px);height:-moz-calc(100% - 3px);height:-webkit-calc(100% - 3px)}
+#datatable_filter input{margin-left:0}
 </style>
 @endsection
 
@@ -37,7 +38,11 @@ $(document).ready(function() {
         processing: true,
         columns: [ {!! $datatables['columns'] !!} ],
         order: @isset ($datatables['order']) {{ $datatables['order'] }} @else [[ 0, 'desc' ]] @endisset,
-        dom: @isset ($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rtip' @endisset
+        dom: @isset ($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rtip' @endisset,
+        language: {
+           search: '',
+           searchPlaceholder: 'Search... '
+        },
     });
 });
 </script>
