@@ -22,7 +22,6 @@
 <script src="{{ asset('adminux/resources/libs/jquery.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/feather.min.js') }}"></script>
-<script src="{{ asset('adminux/resources/libs/Chart.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/admin.js') }}"></script>
 @yield('scripts')
 </body>
