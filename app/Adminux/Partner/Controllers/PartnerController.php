@@ -24,8 +24,8 @@ class PartnerController extends Controller
     {
         if(isset($_GET['datatables'])) {
             return Datatables::of($partner::query())
-            ->addColumn('actions', 'adminux.components.datatables.button_edit')
-            ->addColumn('link', 'adminux.components.datatables.link_show')
+            ->addColumn('actions', 'adminux.components.datatables.link_edit_button')
+            ->addColumn('link', 'adminux.components.datatables.link_show_link')
             ->rawColumns(['actions', 'link'])
             ->toJson();
         }

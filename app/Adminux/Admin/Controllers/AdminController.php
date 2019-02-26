@@ -29,7 +29,7 @@ class AdminController extends Controller
     {
         if(isset($_GET['datatables'])) {
             return Datatables::of($admin::query())
-            ->addColumn('link', 'adminux.components.datatables.link_show')
+            ->addColumn('link', 'adminux.components.datatables.link_show_link')
             ->rawColumns(['link'])
             ->toJson();
         }
