@@ -7,7 +7,7 @@
     <div class="card-header">
         <h5 class="d-flex justify-content-between mb-0">
             <span>{{(new ReflectionClass($model))->getShortName()}} Details</span>
-            <a href="{{ Request::url() }}/edit"><span class="feather-adminux" data-feather="edit"></span></a>
+            <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
         </h5>
     </div>
     <div class="card-body">
@@ -17,6 +17,10 @@
             <div class="col-md-10 ">{{ $val }}</div>
         </div>
         @endforeach
+        <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-10 "><a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> Edit</a></div>
+        </div>
     </div>
 </div>
 @endsection
