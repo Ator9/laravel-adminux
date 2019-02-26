@@ -87,7 +87,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        //
+        return view('adminux.components.edit')->withModel($admin);
     }
 
     /**
