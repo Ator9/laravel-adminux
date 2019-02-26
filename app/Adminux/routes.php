@@ -24,7 +24,7 @@ Route::namespace('\App\Adminux')->group(function() {
             if(count($split2) == 2) {
                 $class = ucfirst(end($split2));
                 if(file_exists(__DIR__.'/'.$class.'/Controllers/'.$class.'Controller.php')) {
-                    Route::resource($uri, $class.'\Controllers\\'.$class.'Controller');
+                    Route::resource($uri, $class.'\Controllers\\'.$class.'Controller')->parameters([$uri => strtolower($class)]);
                 }
             }
         }
