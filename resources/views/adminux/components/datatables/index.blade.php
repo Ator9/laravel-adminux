@@ -7,6 +7,7 @@
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
 .table-responsive{height:calc(100% - 3px);height:-moz-calc(100% - 3px);height:-webkit-calc(100% - 3px)}
+@empty($datatables['disableClickableRow']) #datatable tbody tr{cursor:pointer} @endempty
 #datatable_filter input{margin-left:0}
 </style>
 @endsection
@@ -28,7 +29,7 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 <script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    $('#datatable').DataTable({
+    var table = $('#datatable').DataTable({
         scrollResize: true,
         scrollY: '100vh',
         scrollCollapse: true,
@@ -42,8 +43,14 @@ $(document).ready(function() {
         language: {
            search: '',
            searchPlaceholder: 'Search... '
-        },
+        }
     });
+
+    @empty($datatables['disableClickableRow'])
+        $('#datatable tbody').on('click', 'tr', function() {
+           location = '{{ Request::url() }}/'+table.row(this).data().id;
+        });
+    @endempty
 });
 </script>
 @endsection

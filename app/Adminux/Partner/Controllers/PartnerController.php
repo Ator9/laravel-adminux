@@ -31,6 +31,7 @@ class PartnerController extends Controller
         }
 
         return view('adminux.components.datatables.index')->withDatatables([
+            'disableClickableRow' => true,
             'thead' => '<th class="text-center">ID</th>
                         <th class="w-75">Name</th>
                         <th>Active</th>
