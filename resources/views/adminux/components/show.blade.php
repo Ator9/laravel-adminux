@@ -11,9 +11,12 @@
       </h5>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    @foreach($model->toArray() as $key => $val)
+        <div class="row mb-3">
+            <div class="col-md-2 text-right">{{$key}}</div>
+            <div class="col-md-10 ">{{ $val }}</div>
+        </div>
+    @endforeach
   </div>
 </div>
 @endsection
