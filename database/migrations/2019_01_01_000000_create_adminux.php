@@ -32,7 +32,7 @@ class CreateAdminux extends Migration
             'active'     => 'Y',
             'created_at' => DB::raw('now()'),
         ]);
-        
+
 
         Schema::create('adminux_partners', function (Blueprint $table) {
             $table->mediumIncrements('id');
@@ -46,6 +46,17 @@ class CreateAdminux extends Migration
             'active'     => 'Y',
             'created_at' => DB::raw('now()'),
         ]);
+
+
+        Schema::create('adminux_roles', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('name', 100)->default('')->unique();
+            $table->timestamps();
+        });
+        DB::table('adminux_roles')->insert([
+            'name'       => 'General',
+            'created_at' => DB::raw('now()'),
+        ]);
     }
 
     /**
@@ -57,5 +68,6 @@ class CreateAdminux extends Migration
     {
         Schema::dropIfExists('adminux_admins');
         Schema::dropIfExists('adminux_partners');
+        Schema::dropIfExists('adminux_roles');
     }
 }

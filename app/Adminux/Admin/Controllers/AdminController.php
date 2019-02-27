@@ -122,6 +122,24 @@ class AdminController extends Controller
     }
 
     /**
+     * Display admin logs
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logs()
+    {
+        // if(isset($_GET['raw'])) {
+        //     phpinfo();
+        //     return;
+        // }
+
+        return view('adminux.components.card', [
+            'header' => 'Logs',
+            'body'   => '4'
+        ]);
+    }
+
+    /**
      * Display admin phpinfo
      *
      * @return \Illuminate\Http\Response
@@ -133,6 +151,8 @@ class AdminController extends Controller
             return;
         }
 
-        return view('adminux.components.blank')->withBody('<iframe src="admin_phpinfo?raw=1" style="height:calc(100vh - 70px);width:100%;border:none"></iframe>');
+        return view('adminux.components.card')
+        ->withHeader('PHP Info')
+        ->withBody('<iframe src="admin_phpinfo?raw=1" style="height:calc(100vh - 174px);width:100%;border:none"></iframe>');
     }
 }

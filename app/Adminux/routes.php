@@ -2,13 +2,14 @@
 
 Route::namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
-    Route::get('login', 'LoginController@showLoginForm');
+    Route::get('login',  'LoginController@showLoginForm');
     Route::get('logout', 'LoginController@logout');
 
     Route::middleware('adminux')->group(function() {
-        Route::get('', 'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
+        Route::get('',               'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
         Route::get('admin_composer', 'Admin\Controllers\AdminController@composer');
-        Route::get('admin_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
+        Route::get('admin_logs',     'Admin\Controllers\AdminController@logs');
+        Route::get('admin_phpinfo',  'Admin\Controllers\AdminController@phpinfo');
 
         foreach(\File::directories(__DIR__) as $dir) {
             $module = basename($dir);
