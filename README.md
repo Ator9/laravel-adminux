@@ -68,35 +68,6 @@ php artisan migrate:rollback
 php artisan migrate:fresh
 ```
 
-## Model
-```sh
-php artisan tinker
-App\Admin::all();
-```
-```sh
-php artisan make:model Admin
-```
-```php
-namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Admin extends Model
-{
-    protected $table = 'admins';
-    protected $primaryKey = 'adminID';
-
-    const CREATED_AT = 'date_created';
-    const UPDATED_AT = 'date_updated';
-}
-```
-
-## Query Builder - <a href="http://laravel.com/docs/queries">Docs</a>
-```php
-use DB;
-$users = DB::table('users')->get();
-```
-
 ## .git/info/exclude
 ```sh
 *
