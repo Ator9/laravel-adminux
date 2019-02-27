@@ -128,14 +128,9 @@ class AdminController extends Controller
      */
     public function logs()
     {
-        // if(isset($_GET['raw'])) {
-        //     phpinfo();
-        //     return;
-        // }
-
         return view('adminux.components.card', [
             'header' => 'Logs',
-            'body'   => '4'
+            'body'   => nl2br(\File::get(storage_path().'/logs/laravel-'.date('Y-m-d').'.log'))
         ]);
     }
 
