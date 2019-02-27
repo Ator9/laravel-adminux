@@ -10,6 +10,13 @@ class Admin extends Authenticatable
     use Notifiable;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'adminux_admins';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
