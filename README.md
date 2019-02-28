@@ -93,5 +93,12 @@ resources/*
 resources/views/*
 !resources/views/adminux/*
 
-!resources/lang/*/adminux.php
+!resources/lang/*
+resources/lang/*
+!resources/lang/en/*
+resources/lang/en/*
+!resources/lang/es/*
+resources/lang/es/*
+!resources/lang/en/adminux.php
+!resources/lang/es/adminux.php
 ```
