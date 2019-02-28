@@ -92,4 +92,6 @@ resources/*
 !resources/views/*
 resources/views/*
 !resources/views/adminux/*
+
+!resources/lang/*/adminux.php
 ```
