@@ -7,7 +7,7 @@
     <div class="card mt-3">
         <div class="card-header">
             <h5 class="d-flex justify-content-between mb-0">
-                <span>{{(new ReflectionClass($model))->getShortName()}} Edit</span>
+                <span>{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.edit') }}</span>
                 <a href="#" onclick="$('#form_edit').submit();return false" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="save"></span> Save</a>
             </h5>
         </div>
