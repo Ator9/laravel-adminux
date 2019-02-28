@@ -3,16 +3,16 @@
 return [
 
     'active' => 'Activo',
-    'created_at' => 'Creado el',
-    'deleted_at' => 'Elminado el',
+    'created_at' => 'Fecha Creación',
+    'deleted_at' => 'Fecha Elminación',
     'details' => 'Detalles',
     'edit' => 'Editar',
     'email' => 'E-mail',
     'firstname' => 'Nombre',
     'id' => 'ID',
     'lastname' => 'Apellido',
-    'last_login_at' => 'Último Logueo el',
+    'last_login_at' => 'Fecha Último Logueo',
     'name' => 'Nombre',
     'superuser' => 'Super Usuario',
-    'updated_at' => 'Actualizado el',
+    'updated_at' => 'Fecha Actualización',
 ];
