@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
-use DB;
 
 class LoginController extends Controller
 {
@@ -33,7 +32,7 @@ class LoginController extends Controller
     function authenticated(Request $request, $user)
     {
         $user->last_login_ip = $request->getClientIp();
-        $user->last_login_at = DB::raw('now()');
+        $user->last_login_at = \Carbon\Carbon::now()->toDateTimeString();
         $user->save();
     }
 }

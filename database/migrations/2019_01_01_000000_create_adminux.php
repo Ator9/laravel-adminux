@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 class CreateAdminux extends Migration
 {
@@ -31,7 +32,7 @@ class CreateAdminux extends Migration
             'password'   => Hash::make('test'), // $2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..
             'superuser'  => 'Y',
             'active'     => 'Y',
-            'created_at' => DB::raw('now()'),
+            'created_at' => Carbon::now() // DB::raw('now()')
         ]);
 
 
@@ -45,7 +46,7 @@ class CreateAdminux extends Migration
         DB::table('adminux_partners')->insert([
             'name'       => 'General',
             'active'     => 'Y',
-            'created_at' => DB::raw('now()'),
+            'created_at' => Carbon::now()
         ]);
 
 
@@ -56,7 +57,7 @@ class CreateAdminux extends Migration
         });
         DB::table('adminux_roles')->insert([
             'name'       => 'General',
-            'created_at' => DB::raw('now()'),
+            'created_at' => Carbon::now()
         ]);
     }
 
