@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use DB;
 
 class LoginController extends Controller
 {
@@ -27,5 +28,12 @@ class LoginController extends Controller
     protected function loggedOut(Request $request)
     {
         return redirect($this->redirectTo);
+    }
+
+    function authenticated(Request $request, $user)
+    {
+        $user->last_login_ip = $request->getClientIp();
+        $user->last_login_at = DB::raw('now()');
+        $user->save();
     }
 }

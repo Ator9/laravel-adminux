@@ -21,8 +21,9 @@ class CreateAdminux extends Migration
             $table->string('lastname', 75)->default('');
             $table->enum('superuser', ['N', 'Y'])->default('N');
             $table->enum('active', ['N', 'Y'])->default('N');
-            $table->timestamp('last_login_at')->nullable();
             $table->rememberToken();
+            $table->string('last_login_ip',75)->default('');
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
         });
         DB::table('adminux_admins')->insert([
