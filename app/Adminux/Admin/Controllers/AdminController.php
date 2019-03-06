@@ -146,8 +146,7 @@ class AdminController extends Controller
             return;
         }
 
-        return view('adminux.components.card')
-        ->withHeader('PHP Info')
-        ->withBody('<iframe src="admin_phpinfo?raw=1" style="height:calc(100vh - 174px);width:100%;border:none"></iframe>');
+        return view('adminux.components.blank')
+        ->withBody('<iframe src="admin_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 }
