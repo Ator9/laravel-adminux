@@ -6,8 +6,7 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::get('logout', 'LoginController@logout');
 
     Route::middleware('adminux')->group(function() {
-        Route::get('',               'Admin\Controllers\AdminController@dashboard')->name('admin.dashboard');
-        Route::get('admin_composer', 'Admin\Controllers\AdminController@composer');
+        Route::get('',               'Admin\Controllers\AdminController@dashboard');
         Route::get('admin_logs',     'Admin\Controllers\AdminController@logs');
         Route::get('admin_phpinfo',  'Admin\Controllers\AdminController@phpinfo');
 
