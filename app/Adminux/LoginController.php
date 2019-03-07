@@ -5,7 +5,6 @@ namespace App\Adminux;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
 
 class LoginController extends Controller
 {
@@ -15,7 +14,7 @@ class LoginController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('adminux');
+        return \Auth::guard('adminux');
     }
 
     public function showLoginForm()
@@ -32,7 +31,7 @@ class LoginController extends Controller
     function authenticated(Request $request, $user)
     {
         $user->last_login_ip = $request->getClientIp();
-        $user->last_login_at = \Carbon\Carbon::now()->toDateTimeString();
+        $user->last_login_at = \Carbon\Carbon::now();
         $user->save();
     }
 }
