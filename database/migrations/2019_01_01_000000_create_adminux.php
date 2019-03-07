@@ -23,7 +23,7 @@ class CreateAdminux extends Migration
             $table->enum('superuser', ['N', 'Y'])->default('N');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->rememberToken();
-            $table->string('last_login_ip',75)->default('');
+            $table->string('last_login_ip', 75)->default('');
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
         });
@@ -50,6 +50,22 @@ class CreateAdminux extends Migration
         ]);
 
 
+        Schema::create('adminux_admins_partners', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->mediumInteger('admin_id')->unsigned();
+            $table->foreign('admin_id')->references('id')->on('adminux_admins')->onUpdate('cascade')->onDelete('cascade');
+            $table->mediumInteger('partner_id')->unsigned();
+            $table->foreign('partner_id')->references('id')->on('adminux_partners')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamp('created_at')->nullable();
+            $table->unique(['admin_id', 'partner_id'], 'admin_partner');
+        });
+        DB::table('adminux_admins_partners')->insert([
+            'admin_id'   => 1,
+            'partner_id' => 1,
+            'created_at' => Carbon::now()
+        ]);
+
+
         Schema::create('adminux_roles', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('name', 100)->default('')->unique();
@@ -70,6 +86,7 @@ class CreateAdminux extends Migration
     {
         Schema::dropIfExists('adminux_admins');
         Schema::dropIfExists('adminux_partners');
+        Schema::dropIfExists('adminux_admins_partners');
         Schema::dropIfExists('adminux_roles');
     }
 }
