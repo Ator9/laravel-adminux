@@ -41,7 +41,7 @@ Add to /config/auth.php:
 Add to /routes/web.php:
 ```php
 Route::prefix('admin')->group(function($router) {
-    require base_path('app/Adminux/routes.php');
+    require base_path('app/Adminux/routes.default.php');
 });
 ```
 
