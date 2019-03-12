@@ -9,12 +9,6 @@ use Yajra\Datatables\Datatables;
 
 class PartnerController extends Controller
 {
-    // Admin Configuration:
-    public $adminConfig = [
-        'name' => 'Partners',
-        'icon' => 'layers', // Feather icons
-    ];
-
     /**
      * Display a listing of the resource.
      *

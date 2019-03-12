@@ -9,16 +9,15 @@ class Helpers
         $data = [];
 
         foreach(\File::directories(__DIR__) as $dir) {
-            $module    = basename($dir);
-            $className = 'App\Adminux\\'.$module.'\Controllers\\' . $module.'Controller';
+            $module = basename($dir);
 
-            $obj = new $className();
-            if(!empty($obj->adminConfig)) {
-                $row = $obj->adminConfig;
-                $row['dir'] = $module;
+            $config = self::getConfig($module);
+            if(empty($config) || empty($config['navigation']['enabled'])) continue;
 
-                $data[] = $row;
-            }
+            $row = $config['navigation'];
+            $row['dir'] = $module;
+
+            $data[] = $row;
         }
 
         return $data;
@@ -33,11 +32,9 @@ class Helpers
         else {
             $class = explode('_', next($array));
 
-            $className = 'App\Adminux\\'.ucfirst($class[0]).'\Controllers\\'.ucfirst($class[0]).'Controller';
-
-            $obj = new $className();
-            if(!empty($obj->adminConfig)) {
-                $row = $obj->adminConfig;
+            $config = self::getConfig(ucfirst($class[0]));
+            if(!empty($config['navigation'])) {
+                $row = $config['navigation'];
 
                 $data = [ $class[0] => $row['name'] ];
                 if(!empty($row['submenu'])) $data = $data + $row['submenu'];
@@ -45,5 +42,16 @@ class Helpers
         }
 
         return $data;
+    }
+
+    // Get module config:
+    static function getConfig($path = '')
+    {
+        $config = [];
+
+        if(is_file($file = __DIR__.'/'.$path.'/config.php')) require $file;
+        elseif(is_file($file = __DIR__.'/'.$path.'/config.default.php')) require $file;
+
+        return $config;
     }
 }

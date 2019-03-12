@@ -9,17 +9,6 @@ use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
-    // Admin Configuration:
-    public $adminConfig = [
-        'name' => 'Admins',
-        'icon' => 'settings', // Feather icons
-        'submenu' => [ // dir url => name
-            'partner' => 'Partners',
-            'logs'    => 'Logs',
-            'phpinfo' => 'PHP Info',
-        ],
-    ];
-
     /**
      * Display a listing of the resource.
      *
