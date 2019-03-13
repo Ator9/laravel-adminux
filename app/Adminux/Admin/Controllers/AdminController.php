@@ -96,7 +96,7 @@ class AdminController extends Controller
     {
         $admin->update($request->all());
 
-        return view('adminux.components.show')->withModel($admin);
+        return redirect(route('admin.show', $admin));
     }
 
     /**

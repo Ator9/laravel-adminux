@@ -104,10 +104,10 @@ class PartnerController extends Controller
         $request->validate([
             'name' => 'required'
         ]);
-        
+
         $partner->update($request->all());
 
-        return view('adminux.components.show')->withModel($partner);
+        return redirect(route('partner.show', $partner));
     }
 
     /**
