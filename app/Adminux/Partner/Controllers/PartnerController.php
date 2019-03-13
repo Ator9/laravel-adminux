@@ -101,6 +101,10 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
+        
         $partner->update($request->all());
 
         return view('adminux.components.show')->withModel($partner);
