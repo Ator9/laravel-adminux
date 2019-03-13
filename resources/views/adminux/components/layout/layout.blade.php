@@ -9,7 +9,7 @@
 @yield('head')
 </head>
 <body>
-@inject('Helpers', 'App\Adminux\Helpers')
+@inject('Helper', 'App\Adminux\Helper')
 @include('adminux.components.layout.navtop')
 <div class="container-fluid">
     <div class="row">

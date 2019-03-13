@@ -2,7 +2,7 @@
 
 namespace App\Adminux;
 
-class Helpers
+class Helper
 {
     static function getNavLeft()
     {

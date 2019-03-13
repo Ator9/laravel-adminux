@@ -6,6 +6,7 @@ use App\Adminux\Admin\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
+use App\Adminux\Form;
 
 class AdminController extends Controller
 {
@@ -74,7 +75,12 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('adminux.components.edit')->withModel($admin);
+        $fields = [
+            Form::input(),
+            Form::textarea(),
+        ];
+
+        return view('adminux.components.edit')->withModel($admin)->withFields($fields);
     }
 
     /**
