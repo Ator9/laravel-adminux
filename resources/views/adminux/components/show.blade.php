@@ -12,14 +12,14 @@
     </div>
     <div class="card-body">
         @foreach($model->toArray() as $key => $val)
-        <div class="row mb-3">
-            <div class="col-md-2 text-right">{{ __('adminux.'.$key) }}</div>
-            <div class="col-md-10 ">{{ $val }}</div>
+        <div class="form-group row">
+            <div class="col-sm-2 text-muted">{{ __('adminux.'.$key) }}</div>
+            <div class="col-sm-10 ">{{ $val }}</div>
         </div>
         @endforeach
-        <div class="row mb-3">
-            <div class="col-md-2"></div>
-            <div class="col-md-10 "><a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> Edit</a></div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10 "><a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> Edit</a></div>
         </div>
     </div>
 </div>

@@ -76,7 +76,8 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         $fields = [
-            Form::input(),
+            Form::text([ 'label' => 'ID', 'name' => 'id' ]),
+            Form::input([ 'label' => 'E-mail', 'name' => 'email' ]),
             Form::textarea(),
         ];
 

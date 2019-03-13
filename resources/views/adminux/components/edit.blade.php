@@ -12,11 +12,8 @@
             </h5>
         </div>
         <div class="card-body">
-            @foreach($fields as $key => $val)
-            <div class="row mb-3">
-                <div class="col-md-2 text-right">{{$key}}</div>
-                <div class="col-md-10 ">{{ $val }}</div>
-            </div>
+            @foreach($fields as $val)
+                {!! $val !!}
             @endforeach
         </div>
     </div>
