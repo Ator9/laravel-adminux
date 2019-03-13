@@ -2,8 +2,12 @@
 
 @section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
 
+@section('head')<meta name="csrf-token" content="{{ csrf_token() }}">@endsection
+
 @section('body')
 <form method="post" action="{{ str_replace('/edit', '', Request::url()) }}" id="form_edit">
+    @csrf
+    @method('PUT')
     <div class="card mt-3">
         <div class="card-header">
             <h5 class="d-flex justify-content-between mb-0">

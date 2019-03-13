@@ -6,7 +6,6 @@ use App\Adminux\Admin\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
-use App\Adminux\Form;
 
 class AdminController extends Controller
 {
@@ -75,10 +74,12 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
+        $form = new \App\Adminux\Form($admin);
+
         $fields = [
-            Form::text([ 'label' => 'ID', 'name' => 'id' ]),
-            Form::input([ 'label' => 'E-mail', 'name' => 'email' ]),
-            Form::textarea(),
+            $form->display([ 'label' => 'ID', 'name' => 'id' ]),
+            $form->email([ 'label' => 'E-mail', 'name' => 'email' ]),
+            $form->textarea(),
         ];
 
         return view('adminux.components.edit')->withModel($admin)->withFields($fields);
@@ -93,7 +94,9 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+        $admin->update($request->all());
+
+        return view('adminux.components.show')->withModel($admin);
     }
 
     /**

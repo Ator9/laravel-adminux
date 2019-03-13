@@ -4,35 +4,53 @@ namespace App\Adminux;
 
 class Form
 {
-    static function input($params = [])
+    public function __construct($model = '')
+    {
+        $this->_model = $model;
+    }
+
+    public function display($params = [])
     {
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                        <input type="text" readonly class="form-control-plaintext" id="'.$this->getValidId($params).'" value="'.$this->_model->getAttributes()[$params['name']].'">
                     </div>
                 </div>';
     }
 
-    static function text($params = [])
+    public function email($params = [])
     {
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                        <input type="email" class="form-control" id="'.$this->getValidId($params).'" name="'.$params['name'].'" value="'.$this->_model->getAttributes()[$params['name']].'">
                     </div>
                 </div>';
     }
 
-    static function textarea($params = [])
+    public function text($params = [])
+    {
+        return '<div class="form-group row">
+                    '.self::getLabel($params).'
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="'.$this->getValidId($params).'" name="'.$params['name'].'" value="'.$this->_model->getAttributes()[$params['name']].'">
+                    </div>
+                </div>';
+    }
+
+    public function textarea($params = [])
     {
 
     }
 
-    static function getLabel($params = [])
+    public function getLabel($params = [])
     {
-        $id = (!empty($params['id'])) ? $params['id'] : $params['label'];
+        return '<label class="col-sm-2 col-form-label text-muted" for="'.$this->getValidId($params).'">'.$params['label'].'</label>';
+    }
 
-        return '<label class="col-sm-2 col-form-label text-muted" for="'.$id.'">'.$params['label'].'</label>';
+    public function getValidId($params = [])
+    {
+        return (!empty($params['id'])) ? $params['id'] : $params['name'];
     }
 }
