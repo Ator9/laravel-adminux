@@ -86,6 +86,7 @@ class PartnerController extends Controller
         $fields = [
             $form->display([ 'label' => 'ID', 'name' => 'id' ]),
             $form->email([ 'label' => 'Name', 'name' => 'name' ]),
+            $form->boolean([ 'label' => 'Active', 'name' => 'active' ]),
             $form->textarea(),
         ];
 

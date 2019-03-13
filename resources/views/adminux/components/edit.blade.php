@@ -16,13 +16,16 @@
             </h5>
         </div>
         <div class="card-body">
-            @foreach($errors->all() as $error)
-            <div class="form-group row alert alert-danger" role="alert">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10 p-0">{{ $error }}</div>
-            </div>
-            @endforeach
-
+            @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @foreach($errors->all() as $error)
+                        &bull; {{ $error }}<br>
+                    @endforeach
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             @foreach($fields as $val)
                 {!! $val !!}
             @endforeach
