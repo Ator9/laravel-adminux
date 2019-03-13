@@ -19,6 +19,12 @@
             @foreach($fields as $val)
                 {!! $val !!}
             @endforeach
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10 ">
+                    <a href="#" onclick="$('#form_edit').submit();return false" class="btn btn-primary"><span class="feather-adminux" data-feather="save"></span> Save</a>
+                </div>
+            </div>
         </div>
     </div>
 </form>

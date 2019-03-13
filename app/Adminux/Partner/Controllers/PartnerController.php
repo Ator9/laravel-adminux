@@ -81,7 +81,15 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        return view('adminux.components.edit')->withModel($partner);
+        $form = new \App\Adminux\Form($partner);
+
+        $fields = [
+            $form->display([ 'label' => 'ID', 'name' => 'id' ]),
+            $form->email([ 'label' => 'Name', 'name' => 'name' ]),
+            $form->textarea(),
+        ];
+
+        return view('adminux.components.edit')->withModel($partner)->withFields($fields);
     }
 
     /**
@@ -93,7 +101,9 @@ class PartnerController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
-        //
+        $partner->update($request->all());
+
+        return view('adminux.components.show')->withModel($partner);
     }
 
     /**
