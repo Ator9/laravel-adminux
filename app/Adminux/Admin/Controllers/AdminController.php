@@ -96,7 +96,7 @@ class AdminController extends Controller
     {
         $admin->update($request->all());
 
-        return redirect(route('admin.show', $admin));
+        return redirect(route(explode('/', $request->path())[1].'.show', $admin));
     }
 
     /**
