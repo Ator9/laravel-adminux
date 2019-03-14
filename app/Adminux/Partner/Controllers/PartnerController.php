@@ -110,7 +110,7 @@ class PartnerController extends Controller
 
         $partner->update($request->all());
 
-        return redirect(route('partner.show', $partner));
+        return redirect(route(explode('/', $request->path())[1].'.show', $partner));
     }
 
     /**
