@@ -34,7 +34,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10 custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="'.$this->getValidId($params).'" name="'.$params['name'].'" value="'.$value.'"'.$checked.'>
+                        <input type="checkbox" class="custom-control-input" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
                         <label class="custom-control-label ml-3 mt-1" for="'.$this->getValidId($params).'"></label>
                     </div>
                 </div>';
@@ -45,7 +45,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="'.$this->getValidId($params).'" name="'.$params['name'].'" value="'.$this->getValue($params).'">
+                        <input type="email" class="form-control" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
                     </div>
                 </div>';
     }
@@ -55,7 +55,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="'.$this->getValidId($params).'" name="'.$params['name'].'" value="'.$this->getValue($params).'">
+                        <input type="text" class="form-control" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
                     </div>
                 </div>';
     }
@@ -77,13 +77,32 @@ class Form
 
     public function getValidId($params = [])
     {
-        return (!empty($params['id'])) ? $params['id'] : $params['name'];
+        if(!empty($params['id'])) return $params['id'];
+        elseif(!empty($params['name'])) return $params['name'];
+        else return $this->getName($params);
+    }
+
+    public function getName($params = [])
+    {
+        if(!empty($params['name'])) return $params['name'];
+
+        if(!empty($params['label'])) {
+            foreach($this->_model->getAttributes() as $key => $value) {
+                if(strcasecmp($key, $params['label']) == 0) return $key;
+                elseif(strcasecmp($key, str_replace(['-', ' '], '', $params['label'])) == 0) return $key;
+                elseif(strcasecmp($key, str_replace(['-', ' '], '_', $params['label'])) == 0) return $key;
+            }
+        }
+
+        return '';
     }
 
     public function getValue($params = [])
     {
         if(!empty($params['value'])) return $params['value'];
-        return $this->_model->getAttributes()[$params['name']];
+        elseif(!empty($this->_model->getAttributes()[$this->getName($params)])) return $this->_model->getAttributes()[$this->getName($params)];
+
+        return '';
     }
 
     public function addFields($fields = [])

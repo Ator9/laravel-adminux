@@ -86,7 +86,6 @@ class PartnerController extends Controller
             $form->display([ 'label' => 'ID', 'name' => 'id' ]),
             $form->text([ 'label' => 'Name', 'name' => 'name' ]),
             $form->switch([ 'label' => 'Active', 'name' => 'active' ]),
-            $form->textarea(),
         ]);
 
         return view('adminux.components.edit')->withModel($partner)->withFields($form->getFields());

@@ -2,7 +2,7 @@
 
 return [
 
-    'active' => 'Activo',
+    'active' => 'Active',
     'created_at' => 'Date Created',
     'deleted_at' => 'Date Deleted',
     'details' => 'Details',

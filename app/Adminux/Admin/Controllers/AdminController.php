@@ -76,13 +76,15 @@ class AdminController extends Controller
     {
         $form = new \App\Adminux\Form($admin);
 
-        $fields = [
-            $form->display([ 'label' => 'ID', 'name' => 'id' ]),
-            $form->email([ 'label' => 'E-mail', 'name' => 'email' ]),
-            $form->textarea(),
-        ];
+        $form->addFields([
+            $form->display([ 'label' => 'ID' ]),
+            $form->email([ 'label' => 'E-mail' ]),
+            $form->text([ 'label' => 'First Name' ]),
+            $form->text([ 'label' => 'Last Name' ]),
+            $form->switch([ 'label' => 'Active' ]),
+        ]);
 
-        return view('adminux.components.edit')->withModel($admin)->withFields($fields);
+        return view('adminux.components.edit')->withModel($admin)->withFields($form->getFields());
     }
 
     /**
@@ -94,6 +96,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
+        $request->validate([
+            'email'  => 'required',
+            'active' => 'in:Y',
+        ]);
+
+        if(empty($request['active'])) $request->merge(['active' => 'N']);
+
         $admin->update($request->all());
 
         return redirect(route(explode('/', $request->path())[1].'.show', $admin));
