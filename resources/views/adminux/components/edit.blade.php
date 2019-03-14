@@ -12,7 +12,7 @@
         <div class="card-header">
             <h5 class="d-flex justify-content-between mb-0">
                 <span>{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.edit') }}</span>
-                <a href="#" onclick="$('#form_edit').submit();return false" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="save"></span> Save</a>
+                <button type="submit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="save"></span> Save</button>
             </h5>
         </div>
         <div class="card-body">
@@ -32,7 +32,7 @@
             <div class="form-group row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    <a href="#" onclick="$('#form_edit').submit();return false" class="btn btn-primary"><span class="feather-adminux" data-feather="save"></span> Save</a>
+                    <button type="submit" class="btn btn-primary"><span class="feather-adminux" data-feather="save"></span> Save</button>
                 </div>
             </div>
         </div>

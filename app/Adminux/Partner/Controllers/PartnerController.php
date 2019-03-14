@@ -84,7 +84,7 @@ class PartnerController extends Controller
         $form = new \App\Adminux\Form($partner);
         $form->addFields([
             $form->display([ 'label' => 'ID', 'name' => 'id' ]),
-            $form->email([ 'label' => 'Name', 'name' => 'name' ]),
+            $form->text([ 'label' => 'Name', 'name' => 'name' ]),
             $form->switch([ 'label' => 'Active', 'name' => 'active' ]),
             $form->textarea(),
         ]);
