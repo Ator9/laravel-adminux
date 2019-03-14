@@ -101,6 +101,8 @@ class AdminController extends Controller
             'active' => 'in:Y',
         ]);
 
+        if(empty($request['firstname'])) $request->merge(['firstname' => '']);
+        if(empty($request['lastname'])) $request->merge(['lastname' => '']);
         if(empty($request['active'])) $request->merge(['active' => 'N']);
 
         $admin->update($request->all());
