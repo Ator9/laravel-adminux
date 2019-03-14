@@ -83,9 +83,9 @@ class PartnerController extends Controller
     {
         $form = new \App\Adminux\Form($partner);
         $form->addFields([
-            $form->display([ 'label' => 'ID', 'name' => 'id' ]),
-            $form->text([ 'label' => 'Name', 'name' => 'name' ]),
-            $form->switch([ 'label' => 'Active', 'name' => 'active' ]),
+            $form->display([ 'label' => 'ID' ]),
+            $form->text([ 'label' => 'Name' ]),
+            $form->switch([ 'label' => 'Active' ]),
         ]);
 
         return view('adminux.components.edit')->withModel($partner)->withFields($form->getFields());
@@ -105,7 +105,7 @@ class PartnerController extends Controller
             'active' => 'in:Y',
         ]);
 
-        if(empty($request['active'])) $request->merge(['active' => 'N']);
+        if(!$request->has('active')) $request->merge(['active' => 'N']);
 
         $partner->update($request->all());
 

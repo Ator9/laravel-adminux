@@ -75,7 +75,6 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         $form = new \App\Adminux\Form($admin);
-
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->email([ 'label' => 'E-mail' ]),
@@ -101,9 +100,9 @@ class AdminController extends Controller
             'active' => 'in:Y',
         ]);
 
-        if(empty($request['firstname'])) $request->merge(['firstname' => '']);
-        if(empty($request['lastname'])) $request->merge(['lastname' => '']);
-        if(empty($request['active'])) $request->merge(['active' => 'N']);
+        if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
+        if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
+        if(!$request->has('active')) $request->merge(['active' => 'N']);
 
         $admin->update($request->all());
 
