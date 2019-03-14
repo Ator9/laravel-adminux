@@ -120,6 +120,8 @@ class PartnerController extends Controller
      */
     public function destroy(Partner $partner)
     {
-        //
+        $partner->delete();
+
+        return redirect(route(explode('/', request()->path())[1].'.index'));
     }
 }

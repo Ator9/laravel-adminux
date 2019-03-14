@@ -25,6 +25,7 @@ class CreateAdminux extends Migration
             $table->rememberToken();
             $table->string('last_login_ip', 75)->default('');
             $table->timestamp('last_login_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
         DB::table('adminux_admins')->insert([

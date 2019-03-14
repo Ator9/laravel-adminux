@@ -5,9 +5,9 @@
 @section('head')<meta name="csrf-token" content="{{ csrf_token() }}">@endsection
 
 @section('body')
-<form method="post" action="{{ str_replace('/edit', '', Request::url()) }}" id="form_edit">
-    @csrf
+<form method="post" action="{{ str_replace('/edit', '', Request::url()) }}">
     @method('PUT')
+    @csrf
     <div class="card mt-3">
         <div class="card-header">
             <h5 class="d-flex justify-content-between mb-0">
