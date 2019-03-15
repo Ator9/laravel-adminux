@@ -2,8 +2,6 @@
 
 @section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
 
-@section('head')<meta name="csrf-token" content="{{ csrf_token() }}">@endsection
-
 @section('body')
 <form method="post" action="{{ str_replace('/edit', '', Request::url()) }}">
     @method('PUT')
