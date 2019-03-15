@@ -140,7 +140,7 @@ class AdminController extends Controller
     public function logs()
     {
         return view('adminux.components.card', [
-            'header' => '<h5>Logs</h5>',
+            'header' => 'Logs',
             'body'   => nl2br(\File::get(storage_path().'/logs/laravel-'.date('Y-m-d').'.log'))
         ]);
     }

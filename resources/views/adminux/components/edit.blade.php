@@ -10,10 +10,10 @@
     @csrf
     <div class="card mt-3">
         <div class="card-header">
-            <div class="d-flex justify-content-between mb-n1">
-                <h5>{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.edit') }}</h5>
+            <div class="d-flex justify-content-between">
+                <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.edit') }}</h5>
                 <div>
-                    <button type="submit" class="btn btn-primary btn-sm"><span class="feather-adminux" data-feather="save"></span> Save</button>
+                    <button type="submit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="save"></span> Save</button>
                 </div>
             </div>
         </div>

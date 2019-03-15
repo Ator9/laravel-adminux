@@ -7,15 +7,15 @@
 @section('body')
 <div class="card mt-3">
     <div class="card-header">
-        <div class="d-flex justify-content-between mb-n1">
-            <h5>{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.details') }}</h5>
+        <div class="d-flex justify-content-between">
+            <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.details') }}</h5>
             <div>
                 <form method="post" action="{{ Request::url() }}" class="d-inline">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-danger btn-sm mb-n1"><span class="feather-adminux" data-feather="trash-2"></span></button>
+                    <button type="submit" class="btn btn-danger btn-sm my-n1"><span class="feather-adminux" data-feather="trash-2"></span></button>
                 </form>
-                <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm mb-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
+                <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
             </div>
         </div>
     </div>
