@@ -7,17 +7,17 @@
 @section('body')
 <div class="card mt-3">
     <div class="card-header">
-        <h5 class="d-flex justify-content-between mb-0">
-            <span>{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.details') }}</span>
-            <span class="mb-n1">
+        <div class="d-flex justify-content-between mb-n1">
+            <h5>{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.details') }}</h5>
+            <div>
                 <form method="post" action="{{ Request::url() }}" class="d-inline">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-danger btn-sm mt-n1"><span class="feather-adminux" data-feather="trash-2"></span></button>
+                    <button type="submit" class="btn btn-danger btn-sm mb-n1"><span class="feather-adminux" data-feather="trash-2"></span></button>
                 </form>
-                <a href="{{ Request::url() }}/destroy" class="btn btn-primary btn-sm mt-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
-            </span>
-        </h5>
+                <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm mb-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
+            </div>
+        </div>
     </div>
     <div class="card-body">
         @foreach($model->toArray() as $key => $val)

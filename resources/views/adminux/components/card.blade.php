@@ -5,7 +5,9 @@
 @section('body')
 <div class="card mt-3">
     <div class="card-header">
-        <h5 class="mb-0">{{ $header }}</h5>
+        <div class="d-flex justify-content-between mb-n1">
+            {!! $header !!}
+        </div>
     </div>
     <div class="card-body">
         {!! $body !!}
