@@ -18,10 +18,10 @@ class PartnerController extends Controller
     {
         if(isset($_GET['datatables'])) {
             return Datatables::of($partner::query())
-            ->addColumn('id', 'adminux.components.datatables.link_show_link')
-            ->addColumn('active', 'adminux.components.datatables.status')
+            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('active2', 'adminux.components.datatables.status')
             ->addColumn('actions', 'adminux.components.datatables.link_edit_button')
-            ->rawColumns(['id', 'active', 'actions'])
+            ->rawColumns(['id2', 'active2', 'actions'])
             ->toJson();
         }
 
@@ -33,9 +33,9 @@ class PartnerController extends Controller
                         <th class="text-center">Created At</th>
                         <th>Action</th>',
 
-            'columns' => "{ data: 'id', name: 'id', className: 'text-center' },
+            'columns' => "{ data: 'id2', name: 'id', className: 'text-center' },
                           { data: 'name', name: 'name' },
-                          { data: 'active', name: 'active', className: 'text-center' },
+                          { data: 'active2', name: 'active', className: 'text-center' },
                           { data: 'created_at', name: 'created_at', className: 'text-center' },
                           { data: 'actions', name: 'actions', className: 'text-center' }"
         ]);

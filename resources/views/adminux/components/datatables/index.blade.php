@@ -6,7 +6,7 @@
 <link href="{{ asset('adminux/resources/libs/jquery.dataTables.css') }}" rel="stylesheet">
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
-.table-responsive{height:calc(100% - 3px);height:-moz-calc(100% - 3px);height:-webkit-calc(100% - 3px)}
+.table-responsive{height:calc(100% - 5px);height:-moz-calc(100% - 5px);height:-webkit-calc(100% - 5px);overflow-y:hidden}
 @empty($datatables['disableClickableRow']) #datatable tbody tr{cursor:pointer} @endempty
 #datatable_filter input{margin-left:0}
 </style>
