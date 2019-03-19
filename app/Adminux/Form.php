@@ -34,7 +34,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10 custom-control custom-switch">
-                        <input type="hidden" name="'.$this->getName($params).'" value="">
+                        <input type="hidden" name="'.$this->getName($params).'">
                         <input type="checkbox" class="custom-control-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
                         <label class="custom-control-label ml-3 mt-1" for="'.$this->getId($params).'"></label>
                     </div>
