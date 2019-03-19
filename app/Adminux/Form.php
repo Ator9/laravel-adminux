@@ -4,8 +4,8 @@ namespace App\Adminux;
 
 class Form
 {
-    private $_model;
-    private $_fields = [];
+    protected $_model;
+    protected $_fields = [];
 
     public $_label_cls = 'col-sm-2 col-form-label text-muted';
     public $_checkbox_value = 'Y';
@@ -21,7 +21,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
+                        <input type="text" readonly class="form-control-plaintext" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
                     </div>
                 </div>';
     }
@@ -34,8 +34,9 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10 custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
-                        <label class="custom-control-label ml-3 mt-1" for="'.$this->getValidId($params).'"></label>
+                        <input type="hidden" name="'.$this->getName($params).'" value="">
+                        <input type="checkbox" class="custom-control-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
+                        <label class="custom-control-label ml-3 mt-1" for="'.$this->getId($params).'"></label>
                     </div>
                 </div>';
     }
@@ -45,7 +46,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
+                        <input type="email" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
                     </div>
                 </div>';
     }
@@ -55,7 +56,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
+                        <input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
                     </div>
                 </div>';
     }
@@ -65,17 +66,17 @@ class Form
 
     }
 
-    public function html($text = '')
+    public function html($html = '')
     {
-        return $text;
+        return $html;
     }
 
     public function getLabel($params = [])
     {
-        return '<label class="'.$this->_label_cls.'" for="'.$this->getValidId($params).'">'.$params['label'].'</label>';
+        return '<label class="'.$this->_label_cls.'" for="'.$this->getId($params).'">'.$params['label'].'</label>';
     }
 
-    public function getValidId($params = [])
+    public function getId($params = [])
     {
         if(!empty($params['id'])) return $params['id'];
         elseif(!empty($params['name'])) return $params['name'];

@@ -96,12 +96,12 @@ class AdminController extends Controller
     {
         $request->validate([
             'email'  => 'required|email',
-            'active' => 'in:Y',
+            'active' => 'in:Y,""',
         ]);
 
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
-        if(!$request->has('active')) $request->merge(['active' => 'N']);
+        if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $admin->update($request->all());
 
