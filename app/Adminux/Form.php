@@ -110,7 +110,7 @@ class Form
         $this->_fields = array_merge($this->_fields, $fields);
     }
 
-    public function getFields($fields = [])
+    public function getFields()
     {
         return $this->_fields;
     }
