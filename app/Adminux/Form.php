@@ -21,7 +21,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="'.$this->getValidId($params).'" value="'.$this->getValue($params).'">
+                        <input type="text" readonly class="form-control-plaintext" id="'.$this->getValidId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
                     </div>
                 </div>';
     }
@@ -100,9 +100,8 @@ class Form
     public function getValue($params = [])
     {
         if(!empty($params['value'])) return $params['value'];
-        elseif(!empty($this->_model->getAttributes()[$this->getName($params)])) return $this->_model->getAttributes()[$this->getName($params)];
 
-        return '';
+        return old($this->getName($params), $this->_model->getAttributes()[$this->getName($params)]);
     }
 
     public function addFields($fields = [])
