@@ -95,7 +95,7 @@ class AdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         $request->validate([
-            'email'  => 'required',
+            'email'  => 'required|email',
             'active' => 'in:Y',
         ]);
 
