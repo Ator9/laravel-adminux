@@ -102,10 +102,10 @@ class PartnerController extends Controller
     {
         $request->validate([
             'name'   => 'required',
-            'active' => 'in:Y',
+            'active' => 'in:Y,""',
         ]);
 
-        if(!$request->has('active')) $request->merge(['active' => 'N']);
+        if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $partner->update($request->all());
 
