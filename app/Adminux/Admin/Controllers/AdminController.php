@@ -108,7 +108,7 @@ class AdminController extends Controller
 
         if($request->filled('password') && !Hash::check($request->password, $admin->password)) {
             $request->merge(['password' => Hash::make($request->password)]);
-        } else $request->merge(['password' => $admin->password]);
+        } else $request->request->remove('password');
 
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
