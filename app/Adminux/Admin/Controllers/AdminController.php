@@ -38,9 +38,18 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Admin $admin)
     {
-        //
+        $form = new \App\Adminux\Form($admin);
+        $form->addFields([
+            $form->display([ 'label' => 'ID' ]),
+            $form->email([ 'label' => 'E-mail' ]),
+            $form->text([ 'label' => 'First Name' ]),
+            $form->text([ 'label' => 'Last Name' ]),
+            $form->switch([ 'label' => 'Active' ]),
+        ]);
+
+        return view('adminux.components.create')->withModel($admin)->withFields($form->getFields());
     }
 
     /**
@@ -49,9 +58,20 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Admin $admin)
     {
-        //
+        $request->validate([
+            'email'  => 'required|email',
+            'active' => 'in:Y,""',
+        ]);
+
+        if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
+        if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
+        if(!$request->filled('active')) $request->merge(['active' => 'N']);
+
+        $admin = $admin->create($request->all());
+
+        return redirect(route(explode('/', $request->path())[1].'.show', $admin));
     }
 
     /**

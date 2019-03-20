@@ -88,7 +88,7 @@ class Form
         if(!empty($params['name'])) return $params['name'];
 
         if(!empty($params['label'])) {
-            foreach($this->_model->getAttributes() as $key => $value) {
+            foreach($this->_model->getFillable() as $key) {
                 if(strcasecmp($key, $params['label']) == 0) return $key;
                 elseif(strcasecmp($key, str_replace(['-', ' '], '', $params['label'])) == 0) return $key;
                 elseif(strcasecmp($key, str_replace(['-', ' '], '_', $params['label'])) == 0) return $key;
@@ -102,7 +102,7 @@ class Form
     {
         if(!empty($params['value'])) return $params['value'];
 
-        return old($this->getName($params), $this->_model->getAttributes()[$this->getName($params)]);
+        return old($this->getName($params), @$this->_model->getAttributes()[$this->getName($params)]);
     }
 
     public function addFields($fields = [])

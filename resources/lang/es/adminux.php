@@ -3,6 +3,8 @@
 return [
 
     'active' => 'Activo',
+    'create' => 'Crear',
+    'create_new' => 'Crear Nuevo',
     'created_at' => 'Fecha Creación',
     'deleted_at' => 'Fecha Elminación',
     'details' => 'Detalles',
