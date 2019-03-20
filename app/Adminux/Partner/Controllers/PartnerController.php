@@ -59,7 +59,7 @@ class PartnerController extends Controller
     public function store(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'   => 'required|unique:adminux_partners,name',
+            'name'   => 'required|unique:'.$partner->getTable(),
             'active' => 'in:Y,""',
         ]);
 
@@ -102,7 +102,7 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'   => 'required|unique:adminux_partners,name,'.$partner->id,
+            'name'   => 'required|unique:'.$partner->getTable().',name,'.$partner->id,
             'active' => 'in:Y,""',
         ]);
 

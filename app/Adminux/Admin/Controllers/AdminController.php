@@ -6,6 +6,7 @@ use App\Adminux\Admin\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -54,12 +55,12 @@ class AdminController extends Controller
     public function store(Request $request, Admin $admin)
     {
         $request->validate([
-            'email'    => 'required|email|unique:adminux_admins,email',
+            'email'    => 'required|email|unique:'.$admin->getTable(),
             'password' => 'required',
             'active'   => 'in:Y,""',
         ]);
 
-        $request->merge(['password' => \Hash::make($request->password)]);
+        $request->merge(['password' => Hash::make($request->password)]);
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
@@ -101,12 +102,12 @@ class AdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         $request->validate([
-            'email'    => 'required|email|unique:adminux_admins,email,'.$admin->id,
+            'email'    => 'required|email|unique:'.$admin->getTable().',email,'.$admin->id,
             'active'   => 'in:Y,""',
         ]);
 
-        if($request->filled('password') && !\Hash::check($request->password, $admin->password)) {
-            $request->merge(['password' => \Hash::make($request->password)]);
+        if($request->filled('password') && !Hash::check($request->password, $admin->password)) {
+            $request->merge(['password' => Hash::make($request->password)]);
         } else $request->merge(['password' => $admin->password]);
 
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
