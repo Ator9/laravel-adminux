@@ -54,10 +54,12 @@ class AdminController extends Controller
     public function store(Request $request, Admin $admin)
     {
         $request->validate([
-            'email'  => 'required|email|unique:adminux_admins,email',
-            'active' => 'in:Y,""',
+            'email'    => 'required|email|unique:adminux_admins,email',
+            'password' => 'required',
+            'active'   => 'in:Y,""',
         ]);
 
+        $request->merge(['password' => \Hash::make($request->password)]);
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
@@ -99,9 +101,13 @@ class AdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         $request->validate([
-            'email'  => 'required|email|unique:adminux_admins,email,'.$admin->id,
-            'active' => 'in:Y,""',
+            'email'    => 'required|email|unique:adminux_admins,email,'.$admin->id,
+            'active'   => 'in:Y,""',
         ]);
+
+        if($request->filled('password') && !\Hash::check($request->password, $admin->password)) {
+            $request->merge(['password' => \Hash::make($request->password)]);
+        } else $request->merge(['password' => $admin->password]);
 
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);

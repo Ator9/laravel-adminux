@@ -56,7 +56,7 @@ class Form
         return '<div class="form-group row">
                     '.self::getLabel($params).'
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
+                        <input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">
                     </div>
                 </div>';
     }
