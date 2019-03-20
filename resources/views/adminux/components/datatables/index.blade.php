@@ -3,12 +3,12 @@
 @section('title', 'Partners' . ' - ' . config('app.name', 'Admin'))
 
 @section('head')
-<link href="{{ asset('adminux/resources/libs/jquery.dataTables.css') }}" rel="stylesheet">
+<link href="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
 .table-responsive{height:calc(100% - 5px);height:-moz-calc(100% - 5px);height:-webkit-calc(100% - 5px);overflow-y:hidden}
 @empty($datatables['disableClickableRow']) #datatable tbody tr{cursor:pointer} @endempty
-#datatable_filter input{margin-left:0}
+#datatable_filter input{margin-left:3px}
 </style>
 @endsection
 
@@ -25,7 +25,8 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 @endsection
 
 @section('scripts')
-<script src="{{ asset('adminux/resources/libs/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 $(document).ready(function() {
@@ -39,7 +40,7 @@ $(document).ready(function() {
         processing: true,
         columns: [ {!! $datatables['columns'] !!} ],
         order: @isset ($datatables['order']) {{ $datatables['order'] }} @else [[ 0, 'desc' ]] @endisset,
-        dom: @isset ($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rtip' @endisset,
+        dom: @isset ($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rt<"float-left"i>p' @endisset,
         language: {
            search: '',
            searchPlaceholder: 'Search... '
