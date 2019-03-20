@@ -98,6 +98,8 @@ class Form
         if(!empty($params['name'])) return $params['name'];
 
         if(!empty($params['label'])) {
+            if(strcasecmp($params['label'], 'id') == 0) return 'id';
+
             foreach($this->_model->getFillable() as $key) {
                 if(strcasecmp($key, $params['label']) == 0) return $key;
                 elseif(strcasecmp($key, str_replace(['-', ' '], '', $params['label'])) == 0) return $key;

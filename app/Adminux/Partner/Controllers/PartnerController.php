@@ -26,7 +26,6 @@ class PartnerController extends Controller
         }
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'disableClickableRow' => true,
             'thead' => '<th class="text-center">ID</th>
                         <th class="w-75">Name</th>
                         <th>Active</th>
@@ -46,9 +45,9 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Partner $partner)
     {
-        //
+        return view('adminux.components.create')->withModel($partner)->withFields($this->getFields($partner));
     }
 
     /**
@@ -57,9 +56,18 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Partner $partner)
     {
-        //
+        $request->validate([
+            'name'   => 'required|unique:adminux_partners,name',
+            'active' => 'in:Y,""',
+        ]);
+
+        if(!$request->filled('active')) $request->merge(['active' => 'N']);
+
+        $partner = $partner->create($request->all());
+
+        return redirect(route(explode('/', $request->path())[1].'.show', $partner));
     }
 
     /**
@@ -81,14 +89,7 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        $form = new \App\Adminux\Form($partner);
-        $form->addFields([
-            $form->display([ 'label' => 'ID' ]),
-            $form->text([ 'label' => 'Name' ]),
-            $form->switch([ 'label' => 'Active' ]),
-        ]);
-
-        return view('adminux.components.edit')->withModel($partner)->withFields($form->getFields());
+        return view('adminux.components.edit')->withModel($partner)->withFields($this->getFields($partner));
     }
 
     /**
@@ -101,7 +102,7 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'   => 'required',
+            'name'   => 'required|unique:adminux_partners,name,'.$partner->id,
             'active' => 'in:Y,""',
         ]);
 
@@ -123,5 +124,22 @@ class PartnerController extends Controller
         $partner->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
+    }
+
+    /**
+     * Build Blade edit & create form fields
+     *
+     * @return Array
+     */
+    public function getFields(Partner $partner)
+    {
+        $form = new \App\Adminux\Form($partner);
+        $form->addFields([
+            $form->display([ 'label' => 'ID' ]),
+            $form->text([ 'label' => 'Name' ]),
+            $form->switch([ 'label' => 'Active' ]),
+        ]);
+
+        return $form->getFields();
     }
 }
