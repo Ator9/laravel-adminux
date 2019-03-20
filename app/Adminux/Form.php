@@ -51,6 +51,16 @@ class Form
                 </div>';
     }
 
+    public function password($params = [])
+    {
+        return '<div class="form-group row">
+                    '.self::getLabel($params).'
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
+                    </div>
+                </div>';
+    }
+
     public function text($params = [])
     {
         return '<div class="form-group row">
