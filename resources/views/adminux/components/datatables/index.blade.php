@@ -8,6 +8,7 @@
 html,body,.container-fluid,.container-fluid .row{height:100%}
 @empty($datatables['disableClickableRow']) #datatable tbody tr{cursor:pointer} @endempty
 .table-responsive{height:calc(100% - 5px);height:-moz-calc(100% - 5px);height:-webkit-calc(100% - 5px);overflow-y:hidden}
+.table thead th{border-bottom-width: 1px}
 #datatable_filter input{margin-left:3px}
 </style>
 @endsection
