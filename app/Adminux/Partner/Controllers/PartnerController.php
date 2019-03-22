@@ -29,7 +29,7 @@ class PartnerController extends Controller
             'thead' => '<th class="text-center">ID</th>
                         <th class="w-75">Name</th>
                         <th>Active</th>
-                        <th class="text-center">Created At</th>
+                        <th class="text-center" style="min-width:110px">Created At</th>
                         <th>Action</th>',
 
             'columns' => "{ data: 'id2', name: 'id', className: 'text-center' },

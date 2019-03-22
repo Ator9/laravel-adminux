@@ -27,12 +27,12 @@ class AdminController extends Controller
             'thead' => '<th class="text-center">ID</th>
                         <th class="w-75">E-mail</th>
                         <th class="text-center">Active</th>
-                        <th class="text-center">Created At</th>',
+                        <th class="text-center" style="min-width:110px">Created At</th>',
 
             'columns' => "{ data: 'id2', name: 'id', className: 'text-center' },
                           { data: 'email', name: 'email' },
                           { data: 'active2', name: 'active', className: 'text-center' },
-                          { data: 'created_at', name: 'created_at', className: 'text-center' }"
+                          { data: 'created_at', name: 'created_at', className: 'text-center text-nowrap' }"
         ]);
     }
 

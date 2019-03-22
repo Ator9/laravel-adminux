@@ -14,7 +14,7 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 
 @section('body')
 <div class="table-responsive pt-3">
-    <table class="table table-striped table-hover text-nowrap compact" id="datatable">
+    <table class="table table-striped table-hover" id="datatable">
         <thead>
             <tr>
                 {!! $datatables['thead'] !!}
@@ -44,7 +44,7 @@ $(document).ready(function() {
         language: {
            search: '',
            searchPlaceholder: 'Search... '
-        }
+       }
     });
 
     @empty($datatables['disableCreateButton'])
