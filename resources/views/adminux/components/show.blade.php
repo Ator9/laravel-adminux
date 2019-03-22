@@ -6,7 +6,7 @@
 <div class="card mt-3">
     <div class="card-header">
         <div class="d-flex justify-content-between">
-            <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} - {{ __('adminux.details') }}</h5>
+            <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
             <div>
                 <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal"><span class="feather-adminux" data-feather="trash-2"></span></button>
                 <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
