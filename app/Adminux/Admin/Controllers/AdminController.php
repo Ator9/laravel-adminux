@@ -24,15 +24,19 @@ class AdminController extends Controller
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'thead' => '<th class="text-center">ID</th>
-                        <th class="w-75">E-mail</th>
-                        <th class="text-center">Active</th>
-                        <th class="text-center" style="min-width:110px">Created At</th>',
+            'thead' => '<th style="min-width:50px">ID</th>
+                        <th class="w-25">E-mail</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th style="min-width:60px">Active</th>
+                        <th style="min-width:120px">Created At</th>',
 
             'columns' => "{ data: 'id2', name: 'id', className: 'text-center' },
                           { data: 'email', name: 'email' },
+                          { data: 'firstname', name: 'firstname' },
+                          { data: 'lastname', name: 'lastname' },
                           { data: 'active2', name: 'active', className: 'text-center' },
-                          { data: 'created_at', name: 'created_at', className: 'text-center text-nowrap' }"
+                          { data: 'created_at', name: 'created_at', className: 'text-center' }"
         ]);
     }
 
