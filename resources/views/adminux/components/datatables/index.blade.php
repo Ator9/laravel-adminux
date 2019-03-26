@@ -44,7 +44,7 @@ $(document).ready(function() {
         dom: @isset($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rt<"float-left"i>p' @endisset,
         language: {
            search: '',
-           searchPlaceholder: 'Search... '
+           searchPlaceholder: '{{ __('adminux.search') }}...'
        }
     });
 

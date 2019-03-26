@@ -16,6 +16,7 @@ return [
     'last_login_at' => 'Fecha Último Logueo',
     'last_login_ip' => 'IP Último Logueo',
     'name' => 'Nombre',
+    'search' => 'Buscar',
     'superuser' => 'Super Usuario',
     'updated_at' => 'Fecha Actualización',
 ];
