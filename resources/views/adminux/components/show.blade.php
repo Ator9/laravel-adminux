@@ -30,7 +30,7 @@
 </div>
 @isset($many)
     @foreach($many as $mod)
-        {{ $mod->get() }}
+        @include('adminux.components.datatables.related', [ 'model' => $mod, 'datatables' => $datatables ])
     @endforeach
 @endisset
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">

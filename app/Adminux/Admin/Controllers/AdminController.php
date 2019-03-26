@@ -3,6 +3,7 @@
 namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Admin;
+use App\Adminux\Admin\Models\AdminPartner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -80,9 +81,19 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(Admin $admin, AdminPartner $adminPartner)
     {
-        return view('adminux.components.show')->withModel($admin)->withMany([$admin->partners()]);
+        if(isset($_GET['datatables'])) return Datatables::of($adminPartner::query())->toJson();
+
+        return view('adminux.components.show')->withModel($admin)->withMany([$admin->partners()])->withDatatables([
+            'thead' => '<th style="min-width:30px">ID</th>
+                        <th>Partner</th>
+                        <th style="min-width:120px">Created At</th>',
+
+            'columns' => "{ data: 'id', name: 'id', className: 'text-center' },
+                          { data: 'adminux_partners.name', name: 'adminux_partners.name' },
+                          { data: 'created_at', name: 'created_at', className: 'text-center' }"
+        ]);
     }
 
     /**
