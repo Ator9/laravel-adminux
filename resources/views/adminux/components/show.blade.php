@@ -28,6 +28,11 @@
         </div>
     </div>
 </div>
+@isset($many)
+    @foreach($many as $mod)
+        {{ $mod->get() }}
+    @endforeach
+@endisset
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

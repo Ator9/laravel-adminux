@@ -35,4 +35,12 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'deleted_at'
     ];
+
+    /**
+     * Get the partners for the admin.
+     */
+    public function partners()
+    {
+        return $this->hasMany(new AdminPartner);
+    }
 }
