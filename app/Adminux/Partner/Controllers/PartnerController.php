@@ -26,7 +26,7 @@ class PartnerController extends Controller
         }
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'thead' => '<th style="min-width:50px">ID</th>
+            'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Name</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>

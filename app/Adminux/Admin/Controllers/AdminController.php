@@ -24,7 +24,7 @@ class AdminController extends Controller
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'thead' => '<th style="min-width:50px">ID</th>
+            'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
                         <th>Last Name</th>
