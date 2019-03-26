@@ -91,7 +91,7 @@ class AdminController extends Controller
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => "{ data: 'id', name: 'id', className: 'text-center' },
-                          { data: 'adminux_partners.name', name: 'adminux_partners.name' },
+                          { data: 'partner_id', name: 'partner_id' },
                           { data: 'created_at', name: 'created_at', className: 'text-center' }"
         ]);
     }
