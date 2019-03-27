@@ -3,6 +3,7 @@
 namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Admin;
+use App\Adminux\Partner\Models\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,15 +39,15 @@ class AdminPartnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Admin  $admin
      * @param  \App\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(Admin $admin, Partner $partner)
     {
-        //$shop->products()->detach($product_id);
+        dd(request()->partner);
+        $admin->partners()->detach($partner->id);
 
-        $partner->delete();
-
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return back();
     }
 }
