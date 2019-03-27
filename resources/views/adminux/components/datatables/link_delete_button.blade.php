@@ -1,1 +1,1 @@
-<a href="#" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
+<a href="#deleteModal" class="badge badge-pill badge-danger" data-toggle="modal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')">Delete</a>

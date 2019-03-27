@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-between">
             <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
             <div>
-                <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal"><span class="feather-adminux" data-feather="trash-2"></span></button>
+                <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')"><span class="feather-adminux" data-feather="trash-2"></span></button>
                 <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
             </div>
         </div>
@@ -37,14 +37,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">Delete item #{{ $model->id }}?</h5>
+                <h5 class="modal-title" id="modalCenterTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form method="post" action="{{ Request::url() }}" class="d-inline">
+                <form method="post" id="deleteForm" action="" class="d-inline">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger my-n1"><span class="feather-adminux" data-feather="trash-2"></span> Delete</button>
