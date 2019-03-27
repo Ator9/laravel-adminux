@@ -14,7 +14,7 @@ class CreateAdminux extends Migration
      */
     public function up()
     {
-        Schema::create('adminux_admins', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('email', 75)->default('')->unique();
             $table->string('password')->default('');
@@ -28,7 +28,7 @@ class CreateAdminux extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-        DB::table('adminux_admins')->insert([
+        DB::table('admins')->insert([
             'email'      => 'admin@localhost',
             'password'   => Hash::make('test'), // $2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..
             'superuser'  => 'Y',
@@ -37,42 +37,42 @@ class CreateAdminux extends Migration
         ]);
 
 
-        Schema::create('adminux_partners', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('name', 100)->default('')->unique();
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
         });
-        DB::table('adminux_partners')->insert([
+        DB::table('partners')->insert([
             'name'       => 'General',
             'active'     => 'Y',
             'created_at' => Carbon::now()
         ]);
 
 
-        Schema::create('adminux_admins_partners', function (Blueprint $table) {
+        Schema::create('admin_partner', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('admin_id')->unsigned();
-            $table->foreign('admin_id')->references('id')->on('adminux_admins')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('cascade');
             $table->mediumInteger('partner_id')->unsigned();
-            $table->foreign('partner_id')->references('id')->on('adminux_partners')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('partner_id')->references('id')->on('partners')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('created_at')->nullable();
             $table->unique(['admin_id', 'partner_id'], 'admin_partner');
         });
-        DB::table('adminux_admins_partners')->insert([
+        DB::table('admin_partner')->insert([
             'admin_id'   => 1,
             'partner_id' => 1,
             'created_at' => Carbon::now()
         ]);
 
 
-        Schema::create('adminux_roles', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('name', 100)->default('')->unique();
             $table->timestamps();
         });
-        DB::table('adminux_roles')->insert([
+        DB::table('roles')->insert([
             'name'       => 'General',
             'created_at' => Carbon::now()
         ]);
@@ -85,9 +85,9 @@ class CreateAdminux extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adminux_admins');
-        Schema::dropIfExists('adminux_partners');
-        Schema::dropIfExists('adminux_admins_partners');
-        Schema::dropIfExists('adminux_roles');
+        Schema::dropIfExists('admins');
+        Schema::dropIfExists('partners');
+        Schema::dropIfExists('admin_partner');
+        Schema::dropIfExists('roles');
     }
 }

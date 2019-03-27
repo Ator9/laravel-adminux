@@ -12,13 +12,6 @@ class Admin extends Authenticatable
     use SoftDeletes;
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'adminux_admins';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -41,6 +34,6 @@ class Admin extends Authenticatable
      */
     public function partners()
     {
-        return $this->hasMany(new AdminPartner);
+        return $this->belongsToMany('App\Adminux\Partner\Models\Partner');
     }
 }

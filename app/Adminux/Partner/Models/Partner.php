@@ -8,13 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Partner extends Model
 {
     use SoftDeletes;
-    
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'adminux_partners';
 
     /**
      * The attributes that are mass assignable.
