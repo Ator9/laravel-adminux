@@ -82,16 +82,21 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        if(isset($_GET['datatables'])) return Datatables::of($admin->partners())->toJson();
+        if(isset($_GET['datatables'])) return Datatables::of($admin->partners())
+        ->addColumn('actions', 'adminux.components.datatables.link_delete_button')
+        ->rawColumns(['actions'])
+        ->toJson();
 
         return view('adminux.components.show')->withModel($admin)->withMany([$admin->partners()])->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th>Partner</th>
-                        <th style="min-width:120px">Created At</th>',
+                        <th class="w-75">Partner</th>
+                        <th style="min-width:120px">Created At</th>
+                        <th>Action</th>',
 
             'columns' => "{ data: 'id', name: 'admin_partner.id', className: 'text-center' },
                           { data: 'name', name: 'name' },
-                          { data: 'created_at', name: 'admin_partner.created_at', className: 'text-center' }"
+                          { data: 'created_at', name: 'admin_partner.created_at', className: 'text-center' },
+                          { data: 'actions', name: 'actions', className: 'text-center', orderable: false }"
         ]);
     }
 

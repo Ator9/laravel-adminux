@@ -8,7 +8,7 @@
 
 <div class="card mt-3">
     <div class="card-header">
-        <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}}</h5>
+        <h5 class="mb-0">{{ ucfirst($relation->getRelationName()) }}</h5>
     </div>
     <div class="card-body">
         <div class="table-responsive pt-3">
@@ -46,7 +46,7 @@ $(document).ready(function() {
     });
 
     @empty($datatables['disableCreateButton'])
-        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="edit"></span> Create</a>').insertBefore('#datatable_wrapper .float-left:first');
+        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="edit"></span> Add</a>').insertBefore('#datatable_wrapper .float-left:first');
     @endempty
 
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset

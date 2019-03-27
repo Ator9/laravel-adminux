@@ -29,8 +29,8 @@
     </div>
 </div>
 @isset($many)
-    @foreach($many as $mod)
-        @include('adminux.components.datatables.related', [ 'model' => $mod, 'datatables' => $datatables ])
+    @foreach($many as $relation)
+        @include('adminux.components.datatables.relation', [ 'relation' => $relation, 'datatables' => $datatables ])
     @endforeach
 @endisset
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
