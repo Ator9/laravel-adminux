@@ -15,6 +15,9 @@ Route::namespace('\App\Adminux')->group(function() {
             Route::resource(strtolower($module), $module.'\Controllers\\' . $module.'Controller');
         }
 
+        Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
+        Route::delete('adminpartner', 'Admin\Controllers\AdminPartnerController@delete');
+
         // Automated URL based on request (example: admin_partner):
         if(strpos(Request::path(), '_') !== false) {
             $split = explode('/', Request::path());

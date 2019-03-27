@@ -15,16 +15,7 @@
             </div>
         </div>
         <div class="card-body">
-            @if($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    @foreach($errors->all() as $error)
-                        &bull; {{ $error }}<br>
-                    @endforeach
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+            @include('adminux.components.layout.errors')
             @foreach($fields as $val)
                 {!! $val !!}
             @endforeach

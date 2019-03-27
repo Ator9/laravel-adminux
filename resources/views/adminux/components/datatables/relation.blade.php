@@ -11,6 +11,7 @@
         <h5 class="mb-0">{{ ucfirst($relation->getRelationName()) }}</h5>
     </div>
     <div class="card-body">
+        @include('adminux.components.layout.errors')
         <div class="table-responsive pt-3">
             <table class="table table-striped table-hover" id="datatable">
                 <thead>
