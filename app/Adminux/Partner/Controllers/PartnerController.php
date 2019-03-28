@@ -16,14 +16,12 @@ class PartnerController extends Controller
      */
     public function index(Partner $partner)
     {
-        if(isset($_GET['datatables'])) {
-            return Datatables::of($partner::query())
+        if(request()->ajax()) return Datatables::of($partner::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
             ->addColumn('actions', 'adminux.components.datatables.link_edit_button')
             ->rawColumns(['id2', 'active2', 'actions'])
             ->toJson();
-        }
 
         return view('adminux.components.datatables.index')->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>

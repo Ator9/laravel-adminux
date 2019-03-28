@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index(Admin $admin)
     {
-        if(isset($_GET['datatables'])) return Datatables::of($admin::query())
+        if(request()->ajax()) return Datatables::of($admin::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
             ->rawColumns(['id2', 'active2'])
@@ -82,22 +82,9 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        if(isset($_GET['datatables'])) return Datatables::of($admin->partners())
-        ->addColumn('actions', 'adminux.components.datatables.link_delete_button')
-        ->rawColumns(['actions'])
-        ->toJson();
+        if(request()->ajax()) return (new AdminPartnerController)->getDatatable($admin);
 
-        return view('adminux.components.show')->withModel($admin)->withMany([$admin->partners()])->withDatatables([
-            'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Partner</th>
-                        <th style="min-width:120px">Created At</th>
-                        <th>Action</th>',
-
-            'columns' => "{ data: 'id', name: 'admin_partner.id', className: 'text-center' },
-                          { data: 'name', name: 'name' },
-                          { data: 'created_at', name: 'admin_partner.created_at', className: 'text-center' },
-                          { data: 'actions', name: 'actions', className: 'text-center', orderable: false }"
-        ]);
+        return view('adminux.components.show')->withModel($admin)->withMany([ (new AdminPartnerController)->getDatatable($admin) ]);
     }
 
     /**

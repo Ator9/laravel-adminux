@@ -30,7 +30,7 @@
 </div>
 @isset($many)
     @foreach($many as $relation)
-        @include('adminux.components.datatables.relation', [ 'relation' => $relation, 'datatables' => $datatables ])
+        @include('adminux.components.datatables.relation', [ 'datatables' => $relation ])
     @endforeach
 @endisset
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">

@@ -1,14 +1,14 @@
 @section('head')
 <link href="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
-.table thead th{border-bottom-width: 1px}
+.table thead th{border-bottom-width:0}
 #datatable_filter input{margin-left:3px}
 </style>
 @endsection
 
-<div class="card mt-3">
+<div class="card my-3">
     <div class="card-header">
-        <h5 class="mb-0">{{ ucfirst($relation->getRelationName()) }}</h5>
+        <h5 class="mb-0">{{ ucfirst($datatables['model']->getRelationName()) }}</h5>
     </div>
     <div class="card-body">
         @include('adminux.components.layout.errors')
@@ -30,8 +30,6 @@
 <script>
 $(document).ready(function() {
     var table = $('#datatable').DataTable({
-        scrollResize: true,
-        scrollY: '100vh',
         scrollCollapse: true,
         pageLength: @isset($datatables['pageLength']) {{ $datatables['pageLength'] }} @else {{ 50 }} @endisset,
         ajax: '{{ Request::url() }}?datatables=1',
