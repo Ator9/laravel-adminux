@@ -3,6 +3,7 @@
 namespace App\Adminux\Partner\Controllers;
 
 use App\Adminux\Partner\Models\Partner;
+use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -76,7 +77,9 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        return view('adminux.components.show')->withModel($partner);
+        if(request()->ajax()) return (new AdminPartnerController)->getDatatable($partner);
+
+        return view('adminux.components.show')->withModel($partner)->withMany([ (new AdminPartnerController)->getDatatable($partner) ]);
     }
 
     /**

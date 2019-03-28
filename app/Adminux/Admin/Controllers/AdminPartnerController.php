@@ -11,22 +11,32 @@ use Yajra\Datatables\Datatables;
 class AdminPartnerController extends Controller
 {
 
-    public function getDatatable(Admin $admin = null, Partner $partner = null)
+    public function getDatatable($obj)
     {
-        if(request()->ajax()) return Datatables::of($admin->partners())
+        if(new \ReflectionClass(new Admin) == new \ReflectionClass($obj)) {
+            $model = $obj->partners();
+            $title = __('adminux.name');
+            $column = 'name';
+        } else {
+            $model = $obj->admins();
+            $title = 'Admin';
+            $column = 'email';
+        }
+
+        if(request()->ajax()) return Datatables::of($model)
             ->addColumn('actions', 'adminux.components.datatables.link_delete_button')
             ->rawColumns(['actions'])
             ->toJson();
 
         return [
-            'model' => $admin->partners(),
+            'model' => $model,
             'route' => 'dddd',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Partner</th>
+                        <th class="w-75">'.$title.'</th>
                         <th style="min-width:120px">Created At</th>
                         <th>Action</th>',
             'columns' => "{ data: 'id', name: 'admin_partner.id', className: 'text-center' },
-                          { data: 'name', name: 'name' },
+                          { data: '".$column."', name: '".$column."' },
                           { data: 'created_at', name: 'admin_partner.created_at', className: 'text-center' },
                           { data: 'actions', name: 'actions', className: 'text-center', orderable: false }"
 

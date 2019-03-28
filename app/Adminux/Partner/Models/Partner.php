@@ -26,4 +26,12 @@ class Partner extends Model
     protected $hidden = [
         'deleted_at'
     ];
+
+    /**
+     * Get the admins for the partner.
+     */
+    public function admins()
+    {
+        return $this->belongsToMany('App\Adminux\Admin\Models\Admin');
+    }
 }
