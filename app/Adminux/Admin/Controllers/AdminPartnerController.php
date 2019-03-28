@@ -3,7 +3,6 @@
 namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Admin;
-use App\Adminux\Partner\Models\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -24,13 +23,16 @@ class AdminPartnerController extends Controller
         }
 
         if(request()->ajax()) return Datatables::of($model)
-            ->addColumn('actions', 'adminux.components.datatables.link_delete_button')
+            ->addColumn('actions', function($row) {
+                $action = url('/admin/adminpartner/'.$row->id);
+                $title  = 'Delete item #'.$row->id.'?';
+                return '<a href="#deleteModal" class="badge badge-pill badge-danger" data-toggle="modal" onclick="modalDelete(\''.$action.'\', \''.$title.'\')">Delete</a>';
+            })
             ->rawColumns(['actions'])
             ->toJson();
 
         return [
             'model' => $model,
-            'route' => 'dddd',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">'.$title.'</th>
                         <th style="min-width:120px">Created At</th>
@@ -72,14 +74,11 @@ class AdminPartnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
-     * @param  \App\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin, Partner $partner)
+    public function destroy($id)
     {
-        dd(request()->partner);
-        $admin->partners()->detach($partner->id);
+        \DB::table((new Admin)->partners()->getTable())->where('id', '=', $id)->delete();
 
         return back();
     }

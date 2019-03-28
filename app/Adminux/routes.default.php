@@ -10,15 +10,13 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::get('admin_logs',     'Admin\Controllers\AdminController@logs');
         Route::get('admin_phpinfo',  'Admin\Controllers\AdminController@phpinfo');
 
-        Route::post('admin/{admin}/partner/{partner}', 'Admin\Controllers\AdminPartnerController@store');
-        Route::delete('admin/{admin}/partner/{partner}', 'Admin\Controllers\AdminPartnerController@destroy');
+        Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
+        Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
         foreach(\File::directories(__DIR__) as $dir) {
             $module = basename($dir);
             Route::resource(strtolower($module), $module.'\Controllers\\' . $module.'Controller');
         }
-
-
 
         // Automated URL based on request (example: admin_partner):
         if(strpos(Request::path(), '_') !== false) {
