@@ -1,9 +1,9 @@
 # Requirements
-- <a href="https://github.com/laravel/framework" target="_blank">Laravel</a>
+- <a href="https://github.com/laravel/framework">Laravel</a>
 ```sh
 composer create-project laravel/laravel foldername
 ```
-- <a href="https://github.com/yajra/laravel-datatables" target="_blank">Laravel Datatables</a>
+- <a href="https://github.com/yajra/laravel-datatables">Laravel Datatables</a>
 ```sh
 composer require yajra/laravel-datatables-oracle
 ```
