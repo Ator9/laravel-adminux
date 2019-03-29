@@ -48,7 +48,7 @@ class AdminPartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(RAdmin $admin)
+    public function store(Admin $admin)
     {
         $request->validate([
             'name'   => 'required|unique:'.$partner->getTable(),
