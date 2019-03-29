@@ -30,7 +30,7 @@ class CreateAdminux extends Migration
         });
         DB::table('admins')->insert([
             'email'      => 'admin@localhost',
-            'password'   => Hash::make('test'), // $2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..
+            'password'   => '$2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..', // test
             'superuser'  => 'Y',
             'active'     => 'Y',
             'created_at' => Carbon::now() // DB::raw('now()')
