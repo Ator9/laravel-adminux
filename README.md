@@ -1,3 +1,6 @@
+# Requirements
+- Laravel
+
 # Install AdminUX
 ```sh
 git init
