@@ -1,6 +1,5 @@
 # Requirements
 - <a href="https://github.com/laravel/framework" target="_blank">Laravel</a>
-# Install Laravel Datatables
 ```sh
 composer create-project laravel/laravel foldername
 ```
