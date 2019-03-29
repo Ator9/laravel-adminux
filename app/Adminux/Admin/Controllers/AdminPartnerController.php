@@ -25,7 +25,7 @@ class AdminPartnerController extends Controller
             ->addColumn('actions', function($row) {
                 $params['action'] = url('/admin/adminpartner/'.$row->id);
                 $params['title']  = 'Delete item #'.$row->id.'?';
-                return = view('adminux.components.datatables.link_delete_button', [ 'params' => $params ]);
+                return view('adminux.components.datatables.link_delete_button', compact('params'));
             })
             ->rawColumns(['actions'])
             ->toJson();
