@@ -12,7 +12,7 @@ Route::namespace('\App\Adminux')->group(function() {
 
         foreach(\File::directories(__DIR__) as $dir) {
             $module = basename($dir);
-            Route::resource(strtolower($module), $module.'\Controllers\\' . $module.'Controller');
+            Route::resource(strtolower($module), $module.'\Controllers\\'.$module.'Controller');
         }
 
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');

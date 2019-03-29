@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         @include('adminux.components.layout.errors')
-        <div class="table-responsive pt-3">
+        <div class="table-responsive">
             <table class="table table-striped table-hover" id="datatable">
                 <thead>
                     <tr>
