@@ -1,6 +1,8 @@
 # Install AdminUX
 ```sh
-git init && git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git && git pull adminux master
+git init
+git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git
+git pull adminux master
 ```
 Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
