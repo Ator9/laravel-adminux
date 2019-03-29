@@ -8,7 +8,6 @@ use Yajra\Datatables\Datatables;
 
 class AdminPartnerController extends Controller
 {
-
     public function getDatatable($obj)
     {
         if(new \ReflectionClass(new Admin) == new \ReflectionClass($obj)) {
