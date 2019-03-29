@@ -1,6 +1,13 @@
 # Requirements
-- Laravel (composer create-project laravel/laravel foldername)
-- Laravel Datatables (composer require yajra/laravel-datatables-oracle)
+- <a href="https://github.com/laravel/framework" target="_blank">Laravel</a>
+# Install Laravel Datatables
+```sh
+composer create-project laravel/laravel foldername
+```
+- <a href="https://github.com/yajra/laravel-datatables" target="_blank">Laravel Datatables</a>
+```sh
+composer require yajra/laravel-datatables-oracle
+```
 
 # Install AdminUX
 ```sh
@@ -31,9 +38,4 @@ Add to /routes/web.php:
 Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
-```
-
-# Install Laravel Datatables
-```sh
-composer require yajra/laravel-datatables-oracle
 ```
