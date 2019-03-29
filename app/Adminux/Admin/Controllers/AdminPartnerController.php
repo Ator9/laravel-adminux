@@ -3,7 +3,6 @@
 namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Admin;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
@@ -24,9 +23,9 @@ class AdminPartnerController extends Controller
 
         if(request()->ajax()) return Datatables::of($model)
             ->addColumn('actions', function($row) {
-                $action = url('/admin/adminpartner/'.$row->id);
-                $title  = 'Delete item #'.$row->id.'?';
-                return '<a href="#deleteModal" class="badge badge-pill badge-danger" data-toggle="modal" onclick="modalDelete(\''.$action.'\', \''.$title.'\')">Delete</a>';
+                $params['action'] = url('/admin/adminpartner/'.$row->id);
+                $params['title']  = 'Delete item #'.$row->id.'?';
+                return = view('adminux.components.datatables.link_delete_button', [ 'params' => $params ]);
             })
             ->rawColumns(['actions'])
             ->toJson();
@@ -48,10 +47,9 @@ class AdminPartnerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Admin $admin)
+    public function store(RAdmin $admin)
     {
         $request->validate([
             'name'   => 'required|unique:'.$partner->getTable(),
@@ -69,7 +67,6 @@ class AdminPartnerController extends Controller
 
         return back();
     }
-
 
     /**
      * Remove the specified resource from storage.
