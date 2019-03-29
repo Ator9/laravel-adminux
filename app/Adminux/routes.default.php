@@ -31,5 +31,8 @@ Route::namespace('\App\Adminux')->group(function() {
                 }
             }
         }
+
+        // Your custom routes:
+        if(file_exists(__DIR__.'/routes.php')) require __DIR__.'/routes.php';
     });
 });
