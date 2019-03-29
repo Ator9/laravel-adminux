@@ -1,5 +1,6 @@
 # Requirements
-- Laravel
+- Laravel (composer create-project laravel/laravel foldername)
+- Laravel Datatables (composer require yajra/laravel-datatables-oracle)
 
 # Install AdminUX
 ```sh
