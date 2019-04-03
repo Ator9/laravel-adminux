@@ -82,9 +82,9 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        if(request()->ajax()) return (new AdminPartnerController)->getDatatable($admin);
+        if(request()->ajax()) return (new AdminPartnerController)->getIndex($admin);
 
-        return view('adminux.components.show')->withModel($admin)->withMany([ (new AdminPartnerController)->getDatatable($admin) ]);
+        return view('adminux.components.show')->withModel($admin)->withMany([ (new AdminPartnerController)->getIndex($admin) ]);
     }
 
     /**

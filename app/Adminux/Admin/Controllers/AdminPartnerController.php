@@ -8,7 +8,7 @@ use Yajra\Datatables\Datatables;
 
 class AdminPartnerController extends Controller
 {
-    public function getDatatable($obj)
+    public function getIndex($obj)
     {
         if(new \ReflectionClass(new Admin) == new \ReflectionClass($obj)) {
             $model = $obj->partners();
@@ -35,9 +35,9 @@ class AdminPartnerController extends Controller
                         <th class="w-75">'.$title.'</th>
                         <th style="min-width:120px">Created At</th>
                         <th>Action</th>',
-            'columns' => "{ data: 'id', name: 'admin_partner.id', className: 'text-center' },
+            'columns' => "{ data: 'id', name: '".$model->getTable().".id', className: 'text-center' },
                           { data: '".$column."', name: '".$column."' },
-                          { data: 'created_at', name: 'admin_partner.created_at', className: 'text-center' },
+                          { data: 'created_at', name: '".$model->getTable().".created_at', className: 'text-center' },
                           { data: 'actions', name: 'actions', className: 'text-center', orderable: false }"
 
         ];

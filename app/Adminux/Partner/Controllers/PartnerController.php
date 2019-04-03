@@ -77,9 +77,9 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        if(request()->ajax()) return (new AdminPartnerController)->getDatatable($partner);
+        if(request()->ajax()) return (new AdminPartnerController)->getIndex($partner);
 
-        return view('adminux.components.show')->withModel($partner)->withMany([ (new AdminPartnerController)->getDatatable($partner) ]);
+        return view('adminux.components.show')->withModel($partner)->withMany([ (new AdminPartnerController)->getIndex($partner) ]);
     }
 
     /**
