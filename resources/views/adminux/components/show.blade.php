@@ -23,7 +23,7 @@
         <div class="form-group row">
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
-                <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> Edit</a>
+                <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}<</a>
             </div>
         </div>
     </div>
@@ -43,11 +43,11 @@
                 </button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('adminux.cancel') }}</button>
                 <form method="post" id="deleteForm" action="" class="d-inline">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-danger my-n1"><span class="feather-adminux" data-feather="trash-2"></span> Delete</button>
+                    <button type="submit" class="btn btn-danger my-n1"><span class="feather-adminux" data-feather="trash-2"></span> {{ __('adminux.delete') }}</button>
                 </form>
             </div>
         </div>

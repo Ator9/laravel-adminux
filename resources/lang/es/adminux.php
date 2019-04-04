@@ -3,9 +3,11 @@
 return [
 
     'active' => 'Activo',
+    'cancel' => 'Cancelar',
     'create' => 'Crear',
     'create_new' => 'Crear Nuevo',
     'created_at' => 'Fecha Creación',
+    'delete' => 'Eliminar',
     'deleted_at' => 'Fecha Elminación',
     'details' => 'Detalles',
     'edit' => 'Editar',
