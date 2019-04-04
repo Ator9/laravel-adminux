@@ -36,3 +36,8 @@ Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
 ```
+
+Database:
+```php
+php artisan migrate
+```
