@@ -12,6 +12,10 @@ git init
 git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git
 git pull adminux master
 ```
+Database:
+```sh
+php artisan migrate
+```
 Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
 'adminux' => \App\Adminux\Authenticate::class,
@@ -35,9 +39,4 @@ Add to /routes/web.php:
 Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
-```
-
-Database:
-```php
-php artisan migrate
 ```
