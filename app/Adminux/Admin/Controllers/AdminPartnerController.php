@@ -20,12 +20,12 @@ class AdminPartnerController extends Controller
             $column = 'email';
         }
 
-        // dd($model->getRelated());
-
         if(request()->ajax()) {
             if(request()->filled('search.value')) {
-                $dt = Datatables::of($model)->addColumn('actions', function($row) {
-                    $params['action'] = url('/admin/adminpartner/'.$row->id);
+                $dt = Datatables::of($model->getRelated()::query())->addColumn('actions', function($row) use ($obj) {
+                    $params['action'] = url('/admin/adminpartner');
+                    $params['id'] = $obj->id;
+                    $params['related_id'] = $row->id;
                     return view('adminux.components.datatables.link_add_button', compact('params'));
                 });
             } else {
@@ -41,13 +41,9 @@ class AdminPartnerController extends Controller
 
         return [
             'model' => $model,
-            'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">'.$title.'</th>
-                        <th style="min-width:120px">Created At</th>
-                        <th>Action</th>',
-            'columns' => "{ data: 'id', name: '".$model->getTable().".id', className: 'text-center' },
-                          { data: '".$column."', name: '".$column."' },
-                          { data: 'created_at', name: '".$model->getTable().".created_at', className: 'text-center' },
+            'thead' => '<th class="w-100">'.$title.'</th>
+                        <th style="min-width:100px">Action</th>',
+            'columns' => "{ data: '".$column."', name: '".$column."' },
                           { data: 'actions', name: 'actions', className: 'text-center', orderable: false }"
 
         ];
@@ -60,6 +56,7 @@ class AdminPartnerController extends Controller
      */
     public function store(Admin $admin)
     {
+        dd(request());
         $request->validate([
             'name'   => 'required|unique:'.$partner->getTable(),
             'active' => 'in:Y,""',
