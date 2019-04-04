@@ -20,14 +20,24 @@ class AdminPartnerController extends Controller
             $column = 'email';
         }
 
-        if(request()->ajax()) return Datatables::of($model)
-            ->addColumn('actions', function($row) {
-                $params['action'] = url('/admin/adminpartner/'.$row->id);
-                $params['title']  = 'Delete item #'.$row->id.'?';
-                return view('adminux.components.datatables.link_delete_button', compact('params'));
-            })
-            ->rawColumns(['actions'])
-            ->toJson();
+        // dd($model->getRelated());
+
+        if(request()->ajax()) {
+            if(request()->filled('search.value')) {
+                $dt = Datatables::of($model)->addColumn('actions', function($row) {
+                    $params['action'] = url('/admin/adminpartner/'.$row->id);
+                    return view('adminux.components.datatables.link_add_button', compact('params'));
+                });
+            } else {
+                $dt = Datatables::of($model)->addColumn('actions', function($row) {
+                    $params['action'] = url('/admin/adminpartner/'.$row->id);
+                    $params['title']  = 'Delete item #'.$row->id.'?';
+                    return view('adminux.components.datatables.link_delete_button', compact('params'));
+                });
+            }
+
+            return $dt->rawColumns(['actions'])->toJson();
+        }
 
         return [
             'model' => $model,
