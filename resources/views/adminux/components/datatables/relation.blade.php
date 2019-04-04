@@ -24,6 +24,28 @@
     </div>
 </div>
 
+@empty($datatables['disableCreateButton'])
+<div class="modal fade" id="AddModal{{ ucfirst($datatables['model']->getRelationName()) }}" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle{{ ucfirst($datatables['model']->getRelationName()) }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCenterTitle{{ ucfirst($datatables['model']->getRelationName()) }}">Add {{ ucfirst($datatables['model']->getRelationName()) }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('adminux.cancel') }}</button>
+                <form method="post" action="" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-primary my-n1">{{ __('adminux.add') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endempty
+
 @section('scripts')
 <script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
@@ -45,7 +67,7 @@ $(document).ready(function() {
     });
 
     @empty($datatables['disableCreateButton'])
-        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="edit"></span> Add</a>').insertBefore('#datatable_wrapper .float-left:first');
+        $('<a href="#AddModal{{ ucfirst($datatables['model']->getRelationName()) }}" data-toggle="modal" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="edit"></span> Add</a>').insertBefore('#datatable_wrapper .float-left:first');
     @endempty
 
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset

@@ -3,6 +3,7 @@
 return [
 
     'active' => 'Activo',
+    'add' => 'Agregar',
     'cancel' => 'Cancelar',
     'create' => 'Crear',
     'create_new' => 'Crear Nuevo',
