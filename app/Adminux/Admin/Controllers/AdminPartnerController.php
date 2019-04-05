@@ -63,7 +63,7 @@ class AdminPartnerController extends Controller
             $relation = $model->partners()->getRelated()->find(request()->get('id'))->admins();
         }
 
-        $relation->attach(request()->get('related_id'));
+        $relation->syncWithoutDetaching([request()->get('related_id')]);
 
         return back();
     }
