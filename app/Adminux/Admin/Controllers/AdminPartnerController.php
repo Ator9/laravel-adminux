@@ -30,9 +30,9 @@ class AdminPartnerController extends Controller
                     return view('adminux.components.datatables.link_add_button', compact('params'));
                 });
             } else {
-                $dt = Datatables::of($model)->addColumn('actions', function($row) {
+                $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
                     $params['action'] = url('/admin/adminpartner/'.$row->id);
-                    $params['title']  = 'Delete item #'.$row->id.'?';
+                    $params['title']  = 'Delete '.$row->{$column}.'?';
                     return view('adminux.components.datatables.link_delete_button', compact('params'));
                 });
             }
