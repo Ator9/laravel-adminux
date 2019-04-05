@@ -55,16 +55,15 @@ class AdminPartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(BaseModel $model)
     {
-        $base = new BaseModel;
-        if(request()->get('table') == $base->getTable()) {
-            $model = $base->find(request()->get('id'));
-            $model->partners()->attach(request()->get('related_id'));
+        if(request()->get('table') == $model->getTable()) {
+            $relation = $model->find(request()->get('id'))->partners();
         } else {
-            $model = $base->partners()->getRelated()->find(request()->get('id'));
-            $model->admins()->attach(request()->get('related_id'));
+            $relation = $model->partners()->getRelated()->find(request()->get('id'))->admins();
         }
+
+        $relation->attach(request()->get('related_id'));
 
         return back();
     }
