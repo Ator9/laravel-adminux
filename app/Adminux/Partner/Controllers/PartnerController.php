@@ -31,11 +31,11 @@ class PartnerController extends Controller
                         <th style="min-width:120px">Created At</th>
                         <th>Action</th>',
 
-            'columns' => "{ data: 'id2', name: 'id', className: 'text-center' },
-                          { data: 'name', name: 'name' },
-                          { data: 'active2', name: 'active', className: 'text-center' },
-                          { data: 'created_at', name: 'created_at', className: 'text-center' },
-                          { data: 'actions', name: 'actions', className: 'text-center', orderable: false }"
+            'columns' => '{ data: "id2", name: "id", className: "text-center" },
+                          { data: "name", name: "name" },
+                          { data: "active2", name: "active", className: "text-center" },
+                          { data: "created_at", name: "created_at", className: "text-center" },
+                          { data: "actions", name: "actions", className: "text-center", orderable: false }'
         ]);
     }
 
