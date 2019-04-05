@@ -34,6 +34,6 @@ class Admin extends Authenticatable
      */
     public function partners()
     {
-        return $this->belongsToMany('App\Adminux\Partner\Models\Partner');
+        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->withPivot('created_at');
     }
 }
