@@ -1,5 +1,6 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
+
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link{{ Request::is('admin') ? ' active' : '' }}" href="{{ asset('admin') }}">
@@ -16,5 +17,10 @@
                 </li>
             @endforeach
         </ul>
+        <div class="position-absolute w-100 mb-1 px-3 fixed-bottom">
+            <select class="custom-select custom-select-sm">
+                <option value="">All Partners...</option>
+            </select>
+        </div>
     </div>
 </nav>
