@@ -41,7 +41,8 @@ $(document).ready(function() {
         language: {
            search: '',
            searchPlaceholder: '{{ __('adminux.add') }}...'
-       }
+        },
+        initComplete: function(settings, json) { feather.replace(); }
     });
 
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset

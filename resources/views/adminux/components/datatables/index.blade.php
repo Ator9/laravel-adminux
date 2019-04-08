@@ -45,11 +45,12 @@ $(document).ready(function() {
         language: {
            search: '',
            searchPlaceholder: '{{ __('adminux.search') }}...'
-       }
+        },
+        initComplete: function(settings, json) { feather.replace(); }
     });
 
     @empty($datatables['disableCreateButton'])
-        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="edit"></span> Create</a>').insertBefore('#datatable_wrapper .float-left:first');
+        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper .float-left:first');
     @endempty
 
     @empty($datatables['disableClickableRow'])
