@@ -1,7 +1,7 @@
 @section('head')
 <link href="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
-.table thead th{border-bottom-width:0}
+.table thead th{border-top-width:0;border-bottom-width:0}
 #datatable_filter input{margin-left:3px;margin-top:3px}
 </style>
 @endsection
@@ -13,7 +13,7 @@
     <div class="card-body">
         @include('adminux.components.layout.errors')
         <div class="table-responsive">
-            <table class="table table-striped table-hover" id="datatable">
+            <table class="table table-hover" id="datatable">
                 <thead>
                     <tr>
                         {!! $datatables['thead'] !!}
