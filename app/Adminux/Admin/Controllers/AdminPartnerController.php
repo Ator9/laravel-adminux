@@ -51,7 +51,14 @@ class AdminPartnerController extends Controller
 
     public function select()
     {
-        session(['partner_id' => request()->get('partner_id')]);
+        session(['partner_id' => '']);
+
+        $partners = (new \App\Adminux\Helper)->getEnabledPartners();
+        foreach($partners as $partner) {
+            if($partner->id == request()->get('partner_id')) {
+                session(['partner_id' => $partner->id]);
+            }
+        }
 
         return back();
     }
