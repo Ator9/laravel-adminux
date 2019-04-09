@@ -46,7 +46,6 @@ class AdminPartnerController extends Controller
                         <th style="min-width:100px">Action</th>',
             'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
-
         ];
     }
 
