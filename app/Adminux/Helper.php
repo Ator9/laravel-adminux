@@ -4,6 +4,11 @@ namespace App\Adminux;
 
 class Helper
 {
+    public function getEnabledPartners()
+    {
+        return (new \App\Adminux\Admin\Models\Admin)::find(\Auth::guard('adminux')->user()->id)->partners;
+    }
+
     static function getNavLeft()
     {
         $data = [];

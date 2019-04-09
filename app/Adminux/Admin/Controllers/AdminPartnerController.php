@@ -49,6 +49,13 @@ class AdminPartnerController extends Controller
         ];
     }
 
+    public function select()
+    {
+        session(['partner_id' => request()->get('partner_id')]);
+
+        return back();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

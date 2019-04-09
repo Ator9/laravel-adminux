@@ -1,6 +1,5 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
-
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link{{ Request::is('admin') ? ' active' : '' }}" href="{{ asset('admin') }}">
@@ -18,8 +17,11 @@
             @endforeach
         </ul>
         <div class="position-absolute w-100 mb-1 px-3 fixed-bottom">
-            <select class="custom-select custom-select-sm">
+            <select class="custom-select custom-select-sm" id="partner_select">
                 <option value="">All Partners...</option>
+                @foreach($Helper->getEnabledPartners() as $partner)
+                    <option value="{{ $partner->id }}"@if($partner->id == session('partner_id')) selected @endif>{{ $partner->name }}</option>
+                @endforeach
             </select>
         </div>
     </div>
