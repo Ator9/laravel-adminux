@@ -25,6 +25,7 @@ class PartnerController extends Controller
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
+            'order' => '[[ 1, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Name</th>
                         <th style="min-width:60px">Active</th>
