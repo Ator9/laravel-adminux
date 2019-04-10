@@ -40,7 +40,4 @@ Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
 ```
-- Access:
-```html
-http://domain/admin
-```
+- Access with your project url + "/admin".
