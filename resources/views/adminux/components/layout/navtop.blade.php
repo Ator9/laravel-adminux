@@ -12,7 +12,7 @@
             </li>
         @endforeach
     </ul>
-    <span class="text-white">{{ Auth::guard('adminux')->user()->email }}</span>
+    <span class="text-white">{{ auth('adminux')->user()->email }}</span>
     <ul class="navbar-nav mx-3">
         <li class="nav-item">
             <a class="nav-link" href="{{ asset('admin/logout') }}"><span data-feather="log-out"></span></a>
