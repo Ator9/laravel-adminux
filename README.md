@@ -16,11 +16,11 @@ git pull adminux master
 ```sh
 php artisan migrate
 ```
-Add to /app/Http/Kernel.php - $routeMiddleware:
+- Add to /app/Http/Kernel.php - $routeMiddleware:
 ```php
 'adminux' => \App\Adminux\Authenticate::class,
 ```
-Add to /config/auth.php:
+- Add to /config/auth.php:
 ```php
 // guards:
 'adminux' => [
@@ -34,9 +34,13 @@ Add to /config/auth.php:
     'model' => App\Adminux\Admin\Models\Admin::class,
 ],
 ```
-Add to /routes/web.php:
+- Add to /routes/web.php:
 ```php
 Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
+```
+- Access:
+```html
+http://domain/admin
 ```
