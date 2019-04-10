@@ -40,7 +40,7 @@ Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
 ```
-- Access with "/admin":
+- Access AdminUX with "/admin":
 ```sh
 Email: admin@localhost
 Password: test
