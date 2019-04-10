@@ -10,6 +10,7 @@
 @yield('head')
 </head>
 <body>
+@inject('AdminPartnerController', 'App\Adminux\Admin\Controllers\AdminPartnerController')
 @inject('Helper', 'App\Adminux\Helper')
 @include('adminux.components.layout.navtop')
 <div class="container-fluid">

@@ -49,18 +49,22 @@ class AdminPartnerController extends Controller
         ];
     }
 
-    public function select()
+    public function setPartner()
     {
         session(['partner_id' => '']);
 
-        $partners = (new \App\Adminux\Helper)->getEnabledPartners();
-        foreach($partners as $partner) {
+        foreach($this->getEnabledPartners() as $partner) {
             if($partner->id == request()->get('partner_id')) {
                 session(['partner_id' => $partner->id]);
             }
         }
 
         return back();
+    }
+
+    public function getEnabledPartners()
+    {
+        return (new BaseModel)::find(\Auth::guard('adminux')->user()->id)->partners;
     }
 
     /**

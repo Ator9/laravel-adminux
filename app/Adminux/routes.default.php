@@ -15,7 +15,7 @@ Route::namespace('\App\Adminux')->group(function() {
             Route::resource(strtolower($module), $module.'\Controllers\\'.$module.'Controller');
         }
 
-        Route::get('adminpartner', 'Admin\Controllers\AdminPartnerController@select');
+        Route::get('adminpartner', 'Admin\Controllers\AdminPartnerController@setPartner');
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
         Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
