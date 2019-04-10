@@ -2,9 +2,6 @@
 
 namespace App\Adminux;
 
-use Closure;
-use Auth;
-
 class Authenticate
 {
     /**
@@ -14,9 +11,9 @@ class Authenticate
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, \Closure $next)
     {
-        if(Auth::guard('adminux')->check()) return $next($request);
+        if(auth('adminux')->check()) return $next($request);
         return redirect('admin/login');
     }
 }
