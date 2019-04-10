@@ -9,7 +9,7 @@ composer require yajra/laravel-datatables-oracle
 # Install AdminUX
 ```sh
 git init
-git remote add adminux https://github.com/Ator9/Laravel-AdminUX.git
+git remote add adminux https://github.com/Ator9/laravel-adminux.git
 git pull adminux master
 ```
 - Database:
