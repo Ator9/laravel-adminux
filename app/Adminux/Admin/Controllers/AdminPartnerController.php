@@ -64,7 +64,7 @@ class AdminPartnerController extends Controller
 
     public function getEnabledPartners()
     {
-        return (new BaseModel)::find(\Auth::guard('adminux')->user()->id)->partners()->orderBy('name', 'asc')->get();
+        return \Auth::guard('adminux')->user()->partners()->orderBy('name', 'asc')->get();
     }
 
     /**
