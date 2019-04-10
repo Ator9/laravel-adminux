@@ -40,4 +40,8 @@ Route::prefix('admin')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
 ```
-- Access with your project url + "/admin".
+- Access with your project url + "/admin":
+```sh
+Email: admin@localhost
+Password: test
+```
