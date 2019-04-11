@@ -18,7 +18,7 @@ class Role extends Model
     /**
      * Get the admins for the partner.
      */
-    public function admin()
+    public function admins()
     {
         return $this->belongsTo('App\Adminux\Admin\Models\Admin', 'role_id');
     }
