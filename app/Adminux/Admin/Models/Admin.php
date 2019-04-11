@@ -17,7 +17,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'firstname', 'lastname', 'active'
+        'email', 'password', 'firstname', 'lastname', 'role_id', 'active'
     ];
 
     /**
@@ -35,5 +35,13 @@ class Admin extends Authenticatable
     public function partners()
     {
         return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->withPivot('created_at');
+    }
+
+    /**
+     * Get the role.
+     */
+    public function role()
+    {
+        return $this->hasOne('App\Adminux\Role\Models\Role');
     }
 }

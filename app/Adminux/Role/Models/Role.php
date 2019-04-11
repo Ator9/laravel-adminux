@@ -18,8 +18,8 @@ class Role extends Model
     /**
      * Get the admins for the partner.
      */
-    public function admins()
+    public function admin()
     {
-        return $this->belongsToMany('App\Adminux\Admin\Models\Admin')->withPivot('created_at');
+        return $this->belongsTo('App\Adminux\Admin\Models\Admin', 'role_id');
     }
 }

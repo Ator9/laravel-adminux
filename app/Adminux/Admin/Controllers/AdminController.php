@@ -147,6 +147,7 @@ class AdminController extends Controller
             $form->email([ 'label' => 'E-mail' ]),
             $form->text([ 'label' => 'First Name' ]),
             $form->text([ 'label' => 'Last Name' ]),
+            // $form->select([ 'label' => 'Role' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
