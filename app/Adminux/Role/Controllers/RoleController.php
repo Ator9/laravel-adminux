@@ -1,42 +1,36 @@
 <?php
 
-namespace App\Adminux\Partner\Controllers;
+namespace App\Adminux\Role\Controllers;
 
-use App\Adminux\Partner\Models\Partner;
-use App\Adminux\Admin\Controllers\AdminPartnerController;
+use App\Adminux\Role\Models\Role;
+use App\Adminux\Admin\Controllers\AdminRoleController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
-class PartnerController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Partner $partner)
+    public function index(Role $role)
     {
-        if(request()->ajax()) return Datatables::of($partner::query())
+        if(request()->ajax()) return Datatables::of($role::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
-            ->addColumn('active2', 'adminux.components.datatables.status')
-            ->addColumn('actions', 'adminux.components.datatables.link_edit_button')
-            ->rawColumns(['id2', 'active2', 'actions'])
+            ->rawColumns(['id2'])
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 1, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Name</th>
-                        <th style="min-width:60px">Active</th>
-                        <th style="min-width:120px">Created At</th>
-                        <th>Action</th>',
+                        <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "name", name: "name" },
-                          { data: "active2", name: "active", className: "text-center" },
-                          { data: "created_at", name: "created_at", className: "text-center" },
-                          { data: "actions", name: "actions", className: "text-center", orderable: false }'
+                          { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
 
@@ -45,9 +39,9 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Partner $partner)
+    public function create(Role $role)
     {
-        return view('adminux.components.create')->withModel($partner)->withFields($this->getFields($partner));
+        return view('adminux.components.create')->withModel($role)->withFields($this->getFields($role));
     }
 
     /**
@@ -56,18 +50,18 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Partner $partner)
+    public function store(Request $request, Role $role)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$partner->getTable(),
+            'name'   => 'required|unique:'.$role->getTable(),
             'active' => 'in:Y,""',
         ]);
 
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
-        $partner = $partner->create($request->all());
+        $role = $role->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $partner));
+        return redirect(route(explode('/', $request->path())[1].'.show', $role));
     }
 
     /**
@@ -75,11 +69,11 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Partner $partner)
+    public function show(Role $role)
     {
-        if(request()->ajax()) return (new AdminPartnerController)->getIndex($partner);
+        if(request()->ajax()) return (new AdminRoleController)->getIndex($role);
 
-        return view('adminux.components.show')->withModel($partner)->withMany([ (new AdminPartnerController)->getIndex($partner) ]);
+        return view('adminux.components.show')->withModel($role)->withMany([ (new AdminRoleController)->getIndex($role) ]);
     }
 
     /**
@@ -87,7 +81,7 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Partner $partner)
+    public function edit(Role $role)
     {
         return view('adminux.components.edit')->withModel($partner)->withFields($this->getFields($partner));
     }
@@ -98,18 +92,18 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Partner $partner)
+    public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$partner->getTable().',name,'.$partner->id,
+            'name'   => 'required|unique:'.$role->getTable().',name,'.$role->id,
             'active' => 'in:Y,""',
         ]);
 
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
-        $partner->update($request->all());
+        $role->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $partner));
+        return redirect(route(explode('/', $request->path())[1].'.show', $role));
     }
 
     /**
@@ -117,9 +111,9 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partner $partner)
+    public function destroy(Role $role)
     {
-        $partner->delete();
+        $role->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
@@ -129,9 +123,9 @@ class PartnerController extends Controller
      *
      * @return Array
      */
-    public function getFields(Partner $partner)
+    public function getFields(Role $role)
     {
-        $form = new \App\Adminux\Form($partner);
+        $form = new \App\Adminux\Form($role);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Name' ]),
