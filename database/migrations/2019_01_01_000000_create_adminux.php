@@ -73,7 +73,7 @@ class CreateAdminux extends Migration
             $table->timestamps();
         });
         DB::table('roles')->insert([
-            'name'       => 'General',
+            'name'       => 'Administrator',
             'created_at' => Carbon::now()
         ]);
     }

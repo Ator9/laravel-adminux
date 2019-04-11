@@ -13,7 +13,13 @@ class Authenticate
      */
     public function handle($request, \Closure $next)
     {
-        if(auth('adminux')->check()) return $next($request);
+        if(auth('adminux')->check()) {
+
+            // Live check if active admin:
+            if(auth('adminux')->user()->active == 'Y') return $next($request);
+            else auth('adminux')->logout();
+        }
+
         return redirect('admin/login');
     }
 }

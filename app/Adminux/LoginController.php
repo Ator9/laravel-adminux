@@ -34,4 +34,10 @@ class LoginController extends Controller
         $user->last_login_at = \Carbon\Carbon::now();
         $user->save();
     }
+
+    // Check if active admin:
+    protected function credentials(Request $request)
+    {
+        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'active' => 'Y'];
+    }
 }
