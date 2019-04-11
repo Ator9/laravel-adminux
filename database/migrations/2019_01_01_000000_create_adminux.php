@@ -14,12 +14,24 @@ class CreateAdminux extends Migration
      */
     public function up()
     {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('name', 100)->default('')->unique();
+            $table->timestamps();
+        });
+        DB::table('roles')->insert([
+            'name'       => 'Administrator',
+            'created_at' => Carbon::now()
+        ]);
+
         Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('email', 75)->default('')->unique();
             $table->string('password')->default('');
             $table->string('firstname', 75)->default('');
             $table->string('lastname', 75)->default('');
+            $table->smallInteger('role_id')->unsigned()->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->enum('superuser', ['N', 'Y'])->default('N');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->rememberToken();
@@ -63,17 +75,6 @@ class CreateAdminux extends Migration
         DB::table('admin_partner')->insert([
             'admin_id'   => 1,
             'partner_id' => 1,
-            'created_at' => Carbon::now()
-        ]);
-
-
-        Schema::create('roles', function (Blueprint $table) {
-            $table->smallIncrements('id');
-            $table->string('name', 100)->default('')->unique();
-            $table->timestamps();
-        });
-        DB::table('roles')->insert([
-            'name'       => 'Administrator',
             'created_at' => Carbon::now()
         ]);
     }
