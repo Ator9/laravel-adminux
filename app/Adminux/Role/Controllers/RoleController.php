@@ -25,11 +25,11 @@ class RoleController extends Controller
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 1, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Name</th>
+                        <th class="w-75">Role</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "name", name: "name" },
+                          { data: "role", name: "role" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -53,11 +53,8 @@ class RoleController extends Controller
     public function store(Request $request, Role $role)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$role->getTable(),
-            'active' => 'in:Y,""',
+            'role'   => 'required|unique:'.$role->getTable(),
         ]);
-
-        if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $role = $role->create($request->all());
 
@@ -83,7 +80,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('adminux.components.edit')->withModel($partner)->withFields($this->getFields($partner));
+        return view('adminux.components.edit')->withModel($role)->withFields($this->getFields($role));
     }
 
     /**
@@ -95,11 +92,8 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$role->getTable().',name,'.$role->id,
-            'active' => 'in:Y,""',
+            'role'   => 'required|unique:'.$role->getTable().',role,'.$role->id,
         ]);
-
-        if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $role->update($request->all());
 
@@ -113,7 +107,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->delete();
+        if($role->admins()->count()) return back()->withErrors(['Cannot be deleted']);
+        else $role->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
@@ -128,8 +123,7 @@ class RoleController extends Controller
         $form = new \App\Adminux\Form($role);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->text([ 'label' => 'Name' ]),
-            $form->switch([ 'label' => 'Active' ]),
+            $form->text([ 'label' => 'Role' ]),
         ]);
 
         return $form->getFields();

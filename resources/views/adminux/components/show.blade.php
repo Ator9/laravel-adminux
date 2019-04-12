@@ -14,6 +14,7 @@
         </div>
     </div>
     <div class="card-body">
+        @include('adminux.components.layout.errors')
         @foreach($model->toArray() as $key => $val)
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>

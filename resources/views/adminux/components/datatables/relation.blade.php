@@ -8,10 +8,9 @@
 
 <div class="card my-3">
     <div class="card-header">
-        <h5 class="mb-0">{{ ucfirst($datatables['model']->getRelationName()) }}</h5>
+        <h5 class="mb-0">{{ ucfirst($datatables['model']->getRelated()->getTable()) }}</h5>
     </div>
     <div class="card-body">
-        @include('adminux.components.layout.errors')
         <div class="table-responsive">
             <table class="table table-hover" id="datatable">
                 <thead>

@@ -10,15 +10,17 @@ class AdminRoleController extends Controller
 {
     public function getIndex($obj)
     {
-        if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
-            $model = $obj->roles();
-            $title = __('adminux.name');
-            $column = 'name';
-        } else {
+        // if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
+        //     $model = $obj->role();
+        //     $title = __('adminux.role');
+        //     $column = 'role';
+        // } else {
             $model = $obj->admins();
             $title = 'Admin';
             $column = 'email';
-        }
+        // }
+
+        // dd($model);
 
         if(request()->ajax()) {
             if(request()->filled('search.value')) {
@@ -49,51 +51,33 @@ class AdminRoleController extends Controller
         ];
     }
 
-    public function setPartner()
-    {
-        session(['partner_id' => '']);
-
-        foreach($this->getEnabledPartners() as $partner) {
-            if($partner->id == request()->get('partner_id')) {
-                session(['partner_id' => $partner->id]);
-            }
-        }
-
-        return back();
-    }
-
-    public function getEnabledPartners()
-    {
-        return \Auth::guard('adminux')->user()->partners()->orderBy('name', 'asc')->get();
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(BaseModel $model)
-    {
-        if(request()->get('table') == $model->getTable()) {
-            $relation = $model->find(request()->get('id'))->partners();
-        } else {
-            $relation = $model->partners()->getRelated()->find(request()->get('id'))->admins();
-        }
-
-        $relation->syncWithoutDetaching([request()->get('related_id')]);
-
-        return back();
-    }
+    // public function store(BaseModel $model)
+    // {
+    //     if(request()->get('table') == $model->getTable()) {
+    //         $relation = $model->find(request()->get('id'))->partners();
+    //     } else {
+    //         $relation = $model->partners()->getRelated()->find(request()->get('id'))->admins();
+    //     }
+    //
+    //     $relation->syncWithoutDetaching([request()->get('related_id')]);
+    //
+    //     return back();
+    // }
 
     /**
      * Remove the specified resource from storage.
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        \DB::table((new BaseModel)->partners()->getTable())->where('id', '=', $id)->delete();
-
-        return back();
-    }
+    // public function destroy($id)
+    // {
+    //     \DB::table((new BaseModel)->partners()->getTable())->where('id', '=', $id)->delete();
+    //
+    //     return back();
+    // }
 }
