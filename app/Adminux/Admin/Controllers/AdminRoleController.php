@@ -10,22 +10,14 @@ class AdminRoleController extends Controller
 {
     public function getIndex($obj)
     {
-        // if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
-        //     $model = $obj->role();
-        //     $title = __('adminux.role');
-        //     $column = 'role';
-        // } else {
-            $model = $obj->admins();
-            $title = 'Admin';
-            $column = 'email';
-        // }
-
-        // dd($model);
+        $model = $obj->admins();
+        $title = 'Admin';
+        $column = 'email';
 
         if(request()->ajax()) {
             if(request()->filled('search.value')) {
                 $dt = Datatables::of($model->getRelated()::query())->addColumn('actions', function($row) use ($obj) {
-                    $params['action'] = url('/admin/adminpartner');
+                    $params['action'] = url('/admin/adminrole');
                     $params['table'] = $obj->getTable();
                     $params['id'] = $obj->id;
                     $params['related_id'] = $row->id;
@@ -33,7 +25,7 @@ class AdminRoleController extends Controller
                 });
             } else {
                 $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
-                    $params['action'] = url('/admin/adminpartner/'.$row->id);
+                    $params['action'] = url('/admin/adminrole/'.$row->id);
                     $params['title']  = 'Delete '.$row->{$column}.'?';
                     return view('adminux.components.datatables.link_delete_button', compact('params'));
                 });
