@@ -17,7 +17,11 @@
         @foreach($model->toArray() as $key => $val)
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
-            <div class="col-sm-10 form-control-plaintext">{{ $val }}</div>
+            <div class="col-sm-10 form-control-plaintext">
+                @if(strpos($key, '_id') !== false && $rel = str_replace('_id', '', $key))
+                    @isset($model->{$rel}) {{ $model->{$rel}->{$rel} }} @endisset
+                @else {{ $val }} @endif
+            </div>
         </div>
         @endforeach
         <div class="form-group row">

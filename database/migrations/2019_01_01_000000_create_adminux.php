@@ -16,11 +16,11 @@ class CreateAdminux extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->string('name', 100)->default('')->unique();
+            $table->string('role', 100)->default('')->unique();
             $table->timestamps();
         });
         DB::table('roles')->insert([
-            'name'       => 'Administrator',
+            'role'       => 'Administrator',
             'created_at' => Carbon::now()
         ]);
 

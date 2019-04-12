@@ -20,6 +20,7 @@ return [
     'last_login_ip' => 'IP Último Logueo',
     'name' => 'Nombre',
     'role' => 'Rol',
+    'role_id' => 'Rol',
     'search' => 'Buscar',
     'superuser' => 'Super Usuario',
     'updated_at' => 'Fecha Actualización',

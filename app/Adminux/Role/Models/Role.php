@@ -20,6 +20,6 @@ class Role extends Model
      */
     public function admins()
     {
-        return $this->belongsTo('App\Adminux\Admin\Models\Admin', 'role_id');
+        return $this->hasMany('App\Adminux\Admin\Models\Admin');
     }
 }

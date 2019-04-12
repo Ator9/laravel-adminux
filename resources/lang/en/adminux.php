@@ -20,6 +20,7 @@ return [
     'last_login_ip' => 'IP Last Login',
     'name' => 'Name',
     'role' => 'Role',
+    'role_id' => 'Role',
     'search' => 'Search',
     'superuser' => 'Superuser',
     'updated_at' => 'Date Updated',
