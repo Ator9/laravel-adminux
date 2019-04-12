@@ -41,7 +41,7 @@ $(document).ready(function() {
         processing: true,
         columns: [ {!! $datatables['columns'] !!} ],
         order: @isset($datatables['order']) {!! $datatables['order'] !!} @else [[ 0, 'desc' ]] @endisset,
-        dom: @isset($datatables['dom']) '{{ $datatables['dom'] }}' @else '<"float-left"f>rt<"float-left"i>p' @endisset,
+        dom: @isset($datatables['dom']) '{!! $datatables['dom'] !!}' @else '<"float-left"f>rt<"float-left"i>p' @endisset,
         language: {
            search: '',
            searchPlaceholder: '{{ __('adminux.search') }}...'
