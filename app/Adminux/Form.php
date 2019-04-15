@@ -8,6 +8,7 @@ class Form
     protected $_fields = [];
 
     public $_label_cls = 'col-sm-2 col-form-label text-muted';
+    public $_input_cls = 'col-sm-10';
     public $_checkbox_value = 'Y';
     public $_checked_if = [1, 'on', 'true', 'y', 'yes'];
 
@@ -16,74 +17,70 @@ class Form
         $this->_model = $model;
     }
 
-    public function display($params = [])
+    public function display($params)
     {
-        return '<div class="form-group row">
-                    '.$this->getLabel($params).'
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
-                    </div>
-                </div>';
+        $params['input'] = '<input type="text" readonly class="form-control-plaintext" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        return $this->getFormGroup($params);
     }
 
-    public function switch($params = [])
+    public function email($params)
+    {
+        $params['input'] = '<input type="email" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        return $this->getFormGroup($params);
+    }
+
+    public function password($params)
+    {
+        $params['input'] = '<input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">';
+        return $this->getFormGroup($params);
+    }
+
+    public function select($params)
+    {
+        if(empty($params['options'])) {
+            foreach($this->_model->{strtolower($params['label'])}()->getRelated()->all() as $val) {
+
+                $sel = ($val->id == $this->getValue($params)) ? ' selected' : '';
+                $options[] = '<option value="'.$val->id.'"'.$sel.'>'.$val->{strtolower($params['label'])}.'</option>';
+            }
+        }
+
+        $params['input'] = '<select class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">
+                            <option value="">'.__('adminux.select').'...</option>
+                            '.implode('', $options).'
+                            </select>';
+        return $this->getFormGroup($params);
+    }
+
+    public function switch($params)
     {
         $value   = (!empty($params['value'])) ? $params['value'] : $this->_checkbox_value;
         $checked = (in_array(strtolower($this->getValue($params)), $this->_checked_if)) ? ' checked' : '';
 
-        return '<div class="form-group row">
-                    '.self::getLabel($params).'
-                    <div class="col-sm-10 custom-control custom-switch">
-                        <input type="hidden" name="'.$this->getName($params).'">
-                        <input type="checkbox" class="custom-control-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
-                        <label class="custom-control-label ml-3 mt-1" for="'.$this->getId($params).'"></label>
-                    </div>
-                </div>';
+        $this->_input_cls.= ' custom-control custom-switch';
+        $params['input'] = '<input type="hidden" name="'.$this->getName($params).'">
+                            <input type="checkbox" class="custom-control-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
+                            <label class="custom-control-label ml-3 mt-1" for="'.$this->getId($params).'"></label>';
+        return $this->getFormGroup($params);
     }
 
-    public function email($params = [])
+    public function text($params)
+    {
+        $params['input'] = '<input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        return $this->getFormGroup($params);
+    }
+
+    public function textarea($params)
+    {
+
+    }
+
+    public function getFormGroup($params = [])
     {
         return '<div class="form-group row">
-                    '.self::getLabel($params).'
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
-                    </div>
+                    <label class="'.$this->_label_cls.'" for="'.$this->getId($params).'">'.$params['label'].'</label>
+                    <div class="'.$this->_input_cls.'">'.$params['input'].'</div>
                 </div>';
-    }
-
-    public function password($params = [])
-    {
-        return '<div class="form-group row">
-                    '.self::getLabel($params).'
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">
-                    </div>
-                </div>';
-    }
-
-    public function text($params = [])
-    {
-        return '<div class="form-group row">
-                    '.self::getLabel($params).'
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
-                    </div>
-                </div>';
-    }
-
-    public function textarea($params = [])
-    {
-
-    }
-
-    public function html($html = '')
-    {
-        return $html;
-    }
-
-    public function getLabel($params = [])
-    {
-        return '<label class="'.$this->_label_cls.'" for="'.$this->getId($params).'">'.$params['label'].'</label>';
     }
 
     public function getId($params = [])
@@ -104,6 +101,7 @@ class Form
                 if(strcasecmp($key, $params['label']) == 0) return $key;
                 elseif(strcasecmp($key, str_replace(['-', ' '], '', $params['label'])) == 0) return $key;
                 elseif(strcasecmp($key, str_replace(['-', ' '], '_', $params['label'])) == 0) return $key;
+                elseif(strcasecmp($key, $params['label'].'_id') == 0) return $key;
             }
         }
 
@@ -125,5 +123,10 @@ class Form
     public function getFields()
     {
         return $this->_fields;
+    }
+
+    public function html($html = '')
+    {
+        return $html;
     }
 }

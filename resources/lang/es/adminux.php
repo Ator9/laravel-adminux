@@ -22,6 +22,7 @@ return [
     'role' => 'Rol',
     'role_id' => 'Rol',
     'search' => 'Buscar',
+    'select' => 'Seleccionar',
     'superuser' => 'Super Usuario',
     'updated_at' => 'Fecha Actualización',
 ];
