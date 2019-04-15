@@ -26,12 +26,12 @@ class CreateAdminux extends Migration
 
         Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
+            $table->smallInteger('role_id')->unsigned()->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->string('email', 75)->default('')->unique();
             $table->string('password')->default('');
             $table->string('firstname', 75)->default('');
             $table->string('lastname', 75)->default('');
-            $table->smallInteger('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->references('id')->on('roles');
             $table->enum('superuser', ['N', 'Y'])->default('N');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->rememberToken();
