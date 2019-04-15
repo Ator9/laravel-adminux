@@ -43,7 +43,7 @@ class Form
                 $sel = ($val->id == $this->getValue($params)) ? ' selected' : '';
                 $options[] = '<option value="'.$val->id.'"'.$sel.'>'.$val->{strtolower($params['label'])}.'</option>';
             }
-        }
+        } else $options = $params['options'];
 
         $params['input'] = '<select class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">
                             <option value="">'.__('adminux.select').'...</option>
