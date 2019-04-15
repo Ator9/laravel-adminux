@@ -37,7 +37,7 @@ class AdminController extends Controller
                           { data: "email", name: "email" },
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
-                          { data: "role", name: "role" },
+                          { data: "role", name: "role_id" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
