@@ -148,10 +148,10 @@ class AdminController extends Controller
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->email([ 'label' => 'E-mail' ]),
+            $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),
             $form->text([ 'label' => 'Last Name' ]),
             $form->select([ 'label' => 'Role' ]),
-            $form->password([ 'label' => 'Password' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 
