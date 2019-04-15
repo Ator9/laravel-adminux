@@ -147,11 +147,11 @@ class AdminController extends Controller
         $form = new \App\Adminux\Form($admin);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
+            $form->select([ 'label' => 'Role' ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),
             $form->text([ 'label' => 'Last Name' ]),
-            $form->select([ 'label' => 'Role' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 
