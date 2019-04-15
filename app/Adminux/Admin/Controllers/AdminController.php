@@ -20,6 +20,7 @@ class AdminController extends Controller
         if(request()->ajax()) return Datatables::of($admin::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
+            ->addColumn('role', function($row) { return $row->role->role; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
@@ -28,6 +29,7 @@ class AdminController extends Controller
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Role</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
@@ -35,6 +37,7 @@ class AdminController extends Controller
                           { data: "email", name: "email" },
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
+                          { data: "role", name: "role" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
