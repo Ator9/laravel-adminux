@@ -20,7 +20,7 @@ class AdminController extends Controller
         if(request()->ajax()) return Datatables::of($admin::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
-            ->addColumn('role', function($row) { return $row->role->role; })
+        ->addColumn('role', function($row) { return @$row->role->role; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 

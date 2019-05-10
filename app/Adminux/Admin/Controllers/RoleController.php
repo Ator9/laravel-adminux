@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Role\Controllers;
+namespace App\Adminux\Admin\Controllers;
 
-use App\Adminux\Role\Models\Role;
+use App\Adminux\Admin\Models\Role;
 use App\Adminux\Admin\Controllers\AdminRoleController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

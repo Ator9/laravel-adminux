@@ -42,6 +42,6 @@ class Admin extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('App\Adminux\Role\Models\Role');
+        return $this->belongsTo('App\Adminux\Admin\Models\Role');
     }
 }
