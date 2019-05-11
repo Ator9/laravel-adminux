@@ -19,6 +19,7 @@ return [
     'last_login_at' => 'Date Last Login',
     'last_login_ip' => 'IP Last Login',
     'name' => 'Name',
+    'product' => 'Product',
     'role' => 'Role',
     'role_id' => 'Role',
     'search' => 'Search',

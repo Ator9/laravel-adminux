@@ -23,7 +23,7 @@ class CreateAdminux extends Migration
             'role'       => 'Administrator',
             'created_at' => Carbon::now()
         ]);
-        
+
 
         Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
@@ -84,6 +84,7 @@ class CreateAdminux extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('product', 100)->default('')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
