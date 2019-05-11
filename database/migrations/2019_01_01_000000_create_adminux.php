@@ -23,6 +23,7 @@ class CreateAdminux extends Migration
             'role'       => 'Administrator',
             'created_at' => Carbon::now()
         ]);
+        
 
         Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
@@ -78,6 +79,13 @@ class CreateAdminux extends Migration
             'partner_id' => 1,
             'created_at' => Carbon::now()
         ]);
+
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('product', 100)->default('')->unique();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -88,8 +96,9 @@ class CreateAdminux extends Migration
     public function down()
     {
         Schema::dropIfExists('admins');
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('partners');
+        Schema::dropIfExists('products');
     }
 }
