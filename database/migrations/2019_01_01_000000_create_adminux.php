@@ -14,12 +14,12 @@ class CreateAdminux extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('admins_roles', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('role', 100)->default('')->unique();
             $table->timestamps();
         });
-        DB::table('roles')->insert([
+        DB::table('admins_roles')->insert([
             'role'       => 'Administrator',
             'created_at' => Carbon::now()
         ]);
@@ -27,7 +27,7 @@ class CreateAdminux extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->smallInteger('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('admins_roles');
             $table->string('email', 75)->default('')->unique();
             $table->string('password')->default('');
             $table->string('firstname', 75)->default('');
