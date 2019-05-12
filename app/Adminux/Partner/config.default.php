@@ -3,7 +3,7 @@ $config = [
     'navigation'  => [
         'enabled' => true,
         'name'    => 'Partners',
-        'icon'    => 'layers', // Feather icons
+        'icon'    => 'share-2', // Feather icons
         'submenu' => [ // dir url => name
 
         ]
