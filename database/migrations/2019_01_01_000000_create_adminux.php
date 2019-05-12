@@ -82,7 +82,7 @@ class CreateAdminux extends Migration
 
 
         Schema::create('products', function (Blueprint $table) {
-            $table->smallIncrements('id');
+            $table->mediumIncrements('id');
             $table->string('product', 100)->default('')->unique();
             $table->softDeletes();
             $table->timestamps();
