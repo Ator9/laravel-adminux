@@ -23,7 +23,7 @@ class RoleController extends Controller
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
-            'order' => '[[ 1, "asc" ]]',
+            'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Role</th>
                         <th style="min-width:120px">Created At</th>',
