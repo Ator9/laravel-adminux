@@ -34,6 +34,6 @@ class Account extends Authenticatable
      */
     public function partner()
     {
-        return $this->belongsTo('App\Adminux\Partner\Models\Partner');
+        return $this->belongsTo('App\Adminux\Partner\Models\Partner')->withTrashed();
     }
 }
