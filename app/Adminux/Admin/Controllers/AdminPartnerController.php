@@ -13,7 +13,7 @@ class AdminPartnerController extends Controller
         if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
             $model = $obj->partners();
             $title = __('adminux.name');
-            $column = 'name';
+            $column = 'partner';
         } else {
             $model = $obj->admins();
             $title = 'Admin';
@@ -64,7 +64,7 @@ class AdminPartnerController extends Controller
 
     public function getEnabledPartners()
     {
-        return \Auth::guard('adminux')->user()->partners()->orderBy('name', 'asc')->get();
+        return \Auth::guard('adminux')->user()->partners()->orderBy('partner', 'asc')->get();
     }
 
     /**

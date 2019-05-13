@@ -53,13 +53,13 @@ class CreateAdminux extends Migration
 
         Schema::create('partners', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->string('name', 100)->default('')->unique();
+            $table->string('partner', 100)->default('')->unique();
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
         });
         DB::table('partners')->insert([
-            'name'       => 'General',
+            'partner'    => 'General',
             'active'     => 'Y',
             'created_at' => Carbon::now()
         ]);
@@ -83,7 +83,9 @@ class CreateAdminux extends Migration
 
         Schema::create('accounts', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->string('email', 75)->default('')->unique();
+            $table->mediumInteger('partner_id')->unsigned()->nullable();
+            $table->foreign('partner_id')->references('id')->on('partners');
+            $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
             $table->string('firstname', 75)->default('');
             $table->string('lastname', 75)->default('');
@@ -93,6 +95,7 @@ class CreateAdminux extends Migration
             $table->timestamp('last_login_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->unique(['partner_id', 'email'], 'partner_email');
         });
 
 

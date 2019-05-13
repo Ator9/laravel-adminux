@@ -28,4 +28,12 @@ class Account extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'deleted_at'
     ];
+
+    /**
+     * Get the partner.
+     */
+    public function partner()
+    {
+        return $this->belongsTo('App\Adminux\Partner\Models\Partner');
+    }
 }

@@ -33,7 +33,7 @@ class PartnerController extends Controller
                         <th>Action</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "name", name: "name" },
+                          { data: "partner", name: "partner" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
@@ -59,7 +59,7 @@ class PartnerController extends Controller
     public function store(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$partner->getTable(),
+            'partner' => 'required|unique:'.$partner->getTable(),
             'active' => 'in:Y,""',
         ]);
 
@@ -101,7 +101,7 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$partner->getTable().',name,'.$partner->id,
+            'partner' => 'required|unique:'.$partner->getTable().',partner,'.$partner->id,
             'active' => 'in:Y,""',
         ]);
 
@@ -134,7 +134,7 @@ class PartnerController extends Controller
         $form = new \App\Adminux\Form($partner);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->text([ 'label' => 'Name' ]),
+            $form->text([ 'label' => 'Partner' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 

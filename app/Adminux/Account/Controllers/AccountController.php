@@ -20,6 +20,7 @@ class AccountController extends Controller
         if(request()->ajax()) return Datatables::of($account::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
+            ->addColumn('partner', function($row) { return @$row->partner->name; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
@@ -29,14 +30,16 @@ class AccountController extends Controller
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th style="min-width:60px">Active</th>
-                        <th style="min-width:120px">Created At</th>',
+                        <th style="min-width:120px">Created At</th>
+                        <th style="min-width:60px">Partner</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "email", name: "email" },
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
                           { data: "active2", name: "active", className: "text-center" },
-                          { data: "created_at", name: "created_at", className: "text-center" }'
+                          { data: "created_at", name: "created_at", className: "text-center" },
+                          { data: "partner", name: "partner", className: "text-center" }'
         ]);
     }
 
@@ -142,6 +145,7 @@ class AccountController extends Controller
         $form = new \App\Adminux\Form($account);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
+            $form->select([ 'label' => 'Partner' ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),
