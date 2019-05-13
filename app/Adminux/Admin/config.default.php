@@ -3,7 +3,7 @@ $config = [
     'navigation'  => [
         'enabled' => true,
         'name'    => 'Admins',
-        'icon'    => 'settings', // Feather icons
+        'icon'    => 'lock', // Feather icons
         'submenu' => [ // dir url => name
             'role'    => 'Roles',
             'partner' => 'Partners',
