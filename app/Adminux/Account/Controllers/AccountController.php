@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Adminux\Admin\Controllers;
+namespace App\Adminux\Account\Controllers;
 
-use App\Adminux\Admin\Models\Admin;
+use App\Adminux\Account\Models\Account;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Admin $admin)
+    public function index(Account $account)
     {
-        if(request()->ajax()) return Datatables::of($admin::query())
+        if(request()->ajax()) return Datatables::of($account::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
-            ->addColumn('role', function($row) { return @$row->role->role; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
@@ -29,7 +28,6 @@ class AdminController extends Controller
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Role</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
@@ -37,7 +35,6 @@ class AdminController extends Controller
                           { data: "email", name: "email" },
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
-                          { data: "role", name: "role_id" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
@@ -48,9 +45,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Admin $admin)
+    public function create(Account $account)
     {
-        return view('adminux.components.create')->withModel($admin)->withFields($this->getFields($admin));
+        return view('adminux.components.create')->withModel($account)->withFields($this->getFields($account));
     }
 
     /**
@@ -59,10 +56,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Admin $admin)
+    public function store(Request $request, Account $account)
     {
         $request->validate([
-            'email'    => 'required|email|unique:'.$admin->getTable(),
+            'email'    => 'required|email|unique:'.$account->getTable(),
             'password' => 'required',
             'active'   => 'in:Y,""',
         ]);
@@ -72,9 +69,9 @@ class AdminController extends Controller
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
-        $admin = $admin->create($request->all());
+        $account = $account->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $admin));
+        return redirect(route(explode('/', $request->path())[1].'.show', $account));
     }
 
     /**
@@ -82,11 +79,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(Account $account)
     {
-        if(request()->ajax()) return (new AdminPartnerController)->getIndex($admin);
-
-        return view('adminux.components.show')->withModel($admin)->withMany([ (new AdminPartnerController)->getIndex($admin) ]);
+        return view('adminux.components.show')->withModel($account);
     }
 
     /**
@@ -94,9 +89,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Account $account)
     {
-        return view('adminux.components.edit')->withModel($admin)->withFields($this->getFields($admin));
+        return view('adminux.components.edit')->withModel($account)->withFields($this->getFields($account));
     }
 
     /**
@@ -105,14 +100,14 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Account $account)
     {
         $request->validate([
-            'email'    => 'required|email|unique:'.$admin->getTable().',email,'.$admin->id,
+            'email'    => 'required|email|unique:'.$account->getTable().',email,'.$account->id,
             'active'   => 'in:Y,""',
         ]);
 
-        if($request->filled('password') && !Hash::check($request->password, $admin->password)) {
+        if($request->filled('password') && !Hash::check($request->password, $account->password)) {
             $request->merge(['password' => Hash::make($request->password)]);
         } else $request->request->remove('password');
 
@@ -120,9 +115,9 @@ class AdminController extends Controller
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
-        $admin->update($request->all());
+        $account->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $admin));
+        return redirect(route(explode('/', $request->path())[1].'.show', $account));
     }
 
     /**
@@ -130,9 +125,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(Account $account)
     {
-        $admin->delete();
+        $account->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
@@ -142,12 +137,11 @@ class AdminController extends Controller
      *
      * @return Array
      */
-    public function getFields(Admin $admin)
+    public function getFields(Account $account)
     {
-        $form = new \App\Adminux\Form($admin);
+        $form = new \App\Adminux\Form($account);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Role' ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),
@@ -156,44 +150,5 @@ class AdminController extends Controller
         ]);
 
         return $form->getFields();
-    }
-
-    /**
-     * Display admin dashboard
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        return view('adminux.dashboard');
-    }
-
-    /**
-     * Display admin logs
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function logs()
-    {
-        return view('adminux.components.card', [
-            'header' => 'Logs',
-            'body'   => nl2br(\File::get(storage_path().'/logs/laravel-'.date('Y-m-d').'.log'))
-        ]);
-    }
-
-    /**
-     * Display admin phpinfo
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function phpinfo()
-    {
-        if(isset($_GET['raw'])) {
-            phpinfo();
-            return;
-        }
-
-        return view('adminux.components.blank')
-        ->withBody('<iframe src="admin_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 }

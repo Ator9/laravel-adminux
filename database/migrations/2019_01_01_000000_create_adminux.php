@@ -81,6 +81,21 @@ class CreateAdminux extends Migration
         ]);
 
 
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->string('email', 75)->default('')->unique();
+            $table->string('password')->default('');
+            $table->string('firstname', 75)->default('');
+            $table->string('lastname', 75)->default('');
+            $table->enum('active', ['N', 'Y'])->default('N');
+            $table->rememberToken();
+            $table->string('last_login_ip', 75)->default('');
+            $table->timestamp('last_login_at')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
         Schema::create('products', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('product', 100)->default('')->unique();
@@ -96,6 +111,7 @@ class CreateAdminux extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('accounts');
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
