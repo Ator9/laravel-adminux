@@ -62,9 +62,10 @@ class AccountController extends Controller
     public function store(Request $request, Account $account)
     {
         $request->validate([
-            'email'    => 'required|email|unique:'.$account->getTable(),
+            'partner_id' => 'required',
+            'email' => 'required|email|unique:'.$account->getTable(),
             'password' => 'required',
-            'active'   => 'in:Y,""',
+            'active' => 'in:Y,""',
         ]);
 
         $request->merge(['password' => Hash::make($request->password)]);
@@ -106,8 +107,9 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         $request->validate([
-            'email'    => 'required|email|unique:'.$account->getTable().',email,'.$account->id,
-            'active'   => 'in:Y,""',
+            'partner_id' => 'required',
+            'email' => 'required|email|unique:'.$account->getTable().',email,'.$account->id,
+            'active' => 'in:Y,""',
         ]);
 
         if($request->filled('password') && !Hash::check($request->password, $account->password)) {
