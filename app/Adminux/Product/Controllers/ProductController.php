@@ -24,7 +24,7 @@ class ProductController extends Controller
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Name</th>
+                        <th class="w-75">Product</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
