@@ -18,7 +18,7 @@
             <select class="custom-select custom-select-sm" id="partner_select">
                 <option value="">All Partners...</option>
                 @foreach($AdminPartnerController->getEnabledPartners() as $partner)
-                    <option value="{{ $partner->id }}"@if($partner->id == session('partner_id')) selected @endif>{{ $partner->name }}</option>
+                    <option value="{{ $partner->id }}"@if($partner->id == session('partner_id')) selected @endif>{{ $partner->partner }}</option>
                 @endforeach
             </select>
         </div>

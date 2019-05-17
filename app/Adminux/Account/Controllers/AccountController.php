@@ -29,7 +29,7 @@ class AccountController extends Controller
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th style="min-width:60px">Partner</th>
+                        <th style="min-width:120px">Partner</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
@@ -37,7 +37,7 @@ class AccountController extends Controller
                           { data: "email", name: "email" },
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
-                          { data: "partner", name: "partner", className: "text-center" },
+                          { data: "partner", name: "partner" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
