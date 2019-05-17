@@ -2,6 +2,7 @@
 
 return [
 
+    'account' => 'Cuenta',
     'active' => 'Activo',
     'add' => 'Agregar',
     'cancel' => 'Cancelar',

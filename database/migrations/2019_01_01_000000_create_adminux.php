@@ -87,7 +87,7 @@ class CreateAdminux extends Migration
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
-            $table->string('name', 75)->default('');
+            $table->string('account', 75)->nullable()->unique();
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->rememberToken();
             $table->string('last_login_ip', 75)->default('');
