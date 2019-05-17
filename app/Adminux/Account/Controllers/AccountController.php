@@ -27,16 +27,14 @@ class AccountController extends Controller
         return view('adminux.components.datatables.index')->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-25">E-mail</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "email", name: "email" },
-                          { data: "firstname", name: "firstname" },
-                          { data: "lastname", name: "lastname" },
+                          { data: "name", name: "name" },
                           { data: "partner", name: "partner" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
@@ -69,8 +67,7 @@ class AccountController extends Controller
         ]);
 
         $request->merge(['password' => Hash::make($request->password)]);
-        if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
-        if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
+        if(!$request->filled('name')) $request->merge(['name' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $account = $account->create($request->all());
@@ -116,8 +113,7 @@ class AccountController extends Controller
             $request->merge(['password' => Hash::make($request->password)]);
         } else $request->request->remove('password');
 
-        if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
-        if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
+        if(!$request->filled('name')) $request->merge(['name' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $account->update($request->all());
@@ -150,8 +146,7 @@ class AccountController extends Controller
             $form->select([ 'label' => 'Partner' ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
-            $form->text([ 'label' => 'First Name' ]),
-            $form->text([ 'label' => 'Last Name' ]),
+            $form->text([ 'label' => 'Name' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 
