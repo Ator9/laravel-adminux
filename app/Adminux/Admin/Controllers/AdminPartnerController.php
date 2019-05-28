@@ -23,7 +23,7 @@ class AdminPartnerController extends Controller
         if(request()->ajax()) {
             if(request()->filled('search.value')) {
                 $dt = Datatables::of($model->getRelated()::query())->addColumn('actions', function($row) use ($obj) {
-                    $params['action'] = url('/admin/adminpartner');
+                    $params['action'] = url(request()->route()->getPrefix().'/adminpartner');
                     $params['table'] = $obj->getTable();
                     $params['id'] = $obj->id;
                     $params['related_id'] = $row->id;
@@ -31,7 +31,7 @@ class AdminPartnerController extends Controller
                 });
             } else {
                 $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
-                    $params['action'] = url('/admin/adminpartner/'.$row->id);
+                    $params['action'] = url(request()->route()->getPrefix().'/adminpartner/'.$row->id);
                     $params['title']  = 'Delete '.$row->{$column}.'?';
                     return view('adminux.components.datatables.link_delete_button', compact('params'));
                 });
