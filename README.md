@@ -37,11 +37,11 @@ php artisan migrate
 ```
 - Add to /routes/web.php:
 ```php
-Route::prefix('admin')->group(function($router) {
+Route::prefix('adminux')->group(function($router) {
     require base_path('app/Adminux/routes.default.php');
 });
 ```
-- Access AdminUX with "/admin":
+- Access AdminUX with "/adminux":
 ```sh
 Email: admin@localhost
 Password: test
