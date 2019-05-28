@@ -1,5 +1,3 @@
-var admin_url = host+'/admin';
-
 feather.replace();
 
 function modalDelete(action, title) {

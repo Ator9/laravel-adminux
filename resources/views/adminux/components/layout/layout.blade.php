@@ -25,7 +25,10 @@
 <script src="{{ asset('adminux/resources/libs/jquery.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/feather.min.js') }}"></script>
-<script>var host='{{ url('/') }}';</script>
+<script>
+var host = '{{ url('/') }}';
+var admin_url = host+'/{{ $prefix }}';
+</script>
 <script src="{{ asset('adminux/resources/admin.js') }}"></script>
 @yield('scripts')
 </body>
