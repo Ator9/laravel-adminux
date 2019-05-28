@@ -28,7 +28,7 @@ class Helper
         $data = [];
 
         $array = explode('/', $path);
-        if(count($array) == 1) $data = [ '' => 'Dashboard' ];
+        if($array[1] == 'dashboard') $data = [ 'dashboard' => 'Dashboard' ];
         else {
             $class = explode('_', next($array));
 
