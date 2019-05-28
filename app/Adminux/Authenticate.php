@@ -20,6 +20,6 @@ class Authenticate
             else auth('adminux')->logout();
         }
 
-        return redirect('admin/login');
+        return redirect(request()->route()->getPrefix().'/login');
     }
 }

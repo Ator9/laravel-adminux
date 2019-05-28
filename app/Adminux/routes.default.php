@@ -6,9 +6,9 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::get('logout', 'LoginController@logout');
 
     Route::middleware('adminux')->group(function() {
-        Route::get('',               'Admin\Controllers\AdminController@dashboard');
-        Route::get('admin_logs',     'Admin\Controllers\AdminController@logs');
-        Route::get('admin_phpinfo',  'Admin\Controllers\AdminController@phpinfo');
+        Route::get('dashboard',     'Admin\Controllers\AdminController@dashboard');
+        Route::get('admin_logs',    'Admin\Controllers\AdminController@logs');
+        Route::get('admin_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
 
         foreach(\File::directories(__DIR__) as $dir) {
             $module = basename($dir);

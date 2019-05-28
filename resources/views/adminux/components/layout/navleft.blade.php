@@ -2,13 +2,13 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link{{ Request::is('admin') ? ' active' : '' }}" href="{{ asset('admin') }}">
+                <a class="nav-link{{ Request::is($prefix.'/dashboard') ? ' active' : '' }}" href="{{ asset($prefix.'/dashboard') }}">
                     <span data-feather="home"></span> Dashboard
                 </a>
             </li>
             @foreach($Helper->getNavLeft() as $module)
                 <li class="nav-item">
-                    <a class="nav-link{{ (Request::is('admin/'.strtolower($module['dir'])) or str_contains(Request::path(), ['admin/'.strtolower($module['dir']).'_', 'admin/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset('admin/'.strtolower($module['dir'])) }}">
+                    <a class="nav-link{{ (Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']).'_', $prefix.'/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.strtolower($module['dir'])) }}">
                         <span data-feather="{{ $module['icon'] }}"></span> {{ $module['name'] }}
                     </a>
                 </li>

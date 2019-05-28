@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = 'admin';
+    protected $redirectTo = '/';
 
     protected function guard()
     {
@@ -19,13 +19,13 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if($this->guard()->check()) return redirect($this->redirectTo);
+        if($this->guard()->check()) return redirect($this->redirectTo().'/dashboard');
         return view('adminux.login');
     }
 
     protected function loggedOut(Request $request)
     {
-        return redirect($this->redirectTo);
+        return redirect($this->redirectTo());
     }
 
     function authenticated(Request $request, $user)
@@ -39,5 +39,10 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         return ['email' => $request->{$this->username()}, 'password' => $request->password, 'active' => 'Y'];
+    }
+
+    protected function redirectTo()
+    {
+        return request()->route()->getPrefix();
     }
 }
