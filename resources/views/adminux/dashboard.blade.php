@@ -1,7 +1,5 @@
 @extends('adminux.components.layout.layout')
 
-@section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
-
 @section('body')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Dashboard</h1>
@@ -22,6 +20,7 @@
 @section('scripts')
 <script src="{{ asset('adminux/resources/libs/Chart.min.js') }}"></script>
 <script>
+setTitle();
 $(document).ready(function() {
     // Graphs
     var ctx = document.getElementById('myChart')

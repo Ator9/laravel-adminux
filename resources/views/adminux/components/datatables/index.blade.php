@@ -1,7 +1,5 @@
 @extends('adminux.components.layout.layout')
 
-@section('title', 'Partners' . ' - ' . config('app.name', 'Admin'))
-
 @section('head')
 <link href="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
@@ -30,6 +28,7 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 <script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
+setTitle();
 $(document).ready(function() {
     var table = $('#datatable').DataTable({
         scrollResize: true,

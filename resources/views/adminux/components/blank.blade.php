@@ -1,7 +1,11 @@
 @extends('adminux.components.layout.layout')
 
-@section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
-
 @section('body')
     {!! $body !!}
+@endsection
+
+@section('scripts')
+<script>
+setTitle();
+</script>
 @endsection

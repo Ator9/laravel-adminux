@@ -1,7 +1,5 @@
 @extends('adminux.components.layout.layout')
 
-@section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
-
 @section('body')
 <div class="card mt-3">
     <div class="card-header">
@@ -14,4 +12,10 @@
         {!! $body !!}
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+setTitle();
+</script>
 @endsection

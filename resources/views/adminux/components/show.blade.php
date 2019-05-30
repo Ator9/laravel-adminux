@@ -1,6 +1,6 @@
 @extends('adminux.components.layout.layout')
 
-@section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
+@section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
 @section('body')
 <div class="card mt-3">

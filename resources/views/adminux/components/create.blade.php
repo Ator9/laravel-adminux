@@ -1,6 +1,6 @@
 @extends('adminux.components.layout.layout')
 
-@section('title', 'Dashboard' . ' - ' . config('app.name', 'Admin'))
+@section('title', (new ReflectionClass($model))->getShortName().' - '.__('adminux.create'))
 
 @section('body')
 <form method="post" action="{{ str_replace('/create', '', Request::url()) }}">
