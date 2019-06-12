@@ -63,6 +63,7 @@ class AccountController extends Controller
             'partner_id' => 'required',
             'email' => 'required|email|unique:'.$account->getTable().',email,NULL,NULL,partner_id,'.$request->partner_id,
             'password' => 'required',
+            'account' => 'nullable|unique:'.$account->getTable(),
             'active' => 'in:Y,""',
         ]);
 
@@ -105,6 +106,7 @@ class AccountController extends Controller
         $request->validate([
             'partner_id' => 'required',
             'email' => 'required|email|unique:'.$account->getTable().',email,'.$account->id.',id,partner_id,'.$request->partner_id,
+            'account' => 'nullable|unique:'.$account->getTable(),
             'active' => 'in:Y,""',
         ]);
 
