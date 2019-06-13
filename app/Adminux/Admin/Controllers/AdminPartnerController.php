@@ -67,6 +67,11 @@ class AdminPartnerController extends Controller
         return \Auth::guard('adminux')->user()->partners()->orderBy('partner', 'asc')->get();
     }
 
+    public function getEnabledPartnersKeys()
+    {
+        return $this->getEnabledPartners()->keyBy('id')->keys()->toArray();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

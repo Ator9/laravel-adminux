@@ -3,6 +3,7 @@
 namespace App\Adminux\Account\Controllers;
 
 use App\Adminux\Account\Models\Account;
+use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -17,7 +18,7 @@ class AccountController extends Controller
      */
     public function index(Account $account)
     {
-        if(request()->ajax()) return Datatables::of($account::query())
+        if(request()->ajax()) return Datatables::of($account::query()->whereIn('partner_id', (new AdminPartnerController)->getEnabledPartnersKeys()))
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
