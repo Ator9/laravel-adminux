@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     protected function guard()
     {
-        return \Auth::guard('adminux');
+        return auth('adminux');
     }
 
     public function showLoginForm()

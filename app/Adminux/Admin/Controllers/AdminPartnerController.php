@@ -64,7 +64,7 @@ class AdminPartnerController extends Controller
 
     public function getEnabledPartners()
     {
-        return \Auth::guard('adminux')->user()->partners()->orderBy('partner', 'asc')->get();
+        return auth('adminux')->user()->partners()->orderBy('partner', 'asc')->get();
     }
 
     public function getEnabledPartnersKeys()
