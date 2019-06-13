@@ -83,6 +83,8 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
+        if(!in_array($account->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys())) abort(403);
+
         return view('adminux.components.show')->withModel($account);
     }
 
@@ -93,6 +95,8 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
+        if(!in_array($account->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys())) abort(403);
+
         return view('adminux.components.edit')->withModel($account)->withFields($this->getFields($account));
     }
 
