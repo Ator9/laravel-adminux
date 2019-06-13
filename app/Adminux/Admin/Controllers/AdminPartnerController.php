@@ -53,11 +53,7 @@ class AdminPartnerController extends Controller
     {
         session(['partner_id' => '']);
 
-        foreach($this->getEnabledPartners()->get() as $partner) {
-            if($partner->id == request()->get('partner_id')) {
-                session(['partner_id' => $partner->id]);
-            }
-        }
+        if(in_array(request()->get('partner_id'), $this->getEnabledPartnersKeys())) session(['partner_id' => request()->get('partner_id')]);
 
         return back();
     }
