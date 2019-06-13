@@ -17,7 +17,7 @@
         <div class="position-absolute w-100 mb-1 px-3 fixed-bottom">
             <select class="custom-select custom-select-sm" id="partner_select">
                 <option value="">All Partners...</option>
-                @foreach($AdminPartnerController->getEnabledPartners() as $partner)
+                @foreach($AdminPartnerController->getEnabledPartners()->orderBy('partner', 'asc')->get() as $partner)
                     <option value="{{ $partner->id }}"@if($partner->id == session('partner_id')) selected @endif>{{ $partner->partner }}</option>
                 @endforeach
             </select>

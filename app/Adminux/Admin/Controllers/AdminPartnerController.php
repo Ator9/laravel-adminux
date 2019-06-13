@@ -53,7 +53,7 @@ class AdminPartnerController extends Controller
     {
         session(['partner_id' => '']);
 
-        foreach($this->getEnabledPartners() as $partner) {
+        foreach($this->getEnabledPartners()->get() as $partner) {
             if($partner->id == request()->get('partner_id')) {
                 session(['partner_id' => $partner->id]);
             }
@@ -64,12 +64,12 @@ class AdminPartnerController extends Controller
 
     public function getEnabledPartners()
     {
-        return auth('adminux')->user()->partners()->orderBy('partner', 'asc')->get();
+        return auth('adminux')->user()->partners();
     }
 
     public function getEnabledPartnersKeys()
     {
-        return $this->getEnabledPartners()->keyBy('id')->keys()->toArray();
+        return $this->getEnabledPartners()->get()->keyBy('id')->keys()->toArray();
     }
 
     /**
