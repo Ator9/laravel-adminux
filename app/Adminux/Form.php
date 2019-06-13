@@ -40,6 +40,8 @@ class Form
         if(empty($params['options'])) {
             foreach($this->_model->{strtolower($params['label'])}()->getRelated()->all() as $val) {
 
+                if(!empty($params['allows']) && !in_array($val->id, $params['allows'])) continue;
+
                 $sel = ($val->id == $this->getValue($params)) ? ' selected' : '';
                 $options[] = '<option value="'.$val->id.'"'.$sel.'>'.$val->{strtolower($params['label'])}.'</option>';
             }
