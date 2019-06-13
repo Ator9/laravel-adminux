@@ -61,7 +61,7 @@ class AccountController extends Controller
     public function store(Request $request, Account $account)
     {
         $request->validate([
-            'partner_id' => 'required',
+            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
             'email' => 'required|email|unique:'.$account->getTable().',email,NULL,NULL,partner_id,'.$request->partner_id,
             'password' => 'required',
             'account' => 'nullable|unique:'.$account->getTable().',account,NULL,NULL,partner_id,'.$request->partner_id,
@@ -109,7 +109,7 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         $request->validate([
-            'partner_id' => 'required',
+            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
             'email' => 'required|email|unique:'.$account->getTable().',email,'.$account->id.',id,partner_id,'.$request->partner_id,
             'account' => 'nullable|unique:'.$account->getTable().',account,'.$account->id.',id,partner_id,'.$request->partner_id,
             'active' => 'in:Y,""',
@@ -133,6 +133,8 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
+        abort_if(!in_array($account->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
+
         $account->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
