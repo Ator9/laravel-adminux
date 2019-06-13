@@ -51,9 +51,8 @@ class AdminPartnerController extends Controller
 
     public function setPartner()
     {
-        session(['partner_id' => '']);
-
-        if(in_array(request()->get('partner_id'), $this->getEnabledPartnersKeys())) session(['partner_id' => request()->get('partner_id')]);
+        if(in_array(request()->partner_id, $this->getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
+        else session(['partner_id' => '']);
 
         return back();
     }
@@ -66,6 +65,11 @@ class AdminPartnerController extends Controller
     public function getEnabledPartnersKeys()
     {
         return $this->getEnabledPartners()->get()->keyBy('id')->keys()->toArray();
+    }
+
+    public function getSelectedPartners()
+    {
+        return in_array(session('partner_id'), $this->getEnabledPartnersKeys()) ? [ session('partner_id') ] : $this->getEnabledPartnersKeys();
     }
 
     /**
