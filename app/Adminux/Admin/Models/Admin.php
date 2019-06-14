@@ -26,7 +26,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'deleted_at'
+        'password', 'superuser', 'remember_token', 'deleted_at'
     ];
 
     /**
