@@ -5,7 +5,7 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::get('login',  'LoginController@showLoginForm');
     Route::get('logout', 'LoginController@logout');
 
-    Route::middleware('adminux')->group(function() {
+    Route::middleware(App\Adminux\Authenticate::class)->group(function() {
         Route::get('',              function() { return redirect()->route('login'); });
         Route::get('dashboard',     'Admin\Controllers\AdminController@dashboard');
         Route::get('admin_logs',    'Admin\Controllers\AdminController@logs');
