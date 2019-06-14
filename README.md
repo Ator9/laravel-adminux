@@ -16,11 +16,6 @@ git pull adminux master
 ```sh
 php artisan migrate
 ```
-- Add to /app/Http/Kernel.php:
-```php
-// $routeMiddleware:
-'adminux' => \App\Adminux\Authenticate::class,
-```
 - Add to /config/auth.php:
 ```php
 // guards:
