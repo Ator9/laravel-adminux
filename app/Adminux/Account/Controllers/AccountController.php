@@ -27,15 +27,15 @@ class AccountController extends Controller
 
         return view('adminux.components.datatables.index')->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th>Account</th>
-                        <th class="w-25">E-mail</th>
+                        <th>E-mail</th>
+                        <th class="w-25">Account</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "account", name: "account" },
                           { data: "email", name: "email" },
+                          { data: "account", name: "account" },
                           { data: "partner", name: "partner" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
