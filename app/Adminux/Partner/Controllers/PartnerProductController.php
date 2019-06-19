@@ -49,7 +49,7 @@ class PartnerProductController extends Controller
         ];
     }
 
-    public function setPartner()
+    public function set()
     {
         if(in_array(request()->partner_id, $this->getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
         else session(['partner_id' => '']);
@@ -83,7 +83,7 @@ class PartnerProductController extends Controller
      */
     public function destroy($id)
     {
-        \DB::table((new BaseModel)->partners()->getTable())->where('id', '=', $id)->delete();
+        \DB::table((new BaseModel)->products()->getTable())->where('id', '=', $id)->update(['deleted_at' => \Carbon\Carbon::now()]);
 
         return back();
     }

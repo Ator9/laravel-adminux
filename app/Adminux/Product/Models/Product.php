@@ -32,6 +32,6 @@ class Product extends Model
      */
     public function partners()
     {
-        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->withPivot('created_at');
+        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->whereNull('partner_product.deleted_at')->withPivot('created_at');
     }
 }
