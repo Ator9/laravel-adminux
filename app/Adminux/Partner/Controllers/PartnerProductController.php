@@ -64,7 +64,7 @@ class PartnerProductController extends Controller
             $relation = $model->products()->getRelated()->find(request()->get('id'))->partners();
         }
 
-        $relation->syncWithoutDetaching([request()->get('related_id')]);
+        $relation->attach(request()->get('related_id'));
 
         return back();
     }
