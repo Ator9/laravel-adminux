@@ -95,7 +95,7 @@ class CreateAdminux extends Migration
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->mediumInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('name', 100);
+            $table->string('name', 100)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

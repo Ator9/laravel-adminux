@@ -13,7 +13,7 @@ class PartnerProductController extends Controller
         if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
             $model = $obj->products();
             $title = __('adminux.name');
-            $column = 'name';
+            $column = 'product';
         } else {
             $model = $obj->partners();
             $title = 'Partner';
@@ -42,9 +42,11 @@ class PartnerProductController extends Controller
 
         return [
             'model' => $model,
-            'thead' => '<th class="w-100">'.$title.'</th>
+            'thead' => '<th class="w-25">Product</th>
+                        <th>Name</th>
                         <th style="min-width:100px">Action</th>',
-            'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
+            'columns' => '{ data: "product", name: "products.product" },
+                          { data: "name", name: "partner_product.name" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
         ];
     }
@@ -66,9 +68,9 @@ class PartnerProductController extends Controller
     public function store(BaseModel $model)
     {
         if(request()->get('table') == $model->getTable()) {
-            $relation = $model->find(request()->get('id'))->partners();
+            $relation = $model->find(request()->get('id'))->products();
         } else {
-            $relation = $model->partners()->getRelated()->find(request()->get('id'))->admins();
+            $relation = $model->products()->getRelated()->find(request()->get('id'))->partners();
         }
 
         $relation->syncWithoutDetaching([request()->get('related_id')]);
