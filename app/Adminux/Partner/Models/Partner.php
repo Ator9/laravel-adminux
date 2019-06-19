@@ -34,4 +34,12 @@ class Partner extends Model
     {
         return $this->belongsToMany('App\Adminux\Admin\Models\Admin')->withPivot('created_at');
     }
+
+    /**
+     * Get the products for the partner.
+     */
+    public function products()
+    {
+        return $this->belongsToMany('App\Adminux\Product\Models\Product')->withPivot('name');
+    }
 }

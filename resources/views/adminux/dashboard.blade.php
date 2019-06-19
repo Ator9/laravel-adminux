@@ -17,7 +17,7 @@
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="{{ asset('adminux/resources/libs/Chart.min.js') }}"></script>
 <script>
 setTitle();
@@ -69,4 +69,4 @@ $(document).ready(function() {
     });
 });
 </script>
-@endsection
+@endpush

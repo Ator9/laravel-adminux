@@ -30,6 +30,6 @@ var host = '{{ url('/') }}';
 var admin_url = host+'/{{ $prefix }}';
 </script>
 <script src="{{ asset('adminux/resources/admin.js') }}"></script>
-@yield('scripts')
+@stack('scripts')
 </body>
 </html>

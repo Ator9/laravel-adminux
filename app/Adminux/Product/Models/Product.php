@@ -26,4 +26,12 @@ class Product extends Model
     protected $hidden = [
         'deleted_at'
     ];
+
+    /**
+     * Get the partners for the admin.
+     */
+    public function partners()
+    {
+        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->withPivot('created_at');
+    }
 }

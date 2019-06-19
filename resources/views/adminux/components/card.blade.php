@@ -14,8 +14,8 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script>
 setTitle();
 </script>
-@endsection
+@endpush

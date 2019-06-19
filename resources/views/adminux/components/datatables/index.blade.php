@@ -23,7 +23,7 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
@@ -61,4 +61,4 @@ $(document).ready(function() {
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset
 });
 </script>
-@endsection
+@endpush

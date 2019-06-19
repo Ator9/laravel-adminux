@@ -81,6 +81,26 @@ class CreateAdminux extends Migration
         ]);
 
 
+        Schema::create('products', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->string('product', 100)->default('')->unique();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
+        Schema::create('partner_product', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->mediumInteger('partner_id')->unsigned();
+            $table->foreign('partner_id')->references('id')->on('partners');
+            $table->mediumInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->string('name', 100);
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
         Schema::create('accounts', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('partner_id')->unsigned()->nullable();
@@ -96,14 +116,6 @@ class CreateAdminux extends Migration
             $table->timestamps();
             $table->unique(['partner_id', 'email'], 'partner_email');
             $table->unique(['partner_id', 'account'], 'partner_account');
-        });
-
-
-        Schema::create('products', function (Blueprint $table) {
-            $table->mediumIncrements('id');
-            $table->string('product', 100)->default('')->unique();
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 

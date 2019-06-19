@@ -4,6 +4,7 @@ namespace App\Adminux\Partner\Controllers;
 
 use App\Adminux\Partner\Models\Partner;
 use App\Adminux\Admin\Controllers\AdminPartnerController;
+use App\Adminux\Partner\Controllers\PartnerProductController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -77,9 +78,15 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        if(request()->ajax()) return (new AdminPartnerController)->getIndex($partner);
+        if(request()->ajax()) {
+            if(request()->table == 'admin_partner') return (new AdminPartnerController)->getIndex($partner);
+            elseif(request()->table == 'partner_product') return (new PartnerProductController)->getIndex($partner);
+        }
 
-        return view('adminux.components.show')->withModel($partner)->withMany([ (new AdminPartnerController)->getIndex($partner) ]);
+        return view('adminux.components.show')->withModel($partner)->withMany([
+            (new AdminPartnerController)->getIndex($partner),
+            (new PartnerProductController)->getIndex($partner)
+        ]);
     }
 
     /**

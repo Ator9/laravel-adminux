@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover" id="datatable">
+            <table class="table table-hover" id="datatable{{$counter}}">
                 <thead>
                     <tr>
                         {!! $datatables['thead'] !!}
@@ -23,15 +23,13 @@
     </div>
 </div>
 
-@section('scripts')
-<script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
+@push('scripts')
 <script>
 $(document).ready(function() {
-    var table = $('#datatable').DataTable({
+    var table = $('#datatable{{$counter}}').DataTable({
         scrollCollapse: true,
         pageLength: @isset($datatables['pageLength']) {{ $datatables['pageLength'] }} @else {{ 50 }} @endisset,
-        ajax: '{{ Request::url() }}?datatables=1',
+        ajax: '{{ Request::url() }}?datatables=1&table={{ $datatables['model']->getTable() }}',
         serverSide: true,
         processing: true,
         columns: [ {!! $datatables['columns'] !!} ],
@@ -47,4 +45,4 @@ $(document).ready(function() {
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset
 });
 </script>
-@endsection
+@endpush
