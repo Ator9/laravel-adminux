@@ -131,6 +131,7 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
         Schema::dropIfExists('partners');
+        Schema::dropIfExists('partner_product');
         Schema::dropIfExists('products');
     }
 }

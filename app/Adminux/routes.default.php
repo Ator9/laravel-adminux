@@ -20,7 +20,6 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
         Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
-        Route::get('partnerproduct', 'Partner\Controllers\PartnerProductController@set');
         Route::post('partnerproduct', 'Partner\Controllers\PartnerProductController@store');
         Route::delete('partnerproduct/{id}', 'Partner\Controllers\PartnerProductController@destroy');
 

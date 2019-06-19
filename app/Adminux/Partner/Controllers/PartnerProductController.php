@@ -46,19 +46,10 @@ class PartnerProductController extends Controller
                         <th>Name</th>
                         <th style="min-width:100px">Action</th>',
             'columns' => '{ data: "product", name: "products.product" },
-                          { data: "name", name: "partner_product.name" },
+                          { data: "name", name: "partner_product.name", searchable: false, defaultContent: "" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
         ];
     }
-
-    public function set()
-    {
-        if(in_array(request()->partner_id, $this->getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
-        else session(['partner_id' => '']);
-
-        return back();
-    }
-
 
     /**
      * Store a newly created resource in storage.
