@@ -3,6 +3,7 @@
 namespace App\Adminux\Product\Controllers;
 
 use App\Adminux\Product\Models\Product;
+use App\Adminux\Partner\Controllers\PartnerProductController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -67,7 +68,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('adminux.components.show')->withModel($product);
+        if(request()->ajax()) return (new PartnerProductController)->getIndex($product);
+
+        return view('adminux.components.show')->withModel($product)->withMany([(new PartnerProductController)->getIndex($product)]);
     }
 
     /**

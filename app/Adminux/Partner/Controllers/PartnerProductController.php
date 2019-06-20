@@ -12,7 +12,7 @@ class PartnerProductController extends Controller
     {
         if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
             $model = $obj->products();
-            $title = __('adminux.name');
+            $title = __('adminux.product');
             $column = 'product';
         } else {
             $model = $obj->partners();
@@ -42,10 +42,10 @@ class PartnerProductController extends Controller
 
         return [
             'model' => $model,
-            'thead' => '<th class="w-25">Product</th>
+            'thead' => '<th class="w-25">'.$title.'</th>
                         <th>Name</th>
                         <th style="min-width:100px">Action</th>',
-            'columns' => '{ data: "product", name: "products.product" },
+            'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
                           { data: "name", name: "partner_product.name", searchable: false, defaultContent: "" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
         ];

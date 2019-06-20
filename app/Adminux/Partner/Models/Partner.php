@@ -40,6 +40,6 @@ class Partner extends Model
      */
     public function products()
     {
-        return $this->belongsToMany('App\Adminux\Product\Models\Product')->whereNull('partner_product.deleted_at')->withPivot('name');
+        return $this->belongsToMany('App\Adminux\Product\Models\Product')->whereNull('partner_product.deleted_at');
     }
 }

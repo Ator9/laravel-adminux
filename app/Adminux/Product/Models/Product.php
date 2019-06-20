@@ -28,10 +28,10 @@ class Product extends Model
     ];
 
     /**
-     * Get the partners for the admin.
+     * Get the partners for the product.
      */
     public function partners()
     {
-        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->whereNull('partner_product.deleted_at')->withPivot('created_at');
+        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->whereNull('partner_product.deleted_at');
     }
 }
