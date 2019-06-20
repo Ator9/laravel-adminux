@@ -19,8 +19,6 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
         Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
-        // App\Adminux\Helper::buildResource('PartnerProduct');
-
         // Automated URL based on request (example: admin_partner):
         if(strpos(Request::path(), '_') !== false) {
             $split = explode('/', Request::path());
