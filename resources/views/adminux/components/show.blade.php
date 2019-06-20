@@ -38,7 +38,7 @@
         <script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
     @endpush
-    
+
     @foreach($many as $key => $relation)
         @include('adminux.components.datatables.relation', [ 'datatables' => $relation, 'counter' => $key ])
     @endforeach

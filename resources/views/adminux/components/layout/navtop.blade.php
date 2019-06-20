@@ -2,12 +2,11 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ asset($prefix.'/dashboard') }}">{{ config('app.name', 'Admin') }}</a>
     <ul class="nav w-100">
         @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
-            @php $dir2 = ($loop->index > 0) ? explode('_', request()->segment(2))[0].'_'.$dir : $dir @endphp
             <li class="nav-item">
-                @if(Request::is($prefix.'/'.$dir2) or $loop->count == 1 or (isset($model) && (new ReflectionClass($model))->getShortName() == ucfirst($dir)))
-                    <a class="nav-link text-white" href="{{ asset($prefix.'/'.$dir2) }}">{{ $name }}</a>
+                @if(Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false)
+                    <a class="nav-link text-white" href="{{ asset($prefix.'/'.$dir) }}">{{ $name }}</a>
                 @else
-                    <a class="nav-link text-warning" href="{{ asset($prefix.'/'.$dir2) }}">{{ $name }}</a>
+                    <a class="nav-link text-warning" href="{{ asset($prefix.'/'.$dir) }}">{{ $name }}</a>
                 @endif
             </li>
         @endforeach

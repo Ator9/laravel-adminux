@@ -29,7 +29,7 @@ $(document).ready(function() {
     var table = $('#datatable{{$counter}}').DataTable({
         scrollCollapse: true,
         pageLength: @isset($datatables['pageLength']) {{ $datatables['pageLength'] }} @else {{ 50 }} @endisset,
-        ajax: '{{ Request::url() }}?datatables=1&table={{ $datatables['model']->getTable() }}',
+        ajax: '{{ Request::url() }}?datatables=1&table={{ (method_exists($datatables['model'], 'getTable')) ? $datatables['model']->getTable() : '' }}',
         serverSide: true,
         processing: true,
         columns: [ {!! $datatables['columns'] !!} ],
