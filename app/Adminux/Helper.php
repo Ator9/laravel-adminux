@@ -54,4 +54,11 @@ class Helper
 
         return $config;
     }
+
+    // Build route resource:
+    static function buildResource($model = '')
+    {
+        $pieces = preg_split('/(?=[A-Z])/', lcfirst($model));
+        \Route::resource(strtolower($model), $pieces[0].'\Controllers\\'.$model.'Controller');
+    }
 }

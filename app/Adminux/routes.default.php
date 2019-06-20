@@ -12,16 +12,14 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::get('admin_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
 
         foreach(\File::directories(__DIR__) as $dir) {
-            $module = basename($dir);
-            Route::resource(strtolower($module), $module.'\Controllers\\'.$module.'Controller');
+            App\Adminux\Helper::buildResource(basename($dir));
         }
 
         Route::get('adminpartner', 'Admin\Controllers\AdminPartnerController@setPartner');
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
         Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
-        Route::post('partnerproduct', 'Partner\Controllers\PartnerProductController@store');
-        Route::delete('partnerproduct/{id}', 'Partner\Controllers\PartnerProductController@destroy');
+        // App\Adminux\Helper::buildResource('PartnerProduct');
 
         // Automated URL based on request (example: admin_partner):
         if(strpos(Request::path(), '_') !== false) {

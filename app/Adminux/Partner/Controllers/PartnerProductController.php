@@ -8,6 +8,36 @@ use Yajra\Datatables\Datatables;
 
 class PartnerProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(BaseModel $model)
+    {
+        if(request()->ajax()) return Datatables::of($partner::query())
+            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('active2', 'adminux.components.datatables.status')
+            ->addColumn('actions', 'adminux.components.datatables.link_edit_button')
+            ->rawColumns(['id2', 'active2', 'actions'])
+            ->toJson();
+
+        return view('adminux.components.datatables.index')->withDatatables([
+            'order' => '[[ 1, "asc" ]]',
+            'thead' => '<th style="min-width:30px">ID</th>
+                        <th class="w-75">Partner</th>
+                        <th style="min-width:60px">Active</th>
+                        <th style="min-width:120px">Created At</th>
+                        <th>Action</th>',
+
+            'columns' => '{ data: "id2", name: "id", className: "text-center" },
+                          { data: "partner", name: "partner" },
+                          { data: "active2", name: "active", className: "text-center" },
+                          { data: "created_at", name: "created_at", className: "text-center" },
+                          { data: "actions", name: "actions", className: "text-center", orderable: false }'
+        ]);
+    }
+
     public function getIndex($obj)
     {
         if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
@@ -23,7 +53,7 @@ class PartnerProductController extends Controller
         if(request()->ajax()) {
             if(request()->filled('search.value')) {
                 $dt = Datatables::of($model->getRelated()::query())->addColumn('actions', function($row) use ($obj) {
-                    $params['action'] = url(request()->route()->getPrefix().'/partnerproduct');
+                    $params['action'] = url(request()->route()->getPrefix().'/partner_partnerproduct');
                     $params['table'] = $obj->getTable();
                     $params['id'] = $obj->id;
                     $params['related_id'] = $row->id;
@@ -31,7 +61,7 @@ class PartnerProductController extends Controller
                 });
             } else {
                 $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
-                    $params['action'] = url(request()->route()->getPrefix().'/partnerproduct/'.$row->id);
+                    $params['action'] = url(request()->route()->getPrefix().'/partner_partnerproduct/'.$row->id);
                     $params['title']  = 'Delete '.$row->{$column}.'?';
                     return view('adminux.components.datatables.link_delete_button', compact('params'));
                 });
@@ -67,6 +97,16 @@ class PartnerProductController extends Controller
         $relation->attach(request()->get('related_id'));
 
         return back();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(BaseModel $model)
+    {
+        return view('adminux.components.show')->withModel($model);
     }
 
     /**
