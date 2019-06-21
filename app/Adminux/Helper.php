@@ -56,9 +56,9 @@ class Helper
     }
 
     // Build route resource:
-    static function buildResource($model = '')
+    static function buildResource($model = '', $uri = '')
     {
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($model));
-        \Route::resource(strtolower($model), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
+        \Route::resource($uri.strtolower($model), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
     }
 }
