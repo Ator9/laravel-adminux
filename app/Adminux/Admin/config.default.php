@@ -7,6 +7,7 @@ $config = [
         'submenu' => [ // dir url => name
             'admin_role'    => 'Roles',
             'admin_partner' => 'Partners',
+            'admin_service' => 'Services',
             'admin_logs'    => 'Logs',
             'admin_phpinfo' => 'PHP Info',
         ]

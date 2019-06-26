@@ -1,8 +1,8 @@
 <?php
 $config = [
     'navigation'  => [
-        'enabled' => false,
-        'name'    => 'Products',
+        'enabled' => true,
+        'name'    => 'Services',
         'icon'    => 'chrome', // Feather icons
         'submenu' => [ // dir url => name
 

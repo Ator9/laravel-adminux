@@ -81,6 +81,14 @@ class CreateAdminux extends Migration
         ]);
 
 
+        Schema::create('services', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->string('service', 100)->default('')->unique();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
         Schema::create('products', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('product', 100)->default('')->unique();
@@ -133,5 +141,6 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('partners');
         Schema::dropIfExists('partner_product');
         Schema::dropIfExists('products');
+        Schema::dropIfExists('services');
     }
 }
