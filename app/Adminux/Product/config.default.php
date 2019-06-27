@@ -3,7 +3,7 @@ $config = [
     'navigation'  => [
         'enabled' => true,
         'name'    => 'Products',
-        'icon'    => 'chrome', // Feather icons
+        'icon'    => 'box', // Feather icons
         'submenu' => [ // dir url => name
             'products_plan' => 'Plans',
         ]

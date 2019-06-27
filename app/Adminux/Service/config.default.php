@@ -3,7 +3,7 @@ $config = [
     'navigation'  => [
         'enabled' => true,
         'name'    => 'Services',
-        'icon'    => 'chrome', // Feather icons
+        'icon'    => 'truck', // Feather icons
         'submenu' => [ // dir url => name
 
         ]
