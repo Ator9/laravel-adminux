@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index(Product $product)
     {
-        if(request()->ajax()) return Datatables::of($product::query())
+        if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', (new AdminPartnerController)->getSelectedPartners()))
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('service', function($row) { return @$row->service->service; })
@@ -27,15 +27,15 @@ class ProductController extends Controller
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th style="min-width:120px">Partner</th>
-                        <th style="min-width:300px">Service</th>
                         <th class="w-75">Product</th>
+                        <th style="min-width:300px">Service</th>
+                        <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "partner", name: "partner" },
-                          { data: "service", name: "service" },
                           { data: "product", name: "product" },
+                          { data: "service", name: "service" },
+                          { data: "partner", name: "partner" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -76,6 +76,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        abort_if(!in_array($product->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
+
         return view('adminux.components.show')->withModel($product);
     }
 
@@ -86,6 +88,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        abort_if(!in_array($product->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
+
         return view('adminux.components.edit')->withModel($product)->withFields($this->getFields($product));
     }
 
@@ -115,6 +119,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        abort_if(!in_array($product->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
+
         $product->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));

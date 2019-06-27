@@ -38,7 +38,7 @@ class Form
     public function select($params)
     {
         if(empty($params['options'])) {
-            foreach($this->_model->{strtolower($params['label'])}()->getRelated()->all() as $val) {
+            foreach($this->_model->{strtolower($params['label'])}()->getRelated()->all() as $val) { // withTrashed()->get()
 
                 if(isset($params['allows']) && !in_array($val->id, $params['allows'])) continue;
 
