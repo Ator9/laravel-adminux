@@ -5,8 +5,7 @@ $config = [
         'name'    => 'Partners',
         'icon'    => 'share-2', // Feather icons
         'submenu' => [ // dir url => name
-            'partner_product' => 'Products',
-            'partner_plan' => 'Plans',
+
         ]
     ]
 ];

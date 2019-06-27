@@ -49,7 +49,7 @@ class Form
 
         $params['input'] = '<select class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">
                             <option value="">'.__('adminux.select').'...</option>
-                            '.implode('', $options).'
+                            '.@implode('', $options).'
                             </select>';
         return $this->getFormGroup($params);
     }

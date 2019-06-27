@@ -3,7 +3,8 @@
 namespace App\Adminux\Product\Controllers;
 
 use App\Adminux\Product\Models\Product;
-use App\Adminux\Partner\Controllers\PartnerProductController;
+use App\Adminux\Admin\Controllers\AdminPartnerController;
+// use App\Adminux\Partner\Controllers\PartnerProductController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -59,7 +60,9 @@ class ProductController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'product' => 'required|unique:'.$product->getTable()
+            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
+            'service_id' => 'required',
+            'product' => 'required'
         ]);
 
         $product = $product->create($request->all());
@@ -98,7 +101,9 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'product' => 'required|unique:'.$product->getTable().',product,'.$product->id
+            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
+            'service_id' => 'required',
+            'product' => 'required'
         ]);
 
         $product->update($request->all());
@@ -128,6 +133,8 @@ class ProductController extends Controller
         $form = new \App\Adminux\Form($product);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
+            $form->select([ 'label' => 'Partner', 'allows' => (new AdminPartnerController)->getEnabledPartnersKeys() ]),
+            $form->select([ 'label' => 'Service' ]),
             $form->text([ 'label' => 'Product' ]),
         ]);
 
