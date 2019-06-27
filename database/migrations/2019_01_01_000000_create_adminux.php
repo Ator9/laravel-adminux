@@ -111,7 +111,7 @@ class CreateAdminux extends Migration
 
         Schema::create('accounts', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('partner_id')->unsigned()->nullable();
+            $table->mediumInteger('partner_id')->unsigned();
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
