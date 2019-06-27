@@ -1,11 +1,11 @@
 <?php
 $config = [
     'navigation'  => [
-        'enabled' => false,
+        'enabled' => true,
         'name'    => 'Products',
         'icon'    => 'chrome', // Feather icons
         'submenu' => [ // dir url => name
-
+            'products_plan' => 'Plans',
         ]
     ]
 ];

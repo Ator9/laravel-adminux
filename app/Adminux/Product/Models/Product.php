@@ -15,7 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product'
+        'partner_id', 'service_id', 'product'
     ];
 
     /**
@@ -28,10 +28,18 @@ class Product extends Model
     ];
 
     /**
-     * Get the partners for the product.
+     * Get the partner.
      */
-    public function partners()
+    public function partner()
     {
-        return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->whereNull('partner_product.deleted_at');
+        return $this->belongsTo('App\Adminux\Partner\Models\Partner')->withTrashed();
+    }
+
+    /**
+     * Get the service.
+     */
+    public function service()
+    {
+        return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
     }
 }

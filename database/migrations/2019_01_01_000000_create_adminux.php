@@ -91,7 +91,11 @@ class CreateAdminux extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->string('product', 100)->default('')->unique();
+            $table->mediumInteger('partner_id')->unsigned();
+            $table->foreign('partner_id')->references('id')->on('partners');
+            $table->mediumInteger('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->string('product', 100)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

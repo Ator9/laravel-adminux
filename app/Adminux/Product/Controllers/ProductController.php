@@ -19,16 +19,22 @@ class ProductController extends Controller
     {
         if(request()->ajax()) return Datatables::of($product::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('partner', function($row) { return @$row->partner->partner; })
+            ->addColumn('service', function($row) { return @$row->service->service; })
             ->rawColumns(['id2'])
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
+                        <th style="min-width:120px">Partner</th>
+                        <th style="min-width:300px">Service</th>
                         <th class="w-75">Product</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
+                          { data: "partner", name: "partner" },
+                          { data: "service", name: "service" },
                           { data: "product", name: "product" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
