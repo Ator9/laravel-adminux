@@ -27,6 +27,9 @@ return [
     'role_id' => 'Rol',
     'search' => 'Buscar',
     'select' => 'Seleccionar',
+    'service' => 'Servicio',
+    'service_id' => 'Servicio',
+    'services' => 'Servicios',
     'superuser' => 'Super Usuario',
     'updated_at' => 'Fecha Actualización',
 ];

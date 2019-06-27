@@ -27,6 +27,9 @@ return [
     'role_id' => 'Role',
     'search' => 'Search',
     'select' => 'Select',
+    'service' => 'Service',
+    'service_id' => 'Service',
+    'services' => 'Services',
     'superuser' => 'Superuser',
     'updated_at' => 'Date Updated',
 ];
