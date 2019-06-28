@@ -28,7 +28,7 @@ class ProductController extends Controller
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Product</th>
-                        <th style="min-width:300px">Service</th>
+                        <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
