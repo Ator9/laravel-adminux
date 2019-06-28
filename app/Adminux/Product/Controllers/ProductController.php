@@ -4,7 +4,6 @@ namespace App\Adminux\Product\Controllers;
 
 use App\Adminux\Product\Models\Product;
 use App\Adminux\Helper;
-use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -18,7 +17,7 @@ class ProductController extends Controller
      */
     public function index(Product $product)
     {
-        if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', (new AdminPartnerController)->getSelectedPartners()))
+        if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', Helper::getSelectedPartners()))
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('service', function($row) { return @$row->service->service; })
@@ -60,7 +59,7 @@ class ProductController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
+            'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
             'service_id' => 'required',
             'product' => 'required'
         ]);
@@ -130,7 +129,7 @@ class ProductController extends Controller
         $form = new \App\Adminux\Form($product);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => (new AdminPartnerController)->getEnabledPartnersKeys() ]),
+            $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => Helper::getEnabledPartnersKeys() ]),
             $form->select([ 'label' => 'Service', 'editable' => false ]),
             $form->text([ 'label' => 'Product' ]),
         ]);

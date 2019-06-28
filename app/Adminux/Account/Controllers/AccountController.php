@@ -4,7 +4,6 @@ namespace App\Adminux\Account\Controllers;
 
 use App\Adminux\Account\Models\Account;
 use App\Adminux\Helper;
-use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -19,7 +18,7 @@ class AccountController extends Controller
      */
     public function index(Account $account)
     {
-        if(request()->ajax()) return Datatables::of($account::query()->whereIn('partner_id', (new AdminPartnerController)->getSelectedPartners()))
+        if(request()->ajax()) return Datatables::of($account::query()->whereIn('partner_id', Helper::getSelectedPartners()))
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('active2', 'adminux.components.datatables.status')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
@@ -62,7 +61,7 @@ class AccountController extends Controller
     public function store(Request $request, Account $account)
     {
         $request->validate([
-            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
+            'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
             'email' => 'required|email|unique:'.$account->getTable().',email,NULL,NULL,partner_id,'.$request->partner_id,
             'password' => 'required',
             'account' => 'nullable|unique:'.$account->getTable().',account,NULL,NULL,partner_id,'.$request->partner_id,
@@ -108,7 +107,7 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         $request->validate([
-            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
+            'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
             'email' => 'required|email|unique:'.$account->getTable().',email,'.$account->id.',id,partner_id,'.$request->partner_id,
             'account' => 'nullable|unique:'.$account->getTable().',account,'.$account->id.',id,partner_id,'.$request->partner_id,
             'active' => 'in:Y,""',
@@ -148,7 +147,7 @@ class AccountController extends Controller
         $form = new \App\Adminux\Form($account);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Partner', 'allows' => (new AdminPartnerController)->getEnabledPartnersKeys() ]),
+            $form->select([ 'label' => 'Partner', 'allows' => Helper::getEnabledPartnersKeys() ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'Account' ]),

@@ -4,6 +4,27 @@ namespace App\Adminux;
 
 class Helper
 {
+    static function getEnabledPartners()
+    {
+        return auth('adminux')->user()->partners();
+    }
+
+    static function getEnabledPartnersKeys()
+    {
+        return self::getEnabledPartners()->get()->keyBy('id')->keys()->toArray();
+    }
+
+    static function getSelectedPartners()
+    {
+        return in_array(session('partner_id'), self::getEnabledPartnersKeys()) ? [ session('partner_id') ] : self::getEnabledPartnersKeys();
+    }
+
+    // Validates if the admin is allowed to manipulate the selected partner:
+    static function validatePartner($model)
+    {
+        abort_if(!in_array($model->partner_id, self::getEnabledPartnersKeys()), 403);
+    }
+
     static function getNavLeft()
     {
         $data = [];
@@ -60,11 +81,5 @@ class Helper
     {
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($model));
         \Route::resource($uri_prefix.strtolower($model), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
-    }
-
-    // Validates if the admin is allowed to manipulate the selected partner:
-    static function validatePartner($model)
-    {
-        abort_if(!in_array($model->partner_id, (new \App\Adminux\Admin\Controllers\AdminPartnerController)->getEnabledPartnersKeys()), 403);
     }
 }

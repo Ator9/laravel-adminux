@@ -10,7 +10,6 @@
 @yield('head')
 </head>
 <body>
-@inject('AdminPartnerController', 'App\Adminux\Admin\Controllers\AdminPartnerController')
 @inject('Helper', 'App\Adminux\Helper')
 @php $prefix = substr(request()->route()->getPrefix(), 1) @endphp
 @include('adminux.components.layout.navtop')

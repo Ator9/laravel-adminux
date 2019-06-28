@@ -49,29 +49,6 @@ class AdminPartnerController extends Controller
         ];
     }
 
-    public function setPartner()
-    {
-        if(in_array(request()->partner_id, $this->getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
-        else session(['partner_id' => '']);
-
-        return back();
-    }
-
-    public function getEnabledPartners()
-    {
-        return auth('adminux')->user()->partners();
-    }
-
-    public function getEnabledPartnersKeys()
-    {
-        return $this->getEnabledPartners()->get()->keyBy('id')->keys()->toArray();
-    }
-
-    public function getSelectedPartners()
-    {
-        return in_array(session('partner_id'), $this->getEnabledPartnersKeys()) ? [ session('partner_id') ] : $this->getEnabledPartnersKeys();
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -98,6 +75,14 @@ class AdminPartnerController extends Controller
     public function destroy($id)
     {
         \DB::table((new BaseModel)->partners()->getTable())->where('id', '=', $id)->delete();
+
+        return back();
+    }
+
+    static function setPartner()
+    {
+        if(in_array(request()->partner_id, \App\Adminux\Helper::getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
+        else session(['partner_id' => '']);
 
         return back();
     }
