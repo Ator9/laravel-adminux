@@ -5,7 +5,7 @@ $config = [
         'name'    => 'Products',
         'icon'    => 'box', // Feather icons
         'submenu' => [ // dir url => name
-            'products_plan' => 'Plans',
+            'product_plan' => 'Plans',
         ]
     ]
 ];
