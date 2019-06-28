@@ -101,13 +101,11 @@ class CreateAdminux extends Migration
         });
 
 
-        Schema::create('partner_product', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('partner_id')->unsigned();
-            $table->foreign('partner_id')->references('id')->on('partners');
             $table->mediumInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('name', 100)->nullable();
+            $table->string('plan', 100)->default('');
             $table->softDeletes();
             $table->timestamps();
         });
