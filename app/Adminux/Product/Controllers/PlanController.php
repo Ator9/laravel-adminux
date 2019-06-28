@@ -4,7 +4,6 @@ namespace App\Adminux\Product\Controllers;
 
 use App\Adminux\Product\Models\Plan;
 use App\Adminux\Helper;
-use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -18,7 +17,7 @@ class PlanController extends Controller
      */
     public function index(Plan $plan)
     {
-        if(request()->ajax()) return Datatables::of($plan::query())
+        if(request()->ajax()) return Datatables::of($plan::query()->whereIn('product_id', Helper::getEnabledProductsKeys()))
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('product', function($row) { return @$row->product->product; })
             ->rawColumns(['id2'])
@@ -57,8 +56,7 @@ class PlanController extends Controller
     public function store(Request $request, Plan $plan)
     {
         $request->validate([
-            // 'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
-            'product_id' => 'required',
+            'product_id' => 'required|in:'.implode(',', Helper::getEnabledProductsKeys()),
             'plan' => 'required'
         ]);
 
@@ -74,7 +72,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
-        // Helper::validatePartner($plan);
+        Helper::validateProduct($plan);
         return view('adminux.components.show')->withModel($plan);
     }
 
@@ -85,7 +83,7 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        // Helper::validatePartner($plan);
+        Helper::validateProduct($plan);
         return view('adminux.components.edit')->withModel($plan)->withFields($this->getFields($plan));
     }
 
@@ -111,7 +109,7 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-        // Helper::validatePartner($plan);
+        Helper::validateProduct($plan);
         $plan->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
@@ -127,7 +125,7 @@ class PlanController extends Controller
         $form = new \App\Adminux\Form($plan);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Product', 'editable' => false ]),
+            $form->select([ 'label' => 'Product', 'editable' => false, 'allows' => Helper::getEnabledProductsKeys() ]),
             $form->text([ 'label' => 'Plan' ]),
         ]);
 

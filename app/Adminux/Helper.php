@@ -25,6 +25,17 @@ class Helper
         abort_if(!in_array($model->partner_id, self::getEnabledPartnersKeys()), 403);
     }
 
+    static function getEnabledProductsKeys()
+    {
+        return (new \App\Adminux\Product\Models\Product)->query()->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
+    }
+
+    // Validates if the admin is allowed to manipulate the selected product:
+    static function validateProduct($model)
+    {
+        abort_if(!in_array($model->product_id, self::getEnabledProductsKeys()), 403);
+    }
+
     static function getNavLeft()
     {
         $data = [];
