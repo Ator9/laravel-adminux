@@ -47,7 +47,7 @@ class Form
             }
         } else $options = $params['options'];
 
-        $params['input'] = '<select class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">
+        $params['input'] = '<select class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" '.$this->getEditable($params).'>
                             <option value="">'.__('adminux.select').'...</option>
                             '.@implode('', $options).'
                             </select>';
@@ -83,6 +83,11 @@ class Form
                     <label class="'.$this->_label_cls.'" for="'.$this->getId($params).'">'.$params['label'].'</label>
                     <div class="'.$this->_input_cls.'">'.$params['input'].'</div>
                 </div>';
+    }
+
+    public function getEditable($params = [])
+    {
+        return ($this->_model->id && isset($params['editable']) && $params['editable'] === false) ? ' disabled' : '';
     }
 
     public function getId($params = [])

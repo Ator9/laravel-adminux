@@ -100,13 +100,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
-            'service_id' => 'required',
-            'product' => 'required'
-        ]);
+        $request->validate([ 'product' => 'required' ]);
 
-        $product->update($request->all());
+        $product->update($request->only(['product']));
 
         return redirect(route(explode('/', $request->path())[1].'.show', $product));
     }
@@ -134,8 +130,8 @@ class ProductController extends Controller
         $form = new \App\Adminux\Form($product);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Partner', 'allows' => (new AdminPartnerController)->getEnabledPartnersKeys() ]),
-            $form->select([ 'label' => 'Service' ]),
+            $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => (new AdminPartnerController)->getEnabledPartnersKeys() ]),
+            $form->select([ 'label' => 'Service', 'editable' => false ]),
             $form->text([ 'label' => 'Product' ]),
         ]);
 
