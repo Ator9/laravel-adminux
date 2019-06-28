@@ -56,9 +56,15 @@ class Helper
     }
 
     // Build route resource:
-    static function buildResource($model = '', $uri = '')
+    static function buildRouteResource($model = '', $uri_prefix = '')
     {
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($model));
-        \Route::resource($uri.strtolower($model), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
+        \Route::resource($uri_prefix.strtolower($model), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
+    }
+
+    // Validates if the admin is allowed to manipulate the selected partner:
+    static function validatePartner($model)
+    {
+        abort_if(!in_array($model->partner_id, (new \App\Adminux\Admin\Controllers\AdminPartnerController)->getEnabledPartnersKeys()), 403);
     }
 }

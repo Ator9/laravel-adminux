@@ -3,6 +3,7 @@
 namespace App\Adminux\Product\Controllers;
 
 use App\Adminux\Product\Models\Product;
+use App\Adminux\Helper;
 use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -76,8 +77,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        abort_if(!in_array($product->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
-
+        Helper::validatePartner($product);
         return view('adminux.components.show')->withModel($product);
     }
 
@@ -88,8 +88,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        abort_if(!in_array($product->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
-
+        Helper::validatePartner($product);
         return view('adminux.components.edit')->withModel($product)->withFields($this->getFields($product));
     }
 
@@ -119,8 +118,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        abort_if(!in_array($product->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
-
+        Helper::validatePartner($product);
         $product->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));

@@ -3,6 +3,7 @@
 namespace App\Adminux\Account\Controllers;
 
 use App\Adminux\Account\Models\Account;
+use App\Adminux\Helper;
 use App\Adminux\Admin\Controllers\AdminPartnerController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -83,8 +84,7 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        abort_if(!in_array($account->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
-
+        Helper::validatePartner($account);
         return view('adminux.components.show')->withModel($account);
     }
 
@@ -95,8 +95,7 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        abort_if(!in_array($account->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
-
+        Helper::validatePartner($account);
         return view('adminux.components.edit')->withModel($account)->withFields($this->getFields($account));
     }
 
@@ -133,8 +132,7 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        abort_if(!in_array($account->partner_id, (new AdminPartnerController)->getEnabledPartnersKeys()), 403);
-
+        Helper::validatePartner($account);
         $account->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
