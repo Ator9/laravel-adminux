@@ -38,8 +38,8 @@ class Partner extends Model
     /**
      * Get the products for the partner.
      */
-    public function products()
-    {
-        return $this->belongsToMany('App\Adminux\Product\Models\Product')->whereNull('partner_product.deleted_at');
-    }
+    // public function products()
+    // {
+    //     return $this->hasMany('App\Adminux\Product\Models\Product');
+    // }
 }
