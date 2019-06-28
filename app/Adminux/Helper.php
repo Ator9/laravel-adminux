@@ -30,6 +30,11 @@ class Helper
         return (new \App\Adminux\Product\Models\Product)->query()->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
     }
 
+    static function getSelectedProducts()
+    {
+        return (new \App\Adminux\Product\Models\Product)->query()->whereIn('partner_id', self::getSelectedPartners())->get()->keyBy('id')->keys()->toArray();
+    }
+
     // Validates if the admin is allowed to manipulate the selected product:
     static function validateProduct($model)
     {

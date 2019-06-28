@@ -17,7 +17,7 @@ class PlanController extends Controller
      */
     public function index(Plan $plan)
     {
-        if(request()->ajax()) return Datatables::of($plan::query()->whereIn('product_id', Helper::getEnabledProductsKeys()))
+        if(request()->ajax()) return Datatables::of($plan::query()->whereIn('product_id', Helper::getSelectedProducts()))
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->addColumn('product', function($row) { return @$row->product->product; })
             ->rawColumns(['id2'])
