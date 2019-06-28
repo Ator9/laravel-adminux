@@ -9,6 +9,8 @@ class Plan extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'products_plans';
+
     /**
      * The attributes that are mass assignable.
      *

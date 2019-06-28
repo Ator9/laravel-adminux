@@ -101,7 +101,7 @@ class CreateAdminux extends Migration
         });
 
 
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('products_plans', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');

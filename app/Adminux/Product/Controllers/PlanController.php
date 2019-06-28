@@ -18,10 +18,9 @@ class PlanController extends Controller
      */
     public function index(Plan $plan)
     {
-        if(request()->ajax()) return Datatables::of($plan::query()->whereIn('partner_id', (new AdminPartnerController)->getSelectedPartners()))
+        if(request()->ajax()) return Datatables::of($plan::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
-            ->addColumn('partner', function($row) { return @$row->partner->partner; })
-            ->addColumn('service', function($row) { return @$row->service->service; })
+            ->addColumn('product', function($row) { return @$row->product->product; })
             ->rawColumns(['id2'])
             ->toJson();
 
@@ -29,14 +28,12 @@ class PlanController extends Controller
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Plan</th>
-                        <th style="min-width:300px">Service</th>
-                        <th style="min-width:120px">Partner</th>
+                        <th style="min-width:300px">Product</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
+                          { data: "plan", name: "plan" },
                           { data: "product", name: "product" },
-                          { data: "service", name: "service" },
-                          { data: "partner", name: "partner" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -60,9 +57,9 @@ class PlanController extends Controller
     public function store(Request $request, Plan $plan)
     {
         $request->validate([
-            'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
-            'service_id' => 'required',
-            'product' => 'required'
+            // 'partner_id' => 'required|in:'.implode(',', (new AdminPartnerController)->getEnabledPartnersKeys()),
+            'product_id' => 'required',
+            'plan' => 'required'
         ]);
 
         $plan = $plan->create($request->all());
@@ -77,7 +74,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
-        Helper::validatePartner($plan);
+        // Helper::validatePartner($plan);
         return view('adminux.components.show')->withModel($plan);
     }
 
@@ -88,7 +85,7 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        Helper::validatePartner($plan);
+        // Helper::validatePartner($plan);
         return view('adminux.components.edit')->withModel($plan)->withFields($this->getFields($plan));
     }
 
@@ -100,9 +97,9 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        $request->validate([ 'product' => 'required' ]);
+        $request->validate([ 'plan' => 'required' ]);
 
-        $plan->update($request->only(['product']));
+        $plan->update($request->only(['plan']));
 
         return redirect(route(explode('/', $request->path())[1].'.show', $plan));
     }
@@ -114,7 +111,7 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-        Helper::validatePartner($plan);
+        // Helper::validatePartner($plan);
         $plan->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
@@ -130,8 +127,7 @@ class PlanController extends Controller
         $form = new \App\Adminux\Form($plan);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => (new AdminPartnerController)->getEnabledPartnersKeys() ]),
-            $form->select([ 'label' => 'Service', 'editable' => false ]),
+            $form->select([ 'label' => 'Product', 'editable' => false ]),
             $form->text([ 'label' => 'Plan' ]),
         ]);
 
