@@ -99,6 +99,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        Helper::validatePartner($product);
         $request->validate([ 'product' => 'required' ]);
 
         $product->update($request->only(['product']));
