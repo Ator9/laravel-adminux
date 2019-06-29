@@ -9,6 +9,7 @@ return [
     'create' => 'Crear',
     'create_new' => 'Crear Nuevo',
     'created_at' => 'Fecha Creación',
+    'currency' => 'Moneda',
     'delete' => 'Eliminar',
     'deleted_at' => 'Fecha Elminación',
     'details' => 'Detalles',

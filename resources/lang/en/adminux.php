@@ -9,6 +9,7 @@ return [
     'create' => 'Create',
     'create_new' => 'Create New',
     'created_at' => 'Date Created',
+    'currency' => 'Currency',
     'delete' => 'Delete',
     'deleted_at' => 'Date Deleted',
     'details' => 'Details',

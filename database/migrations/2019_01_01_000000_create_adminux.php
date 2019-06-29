@@ -81,9 +81,24 @@ class CreateAdminux extends Migration
         ]);
 
 
+        Schema::create('currencies', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->char('currency', 3)->default('')->unique();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+        DB::table('currencies')->insert([
+            ['currency' => 'USD', 'created_at' => Carbon::now()],
+            ['currency' => 'ARS', 'created_at' => Carbon::now()]
+        ]);
+
+
         Schema::create('services', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('service', 100)->default('')->unique();
+            $table->smallInteger('currency_id')->unsigned();
+            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->decimal('price', 9, 2)->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });
