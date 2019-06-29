@@ -88,8 +88,7 @@ class CreateAdminux extends Migration
             $table->timestamps();
         });
         DB::table('currencies')->insert([
-            ['currency' => 'USD', 'created_at' => Carbon::now()],
-            ['currency' => 'ARS', 'created_at' => Carbon::now()]
+            ['currency' => 'USD', 'created_at' => Carbon::now()]
         ]);
 
 
