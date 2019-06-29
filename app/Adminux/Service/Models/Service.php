@@ -28,6 +28,14 @@ class Service extends Model
     ];
 
     /**
+     * Get the currency.
+     */
+    public function currency()
+    {
+        return $this->belongsTo('App\Adminux\Admin\Models\Currency');
+    }
+
+    /**
      * Get the partners for the product.
      */
     // public function partners()
