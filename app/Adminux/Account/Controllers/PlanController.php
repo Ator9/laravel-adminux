@@ -67,7 +67,7 @@ class PlanController extends Controller
      */
     public function store(Request $request, Plan $plan)
     {
-        Helper::validateAccount($plan);
+        Helper::validateAccount($request);
         $request->validate([
             'account_id' => 'required',
             'plan_id' => 'required|in:'.implode(',', Helper::getEnabledProductsKeys()),
@@ -111,7 +111,7 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        Helper::validateAccount($plan);
+        Helper::validateAccount($request);
         $request->validate([
             'account_id' => 'required',
             'active' => 'in:Y,""',

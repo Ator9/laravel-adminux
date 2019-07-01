@@ -103,7 +103,7 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        Helper::validateProduct($plan);
+        // Helper::validateProduct($request);
         $request->validate(['plan' => 'required']);
 
         $plan->update($request->only(['plan']));
