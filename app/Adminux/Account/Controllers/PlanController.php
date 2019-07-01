@@ -117,7 +117,7 @@ class PlanController extends Controller
 
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
-        $plan->update($request->all());
+        $plan->update($request->only(['active']));
 
         return redirect(route(explode('/', $request->path())[1].'.show', $plan));
     }
