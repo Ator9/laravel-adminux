@@ -52,6 +52,16 @@ class Helper
         abort_if(!in_array($model->account_id, self::getEnabledAccountsKeys()), 403);
     }
 
+    // Validates if the admin is allowed to manipulate the selected account with the selected product (must be same partner):
+    static function validateAccountWithProduct($account_id = 0, $plan_id = 0)
+    {
+        $account = \App\Adminux\Account\Models\Account::find($account_id);
+        $plan = \App\Adminux\Product\Models\Plan::find($plan_id);
+        $product = \App\Adminux\Product\Models\Product::find($plan->product_id);
+
+        abort_if($account->partner_id != $product->partner_id, 403);
+    }
+
     static function getNavLeft()
     {
         $data = [];
