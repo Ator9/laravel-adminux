@@ -141,6 +141,18 @@ class CreateAdminux extends Migration
             $table->unique(['partner_id', 'email'], 'partner_email');
             $table->unique(['partner_id', 'account'], 'partner_account');
         });
+
+
+        Schema::create('accounts_plans', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->mediumInteger('account_id')->unsigned();
+            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->mediumInteger('plan_id')->unsigned();
+            $table->foreign('plan_id')->references('id')->on('products_plans');
+            $table->enum('active', ['N', 'Y'])->default('N');
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -3,6 +3,7 @@
 return [
 
     'account' => 'Account',
+    'account_id' => 'Account',
     'active' => 'Active',
     'add' => 'Add',
     'cancel' => 'Cancel',
