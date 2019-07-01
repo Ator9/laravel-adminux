@@ -41,6 +41,17 @@ class Helper
         abort_if(!in_array($model->product_id, self::getEnabledProductsKeys()), 403);
     }
 
+    static function getEnabledAccountsKeys()
+    {
+        return (new \App\Adminux\Account\Models\Account)->query()->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
+    }
+
+    // Validates if the admin is allowed to manipulate the selected account:
+    static function validateAccount($model)
+    {
+        abort_if(!in_array($model->account_id, self::getEnabledAccountsKeys()), 403);
+    }
+
     static function getNavLeft()
     {
         $data = [];

@@ -67,8 +67,9 @@ class PlanController extends Controller
      */
     public function store(Request $request, Plan $plan)
     {
+        Helper::validateAccount($plan);
         $request->validate([
-            'account_id' => 'required|in:'.implode(',', Helper::getEnabledProductsKeys()),
+            'account_id' => 'required',
             'plan_id' => 'required|in:'.implode(',', Helper::getEnabledProductsKeys()),
             'active' => 'in:Y,""',
         ]);
@@ -87,7 +88,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
-        // Helper::validateProduct($plan);
+        Helper::validateAccount($plan);
         return view('adminux.components.show')->withModel($plan);
     }
 
@@ -98,7 +99,7 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        // Helper::validateProduct($plan);
+        Helper::validateAccount($plan);
         return view('adminux.components.edit')->withModel($plan)->withFields($this->getFields($plan));
     }
 
@@ -110,14 +111,15 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        // Helper::validateProduct($plan);
+        Helper::validateAccount($plan);
         $request->validate([
+            'account_id' => 'required',
             'active' => 'in:Y,""',
         ]);
 
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
-        $plan->update($request->only(['active']));
+        $plan->update($request->only(['account_id','active']));
 
         return redirect(route(explode('/', $request->path())[1].'.show', $plan));
     }
@@ -129,7 +131,7 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-        // Helper::validateProduct($plan);
+        Helper::validateAccount($plan);
         $plan->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
@@ -145,7 +147,7 @@ class PlanController extends Controller
         $form = new \App\Adminux\Form($plan);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Account', 'editable' => false ]),
+            $form->select([ 'label' => 'Account', 'allows' => Helper::getEnabledAccountsKeys() ]),
             $form->select([ 'label' => 'Plan', 'editable' => false ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
