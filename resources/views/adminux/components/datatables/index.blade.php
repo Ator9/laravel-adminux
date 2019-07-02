@@ -45,7 +45,13 @@ $(document).ready(function() {
            search: '',
            searchPlaceholder: '{{ __('adminux.search') }}...'
         },
-        initComplete: function(settings, json) { feather.replace(); }
+        initComplete: function(settings, json) {
+            feather.replace();
+
+            $('.dt_link_box').addClass('d-block');
+            $('.dt_link_box').css('margin', '-'+$('.dt_link_box').parent().css('padding'));
+            $('.dt_link_box').css('padding', $('.dt_link_box').parent().css('padding'));
+        }
     });
 
     @empty($datatables['disableCreateButton'])
