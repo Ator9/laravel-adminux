@@ -8,7 +8,19 @@
 
 <div class="card my-3">
     <div class="card-header">
-        <h5 class="mb-0">@if(isset($datatables['title'])) {{ $datatables['title'] }} @else {{ ucfirst($datatables['model']->getRelated()->getTable()) }} @endif</h5>
+        <h5 class="mb-0">
+            @if(isset($datatables['title']))
+                {{ $datatables['title'] }}
+            @elseif(str_contains($datatables['model']->getRelated()->getTable(), '_') && $parts = explode('_', $datatables['model']->getRelated()->getTable()))
+                @if(str_contains($parts[0], basename(get_class($datatables['model']->getRelated()))))
+                    {{ ucfirst($parts[0]) }}
+                @else
+                    {{ ucfirst($parts[1]) }}
+                @endif
+            @else
+                {{ ucfirst($datatables['model']->getRelated()->getTable()) }}
+            @endif
+        </h5>
     </div>
     <div class="card-body">
         <div class="table-responsive">
