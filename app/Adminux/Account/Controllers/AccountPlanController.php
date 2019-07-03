@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Adminux\Product\Controllers;
+namespace App\Adminux\Account\Controllers;
 
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
-class PlanProductController extends Controller
+class AccountPlanController extends Controller
 {
     public function getIndex($obj)
     {
@@ -13,7 +13,7 @@ class PlanProductController extends Controller
 
         if(request()->ajax()) {
             $dt = Datatables::of($model)->addColumn('id2', function($row) use ($obj) {
-                $params['action'] = url(request()->route()->getPrefix().'/product_plan/'.$row->id);
+                $params['action'] = url(request()->route()->getPrefix().'/account_plan/'.$row->id);
                 $id = $row->id;
                 return view('adminux.components.datatables.link_show_link', compact('params', 'id'));
             });
@@ -25,10 +25,10 @@ class PlanProductController extends Controller
             'model' => $model,
             'dom' => 'rt<"float-left"i>',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-100">'.__('adminux.plan').'</th>
+                        <th class="w-100">'.__('adminux.active').'</th>
                         <th style="min-width:120px">Created At</th>',
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "plan", name: "plan" },
+                          { data: "active", name: "active" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Adminux\Account\Controllers;
 
 use App\Adminux\Account\Models\Account;
+use App\Adminux\Account\Controllers\AccountPlanController;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -84,7 +85,10 @@ class AccountController extends Controller
     public function show(Account $account)
     {
         Helper::validatePartner($account);
-        return view('adminux.components.show')->withModel($account);
+
+        if(request()->ajax()) return (new AccountPlanController)->getIndex($account);
+
+        return view('adminux.components.show')->withModel($account)->withMany([(new AccountPlanController)->getIndex($account)]);
     }
 
     /**

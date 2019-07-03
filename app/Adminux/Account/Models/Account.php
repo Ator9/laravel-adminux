@@ -36,4 +36,12 @@ class Account extends Authenticatable
     {
         return $this->belongsTo('App\Adminux\Partner\Models\Partner')->withTrashed();
     }
+
+    /**
+     * Get the plans.
+     */
+    public function plans()
+    {
+        return $this->hasMany('App\Adminux\Account\Models\Plan');
+    }
 }
