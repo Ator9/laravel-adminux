@@ -10,19 +10,12 @@ class PlanProductController extends Controller
 {
     public function getIndex($obj)
     {
-        if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {
-            $model = $obj->plans();
-            $title = __('adminux.plan');
-            $column = 'plan';
-        } else {
-            $model = $obj->products();
-            $title = 'Product';
-            $column = 'product';
-        }
+        $model = $obj->plans();
+        $column = 'plan';
 
         if(request()->ajax()) {
             $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
-                $params['action'] = url(request()->route()->getPrefix().'/adminpartner/'.$row->id);
+                $params['action'] = '';
                 $params['title']  = 'Delete '.$row->{$column}.'?';
                 return view('adminux.components.datatables.link_delete_button', compact('params'));
             });
@@ -31,8 +24,8 @@ class PlanProductController extends Controller
 
         return [
             'model' => $model,
-            'dom' => '<"float-left">rt<"float-left"i>',
-            'thead' => '<th class="w-100">'.$title.'</th>
+            'dom' => 'rt<"float-left"i>',
+            'thead' => '<th class="w-100">'.__('adminux.plan').'</th>
                         <th style="min-width:100px">Action</th>',
             'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
