@@ -53,7 +53,7 @@ class CurrencyController extends Controller
     public function store(Request $request, Currency $currency)
     {
         $request->validate([
-            'currency'   => 'required|max:3|unique:'.$currency->getTable(),
+            'currency' => 'required|max:3|unique:'.$currency->getTable(),
         ]);
 
         $currency = $currency->create($request->all());
