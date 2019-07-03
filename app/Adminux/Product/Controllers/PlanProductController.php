@@ -2,7 +2,6 @@
 
 namespace App\Adminux\Product\Controllers;
 
-use App\Adminux\Product\Models\Product as BaseModel;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
@@ -14,21 +13,24 @@ class PlanProductController extends Controller
         $column = 'plan';
 
         if(request()->ajax()) {
-            $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
-                $params['action'] = '';
-                $params['title']  = 'Delete '.$row->{$column}.'?';
-                return view('adminux.components.datatables.link_delete_button', compact('params'));
+            $dt = Datatables::of($model)->addColumn('id2', function($row) use ($obj) {
+                $params['action'] = url(request()->route()->getPrefix().'/product_plan/'.$row->id);
+                $id = $row->id;
+                return view('adminux.components.datatables.link_show_link', compact('params', 'id'));
             });
-            return $dt->rawColumns(['actions'])->toJson();
+
+            return $dt->rawColumns(['id2'])->toJson();
         }
 
         return [
             'model' => $model,
             'dom' => 'rt<"float-left"i>',
-            'thead' => '<th class="w-100">'.__('adminux.plan').'</th>
-                        <th style="min-width:100px">Action</th>',
-            'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
-                          { data: "actions", name: "actions", className: "text-center", orderable: false }'
+            'thead' => '<th style="min-width:30px">ID</th>
+                        <th class="w-100">'.__('adminux.plan').'</th>
+                        <th style="min-width:120px">Created At</th>',
+            'columns' => '{ data: "id2", name: "id", className: "text-center" },
+                          { data: "'.$column.'", name: "'.$column.'" },
+                          { data: "created_at", name: "created_at", className: "text-center" }'
         ];
     }
 }
