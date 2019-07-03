@@ -42,4 +42,12 @@ class Product extends Model
     {
         return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
     }
+
+    /**
+     * Get the plans.
+     */
+    public function plans()
+    {
+        return $this->hasMany('App\Adminux\Product\Models\Plan');
+    }
 }

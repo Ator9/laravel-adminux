@@ -3,6 +3,7 @@
 namespace App\Adminux\Product\Controllers;
 
 use App\Adminux\Product\Models\Product;
+use App\Adminux\Product\Controllers\PlanProductController;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -77,7 +78,10 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         Helper::validatePartner($product);
-        return view('adminux.components.show')->withModel($product);
+
+        if(request()->ajax()) return (new PlanProductController)->getIndex($product);
+
+        return view('adminux.components.show')->withModel($product)->withMany([(new PlanProductController)->getIndex($product)]);
     }
 
     /**
