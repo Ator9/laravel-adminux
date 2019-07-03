@@ -31,6 +31,7 @@ class PlanProductController extends Controller
 
         return [
             'model' => $model,
+            'dom' => '<"float-left">rt<"float-left"i>',
             'thead' => '<th class="w-100">'.$title.'</th>
                         <th style="min-width:100px">Action</th>',
             'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
