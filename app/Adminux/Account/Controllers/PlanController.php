@@ -24,9 +24,10 @@ class PlanController extends Controller
             ->join('services', 'services.id', '=', 'products.service_id')
             ->join('accounts', 'accounts.id', '=', 'accounts_plans.account_id')
             ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
-            ->select('accounts_plans.id','accounts.email','products_plans.plan','products.product','services.service','partners.partner','accounts_plans.created_at'))
+            ->select('accounts_plans.id','accounts_plans.active','accounts.email','products_plans.plan','products.product','services.service','partners.partner','accounts_plans.created_at'))
+            ->addColumn('active2', 'adminux.components.datatables.status')
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
-            ->rawColumns(['id2'])
+            ->rawColumns(['id2', 'active2'])
             ->toJson();
 
         return view('adminux.components.datatables.index')->withDatatables([
@@ -37,6 +38,7 @@ class PlanController extends Controller
                         <th style="min-width:120px">Product</th>
                         <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Partner</th>
+                        <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "accounts_plans.id", className: "text-center" },
@@ -45,6 +47,7 @@ class PlanController extends Controller
                           { data: "product", name: "products.product" },
                           { data: "service", name: "services.service" },
                           { data: "partner", name: "partners.partner" },
+                          { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "accounts_plans.created_at", className: "text-center" }'
         ]);
     }
