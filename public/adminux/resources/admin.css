@@ -7,7 +7,7 @@ body{font-size:.875rem}
  * Sidebar
  */
 .sidebar {
-    font-size: 110%;
+    /* font-size: 110%; */
     position: fixed;
     top: 0;
     bottom: 0;
