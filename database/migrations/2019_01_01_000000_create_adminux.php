@@ -54,6 +54,7 @@ class CreateAdminux extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('partner', 100)->default('')->unique();
+            $table->text('config')->nullable()->comment('json config list like languages, main emails, etc');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
@@ -163,12 +164,13 @@ class CreateAdminux extends Migration
     public function down()
     {
         Schema::dropIfExists('accounts');
+        Schema::dropIfExists('accounts_plans');
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
         Schema::dropIfExists('partners');
-        Schema::dropIfExists('partner_product');
         Schema::dropIfExists('products');
+        Schema::dropIfExists('products_plans');
         Schema::dropIfExists('services');
     }
 }

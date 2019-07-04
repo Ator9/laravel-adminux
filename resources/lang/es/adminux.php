@@ -7,6 +7,7 @@ return [
     'active' => 'Activo',
     'add' => 'Agregar',
     'cancel' => 'Cancelar',
+    'config' => 'Configuración',
     'create' => 'Crear',
     'create_new' => 'Crear Nuevo',
     'created_at' => 'Fecha Creación',
