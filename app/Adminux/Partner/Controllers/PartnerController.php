@@ -61,6 +61,7 @@ class PartnerController extends Controller
             'active' => 'in:Y,""',
         ]);
 
+        if($request->filled('config')) $request->merge(['config' => json_encode($request->config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $partner = $partner->create($request->all());
@@ -109,6 +110,7 @@ class PartnerController extends Controller
             'active' => 'in:Y,""',
         ]);
 
+        if($request->filled('config')) $request->merge(['config' => json_encode($request->config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $partner->update($request->all());
@@ -139,6 +141,7 @@ class PartnerController extends Controller
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Partner' ]),
+            $form->moduleConfig([ 'label' => 'Config' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 

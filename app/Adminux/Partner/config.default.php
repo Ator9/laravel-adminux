@@ -7,5 +7,8 @@ $config = [
         'submenu' => [ // dir url => name
 
         ]
+    ],
+    'config' => [ // 'lang' => 'Language code (en, es).',
+        
     ]
 ];

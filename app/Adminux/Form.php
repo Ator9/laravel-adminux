@@ -29,6 +29,26 @@ class Form
         return $this->getFormGroup($params);
     }
 
+    public function moduleConfig($params)
+    {
+        $path = (!empty($params['path'])) ? $params['path'] : basename(get_class($this->_model));
+        $config = \App\Adminux\Helper::getConfig($path);
+
+        if(!empty($config['config'])) {
+            $values = json_decode($this->getValue($params), true);
+            foreach($config['config'] as $key => $desc) {
+                $params['input'][] = '<tr>
+                                        <td>'.$key.'</td>
+                                        <td class="w-50"><input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'['.$key.']" value="'.@$values[$key].'"></td>
+                                        <td class="pl-3"><small>'.$desc.'</small></td>
+                                    </tr>';
+            }
+
+            $params['input'] = '<table class="w-100">'.implode('<br>', $params['input']).'</table>';
+            return $this->getFormGroup($params);
+        }
+    }
+
     public function password($params)
     {
         $params['input'] = '<input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">';
