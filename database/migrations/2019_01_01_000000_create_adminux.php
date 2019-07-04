@@ -59,7 +59,7 @@ class CreateAdminux extends Migration
             $table->timestamps();
         });
         DB::table('partners')->insert([
-            'partner'    => 'AdminUX',
+            'partner'    => 'Adminux',
             'active'     => 'Y',
             'created_at' => Carbon::now()
         ]);
