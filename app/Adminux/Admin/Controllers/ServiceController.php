@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Service\Controllers;
+namespace App\Adminux\Admin\Controllers;
 
-use App\Adminux\Service\Models\Service;
+use App\Adminux\Admin\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
