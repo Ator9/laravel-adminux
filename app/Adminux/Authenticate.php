@@ -15,6 +15,8 @@ class Authenticate
     {
         if(auth('adminux')->check()) {
 
+            \App::setLocale(auth('adminux')->user()->language->language);
+
             // Live check if active admin:
             if(auth('adminux')->user()->active == 'Y') return $next($request);
             else auth('adminux')->logout();
