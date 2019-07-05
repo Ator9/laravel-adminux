@@ -20,6 +20,8 @@ return [
     'email' => 'E-mail',
     'firstname' => 'First Name',
     'id' => 'ID',
+    'language' => 'Language',
+    'language_id' => 'Language',
     'lastname' => 'Last Name',
     'last_login_at' => 'Date Last Login',
     'last_login_ip' => 'IP Last Login',

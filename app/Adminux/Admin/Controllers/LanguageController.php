@@ -2,21 +2,21 @@
 
 namespace App\Adminux\Admin\Controllers;
 
-use App\Adminux\Admin\Models\Currency;
+use App\Adminux\Admin\Models\Language;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
-class CurrencyController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Currency $currency)
+    public function index(Language $language)
     {
-        if(request()->ajax()) return Datatables::of($currency::query())
+        if(request()->ajax()) return Datatables::of($language::query())
             ->addColumn('id2', 'adminux.components.datatables.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
@@ -24,11 +24,11 @@ class CurrencyController extends Controller
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Currency</th>
+                        <th class="w-75">Language</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "currency", name: "currency" },
+                          { data: "language", name: "language" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -38,9 +38,9 @@ class CurrencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Currency $currency)
+    public function create(Language $language)
     {
-        return view('adminux.components.create')->withModel($currency)->withFields($this->getFields($currency));
+        return view('adminux.components.create')->withModel($language)->withFields($this->getFields($language));
     }
 
     /**
@@ -49,15 +49,15 @@ class CurrencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Currency $currency)
+    public function store(Request $request, Language $language)
     {
         $request->validate([
-            'currency' => 'required|max:3|unique:'.$currency->getTable(),
+            'language' => 'required|max:5|unique:'.$language->getTable(),
         ]);
 
-        $currency = $currency->create($request->all());
+        $language = $language->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $currency));
+        return redirect(route(explode('/', $request->path())[1].'.show', $language));
     }
 
     /**
@@ -65,9 +65,9 @@ class CurrencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Currency $currency)
+    public function show(Language $language)
     {
-        return view('adminux.components.show')->withModel($currency);
+        return view('adminux.components.show')->withModel($language);
     }
 
     /**
@@ -75,9 +75,9 @@ class CurrencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Currency $currency)
+    public function edit(Language $language)
     {
-        return view('adminux.components.edit')->withModel($currency)->withFields($this->getFields($currency));
+        return view('adminux.components.edit')->withModel($language)->withFields($this->getFields($language));
     }
 
     /**
@@ -86,15 +86,15 @@ class CurrencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Currency $currency)
+    public function update(Request $request, Language $language)
     {
         $request->validate([
-            'currency'   => 'required|max:3|unique:'.$currency->getTable().',currency,'.$currency->id,
+            'language'   => 'required|max:5|unique:'.$language->getTable().',language,'.$language->id,
         ]);
 
-        $currency->update($request->all());
+        $language->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $currency));
+        return redirect(route(explode('/', $request->path())[1].'.show', $language));
     }
 
     /**
@@ -102,9 +102,9 @@ class CurrencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Currency $currency)
+    public function destroy(Language $language)
     {
-        $currency->delete();
+        $language->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
@@ -114,12 +114,12 @@ class CurrencyController extends Controller
      *
      * @return Array
      */
-    public function getFields(Currency $currency)
+    public function getFields(Language $language)
     {
-        $form = new \App\Adminux\Form($currency);
+        $form = new \App\Adminux\Form($language);
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
-            $form->text([ 'label' => 'Currency' ]),
+            $form->text([ 'label' => 'Language' ]),
         ]);
 
         return $form->getFields();

@@ -51,16 +51,31 @@ class CreateAdminux extends Migration
         ]);
 
 
+        Schema::create('languages', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->char('language', 5)->default('')->unique();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+        DB::table('languages')->insert([
+            ['language' => 'en', 'created_at' => Carbon::now()],
+            ['language' => 'es', 'created_at' => Carbon::now()],
+        ]);
+
+
         Schema::create('partners', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('partner', 100)->default('')->unique();
-            $table->text('config')->nullable()->comment('json config list like languages, main emails, etc');
+            $table->smallInteger('language_id')->unsigned();
+            $table->foreign('language_id')->references('id')->on('languages');
+            $table->text('config')->nullable()->comment('json config list');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
         });
         DB::table('partners')->insert([
             'partner'    => 'Adminux',
+            'language_id' => 1,
             'active'     => 'Y',
             'created_at' => Carbon::now()
         ]);
@@ -168,6 +183,8 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
+        Schema::dropIfExists('currencies');
+        Schema::dropIfExists('languages');
         Schema::dropIfExists('partners');
         Schema::dropIfExists('products');
         Schema::dropIfExists('products_plans');

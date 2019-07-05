@@ -15,7 +15,7 @@ class Partner extends Model
      * @var array
      */
     protected $fillable = [
-        'partner', 'config', 'active'
+        'language_id', 'partner', 'config', 'active'
     ];
 
     /**
@@ -33,6 +33,14 @@ class Partner extends Model
     public function admins()
     {
         return $this->belongsToMany('App\Adminux\Admin\Models\Admin')->withPivot('created_at');
+    }
+
+    /**
+     * Get the language.
+     */
+    public function language()
+    {
+        return $this->belongsTo('App\Adminux\Admin\Models\Language');
     }
 
     /**

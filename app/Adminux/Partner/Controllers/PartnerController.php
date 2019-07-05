@@ -58,6 +58,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'partner' => 'required|unique:'.$partner->getTable(),
+            'language_id' => 'required',
             'active' => 'in:Y,""',
         ]);
 
@@ -107,6 +108,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'partner' => 'required|unique:'.$partner->getTable().',partner,'.$partner->id,
+            'language_id' => 'required',
             'active' => 'in:Y,""',
         ]);
 
@@ -141,6 +143,7 @@ class PartnerController extends Controller
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Partner' ]),
+            $form->select([ 'label' => 'Language' ]),
             $form->moduleConfig([ 'label' => 'Config' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
