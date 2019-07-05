@@ -40,7 +40,7 @@ class Partner extends Model
      */
     public function language()
     {
-        return $this->belongsTo('App\Adminux\Admin\Models\Language');
+        return $this->belongsTo('App\Adminux\Admin\Models\Language')->withTrashed();
     }
 
     /**
