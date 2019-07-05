@@ -63,7 +63,7 @@ class Form
                 if(isset($params['allows']) && !in_array($val->id, $params['allows'])) continue;
 
                 $sel = ($val->id == $this->getValue($params)) ? ' selected' : '';
-                $options[] = '<option value="'.$val->id.'"'.$sel.'>'.$val->id.' > '.$val->{strtolower($params['label'])}.'</option>';
+                $options[] = '<option value="'.$val->id.'"'.$sel.'>'.$val->id.' - '.$val->{strtolower($params['label'])}.'</option>';
             }
         } else $options = $params['options'];
 
