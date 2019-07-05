@@ -64,6 +64,7 @@ class AdminController extends Controller
         $request->validate([
             'email'    => 'required|email|unique:'.$admin->getTable(),
             'password' => 'required',
+            'language_id' => 'required',
             'active'   => 'in:Y,""',
         ]);
 
@@ -109,6 +110,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'email'    => 'required|email|unique:'.$admin->getTable().',email,'.$admin->id,
+            'language_id' => 'required',
             'active'   => 'in:Y,""',
         ]);
 
@@ -152,6 +154,7 @@ class AdminController extends Controller
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),
             $form->text([ 'label' => 'Last Name' ]),
+            $form->select([ 'label' => 'Language' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 

@@ -17,7 +17,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'firstname', 'lastname', 'role_id', 'active'
+        'email', 'password', 'firstname', 'lastname', 'language_id', 'role_id', 'active'
     ];
 
     /**
@@ -43,5 +43,13 @@ class Admin extends Authenticatable
     public function role()
     {
         return $this->belongsTo('App\Adminux\Admin\Models\Role');
+    }
+
+    /**
+     * Get the language.
+     */
+    public function language()
+    {
+        return $this->belongsTo('App\Adminux\Admin\Models\Language')->withTrashed();
     }
 }

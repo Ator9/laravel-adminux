@@ -25,32 +25,6 @@ class CreateAdminux extends Migration
         ]);
 
 
-        Schema::create('admins', function (Blueprint $table) {
-            $table->mediumIncrements('id');
-            $table->smallInteger('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->references('id')->on('admins_roles');
-            $table->string('email', 75)->default('')->unique();
-            $table->string('password')->default('');
-            $table->string('firstname', 75)->default('');
-            $table->string('lastname', 75)->default('');
-            $table->enum('superuser', ['N', 'Y'])->default('N');
-            $table->enum('active', ['N', 'Y'])->default('N');
-            $table->rememberToken();
-            $table->string('last_login_ip', 75)->default('');
-            $table->timestamp('last_login_at')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-        });
-        DB::table('admins')->insert([
-            'email'      => 'admin@localhost',
-            'password'   => '$2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..', // test
-            'role_id'    => 1,
-            'superuser'  => 'Y',
-            'active'     => 'Y',
-            'created_at' => Carbon::now() // DB::raw('now()')
-        ]);
-
-
         Schema::create('languages', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->char('language', 5)->default('')->unique();
@@ -60,6 +34,35 @@ class CreateAdminux extends Migration
         DB::table('languages')->insert([
             ['language' => 'en', 'created_at' => Carbon::now()],
             ['language' => 'es', 'created_at' => Carbon::now()],
+        ]);
+
+
+        Schema::create('admins', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->smallInteger('role_id')->unsigned()->nullable();
+            $table->foreign('role_id')->references('id')->on('admins_roles');
+            $table->string('email', 75)->default('')->unique();
+            $table->string('password')->default('');
+            $table->string('firstname', 75)->default('');
+            $table->string('lastname', 75)->default('');
+            $table->smallInteger('language_id')->unsigned();
+            $table->foreign('language_id')->references('id')->on('languages');
+            $table->enum('superuser', ['N', 'Y'])->default('N');
+            $table->enum('active', ['N', 'Y'])->default('N');
+            $table->rememberToken();
+            $table->string('last_login_ip', 75)->default('');
+            $table->timestamp('last_login_at')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+        DB::table('admins')->insert([
+            'email'       => 'admin@localhost',
+            'password'    => '$2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..', // test
+            'role_id'     => 1,
+            'language_id' => 1,
+            'superuser'   => 'Y',
+            'active'      => 'Y',
+            'created_at'  => Carbon::now() // DB::raw('now()')
         ]);
 
 
