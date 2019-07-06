@@ -2,6 +2,8 @@
 
 namespace App\Adminux;
 
+use Illuminate\Support\Str;
+
 class Helper
 {
     static function getEnabledPartners()
@@ -73,7 +75,7 @@ class Helper
             if(empty($config) || empty($config['navigation']['enabled'])) continue;
 
             $row = $config['navigation'];
-            $row['dir'] = $module;
+            $row['dir'] = Str::plural($module);
 
             $data[] = $row;
         }
@@ -90,7 +92,7 @@ class Helper
         else {
             $class = explode('_', next($array));
 
-            $config = self::getConfig(ucfirst($class[0]));
+            $config = self::getConfig(ucfirst(Str::singular($class[0])));
             if(!empty($config['navigation'])) {
                 $row = $config['navigation'];
 
@@ -117,6 +119,6 @@ class Helper
     static function buildRouteResource($model = '', $uri_prefix = '')
     {
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($model));
-        \Route::resource($uri_prefix.strtolower($model), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
+        \Route::resource($uri_prefix.Str::plural(strtolower($model)), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
     }
 }

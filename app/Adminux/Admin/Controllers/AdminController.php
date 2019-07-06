@@ -197,6 +197,6 @@ class AdminController extends Controller
         }
 
         return view('adminux.components.blank')
-        ->withBody('<iframe src="admin_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+        ->withBody('<iframe src="admins_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 }
