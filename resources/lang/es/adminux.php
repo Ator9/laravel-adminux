@@ -4,6 +4,7 @@ return [
 
     'account' => 'Cuenta',
     'account_id' => 'Cuenta',
+    'accounts' => 'Cuentas',
     'active' => 'Activo',
     'add' => 'Agregar',
     'admins' => 'Admins',
@@ -36,6 +37,7 @@ return [
     'partners' => 'Partners',
     'plan' => 'Plan',
     'plan_id' => 'Plan',
+    'plans' => 'Planes',
     'price' => 'Precio',
     'product' => 'Producto',
     'product_id' => 'Producto',
