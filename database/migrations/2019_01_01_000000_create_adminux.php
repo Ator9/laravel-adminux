@@ -122,6 +122,16 @@ class CreateAdminux extends Migration
         });
 
 
+        Schema::create('services_features', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->mediumInteger('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->string('feature', 100)->default('');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
         Schema::create('products', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('partner_id')->unsigned();

@@ -36,6 +36,14 @@ class Service extends Model
     }
 
     /**
+     * Get the features.
+     */
+    public function features()
+    {
+        return $this->hasMany('App\Adminux\Service\Models\Feature');
+    }
+
+    /**
      * Get the partners for the product.
      */
     // public function partners()

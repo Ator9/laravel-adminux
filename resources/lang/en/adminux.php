@@ -18,6 +18,7 @@ return [
     'details' => 'Details',
     'edit' => 'Edit',
     'email' => 'E-mail',
+    'feature' => 'Feature',
     'firstname' => 'First Name',
     'id' => 'ID',
     'language' => 'Language',
