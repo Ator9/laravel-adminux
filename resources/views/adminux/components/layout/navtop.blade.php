@@ -4,9 +4,9 @@
         @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
             <li class="nav-item">
                 @if(Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false)
-                    <a class="nav-link text-white" href="{{ asset($prefix.'/'.$dir) }}">{{ $name }}</a>
+                    <a class="nav-link text-white" href="{{ asset($prefix.'/'.$dir) }}">@if(Lang::has('adminux.'.$name)) {{ __('adminux.'.$name) }} @else {{ $name }} @endif</a>
                 @else
-                    <a class="nav-link text-warning" href="{{ asset($prefix.'/'.$dir) }}">{{ $name }}</a>
+                    <a class="nav-link text-warning" href="{{ asset($prefix.'/'.$dir) }}">@if(Lang::has('adminux.'.$name)) {{ __('adminux.'.$name) }} @else {{ $name }} @endif</a>
                 @endif
             </li>
         @endforeach
