@@ -13,7 +13,7 @@ class ServiceFeatureController extends Controller
 
         if(request()->ajax()) {
             $dt = Datatables::of($model)->addColumn('id2', function($row) use ($obj) {
-                $params['action'] = url(request()->route()->getPrefix().'/service_feature/'.$row->id);
+                $params['action'] = url(request()->route()->getPrefix().'/services_features/'.$row->id);
                 $id = $row->id;
                 return view('adminux.components.datatables.link_show_link', compact('params', 'id'));
             });
