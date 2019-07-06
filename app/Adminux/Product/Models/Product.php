@@ -40,7 +40,7 @@ class Product extends Model
      */
     public function service()
     {
-        return $this->belongsTo('App\Adminux\Admin\Models\Service')->withTrashed();
+        return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
     }
 
     /**
