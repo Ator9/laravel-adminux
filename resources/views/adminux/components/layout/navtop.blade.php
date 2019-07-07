@@ -4,9 +4,7 @@
         @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
             <li class="nav-item">
                 @php $css = (Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false) ? 'text-white' : 'text-warning'; @endphp
-                <a class="nav-link text-white {{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">
-                    @if(Lang::has('adminux.'.strtolower($name))) {{ __('adminux.'.strtolower($name)) }} @else {{ $name }} @endif
-                </a>
+                <a class="nav-link {{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">@if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif</a>
             </li>
         @endforeach
     </ul>

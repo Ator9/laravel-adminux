@@ -5,8 +5,7 @@ function modalDelete(action, title) {
     $('#modalCenterTitle').html(title);
 }
 
-function setTitle(txt)
-{
+function setTitle(txt) {
     if(txt) document.title = txt;
     else document.title = $('.text-white').html();
 }
