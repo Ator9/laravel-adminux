@@ -4,10 +4,10 @@ namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Language;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class LanguageController extends Controller
+class LanguageController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -77,7 +77,7 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        return view('adminux.components.edit')->withModel($language)->withFields($this->getFields($language));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

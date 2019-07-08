@@ -4,11 +4,11 @@ namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Admin;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class AdminController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -97,7 +97,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('adminux.components.edit')->withModel($admin)->withFields($this->getFields($admin));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

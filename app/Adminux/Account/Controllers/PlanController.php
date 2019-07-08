@@ -5,10 +5,10 @@ namespace App\Adminux\Account\Controllers;
 use App\Adminux\Account\Models\Plan;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class PlanController extends Controller
+class PlanController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -104,8 +104,8 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        Helper::validateAccount($plan);
-        return view('adminux.components.edit')->withModel($plan)->withFields($this->getFields($plan));
+        Helper::validateAccount(func_get_arg(0));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

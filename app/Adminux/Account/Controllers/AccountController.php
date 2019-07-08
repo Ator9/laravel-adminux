@@ -5,12 +5,12 @@ namespace App\Adminux\Account\Controllers;
 use App\Adminux\Account\Models\Account;
 use App\Adminux\Account\Controllers\AccountPlanController;
 use App\Adminux\Helper;
+use App\Adminux\AdminuxController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 
-class AccountController extends Controller
+class AccountController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -98,8 +98,8 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        Helper::validatePartner($account);
-        return view('adminux.components.edit')->withModel($account)->withFields($this->getFields($account));
+        Helper::validatePartner(func_get_arg(0));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

@@ -6,10 +6,10 @@ use App\Adminux\Product\Models\Product;
 use App\Adminux\Product\Controllers\PlanProductController;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class ProductController extends Controller
+class ProductController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -91,8 +91,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        Helper::validatePartner($product);
-        return view('adminux.components.edit')->withModel($product)->withFields($this->getFields($product));
+        Helper::validatePartner(func_get_arg(0));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

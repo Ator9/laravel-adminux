@@ -5,10 +5,10 @@ namespace App\Adminux\Admin\Controllers;
 use App\Adminux\Admin\Models\Role;
 use App\Adminux\Admin\Controllers\AdminRoleController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class RoleController extends Controller
+class RoleController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -80,7 +80,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('adminux.components.edit')->withModel($role)->withFields($this->getFields($role));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

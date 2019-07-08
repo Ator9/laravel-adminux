@@ -4,10 +4,10 @@ namespace App\Adminux\Service\Controllers;
 
 use App\Adminux\Service\Models\Feature;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class FeatureController extends Controller
+class FeatureController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -81,7 +81,7 @@ class FeatureController extends Controller
      */
     public function edit(Feature $feature)
     {
-        return view('adminux.components.edit')->withModel($feature)->withFields($this->getFields($feature));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

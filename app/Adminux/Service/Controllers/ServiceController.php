@@ -4,10 +4,10 @@ namespace App\Adminux\Service\Controllers;
 
 use App\Adminux\Service\Models\Service;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class ServiceController extends Controller
+class ServiceController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -86,7 +86,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('adminux.components.edit')->withModel($service)->withFields($this->getFields($service));
+        return parent::editView(func_get_arg(0));
     }
 
     /**

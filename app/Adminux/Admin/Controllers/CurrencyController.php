@@ -4,10 +4,10 @@ namespace App\Adminux\Admin\Controllers;
 
 use App\Adminux\Admin\Models\Currency;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class CurrencyController extends Controller
+class CurrencyController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
@@ -77,7 +77,7 @@ class CurrencyController extends Controller
      */
     public function edit(Currency $currency)
     {
-        return view('adminux.components.edit')->withModel($currency)->withFields($this->getFields($currency));
+        return parent::editView(func_get_arg(0));
     }
 
     /**
