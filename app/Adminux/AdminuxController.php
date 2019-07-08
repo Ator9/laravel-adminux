@@ -4,9 +4,15 @@ namespace App\Adminux;
 
 class AdminuxController extends \App\Http\Controllers\Controller
 {
-    // public function showView($model)
+    // public function showView($model, ...$args)
     // {
-    //     return view('adminux.components.edit')->withModel($model)->withFields($this->getFields($model));
+    //     foreach($args as $controller) {
+    //         dd($controller);
+    //
+    //     }
+    //     if(request()->ajax()) return (new AccountPlanController)->getIndex($account);
+    //
+    //     return view('adminux.components.show')->withModel($account)->withMany([(new AccountPlanController)->getIndex($account)]);
     // }
 
     public function editView($model, ...$args)
