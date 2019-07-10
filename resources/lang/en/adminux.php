@@ -9,6 +9,7 @@ return [
     'add' => 'Add',
     'admins' => 'Admins',
     'cancel' => 'Cancel',
+    'class_name' => 'Class Name',
     'config' => 'Config',
     'create' => 'Create',
     'create_new' => 'Create New',

@@ -131,6 +131,7 @@ class ServiceController extends AdminuxController
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Service' ]),
+            $form->text([ 'label' => 'Class Name' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),
         ]);

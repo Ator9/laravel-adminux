@@ -9,6 +9,7 @@ return [
     'add' => 'Agregar',
     'admins' => 'Admins',
     'cancel' => 'Cancelar',
+    'class_name' => 'Nombre de la Clase',
     'config' => 'Configuración',
     'create' => 'Crear',
     'create_new' => 'Crear Nuevo',

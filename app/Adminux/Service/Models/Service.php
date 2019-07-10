@@ -15,7 +15,7 @@ class Service extends Model
      * @var array
      */
     protected $fillable = [
-        'service', 'currency_id', 'price'
+        'service', 'class_name', 'currency_id', 'price'
     ];
 
     /**
@@ -24,7 +24,7 @@ class Service extends Model
      * @var array
      */
     protected $hidden = [
-        'class_name', 'deleted_at'
+        'deleted_at'
     ];
 
     /**

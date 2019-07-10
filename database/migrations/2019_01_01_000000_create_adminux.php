@@ -114,7 +114,7 @@ class CreateAdminux extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->string('service', 100)->default('')->unique();
-            $table->string('class_name', 255)->default('')->unique();
+            $table->string('class_name', 255)->nullable();
             $table->smallInteger('currency_id')->unsigned();
             $table->foreign('currency_id')->references('id')->on('currencies');
             $table->decimal('price', 9, 2)->default(0)->unsigned();
