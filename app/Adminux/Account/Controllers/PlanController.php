@@ -94,7 +94,14 @@ class PlanController extends AdminuxController
     public function show(Plan $plan)
     {
         Helper::validateAccount($plan);
-        return view('adminux.components.show')->withModel($plan);
+
+        $classname = (clone $plan)->plan->product->service->class_name;
+        if(class_exists($classname)) {
+            $panel = new $classname;
+            dd($panel);
+        } else {
+            return view('adminux.components.show')->withModel($plan);
+        }
     }
 
     /**

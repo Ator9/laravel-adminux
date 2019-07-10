@@ -24,7 +24,7 @@ class Service extends Model
      * @var array
      */
     protected $hidden = [
-        'deleted_at'
+        'class_name', 'deleted_at'
     ];
 
     /**
