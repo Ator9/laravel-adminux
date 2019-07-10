@@ -95,9 +95,9 @@ class PlanController extends AdminuxController
     {
         Helper::validateAccount($plan);
 
-        $classname = (clone $plan)->plan->product->service->class_name;
-        if(class_exists($classname)) {
-            $panel = new $classname;
+        $service_class = (clone $plan)->plan->product->service->class_name;
+        if(class_exists($service_class)) {
+            $panel = new $service_class;
             dd($panel);
         } else {
             return view('adminux.components.show')->withModel($plan);
