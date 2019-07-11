@@ -1,5 +1,5 @@
 @section('head')
-<link href="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
 .table thead th{border-top-width:0;border-bottom-width:0}
 #datatable_filter input{margin-left:3px;margin-top:3px}

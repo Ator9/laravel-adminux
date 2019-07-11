@@ -35,8 +35,8 @@
 </div>
 @isset($many)
     @push('scripts')
-        <script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
     @endpush
 
     @foreach($many as $key => $relation)

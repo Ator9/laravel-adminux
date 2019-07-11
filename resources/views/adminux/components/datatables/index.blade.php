@@ -1,7 +1,7 @@
 @extends('adminux.components.layout.layout')
 
 @section('head')
-<link href="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
 @empty($datatables['disableClickableRow']) #datatable tbody tr{cursor:pointer} @endempty
@@ -24,9 +24,9 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 @endsection
 
 @push('scripts')
-<script src="{{ asset('adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 setTitle();
 $(document).ready(function() {

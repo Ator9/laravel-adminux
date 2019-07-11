@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>@yield('title')</title>
-<link href="{{ asset('adminux/resources/libs/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('adminux/resources/admin.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/admin.css') }}" rel="stylesheet">
 @yield('head')
 </head>
 <body>
@@ -21,14 +21,14 @@
         </main>
     </div>
 </div>
-<script src="{{ asset('adminux/resources/libs/jquery.min.js') }}"></script>
-<script src="{{ asset('adminux/resources/libs/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('adminux/resources/libs/feather.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/feather.min.js') }}"></script>
 <script>
 var host = '{{ url('/') }}';
 var admin_url = host+'/{{ $prefix }}';
 </script>
-<script src="{{ asset('adminux/resources/admin.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/admin.js') }}"></script>
 @stack('scripts')
 </body>
 </html>
