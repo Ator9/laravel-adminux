@@ -97,7 +97,7 @@ class AdminController extends AdminuxController
      */
     public function edit(Admin $admin)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($admin);
     }
 
     /**

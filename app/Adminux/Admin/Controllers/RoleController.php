@@ -80,7 +80,7 @@ class RoleController extends AdminuxController
      */
     public function edit(Role $role)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($role);
     }
 
     /**

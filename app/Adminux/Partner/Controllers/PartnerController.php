@@ -95,7 +95,7 @@ class PartnerController extends AdminuxController
      */
     public function edit(Partner $partner)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($partner);
     }
 
     /**

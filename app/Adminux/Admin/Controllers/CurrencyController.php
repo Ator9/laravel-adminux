@@ -77,7 +77,7 @@ class CurrencyController extends AdminuxController
      */
     public function edit(Currency $currency)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($currency);
     }
 
     /**

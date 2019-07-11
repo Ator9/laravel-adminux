@@ -81,7 +81,7 @@ class FeatureController extends AdminuxController
      */
     public function edit(Feature $feature)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($feature);
     }
 
     /**

@@ -77,7 +77,7 @@ class LanguageController extends AdminuxController
      */
     public function edit(Language $language)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($language);
     }
 
     /**

@@ -98,8 +98,8 @@ class AccountController extends AdminuxController
      */
     public function edit(Account $account)
     {
-        Helper::validatePartner(func_get_arg(0));
-        return parent::editView(func_get_arg(0));
+        Helper::validatePartner($account);
+        return parent::editView($account);
     }
 
     /**

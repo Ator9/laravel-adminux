@@ -111,8 +111,8 @@ class PlanController extends AdminuxController
      */
     public function edit(Plan $plan)
     {
-        Helper::validateAccount(func_get_arg(0));
-        return parent::editView(func_get_arg(0));
+        Helper::validateAccount($plan);
+        return parent::editView($plan);
     }
 
     /**

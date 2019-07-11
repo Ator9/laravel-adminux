@@ -91,8 +91,8 @@ class ProductController extends AdminuxController
      */
     public function edit(Product $product)
     {
-        Helper::validatePartner(func_get_arg(0));
-        return parent::editView(func_get_arg(0));
+        Helper::validatePartner($product);
+        return parent::editView($product);
     }
 
     /**

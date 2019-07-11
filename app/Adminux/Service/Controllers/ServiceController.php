@@ -86,7 +86,7 @@ class ServiceController extends AdminuxController
      */
     public function edit(Service $service)
     {
-        return parent::editView(func_get_arg(0));
+        return parent::editView($service);
     }
 
     /**
