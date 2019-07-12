@@ -82,7 +82,7 @@ class PartnerController extends AdminuxController
             // elseif(request()->table == 'products') return (new ProductController)->getIndex($partner);
         }
 
-        return view('adminux.components.show')->withModel($partner)->withMany([
+        return view('adminux.components.show')->withModel($partner)->withRelations([
             (new AdminPartnerController)->getIndex($partner),
             // (new ProductController)->getIndex($partner)
         ]);

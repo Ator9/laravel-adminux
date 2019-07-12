@@ -70,7 +70,7 @@ class RoleController extends AdminuxController
     {
         if(request()->ajax()) return (new AdminRoleController)->getIndex($role);
 
-        return view('adminux.components.show')->withModel($role)->withMany([ (new AdminRoleController)->getIndex($role) ]);
+        return view('adminux.components.show')->withModel($role)->withRelations([ (new AdminRoleController)->getIndex($role) ]);
     }
 
     /**

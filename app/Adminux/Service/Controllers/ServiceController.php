@@ -76,7 +76,7 @@ class ServiceController extends AdminuxController
     {
         if(request()->ajax()) return (new ServiceFeatureController)->getIndex($service);
 
-        return view('adminux.components.show')->withModel($service)->withMany([(new ServiceFeatureController)->getIndex($service)]);
+        return view('adminux.components.show')->withModel($service)->withRelations([(new ServiceFeatureController)->getIndex($service)]);
     }
 
     /**

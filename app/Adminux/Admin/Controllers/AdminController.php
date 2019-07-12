@@ -87,7 +87,7 @@ class AdminController extends AdminuxController
     {
         if(request()->ajax()) return (new AdminPartnerController)->getIndex($admin);
 
-        return view('adminux.components.show')->withModel($admin)->withMany([ (new AdminPartnerController)->getIndex($admin) ]);
+        return view('adminux.components.show')->withModel($admin)->withRelations([ (new AdminPartnerController)->getIndex($admin) ]);
     }
 
     /**

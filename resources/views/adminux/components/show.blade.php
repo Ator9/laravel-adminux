@@ -39,13 +39,13 @@
     @endforeach
 @endisset
 
-@isset($many)
+@isset($relations)
     @push('scripts')
         <script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
     @endpush
 
-    @foreach($many as $key => $relation)
+    @foreach($relations as $key => $relation)
         @include('adminux.components.datatables.relation', [ 'datatables' => $relation, 'counter' => $key ])
     @endforeach
 @endisset

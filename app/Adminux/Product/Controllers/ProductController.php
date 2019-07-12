@@ -81,7 +81,7 @@ class ProductController extends AdminuxController
 
         if(request()->ajax()) return (new PlanProductController)->getIndex($product);
 
-        return view('adminux.components.show')->withModel($product)->withMany([(new PlanProductController)->getIndex($product)]);
+        return view('adminux.components.show')->withModel($product)->withRelations([(new PlanProductController)->getIndex($product)]);
     }
 
     /**

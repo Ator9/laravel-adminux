@@ -88,7 +88,7 @@ class AccountController extends AdminuxController
 
         if(request()->ajax()) return (new AccountPlanController)->getIndex($account);
 
-        return view('adminux.components.show')->withModel($account)->withMany([(new AccountPlanController)->getIndex($account)]);
+        return view('adminux.components.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
     }
 
     /**
