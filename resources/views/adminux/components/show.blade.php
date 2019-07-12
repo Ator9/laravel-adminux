@@ -33,6 +33,12 @@
         </div>
     </div>
 </div>
+@isset($cards)
+    @foreach($cards as $key => $card)
+        {!! $card !!}
+    @endforeach
+@endisset
+
 @isset($many)
     @push('scripts')
         <script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
