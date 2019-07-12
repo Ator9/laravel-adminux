@@ -12,8 +12,8 @@ class AccountPlanController extends Controller
         $model = $obj->plans();
 
         if(request()->ajax()) {
-            $dt = Datatables::of($model)->addColumn('id2', function($row) use ($obj) {
-                $params['action'] = url(request()->route()->getPrefix().'/accounts_plans/'.$row->id);
+            $dt = Datatables::of($model)->addColumn('id2', function($row) use ($model) {
+                $params['action'] = url(request()->route()->getPrefix().'/'.$model->getRelated()->getTable().'/'.$row->id);
                 $id = $row->id;
                 return view('adminux.components.datatables.link_show_link', compact('params', 'id'));
             });
