@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Currency extends Model
 {
     use SoftDeletes;
-    
+
+    protected $table = 'admins_currencies';
+
     /**
      * The attributes that are mass assignable.
      *
