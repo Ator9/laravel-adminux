@@ -20,7 +20,9 @@
             <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
             <div class="col-sm-10 form-control-plaintext">
                 @if(strpos($key, '_id') !== false && $rel = str_replace('_id', '', $key))
-                    @isset($model->{$rel}) {{ $model->{$rel}->{$rel} }} @endisset
+                    @isset($model->{$rel})
+                        <a href="{{ url(request()->route()->getPrefix().'/'.$model->{$rel}->getTable()) }}/{{ $model->{$rel}->id }}">{{ $model->{$rel}->id }} - {{ $model->{$rel}->{$rel} }}</a>
+                    @endisset
                 @else {{ $val }} @endif
             </div>
         </div>
