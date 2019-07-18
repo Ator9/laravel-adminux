@@ -53,4 +53,5 @@ return [
     'services' => 'Services',
     'superuser' => 'Superuser',
     'updated_at' => 'Date Updated',
+    'url' => 'URL',
 ];
