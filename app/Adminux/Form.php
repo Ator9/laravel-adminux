@@ -97,6 +97,12 @@ class Form
 
     }
 
+    public function url($params)
+    {
+        $params['input'] = '<input type="url" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        return $this->getFormGroup($params);
+    }
+
     public function getFormGroup($params = [])
     {
         return '<div class="form-group row">
