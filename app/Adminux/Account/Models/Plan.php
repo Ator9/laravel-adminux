@@ -12,22 +12,18 @@ class Plan extends Model
     protected $table = 'accounts_plans';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'account_id', 'plan_id', 'active'
-    ];
+    protected $guarded = [ 'id' ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'deleted_at'
-    ];
+    protected $hidden = [ 'deleted_at' ];
 
     /**
      * Get the account.
