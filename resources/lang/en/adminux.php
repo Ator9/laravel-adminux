@@ -24,6 +24,7 @@ return [
     'email' => 'E-mail',
     'feature' => 'Feature',
     'firstname' => 'First Name',
+    'home' => 'Home',
     'id' => 'ID',
     'language' => 'Language',
     'language_id' => 'Language',

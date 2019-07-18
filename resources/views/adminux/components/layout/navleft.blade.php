@@ -11,6 +11,22 @@
                     <a class="nav-link{{ (Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']).'_', $prefix.'/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.strtolower($module['dir'])) }}">
                         <span data-feather="{{ $module['icon'] }}"></span> {{ $module['name'] }}
                     </a>
+                    <!-- @if(Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']).'_', $prefix.'/'.strtolower($module['dir']).'/']))
+                        <ul class="nav flex-column ml-3">
+                        @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
+                            @php $css = (Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false) ? ' active' : ''; @endphp
+                            <li class="nav-item">
+                                <small>
+                                    <a class="nav-link{{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">&bull;
+                                        @if(@++$cnt == 1){{  __('adminux.home') }} @else
+                                            @if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif
+                                        @endif
+                                    </a>
+                                </small>
+                            </li>
+                        @endforeach
+                        </ul>
+                    @endif -->
                 </li>
             @endforeach
         </ul>
