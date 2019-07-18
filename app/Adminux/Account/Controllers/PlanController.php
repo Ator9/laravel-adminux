@@ -95,12 +95,10 @@ class PlanController extends AdminuxController
     {
         Helper::validateAccount($plan);
 
-        $service_class = (clone $plan)->plan->product->service->class_name;
-        if(class_exists($service_class) && method_exists($service_class, 'showServiceConfigurator')) {
-            return (new $service_class)->showServiceConfigurator($plan);
-        } else {
-            return view('adminux.components.show')->withModel($plan);
-        }
+        $service_class = $this->getServiceClass($plan);
+        if(method_exists($service_class, 'showServiceConfigurator')) return (new $service_class)->showServiceConfigurator($plan);
+
+        return view('adminux.components.show')->withModel($plan);
     }
 
     /**
@@ -148,6 +146,11 @@ class PlanController extends AdminuxController
         $plan->delete();
 
         return redirect(route(explode('/', request()->path())[1].'.index'));
+    }
+
+    public function getServiceClass(Plan $plan)
+    {
+        return (clone $plan)->plan->product->service->class_name;
     }
 
     /**

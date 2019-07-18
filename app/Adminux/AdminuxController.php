@@ -15,8 +15,8 @@ class AdminuxController extends \App\Http\Controllers\Controller
     //     return view('adminux.components.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
     // }
 
-    public function editView($model, ...$args)
+    public function editView($model, $params = [])
     {
-        return view('adminux.components.edit')->withModel($model)->withFields($this->getFields($model));
+        return view('adminux.components.edit')->withModel($model)->withFields(!empty($params['fields']) ? $params['fields'] : $this->getFields($model));
     }
 }
