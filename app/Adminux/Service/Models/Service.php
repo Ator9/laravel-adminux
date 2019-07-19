@@ -32,7 +32,7 @@ class Service extends Model
      */
     public function currency()
     {
-        return $this->belongsTo('App\Adminux\Admin\Models\Currency')->withTrashed();
+        return $this->belongsTo('App\Adminux\Config\Models\Currency')->withTrashed();
     }
 
     /**
