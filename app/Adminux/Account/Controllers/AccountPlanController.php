@@ -2,7 +2,7 @@
 
 namespace App\Adminux\Account\Controllers;
 
-use App\Adminux\Account\Models\Plan;
+use App\Adminux\Account\Models\AccountPlan;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
@@ -15,7 +15,7 @@ class AccountPlanController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Plan $plan)
+    public function index(AccountPlan $plan)
     {
         if(request()->ajax()) return Datatables::of($plan::query()
             ->join('products_plans', 'products_plans.id', '=', 'accounts_plans.plan_id')
@@ -83,7 +83,7 @@ class AccountPlanController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Plan $plan)
+    public function create(AccountPlan $plan)
     {
         return view('adminux.components.create')->withModel($plan)->withFields($this->getFields($plan));
     }
@@ -94,7 +94,7 @@ class AccountPlanController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Plan $plan)
+    public function store(Request $request, AccountPlan $plan)
     {
         $request->validate([
             'account_id' => 'required',
@@ -117,7 +117,7 @@ class AccountPlanController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Plan $plan)
+    public function show(AccountPlan $plan)
     {
         Helper::validateAccount($plan);
 
@@ -132,7 +132,7 @@ class AccountPlanController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Plan $plan)
+    public function edit(AccountPlan $plan)
     {
         Helper::validateAccount($plan);
         return parent::editView($plan);
@@ -144,7 +144,7 @@ class AccountPlanController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Plan $plan)
+    public function update(Request $request, AccountPlan $plan)
     {
         $request->validate([
             'account_id' => 'required',
@@ -166,7 +166,7 @@ class AccountPlanController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plan $plan)
+    public function destroy(AccountPlan $plan)
     {
         Helper::validateAccount($plan);
         $plan->delete();
@@ -174,7 +174,7 @@ class AccountPlanController extends AdminuxController
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
 
-    public function getServiceClass(Plan $plan)
+    public function getServiceClass(AccountPlan $plan)
     {
         return (clone $plan)->plan->product->service->class_name;
     }
@@ -184,7 +184,7 @@ class AccountPlanController extends AdminuxController
      *
      * @return Array
      */
-    public function getFields(Plan $plan)
+    public function getFields(AccountPlan $plan)
     {
         $form = new \App\Adminux\Form($plan);
         $form->addFields([
