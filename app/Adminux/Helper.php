@@ -121,4 +121,13 @@ class Helper
         $pieces = preg_split('/(?=[A-Z])/', lcfirst($model));
         \Route::resource($uri_prefix.Str::plural(strtolower($model)), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
     }
+
+    static function getUriSingular($uri = '')
+    {
+        $pieces = explode('_', $uri);
+        foreach($pieces as $piece) {
+            $data[] = Str::singular($piece);
+        }
+        return $data;
+    }
 }
