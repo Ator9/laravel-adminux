@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Admin\Controllers;
+namespace App\Adminux\Config\Controllers;
 
-use App\Adminux\Admin\Models\Currency;
+use App\Adminux\Config\Models\Currency;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;

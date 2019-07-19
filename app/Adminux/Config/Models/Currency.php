@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Adminux\Admin\Models;
+namespace App\Adminux\Config\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +9,7 @@ class Currency extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'admins_currencies';
+    protected $table = 'configs_currencies';
 
     /**
      * The attributes that are mass assignable.

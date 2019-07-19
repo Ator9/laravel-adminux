@@ -25,13 +25,13 @@ class CreateAdminux extends Migration
         ]);
 
 
-        Schema::create('admins_languages', function (Blueprint $table) {
+        Schema::create('configs_languages', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->char('language', 5)->default('')->unique();
             $table->softDeletes();
             $table->timestamps();
         });
-        DB::table('admins_languages')->insert([
+        DB::table('configs_languages')->insert([
             ['language' => 'en', 'created_at' => Carbon::now()],
             ['language' => 'es', 'created_at' => Carbon::now()],
         ]);
@@ -46,7 +46,7 @@ class CreateAdminux extends Migration
             $table->string('firstname', 75)->default('');
             $table->string('lastname', 75)->default('');
             $table->smallInteger('language_id')->unsigned();
-            $table->foreign('language_id')->references('id')->on('admins_languages');
+            $table->foreign('language_id')->references('id')->on('configs_languages');
             $table->enum('superuser', ['N', 'Y'])->default('N');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->rememberToken();
@@ -70,7 +70,7 @@ class CreateAdminux extends Migration
             $table->mediumIncrements('id');
             $table->string('partner', 100)->default('')->unique();
             $table->smallInteger('language_id')->unsigned();
-            $table->foreign('language_id')->references('id')->on('admins_languages');
+            $table->foreign('language_id')->references('id')->on('configs_languages');
             $table->text('config')->nullable()->comment('json config list');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
@@ -100,13 +100,13 @@ class CreateAdminux extends Migration
         ]);
 
 
-        Schema::create('admins_currencies', function (Blueprint $table) {
+        Schema::create('configs_currencies', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->char('currency', 3)->default('')->unique();
             $table->softDeletes();
             $table->timestamps();
         });
-        DB::table('admins_currencies')->insert([
+        DB::table('configs_currencies')->insert([
             ['currency' => 'USD', 'created_at' => Carbon::now()]
         ]);
 
@@ -116,7 +116,7 @@ class CreateAdminux extends Migration
             $table->string('service', 100)->default('')->unique();
             $table->string('class_name', 255)->nullable()->comment('App\Adminux\Service\Controllers ...');
             $table->smallInteger('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('admins_currencies');
+            $table->foreign('currency_id')->references('id')->on('configs_currencies');
             $table->decimal('price', 9, 2)->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
@@ -195,10 +195,12 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('accounts_plans');
         Schema::dropIfExists('admins');
-        Schema::dropIfExists('admins_currencies');
-        Schema::dropIfExists('admins_languages');
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
+
+        Schema::dropIfExists('configs_currencies');
+        Schema::dropIfExists('configs_languages');
+        
         Schema::dropIfExists('partners');
         Schema::dropIfExists('products');
         Schema::dropIfExists('products_plans');
