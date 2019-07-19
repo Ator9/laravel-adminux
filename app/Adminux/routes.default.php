@@ -29,12 +29,12 @@ Route::namespace('\App\Adminux')->group(function() {
             $uri_singular = App\Adminux\Helper::getUriSingular($uri);
             if(count($uri_singular) == 2) {
                 $class = ucfirst(end($uri_singular));
-                if(file_exists(__DIR__.'/'.ucfirst($uri_singular[0]).'/Controllers/'.Str::studly(implode('_', $uri_singular)).'Controller.php')) {
-                    Route::resource($uri, ucfirst($uri_singular[0]).'\Controllers\\'.Str::studly(implode('_', $uri_singular)).'Controller')->parameters([$uri => strtolower($class)]);
-                } elseif(file_exists(__DIR__.'/'.$class.'/Controllers/'.$class.'Controller.php')) {
+                if(file_exists(__DIR__.'/'.$class.'/Controllers/'.$class.'Controller.php')) {
                     Route::resource($uri, $class.'\Controllers\\'.$class.'Controller')->parameters([$uri => strtolower($class)]);
                 } elseif(file_exists(__DIR__.'/'.ucfirst($uri_singular[0]).'/Controllers/'.$class.'Controller.php')) {
                     Route::resource($uri, ucfirst($uri_singular[0]).'\Controllers\\'.$class.'Controller')->parameters([$uri => strtolower($class)]);
+                } elseif(file_exists(__DIR__.'/'.ucfirst($uri_singular[0]).'/Controllers/'.Str::studly(implode('_', $uri_singular)).'Controller.php')) {
+                    Route::resource($uri, ucfirst($uri_singular[0]).'\Controllers\\'.Str::studly(implode('_', $uri_singular)).'Controller')->parameters([$uri => strtolower($class)]);
                 }
             }
         }
