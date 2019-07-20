@@ -50,6 +50,6 @@ class Admin extends Authenticatable
      */
     public function language()
     {
-        return $this->belongsTo('App\Adminux\Config\Models\Language')->withTrashed();
+        return $this->belongsTo('App\Adminux\Admin\Models\Language')->withTrashed();
     }
 }

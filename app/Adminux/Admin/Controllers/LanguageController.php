@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Config\Controllers;
+namespace App\Adminux\Admin\Controllers;
 
-use App\Adminux\Config\Models\Language;
+use App\Adminux\Admin\Models\Language;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;

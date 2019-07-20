@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Adminux\Config\Models;
+namespace App\Adminux\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -8,6 +8,10 @@ $config = [
             'admins_partners' => 'Partners',
             'admins_roles' => 'Roles',
             'admins_services' => 'Services',
+            'admins_currencies' => 'Currencies',
+            'admins_languages' => 'Languages',
+            'admins_logs' => 'Logs',
+            'admins_phpinfo' => 'PHP Info',
         ]
     ]
 ];
