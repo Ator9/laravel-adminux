@@ -8,7 +8,7 @@
             </li>
             @php $menu = $Helper->getNavLeft(); @endphp
             @foreach($menu as $module)
-                @if(in_array($module['dir'], ['Admins', 'Partners'])) @continue; @endif
+                @if(in_array($module['dir'], ['Admins', 'Partners', 'Services'])) @continue; @endif
                 <li class="nav-item">
                     <a class="nav-link{{ (Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']).'_', $prefix.'/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.strtolower($module['dir'])) }}">
                         <span data-feather="{{ $module['icon'] }}"></span> {{ $module['name'] }}
@@ -35,7 +35,7 @@
         <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">Configuration</h6>
         <ul class="nav flex-column">
             @foreach($menu as $module)
-                @if(!in_array($module['dir'], ['Admins', 'Partners'])) @continue; @endif
+                @if(!in_array($module['dir'], ['Admins', 'Partners', 'Services'])) @continue; @endif
                 <li class="nav-item">
                     <a class="nav-link{{ (Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']), $prefix.'/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.strtolower($module['dir'])) }}">
                         <span data-feather="{{ $module['icon'] }}"></span> {{ $module['name'] }}

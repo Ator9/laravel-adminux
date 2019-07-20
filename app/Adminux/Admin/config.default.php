@@ -6,7 +6,6 @@ $config = [
         'icon'    => 'lock', // Feather icons
         'submenu' => [ // dir url => name
             'admins_roles' => 'Roles',
-            'admins_services' => 'Services',
             'admins_currencies' => 'Currencies',
             'admins_languages' => 'Languages',
             'admins_logs' => 'Logs',
