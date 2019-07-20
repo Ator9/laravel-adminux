@@ -9,7 +9,7 @@ class Language extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'configs_languages';
+    protected $table = 'admins_languages';
 
     /**
      * The attributes that are mass assignable.

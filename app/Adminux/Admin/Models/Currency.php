@@ -9,7 +9,7 @@ class Currency extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'configs_currencies';
+    protected $table = 'admins_currencies';
 
     /**
      * The attributes that are mass assignable.
