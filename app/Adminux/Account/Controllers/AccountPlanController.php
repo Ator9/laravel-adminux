@@ -132,6 +132,8 @@ class AccountPlanController extends AdminuxController
      */
     public function edit(AccountPlan $plan)
     {
+        if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
+        
         Helper::validateAccount($plan);
         return parent::editView($plan);
     }
