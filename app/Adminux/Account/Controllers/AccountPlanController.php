@@ -119,11 +119,9 @@ class AccountPlanController extends AdminuxController
      */
     public function show(AccountPlan $plan)
     {
+        if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
+
         Helper::validateAccount($plan);
-
-        $service_class = $this->getServiceClass($plan);
-        if(method_exists($service_class, 'showServiceConfigurator')) return (new $service_class)->showServiceConfigurator($plan);
-
         return view('adminux.components.show')->withModel($plan);
     }
 
@@ -174,9 +172,15 @@ class AccountPlanController extends AdminuxController
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
 
+    public function checkServiceClass(AccountPlan $plan)
+    {
+        return method_exists((clone $plan)->plan->product->service->class_name, debug_backtrace()[1]['function']);
+    }
+
     public function getServiceClass(AccountPlan $plan)
     {
-        return (clone $plan)->plan->product->service->class_name;
+        $service_class = (clone $plan)->plan->product->service->class_name;
+        return (new $service_class)->{debug_backtrace()[1]['function']}($plan);
     }
 
     /**
