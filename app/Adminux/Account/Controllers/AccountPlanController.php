@@ -133,7 +133,7 @@ class AccountPlanController extends AdminuxController
     public function edit(AccountPlan $plan)
     {
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
-        
+
         Helper::validateAccount($plan);
         return parent::editView($plan);
     }
@@ -176,7 +176,11 @@ class AccountPlanController extends AdminuxController
 
     public function checkServiceClass(AccountPlan $plan)
     {
-        return method_exists((clone $plan)->plan->product->service->class_name, debug_backtrace()[1]['function']);
+        $refl = new \ReflectionClass((clone $plan)->plan->product->service->class_name);
+        $class = class_basename($refl->getMethod(debug_backtrace()[1]['function'])->class);
+
+        if($class != 'AccountPlanController') return true;
+        return false;
     }
 
     public function getServiceClass(AccountPlan $plan)
