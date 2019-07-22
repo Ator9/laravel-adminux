@@ -18,7 +18,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
     public function editView($model, $params = [])
     {
         $fields = !empty($params['fields']) ? $params['fields'] : $this->getFields($model);
-        
+
         return view('adminux.components.edit')->withModel($model)->withFields($fields);
     }
 }

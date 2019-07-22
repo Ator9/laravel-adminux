@@ -135,7 +135,7 @@ class AccountPlanController extends AdminuxController
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
         Helper::validateAccount($plan);
-        return parent::editView($plan);
+        return parent::editView($plan, [ 'fields' => $this->getServiceFields($plan)]);
     }
 
     /**
@@ -176,10 +176,11 @@ class AccountPlanController extends AdminuxController
 
     public function checkServiceClass(AccountPlan $plan)
     {
-        $refl = new \ReflectionClass((clone $plan)->plan->product->service->class_name);
-        $class = class_basename($refl->getMethod(debug_backtrace()[1]['function'])->class);
-
-        if($class != 'AccountPlanController') return true;
+        $service_class = (clone $plan)->plan->product->service->class_name;
+        if(class_exists($service_class)) {
+            $class = class_basename((new \ReflectionClass($service_class))->getMethod(debug_backtrace()[1]['function'])->class);
+            if($class != 'AccountPlanController') return true;
+        }
         return false;
     }
 
@@ -187,6 +188,12 @@ class AccountPlanController extends AdminuxController
     {
         $service_class = (clone $plan)->plan->product->service->class_name;
         return (new $service_class)->{debug_backtrace()[1]['function']}($plan);
+    }
+
+    public function getServiceFields(AccountPlan $plan)
+    {
+        $service_class = (clone $plan)->plan->product->service->class_name;
+        if(class_exists($service_class)) return (new $service_class)->getFields($plan);
     }
 
     /**
