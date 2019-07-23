@@ -119,9 +119,10 @@ class AccountPlanController extends AdminuxController
      */
     public function show(AccountPlan $plan)
     {
+        Helper::validateAccount($plan);
+        
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
-        Helper::validateAccount($plan);
         return view('adminux.components.show')->withModel($plan);
     }
 
@@ -132,9 +133,10 @@ class AccountPlanController extends AdminuxController
      */
     public function edit(AccountPlan $plan)
     {
+        Helper::validateAccount($plan);
+
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
-        Helper::validateAccount($plan);
         return parent::editView($plan, [ 'fields' => $this->getServiceFields($plan)]);
     }
 
