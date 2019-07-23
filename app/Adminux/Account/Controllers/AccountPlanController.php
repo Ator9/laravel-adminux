@@ -120,7 +120,7 @@ class AccountPlanController extends AdminuxController
     public function show(AccountPlan $plan)
     {
         Helper::validateAccount($plan);
-        
+
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
         return view('adminux.components.show')->withModel($plan);
@@ -143,24 +143,25 @@ class AccountPlanController extends AdminuxController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AccountPlan $plan)
+    public function update(AccountPlan $plan)
     {
-        $request->validate([
+        request()->validate([
             'account_id' => 'required',
             'active' => 'in:Y,""',
         ]);
 
-        Helper::validateAccount($request);
-        Helper::validateAccountWithProduct($request->account_id, $plan->plan_id);
+        Helper::validateAccount(request());
+        Helper::validateAccountWithProduct(request()->account_id, $plan->plan_id);
 
-        if(!$request->filled('active')) $request->merge(['active' => 'N']);
+        if(!request()->filled('active')) request()->merge(['active' => 'N']);
 
-        $plan->update($request->only(['account_id','active']));
+        if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $plan));
+        $plan->update(request()->only(['account_id','active']));
+
+        return redirect(route(explode('/', request()->path())[1].'.show', $plan));
     }
 
     /**
