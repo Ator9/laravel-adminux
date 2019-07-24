@@ -20,6 +20,7 @@ return [
     'delete' => 'Delete',
     'deleted_at' => 'Date Deleted',
     'details' => 'Details',
+    'domain' => 'Domain',
     'edit' => 'Edit',
     'email' => 'E-mail',
     'feature' => 'Feature',

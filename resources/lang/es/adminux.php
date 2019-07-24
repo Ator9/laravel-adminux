@@ -20,6 +20,7 @@ return [
     'delete' => 'Eliminar',
     'deleted_at' => 'Fecha Elminación',
     'details' => 'Detalles',
+    'domain' => 'Dominio',
     'edit' => 'Editar',
     'email' => 'E-mail',
     'feature' => 'Característica',
