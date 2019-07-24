@@ -7,5 +7,15 @@ $config = [
         'submenu' => [ // dir url => name
             'accounts_plans' => 'Plans'
         ]
+    ],
+    'Account' => [
+        'config' => [
+            // 'lang' => 'Language code (en, es).',
+        ]
+    ],
+    'AccountPlan' => [
+        'config' => [
+            // 'lang' => 'Language code (en, es).',
+        ]
     ]
 ];

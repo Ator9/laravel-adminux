@@ -8,7 +8,9 @@ $config = [
 
         ]
     ],
-    'config' => [ // 'lang' => 'Language code (en, es).',
-        
+    'Partner' => [
+        'config' => [
+            // 'lang' => 'Language code (en, es).',
+        ]
     ]
 ];

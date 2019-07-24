@@ -31,12 +31,12 @@ class Form
 
     public function moduleConfig($params)
     {
-        $path = (!empty($params['path'])) ? $params['path'] : basename(get_class($this->_model));
+        $path = (!empty($params['path'])) ? $params['path'] : class_basename($this->_model);
         $config = \App\Adminux\Helper::getConfig($path);
 
-        if(!empty($config['config'])) {
+        if(!empty($config[$path]['config'])) {
             $values = json_decode($this->getValue($params), true);
-            foreach($config['config'] as $key => $desc) {
+            foreach($config[$path]['config'] as $key => $desc) {
                 $params['input'][] = '<tr>
                                         <td>'.$key.'</td>
                                         <td class="w-50"><input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'['.$key.']" value="'.@$values[$key].'"></td>

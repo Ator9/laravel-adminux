@@ -111,7 +111,12 @@ class Helper
 
         if(is_file($file = __DIR__.'/'.$path.'/config.php')) require $file;
         elseif(is_file($file = __DIR__.'/'.$path.'/config.default.php')) require $file;
-
+        else {
+            $new_path = current(array_filter(preg_split('/(?=[A-Z])/', $path)));
+            if(is_file($file = __DIR__.'/'.$new_path.'/config.php')) require $file;
+            elseif(is_file($file = __DIR__.'/'.$new_path.'/config.default.php')) require $file;
+        }
+        
         return $config;
     }
 
