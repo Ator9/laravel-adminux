@@ -62,7 +62,8 @@ class ProductController extends AdminuxController
         $request->validate([
             'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
             'service_id' => 'required',
-            'product' => 'required'
+            'product' => 'required',
+            'domain' => 'nullable|url',
         ]);
 
         $product = $product->create($request->all());
@@ -103,10 +104,13 @@ class ProductController extends AdminuxController
      */
     public function update(Request $request, Product $product)
     {
-        $request->validate([ 'product' => 'required' ]);
+        $request->validate([
+            'product' => 'required',
+            'domain' => 'nullable|url',
+        ]);
         Helper::validatePartner($product);
 
-        $product->update($request->only(['product']));
+        $product->update($request->only(['product', 'domain']));
 
         return redirect(route(explode('/', $request->path())[1].'.show', $product));
     }
@@ -137,6 +141,7 @@ class ProductController extends AdminuxController
             $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => Helper::getEnabledPartnersKeys() ]),
             $form->select([ 'label' => 'Service', 'editable' => false ]),
             $form->text([ 'label' => 'Product' ]),
+            $form->text([ 'label' => 'Domain' ]),
         ]);
 
         return $form->getFields();
