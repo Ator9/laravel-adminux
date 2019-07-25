@@ -4,7 +4,7 @@
 <link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
-@empty($datatables['disableClickableRow']) #datatable tbody tr{cursor:pointer} @endempty
+@isset($datatables['enableClickableRow']) #datatable tbody tr{cursor:pointer} @endisset
 .table-responsive{height:calc(100% - 5px);height:-moz-calc(100% - 5px);height:-webkit-calc(100% - 5px);overflow-y:hidden}
 .table thead th{border-bottom-width:1px}
 #datatable_filter input{margin-left:3px}
@@ -58,11 +58,11 @@ $(document).ready(function() {
         $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper .float-left:first');
     @endempty
 
-    @empty($datatables['disableClickableRow'])
+    @isset($datatables['enableClickableRow'])
         $('#datatable tbody').on('click', 'tr', function() {
            location = '{{ Request::url() }}/'+table.row(this).data().id;
         });
-    @endempty
+    @endisset
 
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset
 });
