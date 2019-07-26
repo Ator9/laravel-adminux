@@ -27,6 +27,7 @@ class ProductController extends AdminuxController
 
         return view('adminux.components.datatables.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
+            'disableCreateButton' => 1,
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Product</th>
                         <th style="min-width:120px">Service</th>
@@ -42,36 +43,6 @@ class ProductController extends AdminuxController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Product $product)
-    {
-        return view('adminux.components.create')->withModel($product)->withFields($this->getFields($product));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Product $product)
-    {
-        $request->validate([
-            'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
-            'service_id' => 'required',
-            'product' => 'required',
-            'domain' => 'nullable|url',
-        ]);
-
-        $product = $product->create($request->all());
-
-        return redirect(route(explode('/', $request->path())[1].'.show', $product));
-    }
-
-    /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
@@ -83,67 +54,5 @@ class ProductController extends AdminuxController
         if(request()->ajax()) return (new PlanProductController)->getIndex($product);
 
         return view('adminux.components.show')->withModel($product)->withRelations([(new PlanProductController)->getIndex($product)]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        Helper::validatePartner($product);
-        return parent::editView($product);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        $request->validate([
-            'product' => 'required',
-            'domain' => 'nullable|url',
-        ]);
-        Helper::validatePartner($product);
-
-        $product->update($request->only(['product', 'domain']));
-
-        return redirect(route(explode('/', $request->path())[1].'.show', $product));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        Helper::validatePartner($product);
-        $product->delete();
-
-        return redirect(route(explode('/', request()->path())[1].'.index'));
-    }
-
-    /**
-     * Build Blade edit & create form fields
-     *
-     * @return Array
-     */
-    public function getFields(Product $product)
-    {
-        $form = new \App\Adminux\Form($product);
-        $form->addFields([
-            $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => Helper::getEnabledPartnersKeys() ]),
-            $form->select([ 'label' => 'Service', 'editable' => false ]),
-            $form->text([ 'label' => 'Product' ]),
-            $form->text([ 'label' => 'Domain' ]),
-        ]);
-
-        return $form->getFields();
     }
 }
