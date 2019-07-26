@@ -1,4 +1,5 @@
 @extends('adminux.components.layout.layout')
+@php $controller = str_replace('@show', '', Route::current()->getAction()['controller']); @endphp
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
@@ -7,10 +8,12 @@
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
+            @if(method_exists($controller, 'edit') or method_exists($controller, 'destroy'))
             <div>
                 <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')"><span class="feather-adminux" data-feather="trash-2"></span></button>
                 <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
             </div>
+            @endif
         </div>
     </div>
     <div class="card-body">
@@ -30,12 +33,14 @@
             </div>
         </div>
         @endforeach
+        @if(method_exists($controller, 'edit'))
         <div class="form-group row">
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
                 <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @isset($cards)
