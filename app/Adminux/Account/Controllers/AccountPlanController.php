@@ -179,7 +179,7 @@ class AccountPlanController extends AdminuxController
 
     public function checkServiceClass(AccountPlan $plan)
     {
-        $service_class = (clone $plan)->plan->product->service->class_name;
+        $service_class = (clone $plan)->plan->product->service->service_class;
         if(class_exists($service_class)) {
             $class = class_basename((new \ReflectionClass($service_class))->getMethod(debug_backtrace()[1]['function'])->class);
             if($class != 'AccountPlanController') return true;
@@ -189,13 +189,13 @@ class AccountPlanController extends AdminuxController
 
     public function getServiceClass(AccountPlan $plan)
     {
-        $service_class = (clone $plan)->plan->product->service->class_name;
+        $service_class = (clone $plan)->plan->product->service->service_class;
         return (new $service_class)->{debug_backtrace()[1]['function']}($plan);
     }
 
     public function getServiceFields(AccountPlan $plan)
     {
-        $service_class = (clone $plan)->plan->product->service->class_name;
+        $service_class = (clone $plan)->plan->product->service->service_class;
         if(class_exists($service_class)) return (new $service_class)->getFields($plan);
     }
 

@@ -53,6 +53,7 @@ return [
     'service_id' => 'Service',
     'services' => 'Services',
     'slug' => 'Slug',
+    'software' => 'Software',
     'superuser' => 'Superuser',
     'updated_at' => 'Date Updated',
     'url' => 'URL',
