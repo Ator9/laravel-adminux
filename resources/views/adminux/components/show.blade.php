@@ -1,5 +1,5 @@
 @extends('adminux.components.layout.layout')
-@php $controller = str_replace('@show', '', Route::current()->getAction()['controller']); @endphp
+@php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
