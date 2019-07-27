@@ -140,6 +140,14 @@ class AccountPlanController extends AdminuxController
         return parent::editView($plan, [ 'fields' => $this->getServiceFields($plan)]);
     }
 
+    public function editservice(AccountPlan $plan)
+    {
+        Helper::validateAccount($plan);
+
+        if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
+        return abort(500);
+    }
+
     /**
      * Update the specified resource in storage.
      *
