@@ -23,7 +23,7 @@ class AccountPlan extends Model
      *
      * @var array
      */
-    protected $hidden = [ 'deleted_at' ];
+    protected $hidden = [ 'service_config', 'deleted_at' ];
 
     /**
      * Get the account.
