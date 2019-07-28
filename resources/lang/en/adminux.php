@@ -50,6 +50,7 @@ return [
     'search' => 'Search',
     'select' => 'Select',
     'service' => 'Service',
+    'service_class' => 'Service Class',
     'service_id' => 'Service',
     'services' => 'Services',
     'slug' => 'Slug',

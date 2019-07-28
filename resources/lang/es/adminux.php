@@ -50,6 +50,7 @@ return [
     'search' => 'Buscar',
     'select' => 'Seleccionar',
     'service' => 'Servicio',
+    'service_class' => 'Clase del Servicio',
     'service_id' => 'Servicio',
     'services' => 'Servicios',
     'slug' => 'Slug',

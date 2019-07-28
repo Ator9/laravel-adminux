@@ -26,7 +26,7 @@ class ServiceController extends AdminuxController
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Service</th>
-                        <th class="w-30">Currency</th>
+                        <th>Currency</th>
                         <th>Price</th>
                         <th style="min-width:120px">Created At</th>',
 
@@ -131,7 +131,7 @@ class ServiceController extends AdminuxController
         $form->addFields([
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Service' ]),
-            $form->text([ 'label' => 'Class Name' ]),
+            $form->text([ 'label' => 'Service Class' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),
         ]);
