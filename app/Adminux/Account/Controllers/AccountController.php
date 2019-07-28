@@ -70,6 +70,7 @@ class AccountController extends AdminuxController
         ]);
 
         $request->merge(['password' => Hash::make($request->password)]);
+        if($request->filled('default_config')) $request->merge(['default_config' => json_encode($request->default_config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $account = $account->create($request->all());
@@ -121,6 +122,7 @@ class AccountController extends AdminuxController
             $request->merge(['password' => Hash::make($request->password)]);
         } else $request->request->remove('password');
 
+        if($request->filled('default_config')) $request->merge(['default_config' => json_encode($request->default_config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $account->update($request->all());
@@ -155,6 +157,7 @@ class AccountController extends AdminuxController
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'Account' ]),
+            $form->moduleConfig([ 'label' => 'Default Config' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 

@@ -15,7 +15,7 @@ class Partner extends Model
      * @var array
      */
     protected $fillable = [
-        'language_id', 'partner', 'config', 'active'
+        'language_id', 'partner', 'default_config', 'active'
     ];
 
     /**

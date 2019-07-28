@@ -62,7 +62,7 @@ class PartnerController extends AdminuxController
             'active' => 'in:Y,""',
         ]);
 
-        if($request->filled('config')) $request->merge(['config' => json_encode($request->config) ]);
+        if($request->filled('default_config')) $request->merge(['default_config' => json_encode($request->default_config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $partner = $partner->create($request->all());
@@ -112,7 +112,7 @@ class PartnerController extends AdminuxController
             'active' => 'in:Y,""',
         ]);
 
-        if($request->filled('config')) $request->merge(['config' => json_encode($request->config) ]);
+        if($request->filled('default_config')) $request->merge(['default_config' => json_encode($request->default_config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $partner->update($request->all());
@@ -144,7 +144,7 @@ class PartnerController extends AdminuxController
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Partner' ]),
             $form->select([ 'label' => 'Language' ]),
-            $form->moduleConfig([ 'label' => 'Config' ]),
+            $form->moduleConfig([ 'label' => 'Default Config' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 

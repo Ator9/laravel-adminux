@@ -17,6 +17,7 @@ return [
     'currency' => 'Currency',
     'currency_id' => 'Currency',
     'currencies' => 'Currencies',
+    'default_config' => 'Default Config',
     'delete' => 'Delete',
     'deleted_at' => 'Date Deleted',
     'details' => 'Details',

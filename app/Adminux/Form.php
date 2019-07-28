@@ -34,9 +34,9 @@ class Form
         $path = (!empty($params['path'])) ? $params['path'] : class_basename($this->_model);
         $config = \App\Adminux\Helper::getConfig($path);
 
-        if(!empty($config[$path]['config'])) {
+        if(!empty($config[$path]['default_config'])) {
             $values = json_decode($this->getValue($params), true);
-            foreach($config[$path]['config'] as $key => $desc) {
+            foreach($config[$path]['default_config'] as $key => $desc) {
                 $params['input'][] = '<tr>
                                         <td>'.$key.'</td>
                                         <td class="w-50"><input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'['.$key.']" value="'.@$values[$key].'"></td>

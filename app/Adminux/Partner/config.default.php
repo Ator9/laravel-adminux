@@ -9,7 +9,7 @@ $config = [
         ]
     ],
     'Partner' => [
-        'config' => [
+        'default_config' => [
             // 'lang' => 'Language code (en, es).',
         ]
     ]

@@ -8,8 +8,13 @@ $config = [
             'accounts_plans' => 'Plans'
         ]
     ],
+    'Account' => [
+        'default_config' => [
+            // 'lang' => 'Language code (en, es).',
+        ]
+    ],
     'AccountPlan' => [
-        'config' => [
+        'default_config' => [
             // 'lang' => 'Language code (en, es).',
         ]
     ]

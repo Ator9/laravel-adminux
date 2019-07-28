@@ -17,6 +17,7 @@ return [
     'currency' => 'Moneda',
     'currency_id' => 'Moneda',
     'currencies' => 'Monedas',
+    'default_config' => 'Configuración Predeterminada',
     'delete' => 'Eliminar',
     'deleted_at' => 'Fecha Elminación',
     'details' => 'Detalles',

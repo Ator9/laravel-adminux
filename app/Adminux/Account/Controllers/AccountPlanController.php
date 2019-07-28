@@ -105,6 +105,7 @@ class AccountPlanController extends AdminuxController
         Helper::validateAccount($request);
         Helper::validateAccountWithProduct($request->account_id, $request->plan_id);
 
+        if($request->filled('default_config')) $request->merge(['default_config' => json_encode($request->default_config) ]);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
         $plan = $plan->create($request->all());
@@ -163,11 +164,12 @@ class AccountPlanController extends AdminuxController
         Helper::validateAccount(request());
         Helper::validateAccountWithProduct(request()->account_id, $plan->plan_id);
 
+        if(request()->filled('default_config')) request()->merge(['default_config' => json_encode(request()->default_config) ]);
         if(!request()->filled('active')) request()->merge(['active' => 'N']);
 
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
-        $plan->update(request()->only(['account_id','active']));
+        $plan->update(request()->only(['account_id','default_config','active']));
 
         return redirect(route(explode('/', request()->path())[1].'.show', $plan));
     }
@@ -219,6 +221,7 @@ class AccountPlanController extends AdminuxController
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Account', 'allows' => Helper::getEnabledAccountsKeys() ]),
             $form->select([ 'label' => 'Plan', 'editable' => false ]),
+            $form->moduleConfig([ 'label' => 'Default Config' ]),
             $form->switch([ 'label' => 'Active' ]),
         ]);
 

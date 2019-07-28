@@ -17,7 +17,7 @@ class Account extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'partner_id', 'email', 'password', 'account', 'active'
+        'partner_id', 'email', 'password', 'account', 'default_config', 'active'
     ];
 
     /**
