@@ -41,7 +41,7 @@
                     @if(method_exists($controller, 'edit'))
                     <div class="form-group row">
                         <div class="col-sm-2 pt-2">
-                            @if(method_exists($controller, 'edit') or method_exists($controller, 'destroy'))
+                            @if(method_exists($controller, 'destroy'))
                                 <a href="#" class="badge badge-pill badge-danger" data-toggle="modal" data-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')">Delete ?</a>
                             @endif
                         </div>
