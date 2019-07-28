@@ -163,7 +163,7 @@ class CreateAdminux extends Migration
             $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
             $table->string('account', 75)->nullable();
-            $table->text('default_config')->nullable()->comment('json config/properties');
+            // $table->text('default_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('Y');
             $table->rememberToken();
             $table->string('last_login_ip', 75)->default('');
@@ -181,7 +181,7 @@ class CreateAdminux extends Migration
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->mediumInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('products_plans');
-            $table->text('default_config')->nullable()->comment('json config/properties');
+            // $table->text('default_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
