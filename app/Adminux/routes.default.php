@@ -17,7 +17,7 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
         Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
-        Route::get('accounts_plans/{plan}/editservice', 'Account\Controllers\AccountPlanController@editservice');
+        Route::get('accounts_plans/{plan}/edit-service', 'Account\Controllers\AccountPlanController@editService');
 
         foreach(\File::directories(__DIR__) as $dir) {
             App\Adminux\Helper::buildRouteResource(basename($dir));
