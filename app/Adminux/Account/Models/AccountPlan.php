@@ -26,6 +26,13 @@ class AccountPlan extends Model
     protected $hidden = [ 'service_config', 'deleted_at' ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [  'service_config' => 'array' ];
+
+    /**
      * Get the account.
      */
     public function account()
@@ -39,11 +46,5 @@ class AccountPlan extends Model
     public function plan()
     {
         return $this->belongsTo('App\Adminux\Product\Models\Plan')->withTrashed();
-    }
-
-    // Get array from json.
-    public function getServiceConfigAttribute($value)
-    {
-        return json_decode($value, true);
     }
 }
