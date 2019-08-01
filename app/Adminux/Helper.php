@@ -88,7 +88,7 @@ class Helper
         $data = [];
 
         $array = explode('/', $path);
-        if($array[1] == 'dashboard') $data = [ 'dashboard' => 'Dashboard' ];
+        if(!empty($array[1]) && $array[1] == 'dashboard') $data = [ 'dashboard' => 'Dashboard' ];
         else {
             $class = explode('_', next($array));
 
