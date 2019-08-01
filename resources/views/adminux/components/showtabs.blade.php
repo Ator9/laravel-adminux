@@ -69,7 +69,11 @@
         @isset($cards)
             @foreach($cards as $key => $card)
                 <div class="tab-pane fade" id="{{ str_slug($key) }}" role="tabpanel" aria-labelledby="{{ str_slug($key) }}-tab">
-                    {!! $card !!}
+                    <div class="card border-top-0">
+                        <div class="card-body">
+                            {!! $card !!}
+                        </div>
+                    </div>
                 </div>
             @endforeach
         @endisset
