@@ -30,7 +30,7 @@ class AccountPlan extends Model
      *
      * @var array
      */
-    protected $casts = [  'service_config' => 'array' ];
+    protected $casts = [ 'module_config' => 'array', 'service_config' => 'array' ];
 
     /**
      * Get the account.
