@@ -40,4 +40,10 @@ class AccountPlan extends Model
     {
         return $this->belongsTo('App\Adminux\Product\Models\Plan')->withTrashed();
     }
+
+    // Get array from json.
+    public function getServiceConfigAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }

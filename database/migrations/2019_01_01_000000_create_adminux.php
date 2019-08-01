@@ -182,6 +182,7 @@ class CreateAdminux extends Migration
             $table->mediumInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('products_plans');
             // $table->text('default_config')->nullable()->comment('json config/properties');
+            $table->text('service_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
