@@ -35,6 +35,7 @@ return [
     'last_login_at' => 'Fecha Último Logueo',
     'last_login_ip' => 'IP Último Logueo',
     'logs' => 'Logs',
+    'module_config' => 'Configuración de Módulo',
     'name' => 'Nombre',
     'partner' => 'Partner',
     'partner_id' => 'Partner',

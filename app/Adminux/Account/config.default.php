@@ -9,12 +9,12 @@ $config = [
         ]
     ],
     'Account' => [
-        'default_config' => [
+        'module_config' => [
             // 'lang' => 'Language code (en, es).',
         ]
     ],
     'AccountPlan' => [
-        'default_config' => [
+        'module_config' => [
             // 'lang' => 'Language code (en, es).',
         ]
     ]

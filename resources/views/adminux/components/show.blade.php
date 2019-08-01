@@ -26,9 +26,10 @@
                     @isset($model->{$rel})
                         <a href="{{ url(request()->route()->getPrefix().'/'.$model->{$rel}->getTable()) }}/{{ $model->{$rel}->id }}">{{ $model->{$rel}->id }} - {{ $model->{$rel}->{$rel} }}</a>
                     @endisset
+                @elseif(strpos($key, 'url') !== false && $val) <a href="{{ $val }}" target="_blank">{{ $val }}</a>
+                @elseif(is_array($val)) {{ json_encode($val) }}
                 @else
-                    @if(strpos($key, 'url') !== false && $val) <a href="{{ $val }}" target="_blank">{{ $val }}</a>
-                    @else {{ $val }} @endif
+                    {{ $val }}
                 @endif
             </div>
         </div>
