@@ -198,16 +198,17 @@ class CreateAdminux extends Migration
     {
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('accounts_plans');
+
         Schema::dropIfExists('admins');
+        Schema::dropIfExists('admins_currencies');
+        Schema::dropIfExists('admins_languages');
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
-
-        Schema::dropIfExists('configs_currencies');
-        Schema::dropIfExists('configs_languages');
 
         Schema::dropIfExists('partners');
         Schema::dropIfExists('products');
         Schema::dropIfExists('products_plans');
         Schema::dropIfExists('services');
+        Schema::dropIfExists('services_features');
     }
 }
