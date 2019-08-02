@@ -19,13 +19,13 @@ class ProductController extends AdminuxController
     public function index(Product $product)
     {
         if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', Helper::getSelectedPartners()))
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('service', function($row) { return @$row->service->service; })
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'disableCreateButton' => 1,
             'thead' => '<th style="min-width:30px">ID</th>
@@ -53,6 +53,6 @@ class ProductController extends AdminuxController
 
         if(request()->ajax()) return (new PlanProductController)->getIndex($product);
 
-        return view('adminux.components.show')->withModel($product)->withRelations([(new PlanProductController)->getIndex($product)]);
+        return view('adminux.pages.show')->withModel($product)->withRelations([(new PlanProductController)->getIndex($product)]);
     }
 }

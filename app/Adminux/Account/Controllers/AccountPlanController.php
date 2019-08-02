@@ -25,12 +25,12 @@ class AccountPlanController extends AdminuxController
             ->join('accounts', 'accounts.id', '=', 'accounts_plans.account_id')
             ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
             ->select('accounts_plans.id','accounts_plans.active','accounts.email','products_plans.plan','products.product','services.service','partners.partner','accounts_plans.created_at'))
-            ->addColumn('active2', 'adminux.components.datatables.status')
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('active2', 'adminux.pages.inc.status')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">E-mail</th>
@@ -60,7 +60,7 @@ class AccountPlanController extends AdminuxController
             $dt = Datatables::of($model)->addColumn('id2', function($row) use ($model) {
                 $params['action'] = url(request()->route()->getPrefix().'/'.$model->getRelated()->getTable().'/'.$row->id);
                 $id = $row->id;
-                return view('adminux.components.datatables.link_show_link', compact('params', 'id'));
+                return view('adminux.pages.inc.link_show_link', compact('params', 'id'));
             });
 
             return $dt->rawColumns(['id2'])->toJson();
@@ -85,7 +85,7 @@ class AccountPlanController extends AdminuxController
      */
     public function create(AccountPlan $plan)
     {
-        return view('adminux.components.create')->withModel($plan)->withFields($this->getFields($plan));
+        return view('adminux.pages.create')->withModel($plan)->withFields($this->getFields($plan));
     }
 
     /**
@@ -123,7 +123,7 @@ class AccountPlanController extends AdminuxController
 
         if($this->checkServiceClass($plan)) return $this->getServiceClass($plan);
 
-        return view('adminux.components.show')->withModel($plan);
+        return view('adminux.pages.show')->withModel($plan);
     }
 
     /**

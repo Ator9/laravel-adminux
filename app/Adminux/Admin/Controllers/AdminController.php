@@ -18,13 +18,13 @@ class AdminController extends AdminuxController
     public function index(Admin $admin)
     {
         if(request()->ajax()) return Datatables::of($admin::query())
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
-            ->addColumn('active2', 'adminux.components.datatables.status')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('active2', 'adminux.pages.inc.status')
             ->addColumn('role', function($row) { return @$row->role->role; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
@@ -50,7 +50,7 @@ class AdminController extends AdminuxController
      */
     public function create(Admin $admin)
     {
-        return view('adminux.components.create')->withModel($admin)->withFields($this->getFields($admin));
+        return view('adminux.pages.create')->withModel($admin)->withFields($this->getFields($admin));
     }
 
     /**
@@ -87,7 +87,7 @@ class AdminController extends AdminuxController
     {
         if(request()->ajax()) return (new AdminPartnerController)->getIndex($admin);
 
-        return view('adminux.components.show')->withModel($admin)->withRelations([ (new AdminPartnerController)->getIndex($admin) ]);
+        return view('adminux.pages.show')->withModel($admin)->withRelations([ (new AdminPartnerController)->getIndex($admin) ]);
     }
 
     /**
@@ -178,7 +178,7 @@ class AdminController extends AdminuxController
      */
     public function logs()
     {
-        return view('adminux.components.card', [
+        return view('adminux.pages.card', [
             'header' => 'Logs',
             'body'   => nl2br(\File::get(storage_path().'/logs/laravel-'.date('Y-m-d').'.log'))
         ]);
@@ -196,7 +196,7 @@ class AdminController extends AdminuxController
             return;
         }
 
-        return view('adminux.components.blank')
+        return view('adminux.pages.blank')
         ->withBody('<iframe src="admins_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 }

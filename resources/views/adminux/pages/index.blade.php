@@ -1,4 +1,4 @@
-@extends('adminux.components.layout.layout')
+@extends('adminux.layout')
 
 @section('head')
 <link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">

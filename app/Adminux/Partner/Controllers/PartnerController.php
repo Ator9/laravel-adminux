@@ -19,12 +19,12 @@ class PartnerController extends AdminuxController
     public function index(Partner $partner)
     {
         if(request()->ajax()) return Datatables::of($partner::query())
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
-            ->addColumn('active2', 'adminux.components.datatables.status')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('active2', 'adminux.pages.inc.status')
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 1, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Partner</th>
@@ -45,7 +45,7 @@ class PartnerController extends AdminuxController
      */
     public function create(Partner $partner)
     {
-        return view('adminux.components.create')->withModel($partner)->withFields($this->getFields($partner));
+        return view('adminux.pages.create')->withModel($partner)->withFields($this->getFields($partner));
     }
 
     /**
@@ -81,7 +81,7 @@ class PartnerController extends AdminuxController
             // elseif(request()->table == 'products') return (new ProductController)->getIndex($partner);
         }
 
-        return view('adminux.components.show')->withModel($partner)->withRelations([
+        return view('adminux.pages.show')->withModel($partner)->withRelations([
             (new AdminPartnerController)->getIndex($partner),
             // (new ProductController)->getIndex($partner)
         ]);

@@ -12,13 +12,13 @@ class AdminuxController extends \App\Http\Controllers\Controller
     //     }
     //     if(request()->ajax()) return (new AccountPlanController)->getIndex($account);
     //
-    //     return view('adminux.components.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
+    //     return view('adminux.pages.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
     // }
 
     public function editView($model, $params = [])
     {
         $fields = !empty($params['fields']) ? $params['fields'] : $this->getFields($model);
 
-        return view('adminux.components.edit')->withModel($model)->withFields($fields);
+        return view('adminux.pages.edit')->withModel($model)->withFields($fields);
     }
 }

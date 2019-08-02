@@ -17,11 +17,11 @@ class CurrencyController extends AdminuxController
     public function index(Currency $currency)
     {
         if(request()->ajax()) return Datatables::of($currency::query())
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Currency</th>
@@ -40,7 +40,7 @@ class CurrencyController extends AdminuxController
      */
     public function create(Currency $currency)
     {
-        return view('adminux.components.create')->withModel($currency)->withFields($this->getFields($currency));
+        return view('adminux.pages.create')->withModel($currency)->withFields($this->getFields($currency));
     }
 
     /**
@@ -67,7 +67,7 @@ class CurrencyController extends AdminuxController
      */
     public function show(Currency $currency)
     {
-        return view('adminux.components.show')->withModel($currency);
+        return view('adminux.pages.show')->withModel($currency);
     }
 
     /**

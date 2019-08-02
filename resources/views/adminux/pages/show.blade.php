@@ -1,4 +1,4 @@
-@extends('adminux.components.layout.layout')
+@extends('adminux.layout')
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="card-body">
-        @include('adminux.components.layout.errors')
+        @include('adminux.inc.errors')
         @foreach($model->toArray() as $key => $val)
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
@@ -57,7 +57,7 @@
     @endpush
 
     @foreach($relations as $key => $relation)
-        @include('adminux.components.datatables.relation', [ 'datatables' => $relation, 'counter' => $key ])
+        @include('adminux.pages.inc.relation', [ 'datatables' => $relation, 'counter' => $key ])
     @endforeach
 @endisset
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">

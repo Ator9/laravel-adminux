@@ -17,12 +17,12 @@ class ServiceController extends AdminuxController
     public function index(Service $service)
     {
         if(request()->ajax()) return Datatables::of($service::query())
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('currency', function($row) { return @$row->currency->currency; })
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Service</th>
@@ -45,7 +45,7 @@ class ServiceController extends AdminuxController
      */
     public function create(Service $service)
     {
-        return view('adminux.components.create')->withModel($service)->withFields($this->getFields($service));
+        return view('adminux.pages.create')->withModel($service)->withFields($this->getFields($service));
     }
 
     /**
@@ -76,7 +76,7 @@ class ServiceController extends AdminuxController
     {
         if(request()->ajax()) return (new ServiceFeatureController)->getIndex($service);
 
-        return view('adminux.components.show')->withModel($service)->withRelations([(new ServiceFeatureController)->getIndex($service)]);
+        return view('adminux.pages.show')->withModel($service)->withRelations([(new ServiceFeatureController)->getIndex($service)]);
     }
 
     /**

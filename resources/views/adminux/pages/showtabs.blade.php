@@ -1,4 +1,4 @@
-@extends('adminux.components.layout.layout')
+@extends('adminux.layout')
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
@@ -22,7 +22,7 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="card border-top-0">
                 <div class="card-body">
-                    @include('adminux.components.layout.errors')
+                    @include('adminux.inc.errors')
                     @foreach($model->toArray() as $key => $val)
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>

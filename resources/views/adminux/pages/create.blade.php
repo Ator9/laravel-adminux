@@ -1,4 +1,4 @@
-@extends('adminux.components.layout.layout')
+@extends('adminux.layout')
 
 @section('title', __('adminux.create').' '.(new ReflectionClass($model))->getShortName())
 
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="card-body">
-            @include('adminux.components.layout.errors')
+            @include('adminux.inc.errors')
             @foreach($fields as $val)
                 {!! $val !!}
             @endforeach

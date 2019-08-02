@@ -9,7 +9,7 @@ Route::namespace('\App\Adminux')->group(function() {
 
     Route::middleware(App\Adminux\Authenticate::class)->group(function() {
         Route::get('',              function() { return redirect()->route('login'); });
-        // Route::get('',              function() { return view('adminux.components.layout.container'); });
+        // Route::get('',              function() { return view('adminux.container'); });
         Route::get('dashboard',     'Admin\Controllers\AdminController@dashboard');
         Route::get('admins_logs',    'Admin\Controllers\AdminController@logs');
         Route::get('admins_phpinfo', 'Admin\Controllers\AdminController@phpinfo');

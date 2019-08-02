@@ -23,11 +23,11 @@ class PlanController extends AdminuxController
             ->join('services', 'services.id', '=', 'products.service_id')
             ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
             ->select('products_plans.id', 'products_plans.plan','products.product','services.service','partners.partner','products_plans.created_at'))
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Plan</th>
@@ -52,7 +52,7 @@ class PlanController extends AdminuxController
      */
     public function create(Plan $plan)
     {
-        return view('adminux.components.create')->withModel($plan)->withFields($this->getFields($plan));
+        return view('adminux.pages.create')->withModel($plan)->withFields($this->getFields($plan));
     }
 
     /**
@@ -81,7 +81,7 @@ class PlanController extends AdminuxController
     public function show(Plan $plan)
     {
         Helper::validateProduct($plan);
-        return view('adminux.components.show')->withModel($plan);
+        return view('adminux.pages.show')->withModel($plan);
     }
 
     /**

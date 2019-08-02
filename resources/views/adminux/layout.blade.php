@@ -12,10 +12,10 @@
 <body>
 @inject('Helper', 'App\Adminux\Helper')
 @php $prefix = substr(request()->route()->getPrefix(), 1) @endphp
-@include('adminux.components.layout.navtop')
+@include('adminux.inc.navtop')
 <div class="container-fluid">
     <div class="row">
-        @include('adminux.components.layout.navleft')
+        @include('adminux.inc.navleft')
         <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
             @yield('body')
         </main>

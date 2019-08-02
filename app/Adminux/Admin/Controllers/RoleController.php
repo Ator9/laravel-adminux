@@ -18,11 +18,11 @@ class RoleController extends AdminuxController
     public function index(Role $role)
     {
         if(request()->ajax()) return Datatables::of($role::query())
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Role</th>
@@ -41,7 +41,7 @@ class RoleController extends AdminuxController
      */
     public function create(Role $role)
     {
-        return view('adminux.components.create')->withModel($role)->withFields($this->getFields($role));
+        return view('adminux.pages.create')->withModel($role)->withFields($this->getFields($role));
     }
 
     /**
@@ -70,7 +70,7 @@ class RoleController extends AdminuxController
     {
         if(request()->ajax()) return (new AdminRoleController)->getIndex($role);
 
-        return view('adminux.components.show')->withModel($role)->withRelations([ (new AdminRoleController)->getIndex($role) ]);
+        return view('adminux.pages.show')->withModel($role)->withRelations([ (new AdminRoleController)->getIndex($role) ]);
     }
 
     /**

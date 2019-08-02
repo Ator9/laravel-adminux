@@ -20,13 +20,13 @@ class AccountController extends AdminuxController
     public function index(Account $account)
     {
         if(request()->ajax()) return Datatables::of($account::query()->whereIn('partner_id', Helper::getSelectedPartners()))
-            ->addColumn('id2', 'adminux.components.datatables.link_show_link')
-            ->addColumn('active2', 'adminux.components.datatables.status')
+            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('active2', 'adminux.pages.inc.status')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.components.datatables.index')->withDatatables([
+        return view('adminux.pages.index')->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>
                         <th>E-mail</th>
                         <th class="w-25">Account</th>
@@ -50,7 +50,7 @@ class AccountController extends AdminuxController
      */
     public function create(Account $account)
     {
-        return view('adminux.components.create')->withModel($account)->withFields($this->getFields($account));
+        return view('adminux.pages.create')->withModel($account)->withFields($this->getFields($account));
     }
 
     /**
@@ -88,7 +88,7 @@ class AccountController extends AdminuxController
 
         if(request()->ajax()) return (new AccountPlanController)->getIndex($account);
 
-        return view('adminux.components.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
+        return view('adminux.pages.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
     }
 
     /**
