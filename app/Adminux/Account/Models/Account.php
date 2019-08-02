@@ -16,18 +16,21 @@ class Account extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'partner_id', 'email', 'password', 'account', 'default_config', 'active'
-    ];
+    protected $fillable = [ 'partner_id', 'email', 'password', 'account', 'module_config', 'active' ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token', 'deleted_at'
-    ];
+    protected $hidden = [ 'password', 'remember_token', 'deleted_at' ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [  'module_config' => 'array' ];
 
     /**
      * Get the partner.

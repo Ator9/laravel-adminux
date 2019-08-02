@@ -71,7 +71,7 @@ class CreateAdminux extends Migration
             $table->string('partner', 100)->default('')->unique();
             $table->smallInteger('language_id')->unsigned();
             $table->foreign('language_id')->references('id')->on('admins_languages');
-            $table->text('default_config')->nullable()->comment('json config/properties');
+            $table->text('module_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
@@ -163,7 +163,7 @@ class CreateAdminux extends Migration
             $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
             $table->string('account', 75)->nullable();
-            // $table->text('default_config')->nullable()->comment('json config/properties');
+            // $table->text('module_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('Y');
             $table->rememberToken();
             $table->string('last_login_ip', 75)->default('');
@@ -181,7 +181,8 @@ class CreateAdminux extends Migration
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->mediumInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('products_plans');
-            // $table->text('default_config')->nullable()->comment('json config/properties');
+            // $table->text('module_config')->nullable()->comment('json config/properties');
+            $table->text('service_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
@@ -197,16 +198,17 @@ class CreateAdminux extends Migration
     {
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('accounts_plans');
+
         Schema::dropIfExists('admins');
+        Schema::dropIfExists('admins_currencies');
+        Schema::dropIfExists('admins_languages');
         Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
-
-        Schema::dropIfExists('configs_currencies');
-        Schema::dropIfExists('configs_languages');
 
         Schema::dropIfExists('partners');
         Schema::dropIfExists('products');
         Schema::dropIfExists('products_plans');
         Schema::dropIfExists('services');
+        Schema::dropIfExists('services_features');
     }
 }

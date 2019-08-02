@@ -14,18 +14,21 @@ class Partner extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'language_id', 'partner', 'default_config', 'active'
-    ];
+    protected $fillable = [ 'language_id', 'partner', 'module_config', 'active' ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'deleted_at'
-    ];
+    protected $hidden = [ 'deleted_at' ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [  'module_config' => 'array' ];
 
     /**
      * Get the admins for the partner.

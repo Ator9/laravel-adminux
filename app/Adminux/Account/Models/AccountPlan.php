@@ -26,6 +26,13 @@ class AccountPlan extends Model
     protected $hidden = [ 'service_config', 'deleted_at' ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [ 'module_config' => 'array', 'service_config' => 'array' ];
+
+    /**
      * Get the account.
      */
     public function account()
