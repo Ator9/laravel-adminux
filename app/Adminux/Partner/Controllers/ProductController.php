@@ -22,7 +22,9 @@ class ProductController extends AdminuxController
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('service', function($row) { return @$row->service->service; })
-            ->addColumn('currency_price', function($row) { return @$row->currency->currency.' '.@$row->price; })
+            ->addColumn('currency_price', function($row) {
+                return '('.$row->interval.') - '.@$row->currency->currency.' '.$row->price;
+            })
             ->rawColumns(['id2'])
             ->toJson();
 
@@ -39,7 +41,7 @@ class ProductController extends AdminuxController
                           { data: "product", name: "product" },
                           { data: "service", name: "service" },
                           { data: "partner", name: "partner" },
-                          { data: "currency_price", name: "currency_price" },
+                          { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -69,6 +71,7 @@ class ProductController extends AdminuxController
             'domain' => 'nullable|url',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
+            'interval' => 'required',
         ]);
 
         $product = $product->create($request->all());
@@ -114,10 +117,11 @@ class ProductController extends AdminuxController
             'domain' => 'nullable|url',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
+            'interval' => 'required',
         ]);
         Helper::validatePartner($product);
 
-        $product->update($request->only(['product', 'domain', 'currency_id', 'price']));
+        $product->update($request->only(['product', 'domain', 'currency_id', 'price', 'interval']));
 
         return redirect(route(explode('/', $request->path())[1].'.show', $product));
     }
@@ -151,6 +155,7 @@ class ProductController extends AdminuxController
             $form->text([ 'label' => 'Domain' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),
+            $form->enum([ 'label' => 'Interval' ]),
         ]);
 
         return $form->getFields();

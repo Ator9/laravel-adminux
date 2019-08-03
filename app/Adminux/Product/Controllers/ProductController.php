@@ -22,7 +22,9 @@ class ProductController extends AdminuxController
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('service', function($row) { return @$row->service->service; })
-            ->addColumn('currency_price', function($row) { return @$row->currency->currency.' '.@$row->price; })
+            ->addColumn('currency_price', function($row) {
+                return '('.$row->interval.') - '.@$row->currency->currency.' '.$row->price;
+            })
             ->rawColumns(['id2'])
             ->toJson();
 
@@ -40,7 +42,7 @@ class ProductController extends AdminuxController
                           { data: "product", name: "product" },
                           { data: "service", name: "service" },
                           { data: "partner", name: "partner" },
-                          { data: "currency_price", name: "currency_price" },
+                          { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }

@@ -28,6 +28,7 @@ return [
     'firstname' => 'Nombre',
     'home' => 'Inicio',
     'id' => 'ID',
+    'interval' => 'Intervalo',
     'language' => 'Idioma',
     'language_id' => 'Idioma',
     'languages' => 'Idiomas',

@@ -29,6 +29,22 @@ class Form
         return $this->getFormGroup($params);
     }
 
+    public function enum($params)
+    {
+        $sql_result = \DB::select(\DB::raw('SHOW COLUMNS FROM '.$this->_model->getTable().' WHERE Field = "'.$this->getName($params).'"'))[0]->Type;
+        preg_match_all("/'([^']+)'/", $sql_result, $matches);
+
+        if(!empty($matches[1])) {
+            foreach($matches[1] as $string) {
+                $sel = ($string == $this->getValue($params)) ? ' selected' : '';
+                $options[] = '<option value="'.$string.'"'.$sel.'>'.$string.'</option>';
+            }
+        }
+
+        $params['options'] = $options;
+        return $this->select($params);
+    }
+
     public function moduleConfig($params)
     {
         $path = (!empty($params['path'])) ? $params['path'] : class_basename($this->_model);
