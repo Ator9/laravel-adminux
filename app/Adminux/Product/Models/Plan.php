@@ -16,18 +16,14 @@ class Plan extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'product_id', 'plan', 'currency_id', 'price'
-    ];
+    protected $fillable = [ 'product_id', 'plan', 'currency_id', 'price', 'interval' ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'deleted_at'
-    ];
+    protected $hidden = [ 'deleted_at' ];
 
     /**
      * Get the product.

@@ -23,9 +23,9 @@ class ProductController extends AdminuxController
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('service', function($row) { return @$row->service->service; })
             ->addColumn('currency_price', function($row) {
-                return '('.$row->interval.') - '.@$row->currency->currency.' '.$row->price;
+                return '<small>'.$row->interval.'</small> '.@$row->currency->currency.' '.$row->price;
             })
-            ->rawColumns(['id2'])
+            ->rawColumns(['id2', 'currency_price'])
             ->toJson();
 
         return view('adminux.pages.index')->withDatatables([
@@ -33,16 +33,16 @@ class ProductController extends AdminuxController
             'disableCreateButton' => 1,
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Product</th>
+                        <th style="min-width:120px">Price</th>
                         <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Partner</th>
-                        <th style="min-width:120px">Price</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "product", name: "product" },
+                          { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "service", name: "service" },
                           { data: "partner", name: "partner" },
-                          { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }

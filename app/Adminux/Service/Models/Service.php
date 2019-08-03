@@ -28,14 +28,6 @@ class Service extends Model
     ];
 
     /**
-     * Get the currency.
-     */
-    public function currency()
-    {
-        return $this->belongsTo('App\Adminux\Admin\Models\Currency')->withTrashed();
-    }
-
-    /**
      * Get the features.
      */
     public function features()

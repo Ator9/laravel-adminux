@@ -22,15 +22,20 @@ class PlanController extends AdminuxController
             ->join('partners', 'partners.id', '=', 'products.partner_id')
             ->join('services', 'services.id', '=', 'products.service_id')
             ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
-            ->select('products_plans.id', 'products_plans.plan','products.product','services.service','partners.partner','products_plans.created_at'))
+            ->select('products_plans.id', 'products_plans.plan','products_plans.currency_id','products_plans.price','products_plans.interval',
+            'products.product','services.service','partners.partner','products_plans.created_at'))
+            ->addColumn('currency_price', function($row) {
+                return '<small>'.$row->interval.'</small> '.@$row->currency->currency.' '.$row->price;
+            })
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
-            ->rawColumns(['id2'])
+            ->rawColumns(['id2', 'currency_price'])
             ->toJson();
 
         return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Plan</th>
+                        <th style="min-width:120px">Price</th>
                         <th style="min-width:120px">Product</th>
                         <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Partner</th>
@@ -38,6 +43,7 @@ class PlanController extends AdminuxController
 
             'columns' => '{ data: "id2", name: "products_plans.id", className: "text-center" },
                           { data: "plan", name: "products_plans.plan" },
+                          { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "product", name: "products.product" },
                           { data: "service", name: "services.service" },
                           { data: "partner", name: "partners.partner" },
@@ -68,6 +74,7 @@ class PlanController extends AdminuxController
             'plan' => 'required',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
+            'interval' => 'required',
         ]);
 
         $plan = $plan->create($request->all());
@@ -109,9 +116,10 @@ class PlanController extends AdminuxController
             'plan' => 'required',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
+            'interval' => 'required',
         ]);
 
-        $plan->update($request->only(['plan', 'currency_id', 'price'])); // no extra validation required with this field
+        $plan->update($request->only(['plan', 'currency_id', 'price', 'interval'])); // no extra validation required with this field
 
         return redirect(route(explode('/', $request->path())[1].'.show', $plan));
     }
@@ -143,6 +151,7 @@ class PlanController extends AdminuxController
             $form->text([ 'label' => 'Plan' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),
+            $form->enum([ 'label' => 'Interval' ]),
         ]);
 
         return $form->getFields();
