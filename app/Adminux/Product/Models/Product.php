@@ -15,7 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'partner_id', 'service_id', 'product', 'domain'
+        'partner_id', 'service_id', 'product', 'domain', 'currency_id', 'price'
     ];
 
     /**
@@ -41,6 +41,14 @@ class Product extends Model
     public function service()
     {
         return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
+    }
+
+    /**
+     * Get the currency.
+     */
+    public function currency()
+    {
+        return $this->belongsTo('App\Adminux\Admin\Models\Currency')->withTrashed();
     }
 
     /**

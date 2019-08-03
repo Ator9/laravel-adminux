@@ -17,7 +17,7 @@ class Plan extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id', 'plan'
+        'product_id', 'plan', 'currency_id', 'price'
     ];
 
     /**
@@ -35,5 +35,13 @@ class Plan extends Model
     public function product()
     {
         return $this->belongsTo('App\Adminux\Product\Models\Product')->withTrashed();
+    }
+
+    /**
+     * Get the currency.
+     */
+    public function currency()
+    {
+        return $this->belongsTo('App\Adminux\Admin\Models\Currency')->withTrashed();
     }
 }

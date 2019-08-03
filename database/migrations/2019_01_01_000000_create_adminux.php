@@ -115,9 +115,6 @@ class CreateAdminux extends Migration
             $table->mediumIncrements('id');
             $table->string('service', 100)->default('')->unique();
             $table->string('service_class', 255)->nullable()->comment('App\Adminux\Service\Controllers ...');
-            $table->smallInteger('currency_id')->unsigned();
-            $table->foreign('currency_id')->references('id')->on('admins_currencies');
-            $table->decimal('price', 9, 2)->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -141,6 +138,9 @@ class CreateAdminux extends Migration
             $table->foreign('service_id')->references('id')->on('services');
             $table->string('product', 100)->default('');
             $table->string('domain', 255)->nullable();
+            $table->smallInteger('currency_id')->unsigned();
+            $table->foreign('currency_id')->references('id')->on('admins_currencies');
+            $table->decimal('price', 9, 2)->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -151,6 +151,9 @@ class CreateAdminux extends Migration
             $table->mediumInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('plan', 100)->default('');
+            $table->smallInteger('currency_id')->unsigned();
+            $table->foreign('currency_id')->references('id')->on('admins_currencies');
+            $table->decimal('price', 9, 2)->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

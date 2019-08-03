@@ -18,7 +18,6 @@ class ServiceController extends AdminuxController
     {
         if(request()->ajax()) return Datatables::of($service::query())
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
-            ->addColumn('currency', function($row) { return @$row->currency->currency; })
             ->rawColumns(['id2'])
             ->toJson();
 
@@ -26,14 +25,10 @@ class ServiceController extends AdminuxController
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Service</th>
-                        <th>Currency</th>
-                        <th>Price</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "service", name: "service" },
-                          { data: "currency", name: "currency", className: "text-center" },
-                          { data: "price", name: "price" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -58,8 +53,6 @@ class ServiceController extends AdminuxController
     {
         $request->validate([
             'service' => 'required|unique:'.$service->getTable(),
-            'currency_id' => 'required',
-            'price' => 'numeric|between:0,9999999.99',
         ]);
 
         $service = $service->create($request->all());
@@ -99,8 +92,6 @@ class ServiceController extends AdminuxController
     {
         $request->validate([
             'service' => 'required|unique:'.$service->getTable().',service,'.$service->id,
-            'currency_id' => 'required',
-            'price' => 'numeric|between:0,9999999.99',
         ]);
 
         $service->update($request->all());
@@ -132,8 +123,6 @@ class ServiceController extends AdminuxController
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Service' ]),
             $form->text([ 'label' => 'Service Class' ]),
-            $form->select([ 'label' => 'Currency' ]),
-            $form->text([ 'label' => 'Price' ]),
         ]);
 
         return $form->getFields();

@@ -65,7 +65,9 @@ class PlanController extends AdminuxController
     {
         $request->validate([
             'product_id' => 'required|in:'.implode(',', Helper::getEnabledProductsKeys()),
-            'plan' => 'required'
+            'plan' => 'required',
+            'currency_id' => 'required',
+            'price' => 'numeric|between:0,9999999.99',
         ]);
 
         $plan = $plan->create($request->all());
@@ -103,9 +105,13 @@ class PlanController extends AdminuxController
      */
     public function update(Request $request, Plan $plan)
     {
-        $request->validate(['plan' => 'required']);
+        $request->validate([
+            'plan' => 'required',
+            'currency_id' => 'required',
+            'price' => 'numeric|between:0,9999999.99',
+        ]);
 
-        $plan->update($request->only(['plan'])); // no extra validation required with this field
+        $plan->update($request->only(['plan', 'currency_id', 'price'])); // no extra validation required with this field
 
         return redirect(route(explode('/', $request->path())[1].'.show', $plan));
     }
@@ -135,6 +141,8 @@ class PlanController extends AdminuxController
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Product', 'editable' => false, 'allows' => Helper::getEnabledProductsKeys() ]),
             $form->text([ 'label' => 'Plan' ]),
+            $form->select([ 'label' => 'Currency' ]),
+            $form->text([ 'label' => 'Price' ]),
         ]);
 
         return $form->getFields();
