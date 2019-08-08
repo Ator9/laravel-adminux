@@ -13,3 +13,7 @@ function setTitle(txt) {
 $('#partner_select').on('change', function () {
     location = admin_url+'/adminpartner?partner_id='+$(this).val();
 });
+
+$('.continue_editing_form').on('click', function () {
+    $(this).append('<input type="hidden" name="continue_editing_form" value="1">');
+});
