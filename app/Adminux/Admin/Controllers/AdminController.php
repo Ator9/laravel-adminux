@@ -75,7 +75,7 @@ class AdminController extends AdminuxController
 
         $admin = $admin->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $admin));
+        return parent::saveRedirect($admin);
     }
 
     /**
@@ -124,7 +124,7 @@ class AdminController extends AdminuxController
 
         $admin->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $admin));
+        return parent::saveRedirect($admin);
     }
 
     /**

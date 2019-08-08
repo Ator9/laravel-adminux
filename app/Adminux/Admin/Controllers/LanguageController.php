@@ -57,7 +57,7 @@ class LanguageController extends AdminuxController
 
         $language = $language->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $language));
+        return parent::saveRedirect($language);
     }
 
     /**
@@ -94,7 +94,7 @@ class LanguageController extends AdminuxController
 
         $language->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $language));
+        return parent::saveRedirect($language);
     }
 
     /**

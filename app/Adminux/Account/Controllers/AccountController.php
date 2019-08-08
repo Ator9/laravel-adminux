@@ -74,7 +74,7 @@ class AccountController extends AdminuxController
 
         $account = $account->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $account));
+        return parent::saveRedirect($account);
     }
 
     /**
@@ -125,7 +125,7 @@ class AccountController extends AdminuxController
 
         $account->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $account));
+        return parent::saveRedirect($account);
     }
 
     /**

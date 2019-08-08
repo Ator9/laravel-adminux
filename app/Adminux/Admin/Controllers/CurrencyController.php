@@ -57,7 +57,7 @@ class CurrencyController extends AdminuxController
 
         $currency = $currency->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $currency));
+        return parent::saveRedirect($currency);
     }
 
     /**
@@ -94,7 +94,7 @@ class CurrencyController extends AdminuxController
 
         $currency->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $currency));
+        return parent::saveRedirect($currency);
     }
 
     /**

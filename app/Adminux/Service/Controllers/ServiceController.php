@@ -57,7 +57,7 @@ class ServiceController extends AdminuxController
 
         $service = $service->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $service));
+        return parent::saveRedirect($service);
     }
 
     /**
@@ -96,7 +96,7 @@ class ServiceController extends AdminuxController
 
         $service->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $service));
+        return parent::saveRedirect($service);
     }
 
     /**

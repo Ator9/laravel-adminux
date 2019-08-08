@@ -58,7 +58,7 @@ class RoleController extends AdminuxController
 
         $role = $role->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $role));
+        return parent::saveRedirect($role);
     }
 
     /**
@@ -97,7 +97,7 @@ class RoleController extends AdminuxController
 
         $role->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $role));
+        return parent::saveRedirect($role);
     }
 
     /**

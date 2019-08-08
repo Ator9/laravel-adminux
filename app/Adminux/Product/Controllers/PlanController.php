@@ -79,7 +79,7 @@ class PlanController extends AdminuxController
 
         $plan = $plan->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $plan));
+        return parent::saveRedirect($plan);
     }
 
     /**
@@ -121,7 +121,7 @@ class PlanController extends AdminuxController
 
         $plan->update($request->only(['plan', 'currency_id', 'price', 'interval'])); // no extra validation required with this field
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $plan));
+        return parent::saveRedirect($plan);
     }
 
     /**

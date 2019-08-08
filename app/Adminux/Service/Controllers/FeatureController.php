@@ -61,7 +61,7 @@ class FeatureController extends AdminuxController
 
         $feature = $feature->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $feature));
+        return parent::saveRedirect($feature);
     }
 
     /**
@@ -94,7 +94,7 @@ class FeatureController extends AdminuxController
     {
         $feature->update($request->only(['feature'])); // no extra validation required with this field
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $feature));
+        return parent::saveRedirect($feature);
     }
 
     /**

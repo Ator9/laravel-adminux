@@ -109,7 +109,7 @@ class AccountPlanController extends AdminuxController
 
         $plan = $plan->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $plan));
+        return parent::saveRedirect($plan);
     }
 
     /**
@@ -169,7 +169,7 @@ class AccountPlanController extends AdminuxController
 
         $plan->update(request()->only(['account_id','module_config','active']));
 
-        return redirect(route(explode('/', request()->path())[1].'.show', $plan));
+        return parent::saveRedirect($plan);
     }
 
     /**

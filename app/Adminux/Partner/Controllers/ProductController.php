@@ -76,7 +76,7 @@ class ProductController extends AdminuxController
 
         $product = $product->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $product));
+        return parent::saveRedirect($product);
     }
 
     /**
@@ -123,7 +123,7 @@ class ProductController extends AdminuxController
 
         $product->update($request->only(['product', 'domain', 'currency_id', 'price', 'interval']));
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $product));
+        return parent::saveRedirect($product);
     }
 
     /**

@@ -66,7 +66,7 @@ class PartnerController extends AdminuxController
 
         $partner = $partner->create($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $partner));
+        return parent::saveRedirect($partner);
     }
 
     /**
@@ -115,7 +115,7 @@ class PartnerController extends AdminuxController
 
         $partner->update($request->all());
 
-        return redirect(route(explode('/', $request->path())[1].'.show', $partner));
+        return parent::saveRedirect($partner);
     }
 
     /**
