@@ -21,4 +21,10 @@ class AdminuxController extends \App\Http\Controllers\Controller
 
         return view('adminux.pages.edit')->withModel($model)->withFields($fields);
     }
+
+    public function updateRedirect($model)
+    {
+        if(request()->filled('continue_editing_form')) return back();
+        return redirect(route(explode('/', request()->path())[1].'.show', $model));
+    }
 }
