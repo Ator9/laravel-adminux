@@ -147,7 +147,7 @@ class AdminController extends AdminuxController
     public function getFields(Admin $admin)
     {
         $form = new \App\Adminux\Form($admin);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Role' ]),
             $form->email([ 'label' => 'E-mail' ]),
@@ -156,9 +156,7 @@ class AdminController extends AdminuxController
             $form->text([ 'label' => 'Last Name' ]),
             $form->select([ 'label' => 'Language' ]),
             $form->switch([ 'label' => 'Active' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 
     /**
