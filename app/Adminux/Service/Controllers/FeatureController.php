@@ -43,7 +43,7 @@ class FeatureController extends AdminuxController
      */
     public function create(Feature $feature)
     {
-        return view('adminux.pages.create')->withModel($feature)->withFields($this->getFields($feature));
+        return parent::createView($feature);
     }
 
     /**

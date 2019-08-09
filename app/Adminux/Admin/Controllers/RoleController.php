@@ -41,7 +41,7 @@ class RoleController extends AdminuxController
      */
     public function create(Role $role)
     {
-        return view('adminux.pages.create')->withModel($role)->withFields($this->getFields($role));
+        return parent::createView($role);
     }
 
     /**

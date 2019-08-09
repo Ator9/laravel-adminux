@@ -45,7 +45,7 @@ class PartnerController extends AdminuxController
      */
     public function create(Partner $partner)
     {
-        return view('adminux.pages.create')->withModel($partner)->withFields($this->getFields($partner));
+        return parent::createView($partner);
     }
 
     /**

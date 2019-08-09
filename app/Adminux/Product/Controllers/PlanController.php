@@ -58,7 +58,7 @@ class PlanController extends AdminuxController
      */
     public function create(Plan $plan)
     {
-        return view('adminux.pages.create')->withModel($plan)->withFields($this->getFields($plan));
+        return parent::createView($plan);
     }
 
     /**

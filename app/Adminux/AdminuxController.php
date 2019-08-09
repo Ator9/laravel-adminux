@@ -15,6 +15,13 @@ class AdminuxController extends \App\Http\Controllers\Controller
     //     return view('adminux.pages.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
     // }
 
+    public function createView($model, $params = [])
+    {
+        $fields = !empty($params['fields']) ? $params['fields'] : $this->getFields($model);
+
+        return view('adminux.pages.create')->withModel($model)->withFields($fields);
+    }
+
     public function editView($model, $params = [])
     {
         $fields = !empty($params['fields']) ? $params['fields'] : $this->getFields($model);
@@ -22,7 +29,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
         return view('adminux.pages.edit')->withModel($model)->withFields($fields);
     }
 
-    // Store & Update:
+    // Store / Update:
     public function saveRedirect($model)
     {
         if(request()->filled('continue_editing_form')) return back();

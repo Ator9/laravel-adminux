@@ -50,7 +50,7 @@ class AccountController extends AdminuxController
      */
     public function create(Account $account)
     {
-        return view('adminux.pages.create')->withModel($account)->withFields($this->getFields($account));
+        return parent::createView($account);
     }
 
     /**

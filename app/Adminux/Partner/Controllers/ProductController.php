@@ -53,7 +53,7 @@ class ProductController extends AdminuxController
      */
     public function create(Product $product)
     {
-        return view('adminux.pages.create')->withModel($product)->withFields($this->getFields($product));
+        return parent::createView($product);
     }
 
     /**

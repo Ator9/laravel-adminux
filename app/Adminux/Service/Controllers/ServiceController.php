@@ -40,7 +40,7 @@ class ServiceController extends AdminuxController
      */
     public function create(Service $service)
     {
-        return view('adminux.pages.create')->withModel($service)->withFields($this->getFields($service));
+        return parent::createView($service);
     }
 
     /**

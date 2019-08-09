@@ -40,7 +40,7 @@ class CurrencyController extends AdminuxController
      */
     public function create(Currency $currency)
     {
-        return view('adminux.pages.create')->withModel($currency)->withFields($this->getFields($currency));
+        return parent::createView($currency);
     }
 
     /**

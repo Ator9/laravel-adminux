@@ -50,7 +50,7 @@ class AdminController extends AdminuxController
      */
     public function create(Admin $admin)
     {
-        return view('adminux.pages.create')->withModel($admin)->withFields($this->getFields($admin));
+        return parent::createView($admin);
     }
 
     /**

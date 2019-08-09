@@ -40,7 +40,7 @@ class LanguageController extends AdminuxController
      */
     public function create(Language $language)
     {
-        return view('adminux.pages.create')->withModel($language)->withFields($this->getFields($language));
+        return parent::createView($language);
     }
 
     /**
