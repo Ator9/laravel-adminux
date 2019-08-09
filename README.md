@@ -2,7 +2,7 @@
 - <a href="https://github.com/laravel/laravel">Laravel</a>
 - <a href="https://github.com/yajra/laravel-datatables">Laravel Datatables</a>
 ```sh
-composer create-project laravel/laravel foldername
+composer create-project laravel/laravel
 composer require yajra/laravel-datatables-oracle
 ```
 
