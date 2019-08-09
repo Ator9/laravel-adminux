@@ -106,7 +106,7 @@ class FeatureController extends AdminuxController
     {
         $feature->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

@@ -106,7 +106,7 @@ class LanguageController extends AdminuxController
     {
         $language->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

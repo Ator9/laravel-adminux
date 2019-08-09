@@ -110,7 +110,7 @@ class RoleController extends AdminuxController
         if($role->admins()->count()) return back()->withErrors(['Cannot be deleted']);
         else $role->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

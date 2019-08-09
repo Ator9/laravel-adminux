@@ -136,7 +136,7 @@ class AdminController extends AdminuxController
     {
         $admin->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

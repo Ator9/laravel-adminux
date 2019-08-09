@@ -134,7 +134,7 @@ class PlanController extends AdminuxController
         Helper::validateProduct($plan);
         $plan->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

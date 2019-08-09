@@ -29,10 +29,16 @@ class AdminuxController extends \App\Http\Controllers\Controller
         return view('adminux.pages.edit')->withModel($model)->withFields($fields);
     }
 
-    // Store / Update:
+    // Store / Update Redirect:
     public function saveRedirect($model)
     {
         if(request()->filled('continue_editing_form')) return back();
         return redirect(route(explode('/', request()->path())[1].'.show', $model));
+    }
+
+    // Destroy Redirect:
+    public function destroyRedirect()
+    {
+        return redirect(route(explode('/', request()->path())[1].'.index'));
     }
 }

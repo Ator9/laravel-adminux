@@ -136,7 +136,7 @@ class ProductController extends AdminuxController
         Helper::validatePartner($product);
         $product->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

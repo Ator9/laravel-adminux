@@ -138,7 +138,7 @@ class AccountController extends AdminuxController
         Helper::validatePartner($account);
         $account->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     /**

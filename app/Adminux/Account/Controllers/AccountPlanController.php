@@ -182,7 +182,7 @@ class AccountPlanController extends AdminuxController
         Helper::validateAccount($plan);
         $plan->delete();
 
-        return redirect(route(explode('/', request()->path())[1].'.index'));
+        return parent::destroyRedirect();
     }
 
     public function checkServiceClass(AccountPlan $plan)
