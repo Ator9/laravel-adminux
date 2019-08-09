@@ -37,8 +37,9 @@ class AdminuxController extends \App\Http\Controllers\Controller
     }
 
     // Destroy Redirect:
-    public function destroyRedirect()
+    public function destroyRedirect($model = '')
     {
+        if(!empty($model)) $model->delete();
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
 }

@@ -134,9 +134,7 @@ class AdminController extends AdminuxController
      */
     public function destroy(Admin $admin)
     {
-        $admin->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($admin);
     }
 
     /**

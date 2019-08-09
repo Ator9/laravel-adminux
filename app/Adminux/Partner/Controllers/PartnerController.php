@@ -125,9 +125,7 @@ class PartnerController extends AdminuxController
      */
     public function destroy(Partner $partner)
     {
-        $partner->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($partner);
     }
 
     /**

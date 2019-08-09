@@ -104,9 +104,7 @@ class FeatureController extends AdminuxController
      */
     public function destroy(Feature $feature)
     {
-        $feature->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($feature);
     }
 
     /**

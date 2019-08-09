@@ -136,9 +136,7 @@ class AccountController extends AdminuxController
     public function destroy(Account $account)
     {
         Helper::validatePartner($account);
-        $account->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($account);
     }
 
     /**

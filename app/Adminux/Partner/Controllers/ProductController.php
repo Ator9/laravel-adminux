@@ -134,9 +134,7 @@ class ProductController extends AdminuxController
     public function destroy(Product $product)
     {
         Helper::validatePartner($product);
-        $product->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($product);
     }
 
     /**

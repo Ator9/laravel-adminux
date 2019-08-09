@@ -104,9 +104,7 @@ class LanguageController extends AdminuxController
      */
     public function destroy(Language $language)
     {
-        $language->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($language);
     }
 
     /**

@@ -104,9 +104,7 @@ class CurrencyController extends AdminuxController
      */
     public function destroy(Currency $currency)
     {
-        $currency->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($currency);
     }
 
     /**

@@ -180,9 +180,7 @@ class AccountPlanController extends AdminuxController
     public function destroy(AccountPlan $plan)
     {
         Helper::validateAccount($plan);
-        $plan->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($plan);
     }
 
     public function checkServiceClass(AccountPlan $plan)

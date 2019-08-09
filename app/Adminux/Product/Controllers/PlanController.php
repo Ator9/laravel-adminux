@@ -132,9 +132,7 @@ class PlanController extends AdminuxController
     public function destroy(Plan $plan)
     {
         Helper::validateProduct($plan);
-        $plan->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($plan);
     }
 
     /**

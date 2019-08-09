@@ -106,9 +106,7 @@ class ServiceController extends AdminuxController
      */
     public function destroy(Service $service)
     {
-        $service->delete();
-
-        return parent::destroyRedirect();
+        return parent::destroyRedirect($service);
     }
 
     /**
