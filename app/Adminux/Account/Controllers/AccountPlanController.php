@@ -215,14 +215,12 @@ class AccountPlanController extends AdminuxController
     public function getFields(AccountPlan $plan)
     {
         $form = new \App\Adminux\Form($plan);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Account', 'allows' => Helper::getEnabledAccountsKeys() ]),
             $form->select([ 'label' => 'Plan', 'editable' => false ]),
             $form->moduleConfig([ 'label' => 'Default Config' ]),
             $form->switch([ 'label' => 'Active' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

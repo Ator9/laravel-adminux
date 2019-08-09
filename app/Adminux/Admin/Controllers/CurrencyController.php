@@ -117,11 +117,9 @@ class CurrencyController extends AdminuxController
     public function getFields(Currency $currency)
     {
         $form = new \App\Adminux\Form($currency);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Currency' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

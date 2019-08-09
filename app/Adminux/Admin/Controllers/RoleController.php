@@ -121,11 +121,9 @@ class RoleController extends AdminuxController
     public function getFields(Role $role)
     {
         $form = new \App\Adminux\Form($role);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Role' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

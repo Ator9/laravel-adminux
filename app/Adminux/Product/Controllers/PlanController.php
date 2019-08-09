@@ -145,15 +145,13 @@ class PlanController extends AdminuxController
     public function getFields(Plan $plan)
     {
         $form = new \App\Adminux\Form($plan);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Product', 'editable' => false, 'allows' => Helper::getEnabledProductsKeys() ]),
             $form->text([ 'label' => 'Plan' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),
             $form->enum([ 'label' => 'Interval' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

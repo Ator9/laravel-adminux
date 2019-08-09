@@ -117,12 +117,10 @@ class FeatureController extends AdminuxController
     public function getFields(Feature $feature)
     {
         $form = new \App\Adminux\Form($feature);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Service', 'editable' => false ]),
             $form->text([ 'label' => 'Feature' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

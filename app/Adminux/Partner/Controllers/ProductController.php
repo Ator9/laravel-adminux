@@ -147,7 +147,7 @@ class ProductController extends AdminuxController
     public function getFields(Product $product)
     {
         $form = new \App\Adminux\Form($product);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => Helper::getEnabledPartnersKeys() ]),
             $form->select([ 'label' => 'Service', 'editable' => false ]),
@@ -156,8 +156,6 @@ class ProductController extends AdminuxController
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),
             $form->enum([ 'label' => 'Interval' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

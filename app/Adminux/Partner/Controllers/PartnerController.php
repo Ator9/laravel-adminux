@@ -138,14 +138,12 @@ class PartnerController extends AdminuxController
     public function getFields(Partner $partner)
     {
         $form = new \App\Adminux\Form($partner);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Partner' ]),
             $form->select([ 'label' => 'Language' ]),
             $form->moduleConfig([ 'label' => 'Module Config' ]),
             $form->switch([ 'label' => 'Active' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

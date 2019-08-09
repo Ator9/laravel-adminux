@@ -119,12 +119,10 @@ class ServiceController extends AdminuxController
     public function getFields(Service $service)
     {
         $form = new \App\Adminux\Form($service);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Service' ]),
             $form->text([ 'label' => 'Service Class' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

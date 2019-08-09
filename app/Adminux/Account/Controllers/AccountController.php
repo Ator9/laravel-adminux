@@ -149,7 +149,7 @@ class AccountController extends AdminuxController
     public function getFields(Account $account)
     {
         $form = new \App\Adminux\Form($account);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Partner', 'allows' => Helper::getEnabledPartnersKeys() ]),
             $form->email([ 'label' => 'E-mail' ]),
@@ -157,8 +157,6 @@ class AccountController extends AdminuxController
             $form->text([ 'label' => 'Account' ]),
             $form->moduleConfig([ 'label' => 'Default Config' ]),
             $form->switch([ 'label' => 'Active' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }

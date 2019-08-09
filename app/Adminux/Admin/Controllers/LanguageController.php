@@ -117,11 +117,9 @@ class LanguageController extends AdminuxController
     public function getFields(Language $language)
     {
         $form = new \App\Adminux\Form($language);
-        $form->addFields([
+        return [
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Language' ]),
-        ]);
-
-        return $form->getFields();
+        ];
     }
 }
