@@ -8,8 +8,9 @@
             </li>
         @endforeach
     </ul>
-    <span class="text-white">{{ auth('adminux')->user()->email }}</span>
-    <ul class="navbar-nav mx-3">
+    <!-- <input class="form-control form-control-dark ml-1" type="text" placeholder="Search" aria-label="Search"> -->
+    <span class="text-white mx-3">{{ auth('adminux')->user()->email }}</span>
+    <ul class="navbar-nav mr-3">
         <li class="nav-item">
             <a class="nav-link" href="{{ asset($prefix.'/logout') }}"><span data-feather="log-out"></span></a>
         </li>
