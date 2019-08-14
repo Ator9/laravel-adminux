@@ -6,41 +6,21 @@
                     <span data-feather="home"></span> Dashboard
                 </a>
             </li>
-            @php $menu = $Helper->getNavLeft(); @endphp
-            @foreach($menu as $module)
-                @if(in_array($module['dir'], ['Admins', 'Partners', 'Services'])) @continue; @endif
-                <li class="nav-item">
-                    <a class="nav-link{{ (Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']).'_', $prefix.'/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.strtolower($module['dir'])) }}">
-                        <span data-feather="{{ $module['icon'] }}"></span> {{ $module['name'] }}
-                    </a>
-                    <!-- @if(Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']).'_', $prefix.'/'.strtolower($module['dir']).'/']))
-                        <ul class="nav flex-column ml-3">
-                        @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
-                            @php $css = (Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false) ? ' active' : ''; @endphp
-                            <li class="nav-item">
-                                <a class="nav-link{{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">─
-                                    @if(@++$cnt == 1){{  __('adminux.home') }} @else
-                                        @if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif
-                                    @endif
-                                </a>
-                            </li>
-                        @endforeach
-                        </ul>
-                    @endif -->
-                </li>
+            @php $menu = config('adminux.base.default.menu'); @endphp
+            @foreach($menu['default'] as $name => $module)
+                @include('adminux.inc.navleftmod')
             @endforeach
         </ul>
-        <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">Configuration</h6>
-        <ul class="nav flex-column">
-            @foreach($menu as $module)
-                @if(!in_array($module['dir'], ['Admins', 'Partners', 'Services'])) @continue; @endif
-                <li class="nav-item">
-                    <a class="nav-link{{ (Request::is($prefix.'/'.strtolower($module['dir'])) or str_contains(Request::path(), [$prefix.'/'.strtolower($module['dir']), $prefix.'/'.strtolower($module['dir']).'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.strtolower($module['dir'])) }}">
-                        <span data-feather="{{ $module['icon'] }}"></span> {{ $module['name'] }}
-                    </a>
-                </li>
+        @foreach($menu as $name => $module)
+            @if($name == 'default') @continue; @endif
+            <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">@if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif</h6>
+            @foreach($menu[$name] as $name => $module)
+                <ul class="nav flex-column">
+                    @include('adminux.inc.navleftmod')
+                </ul>
             @endforeach
-        </ul>
+        @endforeach
+
         <div class="position-absolute w-100 mb-1 px-3 fixed-bottom">
             <select class="custom-select custom-select-sm" id="partner_select">
                 <option value="">All Partners...</option>
