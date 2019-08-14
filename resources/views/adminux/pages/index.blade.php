@@ -64,7 +64,17 @@ $(document).ready(function() {
         });
     @endisset
 
+    $('#global_filter').on('keyup click', function() {
+        filterGlobal();
+    });
+
     @isset($datatables['customCode']) {{ $datatables['customCode'] }} @endisset
 });
+
+function filterGlobal() {
+    $('#datatable').DataTable().search(
+        $('#global_filter').val()
+    ).draw();
+}
 </script>
 @endpush
