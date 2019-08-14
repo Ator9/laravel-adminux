@@ -18,13 +18,11 @@
                         @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
                             @php $css = (Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false) ? ' active' : ''; @endphp
                             <li class="nav-item">
-                                <small>
-                                    <a class="nav-link{{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">&bull;
-                                        @if(@++$cnt == 1){{  __('adminux.home') }} @else
-                                            @if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif
-                                        @endif
-                                    </a>
-                                </small>
+                                <a class="nav-link{{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">─
+                                    @if(@++$cnt == 1){{  __('adminux.home') }} @else
+                                        @if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif
+                                    @endif
+                                </a>
                             </li>
                         @endforeach
                         </ul>
