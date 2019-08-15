@@ -7,7 +7,8 @@ function modalDelete(action, title) {
 
 function setTitle(txt) {
     if(txt) document.title = txt;
-    else document.title = $('.text-white').html();
+    else document.title = $('ul ul a.active').text().replace('─', '');
+    // else document.title = $('.text-white').html();
 }
 
 $('#partner_select').on('change', function () {
