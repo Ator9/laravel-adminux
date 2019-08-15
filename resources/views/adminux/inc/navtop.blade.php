@@ -8,12 +8,14 @@
             </li>
         @endforeach
     </ul> -->
-    <!-- <div id="datatable_filter" class="dataTables_filter">
-        <label>
-            <input type="search" id="global_filter" class="form-control form-control-sm" placeholder="Search..." aria-controls="datatable">
-        </label>
-    </div> -->
-    <input class="form-control form-control-dark ml-1"  id="global_filter" type="text" placeholder="Search" aria-label="Search">
+    <!-- <nav class="w-100" aria-label="breadcrumb">
+        <ol class="breadcrumb m-0 bg-dark">
+            <li class="breadcrumb-item"><a href="{{ asset($prefix.'/dashboard') }}" class="text-white">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="#" class="text-white">Library</a></li>
+            <li class="breadcrumb-item active text-warning" aria-current="page">Data</li>
+        </ol>
+    </nav> -->
+    <input class="form-control form-control-dark ml-1" id="global_filter" type="text" placeholder="Search" aria-label="Search">
     <span class="text-white mx-3">{{ auth('adminux')->user()->email }}</span>
     <ul class="navbar-nav mr-3">
         <li class="nav-item">
