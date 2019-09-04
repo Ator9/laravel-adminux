@@ -8,7 +8,7 @@
             </li>
             @php $menu = config('adminux.base.default.menu'); @endphp
             @foreach($menu['default'] as $name => $module)
-                @include('adminux.inc.navleftmod')
+                @include('adminux.inc.navleftitems')
             @endforeach
         </ul>
         @foreach($menu as $name => $module)
@@ -16,7 +16,7 @@
             <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">@if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif</h6>
             @foreach($menu[$name] as $name => $module)
                 <ul class="nav flex-column">
-                    @include('adminux.inc.navleftmod')
+                    @include('adminux.inc.navleftitems')
                 </ul>
             @endforeach
         @endforeach
