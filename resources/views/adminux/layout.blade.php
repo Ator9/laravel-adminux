@@ -15,7 +15,7 @@
 @include('adminux.inc.navtop')
 <div class="container-fluid">
     <div class="row">
-        @include('adminux.inc.navleft')
+        @include('adminux.inc.navleft2')
         <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
             @yield('body')
         </main>
