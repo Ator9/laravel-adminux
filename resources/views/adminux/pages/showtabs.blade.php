@@ -13,7 +13,7 @@
         @isset($cards)
             @foreach($cards as $key => $card)
                 <li class="nav-item">
-                    <h5 class="nav-link mb-0" id="{{ str_slug($key) }}-tab" data-toggle="tab" href="#{{ str_slug($key) }}" role="tab" aria-controls="{{ str_slug($key) }}" aria-selected="false">{{ $key }}</h5>
+                    <h5 class="nav-link mb-0" id="{{ Illuminate\Support\Str::slug($key) }}-tab" data-toggle="tab" href="#{{ Illuminate\Support\Str::slug($key) }}" role="tab" aria-controls="{{ Illuminate\Support\Str::slug($key) }}" aria-selected="false">{{ $key }}</h5>
                 </li>
             @endforeach
         @endisset
@@ -68,7 +68,7 @@
 
         @isset($cards)
             @foreach($cards as $key => $card)
-                <div class="tab-pane fade" id="{{ str_slug($key) }}" role="tabpanel" aria-labelledby="{{ str_slug($key) }}-tab">
+                <div class="tab-pane fade" id="{{ Illuminate\Support\Str::slug($key) }}" role="tabpanel" aria-labelledby="{{ Illuminate\Support\Str::slug($key) }}-tab">
                     <div class="card border-top-0">
                         <div class="card-body">
                             {!! $card !!}
