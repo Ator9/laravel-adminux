@@ -1,11 +1,18 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow-sm">
     <a class="navbar-brand col-sm-2 col-md-2 mr-0" href="{{ asset($prefix.'/dashboard') }}">{{ config('adminux.base.default.project_name', 'Admin') }}</a>
     <ul class="nav w-100">
-        @foreach($Helper->getNavTop(Request::path()) as $dir => $name)
-            <li class="nav-item">
-                @php $css = (Request::is($prefix.'/'.$dir) or strpos(Request::path(), $prefix.'/'.$dir.'/') !== false) ? 'text-white' : 'text-warning'; @endphp
-                <a class="nav-link {{ $css }}" href="{{ asset($prefix.'/'.$dir) }}">@if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif</a>
-            </li>
+        @php $menu = config('adminux.base.default.menu'); @endphp
+        @foreach($menu as $module)
+            @foreach($module as $name => $submenu)
+                @if(strpos(Request::path(), $prefix.'/'.strtolower($name)) !== false)
+                    @foreach($submenu['items'] as $item)
+                        <li class="nav-item">
+                            @php $css = (Request::is($prefix.'/'.$item['dir']) or strpos(Request::path(), $prefix.'/'.$item['dir'].'/') !== false) ? 'text-white' : 'text-warning'; @endphp
+                            <a class="nav-link {{ $css }}" href="{{ asset($prefix.'/'.$item['dir']) }}">@if(Lang::has('adminux.'.strtolower($item['name']))){{ __('adminux.'.strtolower($item['name'])) }}@else {{ $item['name'] }}@endif</a>
+                        </li>
+                    @endforeach
+                @endif
+            @endforeach
         @endforeach
     </ul>
     <!-- <nav class="w-100" aria-label="breadcrumb">
