@@ -46,7 +46,14 @@
 </div>
 @isset($cards)
     @foreach($cards as $key => $card)
-        {!! $card !!}
+        <div class="card my-3">
+            <div class="card-header">
+                <h5 class="mb-0">{{$key}}</h5>
+            </div>
+            <div class="card-body">
+                {!! $card !!}
+            </div>
+        </div>
     @endforeach
 @endisset
 
