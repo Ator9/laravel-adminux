@@ -6,6 +6,7 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
     Route::get('login',  'LoginController@showLoginForm');
     Route::get('logout', 'LoginController@logout');
+    Route::get('webhook', 'Admin\Controllers\AdminController@webhook');
 
     Route::middleware(App\Adminux\Authenticate::class)->group(function() {
         Route::get('',              function() { return redirect()->route('login'); });
@@ -13,6 +14,7 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::get('dashboard',     'Admin\Controllers\AdminController@dashboard');
         Route::get('admins_logs',    'Admin\Controllers\AdminController@logs');
         Route::get('admins_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
+        Route::get('admins_webhook', 'Admin\Controllers\AdminController@webhook');
 
         Route::get('adminpartner', 'Admin\Controllers\AdminPartnerController@setPartner');
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');

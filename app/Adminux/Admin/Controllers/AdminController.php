@@ -195,4 +195,20 @@ class AdminController extends AdminuxController
         return view('adminux.pages.blank')
         ->withBody('<iframe src="admins_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
+
+    /**
+     * Display Webhook Sync
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function webhook()
+    {
+        if(isset($_GET['sync'])) {
+            echo 44;
+            return;
+        }
+
+        return view('adminux.pages.blank')
+        ->withBody('<iframe src="'.config('adminux.base.default.webhook_path').'?sync=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+    }
 }

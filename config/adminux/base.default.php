@@ -5,7 +5,7 @@ if(file_exists(__DIR__.'/base.php')) return require(__DIR__.'/base.php');
 return [
 
     'project_name' => 'Adminux',
-    'webhook_path' => url('/webhook_ispconfig.php'),
+    'webhook_path' => url('/adminux/webhook'),
 
     // Left menu:
     'menu' => [
