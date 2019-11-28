@@ -218,7 +218,7 @@ class AdminController extends AdminuxController
     public function webhook()
     {
         if(isset($_GET['sync'])) {
-            echo 8885;
+            echo date('Y-m-d H:i');
             return;
         }
 
