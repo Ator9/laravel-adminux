@@ -199,6 +199,20 @@ class AdminController extends AdminuxController
     /**
      * Display Webhook Sync
      *
+     * sudo -u user ssh-keygen
+     * sudo -u user git clone git@bitbucket.org:xxx/yyy.git .
+     * sudo chown -R user:group .
+     * sudo chmod -R 777 storage
+     *
+     * sudo -u user ln -s /var/www/site.com/private/public/ web/
+     * sudo -u user git pull
+     *
+     * sudo -u user cp .env.example .env
+     * sudo -u user composer install
+     * php artisan key:generate
+     *
+     * ispconfig > Apache Directives: DocumentRoot "{DOCROOT_CLIENT}/public"
+     *
      * @return \Illuminate\Http\Response
      */
     public function webhook()
