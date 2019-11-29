@@ -213,6 +213,7 @@ class AdminController extends AdminuxController
      *
      * sudo -u user composer install
      * php artisan key:generate
+     * php artisan migrate
      *
      * ispconfig > Apache Directives: DocumentRoot "{DOCROOT_CLIENT}/public"
      *
