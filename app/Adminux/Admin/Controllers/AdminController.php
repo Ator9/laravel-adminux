@@ -213,6 +213,9 @@ class AdminController extends AdminuxController
      *
      * ispconfig > Apache Directives: DocumentRoot "{DOCROOT_CLIENT}/public"
      *
+     * Example Public Route for Bitbucket (add @ App\Http\Middleware\VerifyCsrfToken $except = ['webhook_ispconfig']):
+     * Route::post('/webhook_ispconfig', '\App\Adminux\Admin\Controllers\AdminController@webhook');
+     *
      * @return \Illuminate\Http\Response
      */
     public function webhook()

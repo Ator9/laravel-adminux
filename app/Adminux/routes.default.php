@@ -14,7 +14,7 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::get('admins_logs',    'Admin\Controllers\AdminController@logs');
         Route::get('admins_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
         Route::get('admins_webhook', 'Admin\Controllers\AdminController@webhook');
-        Route::get('webhook', 'Admin\Controllers\AdminController@webhook'); // Public route: Route::get('/webhook', '\App\Adminux\Admin\Controllers\AdminController@webhook');
+        Route::get('webhook', 'Admin\Controllers\AdminController@webhook');
 
         Route::get('adminpartner', 'Admin\Controllers\AdminPartnerController@setPartner');
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
