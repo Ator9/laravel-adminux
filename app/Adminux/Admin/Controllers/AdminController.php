@@ -222,10 +222,12 @@ class AdminController extends AdminuxController
     {
         if(isset($_GET['sync'])) {
 
-            echo date('Y-m-d H:i:s').'<br>';
-            echo 'Starting Git Sync...<br><br>';
-            echo 'Current User: '.exec('whoami').'<br>';
-            echo 'Current Path: '.exec('pwd').'<br><br>';
+            if(auth('adminux')->check()) {
+                echo date('Y-m-d H:i:s').'<br>';
+                echo 'Starting Git Sync...<br><br>';
+                echo 'Current User: '.exec('whoami').'<br>';
+                echo 'Current Path: '.exec('pwd').'<br><br>';
+            }
 
             echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && git pull';
             exec($command." 2>&1", $output);
