@@ -21,8 +21,8 @@
                 @include('adminux.inc.errors')
                 @foreach($model->toArray() as $key => $val)
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
-                    <div class="col-sm-10 form-control-plaintext">
+                    <label class="col-sm-4 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
+                    <div class="col-sm-8 form-control-plaintext">
                         @if(strpos($key, '_id') !== false && $rel = str_replace('_id', '', $key))
                             @isset($model->{$rel})
                                 <a href="{{ url(request()->route()->getPrefix().'/'.$model->{$rel}->getTable()) }}/{{ $model->{$rel}->id }}">{{ $model->{$rel}->id }} - {{ $model->{$rel}->{$rel} }}</a>
@@ -37,8 +37,8 @@
                 @endforeach
                 @if(method_exists($controller, 'edit'))
                 <div class="form-group row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
                         <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
                     </div>
                 </div>
