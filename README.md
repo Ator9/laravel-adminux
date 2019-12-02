@@ -19,7 +19,7 @@ php artisan migrate
 - Add to /app/Http/Kernel.php:
 ```php
 // $routeMiddleware:
-'adminux_superuser' => \App\Adminux\AdminuxSuperuser::class,
+'adminux_superuser' => \App\Adminux\Superuser::class,
 ```
 - Add to /config/auth.php:
 ```php
