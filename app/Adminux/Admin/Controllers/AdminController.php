@@ -12,7 +12,7 @@ class AdminController extends AdminuxController
 {
     public function __construct()
     {
-        $this->middleware('adminux_superuser');
+        $this->middleware('adminux_superuser', ['except' => ['webhook']]);
     }
 
     /**
