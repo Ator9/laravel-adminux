@@ -4,7 +4,7 @@ namespace App\Adminux\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class AdminDashboard extends Controller
+class AdminDashboardController extends Controller
 {
     /**
      * Display admin dashboard

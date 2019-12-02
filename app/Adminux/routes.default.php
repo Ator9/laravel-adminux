@@ -9,7 +9,7 @@ Route::namespace('\App\Adminux')->group(function() {
 
     Route::middleware(App\Adminux\Authenticate::class)->group(function() {
         Route::get('', function() { return redirect()->route('login'); });
-        Route::get('dashboard', 'Admin\Controllers\AdminDashboard@dashboard');
+        Route::get('dashboard', 'Admin\Controllers\AdminDashboardController@dashboard');
         Route::get('admins_logs', 'Admin\Controllers\AdminController@logs');
         Route::get('admins_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
         Route::get('admins_webhook', 'Admin\Controllers\AdminController@webhook');
