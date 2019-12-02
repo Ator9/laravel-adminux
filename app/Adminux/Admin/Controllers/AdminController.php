@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends AdminuxController
 {
+    public function __construct()
+    {
+        $this->middleware('adminux_superuser');
+    }
+
     /**
      * Display a listing of the resource.
      *
