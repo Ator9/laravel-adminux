@@ -13,7 +13,7 @@ class Superuser
      */
     public function handle($request, \Closure $next)
     {
-        abort_if(auth('adminux')->user()->superuser != 'Y', 403);
+        abort_if(auth('adminux')->user() && auth('adminux')->user()->superuser != 'Y', 403);
 
         return $next($request);
     }
