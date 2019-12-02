@@ -2,7 +2,7 @@
 
 namespace App\Adminux;
 
-class AdminuxSuperuser
+class Superuser
 {
     /**
      * Handle an incoming request.
