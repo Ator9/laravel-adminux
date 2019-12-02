@@ -163,16 +163,6 @@ class AdminController extends AdminuxController
     }
 
     /**
-     * Display admin dashboard
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        return view('adminux.dashboard');
-    }
-
-    /**
      * Display admin logs
      *
      * @return \Illuminate\Http\Response

@@ -4,14 +4,13 @@ use Illuminate\Support\Str;
 
 Route::namespace('\App\Adminux')->group(function() {
     Route::post('login', 'LoginController@login')->name('login');
-    Route::get('login',  'LoginController@showLoginForm');
+    Route::get('login', 'LoginController@showLoginForm');
     Route::get('logout', 'LoginController@logout');
 
     Route::middleware(App\Adminux\Authenticate::class)->group(function() {
-        Route::get('',              function() { return redirect()->route('login'); });
-        // Route::get('',              function() { return view('adminux.container'); });
-        Route::get('dashboard',     'Admin\Controllers\AdminController@dashboard');
-        Route::get('admins_logs',    'Admin\Controllers\AdminController@logs');
+        Route::get('', function() { return redirect()->route('login'); });
+        Route::get('dashboard', 'Admin\Controllers\AdminDashboard@dashboard');
+        Route::get('admins_logs', 'Admin\Controllers\AdminController@logs');
         Route::get('admins_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
         Route::get('admins_webhook', 'Admin\Controllers\AdminController@webhook');
         Route::get('webhook', 'Admin\Controllers\AdminController@webhook');

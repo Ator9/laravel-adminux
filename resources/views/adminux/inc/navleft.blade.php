@@ -17,6 +17,7 @@
         </ul>
         @foreach($menu as $name => $module)
             @if($name == 'default') @continue; @endif
+            @if($name == 'superuser' and auth('adminux')->user()->superuser != 'Y') @continue; @endif
             <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">@if(Lang::has('adminux.'.strtolower($name))){{ __('adminux.'.strtolower($name)) }}@else {{ $name }}@endif</h6>
             @foreach($menu[$name] as $name => $module)
                 <ul class="nav flex-column">

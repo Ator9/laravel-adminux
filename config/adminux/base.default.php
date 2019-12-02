@@ -25,7 +25,7 @@ return [
             ],
         ],
 
-        'configuration' => [
+        'superuser' => [ // This checks superuser == 'Y' to show
             'Admins' => [
                 'icon' => 'lock',
                 'items' => [
