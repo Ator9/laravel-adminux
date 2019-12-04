@@ -10,7 +10,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
-                    @if(method_exists($controller, 'edit') or method_exists($controller, 'destroy'))
+                    @if(method_exists($controller, 'destroy'))
                     <div>
                         <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')"><span class="feather-adminux" data-feather="trash-2"></span></button>
                     </div>

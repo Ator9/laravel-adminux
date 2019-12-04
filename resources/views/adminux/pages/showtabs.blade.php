@@ -47,7 +47,9 @@
                             @endif
                         </div>
                         <div class="col-sm-10">
-                            <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
+                            @if(method_exists($controller, 'edit'))
+                                <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
+                            @endif
                         </div>
                     </div>
                     @endif
