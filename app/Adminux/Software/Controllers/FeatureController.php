@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Service\Controllers;
+namespace App\Adminux\Software\Controllers;
 
-use App\Adminux\Service\Models\Feature;
+use App\Adminux\Software\Models\Feature;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
@@ -17,7 +17,7 @@ class FeatureController extends AdminuxController
     public function index(Feature $feature)
     {
         if(request()->ajax()) return Datatables::of($feature::query())
-            ->addColumn('service', function($row) { return @$row->service->service; })
+            ->addColumn('software', function($row) { return @$row->software->software; })
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
@@ -26,12 +26,12 @@ class FeatureController extends AdminuxController
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Feature</th>
-                        <th style="min-width:120px">Service</th>
+                        <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "feature", name: "feature" },
-                          { data: "service", name: "service" },
+                          { data: "software", name: "software" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -55,7 +55,7 @@ class FeatureController extends AdminuxController
     public function store(Request $request, Feature $feature)
     {
         $request->validate([
-            'service_id' => 'required',
+            'software_id' => 'required',
             'feature' => 'required'
         ]);
 
@@ -117,7 +117,7 @@ class FeatureController extends AdminuxController
         $form = new \App\Adminux\Form($feature);
         return [
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Service', 'editable' => false ]),
+            $form->select([ 'label' => 'Software', 'editable' => false ]),
             $form->text([ 'label' => 'Feature' ]),
         ];
     }

@@ -17,7 +17,7 @@ return [
                 ]
             ],
             'Products' => [
-                'icon' => 'box',
+                'icon' => 'truck',
                 'items' => [
                     [ 'dir'=> 'products', 'name' => 'Products' ],
                     [ 'dir'=> 'products_plans', 'name' => 'Plans' ],
@@ -45,11 +45,11 @@ return [
                     [ 'dir'=> 'partners_products', 'name' => 'Products' ],
                 ]
             ],
-            'Services' => [
-                'icon' => 'truck',
+            'Software' => [
+                'icon' => 'box',
                 'items' => [
-                    [ 'dir'=> 'services', 'name' => 'Services' ],
-                    [ 'dir'=> 'services_features', 'name' => 'Features' ],
+                    [ 'dir'=> 'software', 'name' => 'Software' ],
+                    [ 'dir'=> 'software_features', 'name' => 'Features' ],
                 ]
             ],
         ]

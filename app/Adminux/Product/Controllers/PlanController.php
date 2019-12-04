@@ -20,10 +20,10 @@ class PlanController extends AdminuxController
         if(request()->ajax()) return Datatables::of($plan::query()
             ->join('products', 'products.id', '=', 'products_plans.product_id')
             ->join('partners', 'partners.id', '=', 'products.partner_id')
-            ->join('services', 'services.id', '=', 'products.service_id')
+            ->join('software', 'software.id', '=', 'products.software_id')
             ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
             ->select('products_plans.id', 'products_plans.plan','products_plans.currency_id','products_plans.price','products_plans.interval',
-            'products.product','services.service','partners.partner','products_plans.created_at'))
+            'products.product','software.software','partners.partner','products_plans.created_at'))
             ->addColumn('currency_price', function($row) {
                 return '<small>'.$row->interval.'</small> '.@$row->currency->currency.' '.$row->price;
             })
@@ -37,7 +37,7 @@ class PlanController extends AdminuxController
                         <th class="w-75">Plan</th>
                         <th style="min-width:120px">Price</th>
                         <th style="min-width:120px">Product</th>
-                        <th style="min-width:120px">Service</th>
+                        <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
@@ -45,7 +45,7 @@ class PlanController extends AdminuxController
                           { data: "plan", name: "products_plans.plan" },
                           { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "product", name: "products.product" },
-                          { data: "service", name: "services.service" },
+                          { data: "software", name: "software.software" },
                           { data: "partner", name: "partners.partner" },
                           { data: "created_at", name: "products_plans.created_at", className: "text-center" }'
         ]);

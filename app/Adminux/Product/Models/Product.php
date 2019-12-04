@@ -14,7 +14,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'partner_id', 'service_id', 'product', 'domain', 'currency_id', 'price', 'interval' ];
+    protected $fillable = [ 'partner_id', 'software_id', 'product', 'domain', 'currency_id', 'price', 'interval' ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -32,11 +32,11 @@ class Product extends Model
     }
 
     /**
-     * Get the service.
+     * Get the software.
      */
-    public function service()
+    public function software()
     {
-        return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
+        return $this->belongsTo('App\Adminux\Software\Models\Software')->withTrashed();
     }
 
     /**

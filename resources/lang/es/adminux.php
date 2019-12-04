@@ -58,6 +58,8 @@ return [
     'services' => 'Servicios',
     'slug' => 'Slug',
     'software' => 'Software',
+    'software_class' => 'Clase del Software',
+    'software_id' => 'Software',
     'superuser' => 'Super Usuario',
     'updated_at' => 'Fecha Actualización',
     'url' => 'URL',

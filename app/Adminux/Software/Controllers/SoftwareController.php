@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Adminux\Service\Controllers;
+namespace App\Adminux\Software\Controllers;
 
-use App\Adminux\Service\Models\Service;
+use App\Adminux\Software\Models\Software;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class ServiceController extends AdminuxController
+class SoftwareController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Service $service)
+    public function index(Software $software)
     {
-        if(request()->ajax()) return Datatables::of($service::query())
+        if(request()->ajax()) return Datatables::of($software::query())
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
@@ -24,11 +24,11 @@ class ServiceController extends AdminuxController
         return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Service</th>
+                        <th class="w-75">Software</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "service", name: "service" },
+                          { data: "software", name: "software" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
@@ -38,9 +38,9 @@ class ServiceController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Service $service)
+    public function create(Software $software)
     {
-        return parent::createView($service);
+        return parent::createView($software);
     }
 
     /**
@@ -49,15 +49,15 @@ class ServiceController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Service $service)
+    public function store(Request $request, Software $software)
     {
         $request->validate([
-            'service' => 'required|unique:'.$service->getTable(),
+            'software' => 'required|unique:'.$software->getTable(),
         ]);
 
-        $service = $service->create($request->all());
+        $software = $software->create($request->all());
 
-        return parent::saveRedirect($service);
+        return parent::saveRedirect($software);
     }
 
     /**
@@ -65,11 +65,11 @@ class ServiceController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Software $software)
     {
-        if(request()->ajax()) return (new ServiceFeatureController)->getIndex($service);
+        if(request()->ajax()) return (new SoftwareFeatureController)->getIndex($software);
 
-        return view('adminux.pages.show')->withModel($service)->withRelations([(new ServiceFeatureController)->getIndex($service)]);
+        return view('adminux.pages.show')->withModel($software)->withRelations([(new SoftwareFeatureController)->getIndex($software)]);
     }
 
     /**
@@ -77,9 +77,9 @@ class ServiceController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Software $software)
     {
-        return parent::editView($service);
+        return parent::editView($software);
     }
 
     /**
@@ -88,15 +88,15 @@ class ServiceController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Software $software)
     {
         $request->validate([
-            'service' => 'required|unique:'.$service->getTable().',service,'.$service->id,
+            'software' => 'required|unique:'.$software->getTable().',software,'.$software->id,
         ]);
 
-        $service->update($request->all());
+        $software->update($request->all());
 
-        return parent::saveRedirect($service);
+        return parent::saveRedirect($software);
     }
 
     /**
@@ -104,9 +104,9 @@ class ServiceController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Software $software)
     {
-        return parent::destroyRedirect($service);
+        return parent::destroyRedirect($software);
     }
 
     /**
@@ -114,13 +114,13 @@ class ServiceController extends AdminuxController
      *
      * @return Array
      */
-    public function getFields(Service $service)
+    public function getFields(Software $software)
     {
-        $form = new \App\Adminux\Form($service);
+        $form = new \App\Adminux\Form($software);
         return [
             $form->display([ 'label' => 'ID' ]),
-            $form->text([ 'label' => 'Service' ]),
-            $form->text([ 'label' => 'Service Class' ]),
+            $form->text([ 'label' => 'Software' ]),
+            $form->text([ 'label' => 'Software Class' ]),
         ];
     }
 }

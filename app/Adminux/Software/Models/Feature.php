@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Adminux\Service\Models;
+namespace App\Adminux\Software\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +9,7 @@ class Feature extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'services_features';
+    protected $table = 'software_features';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class Feature extends Model
      * @var array
      */
     protected $fillable = [
-        'service_id', 'feature'
+        'software_id', 'feature'
     ];
 
     /**
@@ -30,10 +30,10 @@ class Feature extends Model
     ];
 
     /**
-     * Get the service.
+     * Get the software.
      */
-    public function service()
+    public function software()
     {
-        return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
+        return $this->belongsTo('App\Adminux\Software\Models\Software')->withTrashed();
     }
 }

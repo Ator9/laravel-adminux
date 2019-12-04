@@ -21,10 +21,10 @@ class Currency extends Model
     ];
 
     /**
-     * Get the services for the currency.
+     * Get the software for the currency.
      */
-    // public function services()
+    // public function software()
     // {
-    //     return $this->hasMany('App\Adminux\Service\Models\Service');
+    //     return $this->hasMany('App\Adminux\Software\Models\Software');
     // }
 }

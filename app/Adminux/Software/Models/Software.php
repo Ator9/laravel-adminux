@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Adminux\Service\Models;
+namespace App\Adminux\Software\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service extends Model
+class Software extends Model
 {
     use SoftDeletes;
 
@@ -15,7 +15,7 @@ class Service extends Model
      * @var array
      */
     protected $fillable = [
-        'service', 'service_class'
+        'software', 'software_class'
     ];
 
     /**
@@ -32,7 +32,7 @@ class Service extends Model
      */
     public function features()
     {
-        return $this->hasMany('App\Adminux\Service\Models\Feature');
+        return $this->hasMany('App\Adminux\Software\Models\Feature');
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Adminux\Service\Controllers;
+namespace App\Adminux\Software\Controllers;
 
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
-class ServiceFeatureController extends Controller
+class SoftwareFeatureController extends Controller
 {
     public function getIndex($obj)
     {
@@ -13,7 +13,7 @@ class ServiceFeatureController extends Controller
 
         if(request()->ajax()) {
             $dt = Datatables::of($model)->addColumn('id2', function($row) use ($obj) {
-                $params['action'] = url(request()->route()->getPrefix().'/services_features/'.$row->id);
+                $params['action'] = url(request()->route()->getPrefix().'/software_features/'.$row->id);
                 $id = $row->id;
                 return view('adminux.pages.inc.link_show_link', compact('params', 'id'));
             });

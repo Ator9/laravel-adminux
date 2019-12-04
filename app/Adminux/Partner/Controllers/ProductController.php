@@ -21,7 +21,7 @@ class ProductController extends AdminuxController
         if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', Helper::getSelectedPartners()))
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
-            ->addColumn('service', function($row) { return @$row->service->service; })
+            ->addColumn('software', function($row) { return @$row->software->software; })
             ->addColumn('currency_price', function($row) {
                 return '<small>'.$row->interval.'</small> '.@$row->currency->currency.' '.$row->price;
             })
@@ -33,14 +33,14 @@ class ProductController extends AdminuxController
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Product</th>
                         <th style="min-width:120px">Price</th>
-                        <th style="min-width:120px">Service</th>
+                        <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "product", name: "product" },
                           { data: "currency_price", name: "currency_price", className: "text-right" },
-                          { data: "service", name: "service" },
+                          { data: "software", name: "software" },
                           { data: "partner", name: "partner" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
@@ -66,7 +66,7 @@ class ProductController extends AdminuxController
     {
         $request->validate([
             'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
-            'service_id' => 'required',
+            'software_id' => 'required',
             'product' => 'required',
             'domain' => 'nullable|url',
             'currency_id' => 'required',
@@ -148,7 +148,7 @@ class ProductController extends AdminuxController
         return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => Helper::getEnabledPartnersKeys() ]),
-            $form->select([ 'label' => 'Service', 'editable' => false ]),
+            $form->select([ 'label' => 'Software', 'editable' => false ]),
             $form->text([ 'label' => 'Product' ]),
             $form->text([ 'label' => 'Domain' ]),
             $form->select([ 'label' => 'Currency' ]),

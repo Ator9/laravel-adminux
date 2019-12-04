@@ -111,19 +111,19 @@ class CreateAdminux extends Migration
         ]);
 
 
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('software', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->string('service', 100)->default('')->unique();
-            $table->string('service_class', 255)->nullable()->comment('App\Adminux\Service\Controllers ...');
+            $table->string('software', 100)->default('')->unique();
+            $table->string('software_class', 255)->nullable()->comment('App\Adminux\Software\Controllers ...');
             $table->softDeletes();
             $table->timestamps();
         });
 
 
-        Schema::create('services_features', function (Blueprint $table) {
+        Schema::create('software_features', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->mediumInteger('software_id')->unsigned();
+            $table->foreign('software_id')->references('id')->on('software');
             $table->string('feature', 100)->default('');
             $table->softDeletes();
             $table->timestamps();
@@ -134,8 +134,8 @@ class CreateAdminux extends Migration
             $table->mediumIncrements('id');
             $table->mediumInteger('partner_id')->unsigned();
             $table->foreign('partner_id')->references('id')->on('partners');
-            $table->mediumInteger('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->mediumInteger('software_id')->unsigned();
+            $table->foreign('software_id')->references('id')->on('software');
             $table->string('product', 100)->default('');
             $table->string('domain', 255)->nullable();
             $table->smallInteger('currency_id')->unsigned();
@@ -187,7 +187,7 @@ class CreateAdminux extends Migration
             $table->mediumInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('products_plans');
             // $table->text('module_config')->nullable()->comment('json config/properties');
-            $table->text('service_config')->nullable()->comment('json config/properties');
+            $table->text('software_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
@@ -213,7 +213,7 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('partners');
         Schema::dropIfExists('products');
         Schema::dropIfExists('products_plans');
-        Schema::dropIfExists('services');
-        Schema::dropIfExists('services_features');
+        Schema::dropIfExists('software');
+        Schema::dropIfExists('software_features');
     }
 }
