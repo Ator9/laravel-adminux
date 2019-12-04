@@ -1,4 +1,5 @@
 @extends('adminux.layout')
+@php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('head')
 <link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -54,9 +55,9 @@ $(document).ready(function() {
         }
     });
 
-    @empty($datatables['disableCreateButton'])
+    @if(method_exists($controller, 'create') and empty($datatables['disableCreateButton']))
         $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper .float-left:first');
-    @endempty
+    @endif
 
     @isset($datatables['enableClickableRow'])
         $('#datatable tbody').on('click', 'tr', function() {
