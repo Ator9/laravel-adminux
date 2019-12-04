@@ -13,7 +13,7 @@ return [
                 'icon' => 'users',
                 'items' => [
                     [ 'dir'=> 'accounts', 'name' => 'Accounts' ],
-                    [ 'dir'=> 'accounts_plans', 'name' => 'Plans' ],
+                    [ 'dir'=> 'accounts_products', 'name' => 'Products' ],
                 ]
             ],
             'Services' => [

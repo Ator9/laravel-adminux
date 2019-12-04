@@ -41,10 +41,10 @@ class Account extends Authenticatable
     }
 
     /**
-     * Get the plans.
+     * Get the products.
      */
-    public function plans()
+    public function products()
     {
-        return $this->hasMany('App\Adminux\Account\Models\AccountPlan');
+        return $this->hasMany('App\Adminux\Account\Models\AccountProduct');
     }
 }

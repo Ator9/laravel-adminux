@@ -180,7 +180,7 @@ class CreateAdminux extends Migration
         });
 
 
-        Schema::create('accounts_plans', function (Blueprint $table) {
+        Schema::create('accounts_products', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('account_id')->unsigned();
             $table->foreign('account_id')->references('id')->on('accounts');
@@ -202,7 +202,7 @@ class CreateAdminux extends Migration
     public function down()
     {
         Schema::dropIfExists('accounts');
-        Schema::dropIfExists('accounts_plans');
+        Schema::dropIfExists('accounts_products');
 
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_currencies');
