@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Adminux\Product\Controllers;
+namespace App\Adminux\Service\Controllers;
 
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
-class PlanProductController extends Controller
+class PlanServiceController extends Controller
 {
     public function getIndex($obj)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Adminux\Product\Models;
+namespace App\Adminux\Service\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,14 +9,14 @@ class Plan extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'products_plans';
+    protected $table = 'services_plans';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'product_id', 'plan', 'currency_id', 'price', 'interval' ];
+    protected $fillable = [ 'service_id', 'plan', 'currency_id', 'price', 'interval' ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -26,11 +26,11 @@ class Plan extends Model
     protected $hidden = [ 'deleted_at' ];
 
     /**
-     * Get the product.
+     * Get the service.
      */
-    public function product()
+    public function service()
     {
-        return $this->belongsTo('App\Adminux\Product\Models\Product')->withTrashed();
+        return $this->belongsTo('App\Adminux\Service\Models\Service')->withTrashed();
     }
 
     /**

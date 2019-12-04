@@ -45,6 +45,6 @@ class AccountPlan extends Model
      */
     public function plan()
     {
-        return $this->belongsTo('App\Adminux\Product\Models\Plan')->withTrashed();
+        return $this->belongsTo('App\Adminux\Service\Models\Plan')->withTrashed();
     }
 }

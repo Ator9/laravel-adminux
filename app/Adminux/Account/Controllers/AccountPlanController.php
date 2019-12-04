@@ -18,13 +18,13 @@ class AccountPlanController extends AdminuxController
     public function index(AccountPlan $plan)
     {
         if(request()->ajax()) return Datatables::of($plan::query()
-            ->join('products_plans', 'products_plans.id', '=', 'accounts_plans.plan_id')
-            ->join('products', 'products.id', '=', 'products_plans.product_id')
-            ->join('partners', 'partners.id', '=', 'products.partner_id')
-            ->join('software', 'software.id', '=', 'products.software_id')
+            ->join('services_plans', 'services_plans.id', '=', 'accounts_plans.plan_id')
+            ->join('services', 'services.id', '=', 'services_plans.service_id')
+            ->join('partners', 'partners.id', '=', 'services.partner_id')
+            ->join('software', 'software.id', '=', 'services.software_id')
             ->join('accounts', 'accounts.id', '=', 'accounts_plans.account_id')
-            ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
-            ->select('accounts_plans.id','accounts_plans.active','accounts.email','products_plans.plan','products.product','software.software','partners.partner','accounts_plans.created_at'))
+            ->whereIn('services_plans.service_id', Helper::getSelectedServices())
+            ->select('accounts_plans.id','accounts_plans.active','accounts.email','services_plans.plan','services.service','software.software','partners.partner','accounts_plans.created_at'))
             ->addColumn('active2', 'adminux.pages.inc.status')
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2', 'active2'])
@@ -35,7 +35,7 @@ class AccountPlanController extends AdminuxController
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">E-mail</th>
                         <th style="min-width:120px">Plan</th>
-                        <th style="min-width:120px">Product</th>
+                        <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:60px">Active</th>
@@ -43,8 +43,8 @@ class AccountPlanController extends AdminuxController
 
             'columns' => '{ data: "id2", name: "accounts_plans.id", className: "text-center" },
                           { data: "email", name: "accounts.email" },
-                          { data: "plan", name: "products_plans.plan" },
-                          { data: "product", name: "products.product" },
+                          { data: "plan", name: "services_plans.plan" },
+                          { data: "service", name: "services.service" },
                           { data: "software", name: "software.software" },
                           { data: "partner", name: "partners.partner" },
                           { data: "active2", name: "active", className: "text-center" },
@@ -103,7 +103,7 @@ class AccountPlanController extends AdminuxController
         ]);
 
         Helper::validateAccount($request);
-        Helper::validateAccountWithProduct($request->account_id, $request->plan_id);
+        Helper::validateAccountWithService($request->account_id, $request->plan_id);
 
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
@@ -161,7 +161,7 @@ class AccountPlanController extends AdminuxController
         ]);
 
         Helper::validateAccount(request());
-        Helper::validateAccountWithProduct(request()->account_id, $plan->plan_id);
+        Helper::validateAccountWithService(request()->account_id, $plan->plan_id);
 
         if(!request()->filled('active')) request()->merge(['active' => 'N']);
 
@@ -185,7 +185,7 @@ class AccountPlanController extends AdminuxController
 
     public function checkSoftwareClass(AccountPlan $plan)
     {
-        $software_class = (clone $plan)->plan->product->software->software_class;
+        $software_class = (clone $plan)->plan->service->software->software_class;
         if(class_exists($software_class)) {
             $class = class_basename((new \ReflectionClass($software_class))->getMethod(debug_backtrace()[1]['function'])->class);
             if($class != 'AccountPlanController') return true;
@@ -195,13 +195,13 @@ class AccountPlanController extends AdminuxController
 
     public function getSoftwareClass(AccountPlan $plan)
     {
-        $software_class = (clone $plan)->plan->product->software->software_class;
+        $software_class = (clone $plan)->plan->service->software->software_class;
         return (new $software_class)->{debug_backtrace()[1]['function']}($plan);
     }
 
     public function getSoftwareFields(AccountPlan $plan)
     {
-        $software_class = (clone $plan)->plan->product->software->software_class;
+        $software_class = (clone $plan)->plan->service->software->software_class;
         if(class_exists($software_class)) return (new $software_class)->getFields($plan);
     }
 

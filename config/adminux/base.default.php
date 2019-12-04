@@ -16,11 +16,11 @@ return [
                     [ 'dir'=> 'accounts_plans', 'name' => 'Plans' ],
                 ]
             ],
-            'Products' => [
+            'Services' => [
                 'icon' => 'truck',
                 'items' => [
-                    [ 'dir'=> 'products', 'name' => 'Products' ],
-                    [ 'dir'=> 'products_plans', 'name' => 'Plans' ],
+                    [ 'dir'=> 'services', 'name' => 'Services' ],
+                    [ 'dir'=> 'services_plans', 'name' => 'Plans' ],
                 ]
             ],
         ],
@@ -42,7 +42,7 @@ return [
                 'icon' => 'share-2',
                 'items' => [
                     [ 'dir'=> 'partners', 'name' => 'Partners' ],
-                    [ 'dir'=> 'partners_products', 'name' => 'Products' ],
+                    [ 'dir'=> 'partners_services', 'name' => 'Services' ],
                 ]
             ],
             'Software' => [

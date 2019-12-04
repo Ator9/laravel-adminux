@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Adminux\Product\Controllers;
+namespace App\Adminux\Service\Controllers;
 
-use App\Adminux\Product\Models\Product;
-use App\Adminux\Product\Controllers\PlanProductController;
+use App\Adminux\Service\Models\Service;
+use App\Adminux\Service\Controllers\PlanServiceController;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class ProductController extends AdminuxController
+class ServiceController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    public function index(Service $service)
     {
-        if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', Helper::getSelectedPartners()))
+        if(request()->ajax()) return Datatables::of($service::query()->whereIn('partner_id', Helper::getSelectedPartners()))
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('software', function($row) { return @$row->software->software; })
@@ -32,14 +32,14 @@ class ProductController extends AdminuxController
             'order' => '[[ 0, "asc" ]]',
             'disableCreateButton' => 1,
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Product</th>
+                        <th class="w-75">Service</th>
                         <th style="min-width:120px">Price</th>
                         <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "product", name: "product" },
+                          { data: "service", name: "service" },
                           { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "software", name: "software" },
                           { data: "partner", name: "partner" },
@@ -52,12 +52,12 @@ class ProductController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Service $service)
     {
-        Helper::validatePartner($product);
+        Helper::validatePartner($service);
 
-        if(request()->ajax()) return (new PlanProductController)->getIndex($product);
+        if(request()->ajax()) return (new PlanServiceController)->getIndex($service);
 
-        return view('adminux.pages.show')->withModel($product)->withRelations([(new PlanProductController)->getIndex($product)]);
+        return view('adminux.pages.show')->withModel($service)->withRelations([(new PlanServiceController)->getIndex($service)]);
     }
 }

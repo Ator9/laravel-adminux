@@ -47,10 +47,10 @@ class Partner extends Model
     }
 
     /**
-     * Get the products for the partner.
+     * Get the services for the partner.
      */
-    // public function products()
+    // public function services()
     // {
-    //     return $this->hasMany('App\Adminux\Product\Models\Product');
+    //     return $this->hasMany('App\Adminux\Service\Models\Service');
     // }
 }

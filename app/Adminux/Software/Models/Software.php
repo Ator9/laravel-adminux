@@ -36,10 +36,10 @@ class Software extends Model
     }
 
     /**
-     * Get the partners for the product.
+     * Get the partners for the service.
      */
     // public function partners()
     // {
-    //     return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->whereNull('partner_product.deleted_at');
+    //     return $this->belongsToMany('App\Adminux\Partner\Models\Partner')->whereNull('partner_service.deleted_at');
     // }
 }

@@ -130,13 +130,13 @@ class CreateAdminux extends Migration
         });
 
 
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('partner_id')->unsigned();
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->mediumInteger('software_id')->unsigned();
             $table->foreign('software_id')->references('id')->on('software');
-            $table->string('product', 100)->default('');
+            $table->string('service', 100)->default('');
             $table->string('domain', 255)->nullable();
             $table->smallInteger('currency_id')->unsigned();
             $table->foreign('currency_id')->references('id')->on('admins_currencies');
@@ -147,10 +147,10 @@ class CreateAdminux extends Migration
         });
 
 
-        Schema::create('products_plans', function (Blueprint $table) {
+        Schema::create('services_plans', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->mediumInteger('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
             $table->string('plan', 100)->default('');
             $table->smallInteger('currency_id')->unsigned();
             $table->foreign('currency_id')->references('id')->on('admins_currencies');
@@ -185,7 +185,7 @@ class CreateAdminux extends Migration
             $table->mediumInteger('account_id')->unsigned();
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->mediumInteger('plan_id')->unsigned();
-            $table->foreign('plan_id')->references('id')->on('products_plans');
+            $table->foreign('plan_id')->references('id')->on('services_plans');
             // $table->text('module_config')->nullable()->comment('json config/properties');
             $table->text('software_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
@@ -211,8 +211,8 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('admin_partner');
 
         Schema::dropIfExists('partners');
-        Schema::dropIfExists('products');
-        Schema::dropIfExists('products_plans');
+        Schema::dropIfExists('services');
+        Schema::dropIfExists('services_plans');
         Schema::dropIfExists('software');
         Schema::dropIfExists('software_features');
     }

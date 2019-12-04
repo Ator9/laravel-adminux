@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminux\Product\Controllers;
+namespace App\Adminux\Service\Controllers;
 
-use App\Adminux\Product\Models\Plan;
+use App\Adminux\Service\Models\Plan;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
@@ -18,12 +18,12 @@ class PlanController extends AdminuxController
     public function index(Plan $plan)
     {
         if(request()->ajax()) return Datatables::of($plan::query()
-            ->join('products', 'products.id', '=', 'products_plans.product_id')
-            ->join('partners', 'partners.id', '=', 'products.partner_id')
-            ->join('software', 'software.id', '=', 'products.software_id')
-            ->whereIn('products_plans.product_id', Helper::getSelectedProducts())
-            ->select('products_plans.id', 'products_plans.plan','products_plans.currency_id','products_plans.price','products_plans.interval',
-            'products.product','software.software','partners.partner','products_plans.created_at'))
+            ->join('services', 'services.id', '=', 'services_plans.service_id')
+            ->join('partners', 'partners.id', '=', 'services.partner_id')
+            ->join('software', 'software.id', '=', 'services.software_id')
+            ->whereIn('services_plans.service_id', Helper::getSelectedServices())
+            ->select('services_plans.id', 'services_plans.plan','services_plans.currency_id','services_plans.price','services_plans.interval',
+            'services.service','software.software','partners.partner','services_plans.created_at'))
             ->addColumn('currency_price', function($row) {
                 return '<small>'.$row->interval.'</small> '.@$row->currency->currency.' '.$row->price;
             })
@@ -36,18 +36,18 @@ class PlanController extends AdminuxController
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Plan</th>
                         <th style="min-width:120px">Price</th>
-                        <th style="min-width:120px">Product</th>
+                        <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
-            'columns' => '{ data: "id2", name: "products_plans.id", className: "text-center" },
-                          { data: "plan", name: "products_plans.plan" },
+            'columns' => '{ data: "id2", name: "services_plans.id", className: "text-center" },
+                          { data: "plan", name: "services_plans.plan" },
                           { data: "currency_price", name: "currency_price", className: "text-right" },
-                          { data: "product", name: "products.product" },
+                          { data: "service", name: "services.service" },
                           { data: "software", name: "software.software" },
                           { data: "partner", name: "partners.partner" },
-                          { data: "created_at", name: "products_plans.created_at", className: "text-center" }'
+                          { data: "created_at", name: "services_plans.created_at", className: "text-center" }'
         ]);
     }
 
@@ -70,7 +70,7 @@ class PlanController extends AdminuxController
     public function store(Request $request, Plan $plan)
     {
         $request->validate([
-            'product_id' => 'required|in:'.implode(',', Helper::getEnabledProductsKeys()),
+            'service_id' => 'required|in:'.implode(',', Helper::getEnabledServicesKeys()),
             'plan' => 'required',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
@@ -89,7 +89,7 @@ class PlanController extends AdminuxController
      */
     public function show(Plan $plan)
     {
-        Helper::validateProduct($plan);
+        Helper::validateService($plan);
         return view('adminux.pages.show')->withModel($plan);
     }
 
@@ -100,7 +100,7 @@ class PlanController extends AdminuxController
      */
     public function edit(Plan $plan)
     {
-        Helper::validateProduct($plan);
+        Helper::validateService($plan);
         return parent::editView($plan);
     }
 
@@ -131,7 +131,7 @@ class PlanController extends AdminuxController
      */
     public function destroy(Plan $plan)
     {
-        Helper::validateProduct($plan);
+        Helper::validateService($plan);
         return parent::destroyRedirect($plan);
     }
 
@@ -145,7 +145,7 @@ class PlanController extends AdminuxController
         $form = new \App\Adminux\Form($plan);
         return [
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Product', 'editable' => false, 'allows' => Helper::getEnabledProductsKeys() ]),
+            $form->select([ 'label' => 'Service', 'editable' => false, 'allows' => Helper::getEnabledServicesKeys() ]),
             $form->text([ 'label' => 'Plan' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Adminux\Product\Models;
+namespace App\Adminux\Service\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Service extends Model
 {
     use SoftDeletes;
 
@@ -14,7 +14,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'partner_id', 'software_id', 'product', 'domain', 'currency_id', 'price', 'interval' ];
+    protected $fillable = [ 'partner_id', 'software_id', 'service', 'domain', 'currency_id', 'price', 'interval' ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -52,6 +52,6 @@ class Product extends Model
      */
     public function plans()
     {
-        return $this->hasMany('App\Adminux\Product\Models\Plan');
+        return $this->hasMany('App\Adminux\Service\Models\Plan');
     }
 }

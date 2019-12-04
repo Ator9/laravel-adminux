@@ -2,23 +2,23 @@
 
 namespace App\Adminux\Partner\Controllers;
 
-use App\Adminux\Product\Models\Product;
-use App\Adminux\Product\Controllers\PlanProductController;
+use App\Adminux\Service\Models\Service;
+use App\Adminux\Service\Controllers\PlanServiceController;
 use App\Adminux\Helper;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class ProductController extends AdminuxController
+class ServiceController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    public function index(Service $service)
     {
-        if(request()->ajax()) return Datatables::of($product::query()->whereIn('partner_id', Helper::getSelectedPartners()))
+        if(request()->ajax()) return Datatables::of($service::query()->whereIn('partner_id', Helper::getSelectedPartners()))
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('software', function($row) { return @$row->software->software; })
@@ -31,14 +31,14 @@ class ProductController extends AdminuxController
         return view('adminux.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-75">Product</th>
+                        <th class="w-75">Service</th>
                         <th style="min-width:120px">Price</th>
                         <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "product", name: "product" },
+                          { data: "service", name: "service" },
                           { data: "currency_price", name: "currency_price", className: "text-right" },
                           { data: "software", name: "software" },
                           { data: "partner", name: "partner" },
@@ -51,9 +51,9 @@ class ProductController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Product $product)
+    public function create(Service $service)
     {
-        return parent::createView($product);
+        return parent::createView($service);
     }
 
     /**
@@ -62,21 +62,21 @@ class ProductController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request, Service $service)
     {
         $request->validate([
             'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
             'software_id' => 'required',
-            'product' => 'required',
+            'service' => 'required',
             'domain' => 'nullable|url',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
             'interval' => 'required',
         ]);
 
-        $product = $product->create($request->all());
+        $service = $service->create($request->all());
 
-        return parent::saveRedirect($product);
+        return parent::saveRedirect($service);
     }
 
     /**
@@ -84,13 +84,13 @@ class ProductController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Service $service)
     {
-        Helper::validatePartner($product);
+        Helper::validatePartner($service);
 
-        if(request()->ajax()) return (new PlanProductController)->getIndex($product);
+        if(request()->ajax()) return (new PlanServiceController)->getIndex($service);
 
-        return view('adminux.pages.show')->withModel($product)->withRelations([(new PlanProductController)->getIndex($product)]);
+        return view('adminux.pages.show')->withModel($service)->withRelations([(new PlanServiceController)->getIndex($service)]);
     }
 
     /**
@@ -98,10 +98,10 @@ class ProductController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Service $service)
     {
-        Helper::validatePartner($product);
-        return parent::editView($product);
+        Helper::validatePartner($service);
+        return parent::editView($service);
     }
 
     /**
@@ -110,20 +110,20 @@ class ProductController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Service $service)
     {
         $request->validate([
-            'product' => 'required',
+            'service' => 'required',
             'domain' => 'nullable|url',
             'currency_id' => 'required',
             'price' => 'numeric|between:0,9999999.99',
             'interval' => 'required',
         ]);
-        Helper::validatePartner($product);
+        Helper::validatePartner($service);
 
-        $product->update($request->only(['product', 'domain', 'currency_id', 'price', 'interval']));
+        $service->update($request->only(['service', 'domain', 'currency_id', 'price', 'interval']));
 
-        return parent::saveRedirect($product);
+        return parent::saveRedirect($service);
     }
 
     /**
@@ -131,10 +131,10 @@ class ProductController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Service $service)
     {
-        Helper::validatePartner($product);
-        return parent::destroyRedirect($product);
+        Helper::validatePartner($service);
+        return parent::destroyRedirect($service);
     }
 
     /**
@@ -142,14 +142,14 @@ class ProductController extends AdminuxController
      *
      * @return Array
      */
-    public function getFields(Product $product)
+    public function getFields(Service $service)
     {
-        $form = new \App\Adminux\Form($product);
+        $form = new \App\Adminux\Form($service);
         return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Partner', 'editable' => false, 'allows' => Helper::getEnabledPartnersKeys() ]),
             $form->select([ 'label' => 'Software', 'editable' => false ]),
-            $form->text([ 'label' => 'Product' ]),
+            $form->text([ 'label' => 'Service' ]),
             $form->text([ 'label' => 'Domain' ]),
             $form->select([ 'label' => 'Currency' ]),
             $form->text([ 'label' => 'Price' ]),

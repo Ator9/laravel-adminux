@@ -27,20 +27,20 @@ class Helper
         abort_if(!in_array($model->partner_id, self::getEnabledPartnersKeys()), 403);
     }
 
-    static function getEnabledProductsKeys()
+    static function getEnabledServicesKeys()
     {
-        return (new \App\Adminux\Product\Models\Product)->query()->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
+        return (new \App\Adminux\Service\Models\Service)->query()->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
     }
 
-    static function getSelectedProducts()
+    static function getSelectedServices()
     {
-        return (new \App\Adminux\Product\Models\Product)->query()->whereIn('partner_id', self::getSelectedPartners())->get()->keyBy('id')->keys()->toArray();
+        return (new \App\Adminux\Service\Models\Service)->query()->whereIn('partner_id', self::getSelectedPartners())->get()->keyBy('id')->keys()->toArray();
     }
 
-    // Validates if the admin is allowed to manipulate the selected product:
-    static function validateProduct($model)
+    // Validates if the admin is allowed to manipulate the selected service:
+    static function validateService($model)
     {
-        abort_if(!in_array($model->product_id, self::getEnabledProductsKeys()), 403);
+        abort_if(!in_array($model->service_id, self::getEnabledServicesKeys()), 403);
     }
 
     static function getEnabledAccountsKeys()
@@ -54,14 +54,14 @@ class Helper
         abort_if(!in_array($model->account_id, self::getEnabledAccountsKeys()), 403);
     }
 
-    // Validates if the admin is allowed to manipulate the selected account with the selected product (must be same partner):
-    static function validateAccountWithProduct($account_id = 0, $plan_id = 0)
+    // Validates if the admin is allowed to manipulate the selected account with the selected service (must be same partner):
+    static function validateAccountWithService($account_id = 0, $plan_id = 0)
     {
         $account = \App\Adminux\Account\Models\Account::find($account_id);
-        $plan = \App\Adminux\Product\Models\Plan::find($plan_id);
-        $product = \App\Adminux\Product\Models\Product::find($plan->product_id);
+        $plan = \App\Adminux\Service\Models\Plan::find($plan_id);
+        $service = \App\Adminux\Service\Models\Service::find($plan->service_id);
 
-        abort_if($account->partner_id != $product->partner_id, 403);
+        abort_if($account->partner_id != $service->partner_id, 403);
     }
 
     static function getNavLeft()

@@ -203,7 +203,7 @@ class AdminController extends AdminuxController
      * sudo -u user git pull
      *
      * sudo -u user cp .env.example .env
-     * APP_ENV=production
+     * APP_ENV=serviceion
      * APP_DEBUG=false
      *
      * sudo -u user composer install
