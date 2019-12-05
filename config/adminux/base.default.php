@@ -36,6 +36,7 @@ return [
                     [ 'dir'=> 'admins_logs', 'name' => 'Logs' ],
                     [ 'dir'=> 'admins_phpinfo', 'name' => 'PHP Info' ],
                     [ 'dir'=> 'admins_webhook', 'name' => 'Webhook' ],
+                    [ 'dir'=> 'admins_composer', 'name' => 'Composer' ],
                 ]
             ],
             'Partners' => [

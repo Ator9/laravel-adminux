@@ -10,10 +10,10 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::middleware(App\Adminux\Authenticate::class)->group(function() {
         Route::get('', function() { return redirect()->route('login'); });
         Route::get('dashboard', 'Admin\Controllers\AdminDashboardController@dashboard');
-        Route::get('admins_logs', 'Admin\Controllers\AdminController@logs');
-        Route::get('admins_phpinfo', 'Admin\Controllers\AdminController@phpinfo');
-        Route::get('admins_webhook', 'Admin\Controllers\AdminController@webhook');
-        Route::get('webhook', 'Admin\Controllers\AdminController@webhook');
+
+        foreach(['logs', 'phpinfo', 'webhook', 'composer'] as $method) {
+            Route::get('admins_'.$method, 'Admin\Controllers\AdminController@'.$method);
+        }
 
         Route::get('adminpartner', 'Admin\Controllers\AdminPartnerController@setPartner');
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');

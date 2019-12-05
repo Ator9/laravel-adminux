@@ -187,8 +187,28 @@ class AdminController extends AdminuxController
             return;
         }
 
-        return view('adminux.pages.blank')
-        ->withBody('<iframe src="admins_phpinfo?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+        return view('adminux.pages.blank')->withBody('<iframe src="?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+    }
+
+    public function composer()
+    {
+        if(isset($_GET['sync'])) {
+
+            if(auth('adminux')->check()) {
+                echo date('Y-m-d H:i:s').'<br>';
+                echo 'Current User: '.exec('whoami').'<br>';
+                echo 'Current Path: '.exec('pwd').'<br><br>';
+            }
+
+            echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && composer install';
+            exec($command." 2>&1", $output);
+            dd($output);
+
+            return;
+        }
+
+        return view('adminux.pages.blank')->withBody('<button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?sync\')">
+        Run Composer Install</button><iframe id="run" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 
     /**
@@ -235,7 +255,6 @@ class AdminController extends AdminuxController
             return;
         }
 
-        return view('adminux.pages.blank')
-        ->withBody('<iframe src="'.url(substr(request()->route()->getPrefix(), 1)).'/webhook?sync" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+        return view('adminux.pages.blank')->withBody('<iframe src="?sync" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 }
