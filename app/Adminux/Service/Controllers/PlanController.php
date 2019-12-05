@@ -19,16 +19,21 @@ class PlanController extends AdminuxController
     {
         if(request()->ajax()) return Datatables::of($plan::query()
             ->join('services', 'services.id', '=', 'services_plans.service_id')
+            ->join('admins_currencies', 'admins_currencies.id', '=', 'services.currency_id')
             ->join('partners', 'partners.id', '=', 'services.partner_id')
             ->join('software', 'software.id', '=', 'services.software_id')
             ->whereIn('services_plans.service_id', Helper::getSelectedServices())
-            ->select('services_plans.id', 'services_plans.plan','services_plans.currency_id','services_plans.price','services_plans.interval',
-            'services.service','software.software','partners.partner','services_plans.created_at'))
+            ->select('services_plans.id', 'services_plans.plan','services_plans.currency_id', 'services_plans.price','services_plans.interval',
+            'services.service', 'services.interval as interval2', 'services.price as price2', 'admins_currencies.currency as currency2',
+            'software.software', 'partners.partner', 'services_plans.created_at'))
             ->addColumn('currency_price', function($row) {
                 return '<small>'.$row->interval.'</small> '.@$row->currency->currency.' '.$row->price;
             })
+            ->addColumn('currency_cost', function($row) {
+                return '<small>'.$row->interval2.'</small> '.@$row->currency2.' '.$row->price2;
+            })
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
-            ->rawColumns(['id2', 'currency_price'])
+            ->rawColumns(['id2', 'currency_price', 'currency_cost'])
             ->toJson();
 
         return view('adminux.pages.index')->withDatatables([
@@ -36,6 +41,7 @@ class PlanController extends AdminuxController
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Plan</th>
                         <th style="min-width:120px">Price</th>
+                        <th style="min-width:120px">Cost</th>
                         <th style="min-width:120px">Service</th>
                         <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
@@ -44,6 +50,7 @@ class PlanController extends AdminuxController
             'columns' => '{ data: "id2", name: "services_plans.id", className: "text-center" },
                           { data: "plan", name: "services_plans.plan" },
                           { data: "currency_price", name: "currency_price", className: "text-right" },
+                          { data: "currency_cost", name: "currency_cost", className: "text-right" },
                           { data: "service", name: "services.service" },
                           { data: "software", name: "software.software" },
                           { data: "partner", name: "partners.partner" },
