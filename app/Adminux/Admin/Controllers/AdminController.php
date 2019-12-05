@@ -194,11 +194,9 @@ class AdminController extends AdminuxController
     {
         if(isset($_GET['sync'])) {
 
-            if(auth('adminux')->check()) {
-                echo date('Y-m-d H:i:s').'<br>';
-                echo 'Current User: '.exec('whoami').'<br>';
-                echo 'Current Path: '.exec('pwd').'<br><br>';
-            }
+            echo date('Y-m-d H:i:s').'<br>';
+            echo 'Current User: '.exec('whoami').'<br>';
+            echo 'Current Path: '.exec('pwd').'<br><br>';
 
             echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && composer install';
             exec($command." 2>&1", $output);
