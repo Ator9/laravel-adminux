@@ -200,7 +200,7 @@ class AdminController extends AdminuxController
                 echo 'Current Path: '.exec('pwd').'<br><br>';
             }
 
-            echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && composer install';
+            echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && sudo -u '.exec('whoami').' composer install';
             exec($command." 2>&1", $output);
             dd($output);
 
