@@ -40,14 +40,6 @@ class Admin extends Authenticatable
     }
 
     /**
-     * Get the role.
-     */
-    // public function role()
-    // {
-    //     return $this->belongsTo('App\Adminux\Admin\Models\Role');
-    // }
-
-    /**
      * Get the language.
      */
     public function language()

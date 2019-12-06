@@ -2,7 +2,6 @@
 
 namespace App\Adminux\Admin\Controllers;
 
-// use App\Adminux\Admin\Models\Permission;
 use Spatie\Permission\Models\Permission;
 // use App\Adminux\Admin\Controllers\AdminRoleController;
 use Illuminate\Http\Request;
