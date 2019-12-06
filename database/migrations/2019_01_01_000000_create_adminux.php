@@ -154,7 +154,6 @@ class CreateAdminux extends Migration
             $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
             $table->string('account', 75)->nullable();
-            // $table->text('module_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('Y');
             $table->rememberToken();
             $table->string('last_login_ip', 75)->default('');
@@ -172,12 +171,44 @@ class CreateAdminux extends Migration
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->mediumInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('services_plans');
-            // $table->text('module_config')->nullable()->comment('json config/properties');
             $table->text('software_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
         });
+
+
+        Schema::create('accounts_products_usage', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->mediumInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('accounts_products')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamp('date_start')->useCurrent();
+            $table->timestamp('date_end')->nullable();
+        });
+
+
+        DB::unprepared('CREATE TRIGGER accounts_products_after_insert AFTER
+            INSERT ON accounts_products FOR EACH ROW
+            IF(NEW.active = "Y") THEN
+                INSERT INTO accounts_products_usage (product_id)
+                VALUES (NEW.id);
+            END IF;');
+
+        DB::unprepared('CREATE TRIGGER accounts_products_after_update AFTER
+            UPDATE ON accounts_products FOR EACH ROW
+            IF(NEW.active = "Y") THEN
+            	IF((SELECT product_id FROM accounts_products_usage WHERE product_id = NEW.id LIMIT 1) IS NULL) THEN
+            		INSERT INTO accounts_products_usage (product_id) VALUES (NEW.id);
+            	ELSE
+					IF((SELECT COUNT(*) - SUM(IF(date_end IS NULL, 0, 1)) FROM accounts_products_usage WHERE product_id = NEW.id) = 0) THEN
+        			    INSERT INTO accounts_products_usage (product_id) VALUES (NEW.id);
+            		END IF;
+            	END IF;
+            ELSE
+            	IF((SELECT product_id FROM accounts_products_usage WHERE product_id = NEW.id AND date_end IS NULL LIMIT 1) IS NOT NULL) THEN
+            		UPDATE accounts_products_usage SET date_end = CURRENT_TIMESTAMP() WHERE product_id = NEW.id AND date_end IS NULL;
+            	END IF;
+            END IF');
     }
 
     /**
@@ -189,6 +220,7 @@ class CreateAdminux extends Migration
     {
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('accounts_products');
+        Schema::dropIfExists('accounts_products_usage');
 
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_currencies');
