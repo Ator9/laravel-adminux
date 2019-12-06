@@ -31,6 +31,7 @@ return [
                 'items' => [
                     [ 'dir'=> 'admins', 'name' => 'Admins' ],
                     [ 'dir'=> 'admins_roles', 'name' => 'Roles' ],
+                    [ 'dir'=> 'admins_permission', 'name' => 'Permissions' ],
                     [ 'dir'=> 'admins_currencies', 'name' => 'Currencies' ],
                     [ 'dir'=> 'admins_languages', 'name' => 'Languages' ],
                     [ 'dir'=> 'admins_logs', 'name' => 'Logs' ],

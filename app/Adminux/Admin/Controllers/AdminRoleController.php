@@ -9,15 +9,15 @@ class AdminRoleController extends Controller
 {
     public function getIndex($obj)
     {
-        if(request()->ajax()) return Datatables::of($obj->admins())->toJson();
+        if(request()->ajax()) return Datatables::of($obj->roles())->toJson();
 
         return [
-            'model' => $obj->admins(),
+            'model' => $obj->roles(),
             'dom' => 'rt<"float-left"i>p',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-100">Admin</th>',
-            'columns' => '{ data: "id", name: "id", className: "text-center" },
-                          { data: "email", name: "email" }'
+                        <th class="w-100">Role</th>',
+            'columns' => '{ data: "role_id", name: "role_id", className: "text-center" },
+                          { data: "name", name: "name" }',
         ];
     }
 }

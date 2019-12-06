@@ -14,17 +14,6 @@ class CreateAdminux extends Migration
      */
     public function up()
     {
-        Schema::create('admins_roles', function (Blueprint $table) {
-            $table->smallIncrements('id');
-            $table->string('role', 100)->default('')->unique();
-            $table->timestamps();
-        });
-        DB::table('admins_roles')->insert([
-            ['role' => 'Administrator', 'created_at' => Carbon::now()],
-            ['role' => 'Account Manager', 'created_at' => Carbon::now()]
-        ]);
-
-
         Schema::create('admins_languages', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->char('language', 5)->default('')->unique();
@@ -39,8 +28,6 @@ class CreateAdminux extends Migration
 
         Schema::create('admins', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->smallInteger('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->references('id')->on('admins_roles');
             $table->string('email', 75)->default('')->unique();
             $table->string('password')->default('');
             $table->string('firstname', 75)->default('');
@@ -58,7 +45,6 @@ class CreateAdminux extends Migration
         DB::table('admins')->insert([
             'email'       => 'admin@localhost',
             'password'    => '$2y$10$JhK7HP96YDXBQ3Twcr5EBe4ePGtPcA3OZbd5Ef9LTpmOfWSpy9H..', // test
-            'role_id'     => 1,
             'language_id' => 1,
             'superuser'   => 'Y',
             'active'      => 'Y',
@@ -207,7 +193,6 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_currencies');
         Schema::dropIfExists('admins_languages');
-        Schema::dropIfExists('admins_roles');
         Schema::dropIfExists('admin_partner');
 
         Schema::dropIfExists('partners');

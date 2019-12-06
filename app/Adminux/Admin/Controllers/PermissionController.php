@@ -2,23 +2,23 @@
 
 namespace App\Adminux\Admin\Controllers;
 
-// use App\Adminux\Admin\Models\Role;
-use Spatie\Permission\Models\Role;
+// use App\Adminux\Admin\Models\Permission;
+use Spatie\Permission\Models\Permission;
 // use App\Adminux\Admin\Controllers\AdminRoleController;
 use Illuminate\Http\Request;
 use App\Adminux\AdminuxController;
 use Yajra\Datatables\Datatables;
 
-class RoleController extends AdminuxController
+class PermissionController extends AdminuxController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Role $role)
+    public function index(Permission $permission)
     {
-        if(request()->ajax()) return Datatables::of($role::query())
+        if(request()->ajax()) return Datatables::of($permission::query())
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
@@ -42,9 +42,9 @@ class RoleController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Role $role)
+    public function create(Permission $permission)
     {
-        return parent::createView($role);
+        return parent::createView($permission);
     }
 
     /**
@@ -53,17 +53,17 @@ class RoleController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Role $role)
+    public function store(Request $request, Permission $permission)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$role->getTable(),
+            'name'   => 'required|unique:'.$permission->getTable(),
         ]);
 
         if(!$request->filled('guard_name')) $request->merge(['guard_name' => '']);
 
-        $role = $role->create($request->all());
+        $permission = $permission->create($request->all());
 
-        return parent::saveRedirect($role);
+        return parent::saveRedirect($permission);
     }
 
     /**
@@ -71,11 +71,11 @@ class RoleController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Permission $permission)
     {
-        // if(request()->ajax()) return (new AdminRoleController)->getIndex($role);
+        // if(request()->ajax()) return (new AdminRoleController)->getIndex($permission);
 
-        return view('adminux.pages.show')->withModel($role);
+        return view('adminux.pages.show')->withModel($permission);
     }
 
     /**
@@ -83,9 +83,9 @@ class RoleController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Permission $permission)
     {
-        return parent::editView($role);
+        return parent::editView($permission);
     }
 
     /**
@@ -94,17 +94,17 @@ class RoleController extends AdminuxController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Permission $permission)
     {
         $request->validate([
-            'name'   => 'required|unique:'.$role->getTable().',name,'.$role->id,
+            'name'   => 'required|unique:'.$permission->getTable().',name,'.$permission->id,
         ]);
 
         if(!$request->filled('guard_name')) $request->merge(['guard_name' => '']);
 
-        $role->update($request->all());
+        $permission->update($request->all());
 
-        return parent::saveRedirect($role);
+        return parent::saveRedirect($permission);
     }
 
     /**
@@ -112,9 +112,9 @@ class RoleController extends AdminuxController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Permission $permission)
     {
-        $role->delete();
+        $permission->delete();
 
         return parent::destroyRedirect();
     }
@@ -124,9 +124,9 @@ class RoleController extends AdminuxController
      *
      * @return Array
      */
-    public function getFields(Role $role)
+    public function getFields(Permission $permission)
     {
-        $form = new \App\Adminux\Form($role);
+        $form = new \App\Adminux\Form($permission);
         return [
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Name' ]),

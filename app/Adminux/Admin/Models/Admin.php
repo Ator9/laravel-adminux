@@ -2,14 +2,16 @@
 
 namespace App\Adminux\Admin\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -40,10 +42,10 @@ class Admin extends Authenticatable
     /**
      * Get the role.
      */
-    public function role()
-    {
-        return $this->belongsTo('App\Adminux\Admin\Models\Role');
-    }
+    // public function role()
+    // {
+    //     return $this->belongsTo('App\Adminux\Admin\Models\Role');
+    // }
 
     /**
      * Get the language.

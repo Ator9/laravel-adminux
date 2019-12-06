@@ -26,6 +26,7 @@ return [
     'email' => 'E-mail',
     'feature' => 'Característica',
     'firstname' => 'Nombre',
+    'guard_name' => 'Nombre Guard',
     'home' => 'Inicio',
     'id' => 'ID',
     'interval' => 'Intervalo',

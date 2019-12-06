@@ -78,6 +78,8 @@ class AdminController extends AdminuxController
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
 
+
+
         $admin = $admin->create($request->all());
 
         return parent::saveRedirect($admin);
@@ -90,9 +92,15 @@ class AdminController extends AdminuxController
      */
     public function show(Admin $admin)
     {
-        if(request()->ajax()) return (new AdminPartnerController)->getIndex($admin);
+        if(request()->ajax()) {
+            if(request()->table == 'admin_partner') return (new AdminPartnerController)->getIndex($admin);
+            else return (new AdminRoleController)->getIndex($admin);
+        }
 
-        return view('adminux.pages.show')->withModel($admin)->withRelations([ (new AdminPartnerController)->getIndex($admin) ]);
+        return view('adminux.pages.show')->withModel($admin)->withRelations([
+            (new AdminPartnerController)->getIndex($admin),
+            (new AdminRoleController)->getIndex($admin),
+        ]);
     }
 
     /**
@@ -152,7 +160,7 @@ class AdminController extends AdminuxController
         $form = new \App\Adminux\Form($admin);
         return [
             $form->display([ 'label' => 'ID' ]),
-            $form->select([ 'label' => 'Role' ]),
+            // $form->select([ 'label' => 'Role' ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),

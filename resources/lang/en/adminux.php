@@ -26,6 +26,7 @@ return [
     'email' => 'E-mail',
     'feature' => 'Feature',
     'firstname' => 'First Name',
+    'guard_name' => 'Guard Name',
     'home' => 'Home',
     'id' => 'ID',
     'interval' => 'Interval',
