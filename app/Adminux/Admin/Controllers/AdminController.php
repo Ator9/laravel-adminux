@@ -25,7 +25,6 @@ class AdminController extends AdminuxController
         if(request()->ajax()) return Datatables::of($admin::query())
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('active2', 'adminux.pages.inc.status')
-            ->addColumn('role', function($row) { return @$row->role->role; })
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
@@ -34,7 +33,6 @@ class AdminController extends AdminuxController
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Role</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
 
@@ -42,7 +40,6 @@ class AdminController extends AdminuxController
                           { data: "email", name: "email" },
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
-                          { data: "role", name: "role_id" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
@@ -77,8 +74,6 @@ class AdminController extends AdminuxController
         if(!$request->filled('firstname')) $request->merge(['firstname' => '']);
         if(!$request->filled('lastname')) $request->merge(['lastname' => '']);
         if(!$request->filled('active')) $request->merge(['active' => 'N']);
-
-
 
         $admin = $admin->create($request->all());
 
@@ -160,7 +155,6 @@ class AdminController extends AdminuxController
         $form = new \App\Adminux\Form($admin);
         return [
             $form->display([ 'label' => 'ID' ]),
-            // $form->select([ 'label' => 'Role' ]),
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'First Name' ]),
