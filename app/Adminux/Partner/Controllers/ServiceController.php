@@ -121,7 +121,20 @@ class ServiceController extends AdminuxController
         ]);
         Helper::validatePartner($service);
 
-        $service->update($request->only(['service', 'domain', 'currency_id', 'price', 'interval']));
+        // Price History:
+        if(date('Ym') > $service->created_at->format('Ym')) {
+            $history = (array) $service->price_history;
+            if(!array_key_exists(date('Ym', strtotime('last month')), $history)) {
+                $history[date('Ym', strtotime('last month'))] = [
+                    'price' => $service->price,
+                    'currency_id' => $service->currency_id,
+                    'interval' => $service->interval
+                ];
+            }
+            $request->merge(['price_history' => $history]);
+        }
+
+        $service->update($request->only(['service', 'domain', 'currency_id', 'price', 'interval', 'price_history']));
 
         return parent::saveRedirect($service);
     }

@@ -28,7 +28,7 @@ class Partner extends Model
      *
      * @var array
      */
-    protected $casts = [  'module_config' => 'array' ];
+    protected $casts = [ 'module_config' => 'array' ];
 
     /**
      * Get the admins for the partner.

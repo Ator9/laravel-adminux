@@ -126,7 +126,20 @@ class PlanController extends AdminuxController
             'interval' => 'required',
         ]);
 
-        $plan->update($request->only(['plan', 'currency_id', 'price', 'interval'])); // no extra validation required with this field
+        // Price History:
+        if(date('Ym') > $plan->created_at->format('Ym')) {
+            $history = (array) $plan->price_history;
+            if(!array_key_exists(date('Ym', strtotime('last month')), $history)) {
+                $history[date('Ym', strtotime('last month'))] = [
+                    'price' => $plan->price,
+                    'currency_id' => $plan->currency_id,
+                    'interval' => $plan->interval
+                ];
+            }
+            $request->merge(['price_history' => $history]);
+        }
+
+        $plan->update($request->only(['plan', 'currency_id', 'price', 'interval', 'price_history'])); // no extra validation required with this field
 
         return parent::saveRedirect($plan);
     }

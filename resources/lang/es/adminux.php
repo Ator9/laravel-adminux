@@ -46,6 +46,7 @@ return [
     'plan_id' => 'Plan',
     'plans' => 'Planes',
     'price' => 'Precio',
+    'price_history' => 'Historial de Precios',
     'product' => 'Producto',
     'product_id' => 'Producto',
     'role' => 'Rol',

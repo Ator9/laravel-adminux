@@ -46,6 +46,7 @@ return [
     'plan_id' => 'Plan',
     'plans' => 'Plans',
     'price' => 'Price',
+    'price_history' => 'Price History',
     'product' => 'Product',
     'product_id' => 'Product',
     'role' => 'Role',

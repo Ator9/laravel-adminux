@@ -14,7 +14,7 @@ class Service extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'partner_id', 'software_id', 'service', 'domain', 'currency_id', 'price', 'interval' ];
+    protected $fillable = [ 'partner_id', 'software_id', 'service', 'domain', 'currency_id', 'price', 'interval', 'price_history' ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -22,6 +22,13 @@ class Service extends Model
      * @var array
      */
     protected $hidden = [ 'deleted_at' ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [ 'price_history' => 'array' ];
 
     /**
      * Get the partner.
