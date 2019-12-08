@@ -122,7 +122,8 @@ class ServiceController extends AdminuxController
         Helper::validatePartner($service);
 
         // Price History:
-        if(date('Ym') > $service->created_at->format('Ym')) {
+        if(date('Ym') > $service->created_at->format('Ym')
+        && [$service->price, $service->currency_id, $service->interval] != [$request->price, $request->currency_id, $request->interval]) {
             $history = (array) $service->price_history;
             if(!array_key_exists(date('Ym', strtotime('last month')), $history)) {
                 $history[date('Ym', strtotime('last month'))] = [

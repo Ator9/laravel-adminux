@@ -127,7 +127,8 @@ class PlanController extends AdminuxController
         ]);
 
         // Price History:
-        if(date('Ym') > $plan->created_at->format('Ym')) {
+        if(date('Ym') > $plan->created_at->format('Ym')
+        && [$plan->price, $plan->currency_id, $plan->interval] != [$request->price, $request->currency_id, $request->interval]) {
             $history = (array) $plan->price_history;
             if(!array_key_exists(date('Ym', strtotime('last month')), $history)) {
                 $history[date('Ym', strtotime('last month'))] = [
