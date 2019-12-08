@@ -10,7 +10,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div class="row">
-                    <a href="{{ str_replace('/edit', '', Request::url()) }}"><span data-feather="arrow-left-circle" class="feather-adminux2 mx-2"></span></a>
+                    <a href="{{ str_replace('/edit', '', Request::url()) }}"><span data-feather="arrow-left" class="feather-adminux2 mx-3"></span></a>
                     <h5 class="mb-0">{{ __('adminux.edit') }} {{(new ReflectionClass($model))->getShortName()}}</h5>
                 </div>
                 <div>
