@@ -9,7 +9,10 @@
     <div class="card mt-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h5 class="mb-0">{{ __('adminux.edit') }} {{(new ReflectionClass($model))->getShortName()}}</h5>
+                <div class="row">
+                    <a href="{{ str_replace('/edit-software', '', Request::url()) }}"><span data-feather="arrow-left-circle" class="feather-adminux2 mx-2"></span></a>
+                    <h5 class="mb-0">{{ __('adminux.edit') }} {{(new ReflectionClass($model))->getShortName()}}</h5>
+                </div>
                 <div>
                     <button type="submit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="save"></span> Save</button>
                 </div>
