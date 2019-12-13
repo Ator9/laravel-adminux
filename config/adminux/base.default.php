@@ -16,6 +16,13 @@ return [
                     [ 'dir'=> 'accounts_products', 'name' => 'Products' ],
                 ]
             ],
+            'Billing' => [
+                'icon' => 'dollar-sign',
+                'items' => [
+                    [ 'dir'=> 'billing', 'name' => 'Billing' ],
+                    [ 'dir'=> 'billing_expenses', 'name' => 'Expenses' ],
+                ]
+            ],
             'Services' => [
                 'icon' => 'truck',
                 'items' => [

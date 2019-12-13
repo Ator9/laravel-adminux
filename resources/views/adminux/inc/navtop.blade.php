@@ -4,7 +4,10 @@
         @php $menu = config('adminux.base.default.menu'); @endphp
         @foreach($menu as $module)
             @foreach($module as $name => $submenu)
-                @if(strpos(Request::path(), $prefix.'/'.strtolower($name)) !== false)
+                @if(strpos(Request::path(), $prefix.'/'.strtolower($name)) !== false
+                    or Request::is($prefix.'/'.$submenu['items'][0]['dir'])
+                    or Illuminate\Support\Str::contains(Request::path(), [$prefix.'/'.$submenu['items'][0]['dir'].'_', $prefix.'/'.$submenu['items'][0]['dir'].'/']))
+
                     @foreach($submenu['items'] as $item)
                         <li class="nav-item">
                             @php $css = (Request::is($prefix.'/'.$item['dir']) or strpos(Request::path(), $prefix.'/'.$item['dir'].'/') !== false) ? 'text-white' : 'text-warning'; @endphp
