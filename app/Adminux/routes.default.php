@@ -43,7 +43,7 @@ Route::namespace('\App\Adminux')->group(function() {
             }
         }
 
-        // Your custom routes:
+        // Your custom routes (you can override "\App\Adminux" like "\App\Xxx\Yyy\Controller@method"):
         if(file_exists(__DIR__.'/routes.php')) require __DIR__.'/routes.php';
     });
 });
