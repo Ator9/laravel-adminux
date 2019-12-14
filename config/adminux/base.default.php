@@ -19,8 +19,8 @@ return [
             'Billing' => [
                 'icon' => 'dollar-sign',
                 'items' => [
-                    [ 'dir'=> 'billing', 'name' => 'Billing' ],
-                    [ 'dir'=> 'billing_expenses', 'name' => 'Expenses' ],
+                    [ 'dir'=> 'billings', 'name' => 'Billing' ],
+                    [ 'dir'=> 'billings_expenses', 'name' => 'Expenses' ],
                 ]
             ],
             'Services' => [
