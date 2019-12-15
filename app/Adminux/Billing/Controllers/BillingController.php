@@ -8,13 +8,13 @@ class BillingController extends Controller
 {
     public function index()
     {
+        $prices = $this->getPlanPrices();
         $usage = $this->getUsage([
             'from' => '2019-01',
             'to' => '2019-12',
         ]);
 
-        $prices = $this->getPlanPrices();
-        dd($prices);
+
 
         foreach($usage as $date => $array) {
             // $labels[$date] = date('F', strtotime($date));
@@ -23,6 +23,7 @@ class BillingController extends Controller
             // }
         }
 
+        dd($prices,$usage);
         // dd($usage);
 
         return view('adminux.pages.billing')->withUsage($usage);
@@ -59,14 +60,15 @@ class BillingController extends Controller
                 ['date_start', '<', $year.'-'.$month.'-01'],
                 ['date_end', '>=', $year.'-'.$month.'-01'],
             ])
+            ->select('product_id','accounts_products.plan_id')
             ->selectRaw('SUM(TIMESTAMPDIFF(MINUTE,
                             if(date_start < "'.$year.'-'.$month.'-01", "'.$year.'-'.$month.'-01", date_start),
                             if(
                                 if(date_end, date_end, CURRENT_TIMESTAMP) < "'.date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year)).'",
                                 if(date_end, date_end, CURRENT_TIMESTAMP), "'.date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year)).'")
                         )) as minutes')
-            ->selectRaw('product_id')->groupBy('product_id')
-            ->get()->keyBy('product_id');
+            ->join('accounts_products', 'accounts_products.id', '=', 'accounts_products_usage.product_id')
+            ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
         }
 
         return $hours;
