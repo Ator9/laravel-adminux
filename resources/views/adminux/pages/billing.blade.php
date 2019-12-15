@@ -22,36 +22,26 @@
 <script>
 setTitle();
 $(document).ready(function() {
-    // Graphs
-    var ctx = document.getElementById('myChart')
-    // eslint-disable-next-line no-unused-vars
-    var myChart = new Chart(ctx, {
+    var myChart = new Chart(document.getElementById('myChart'), {
         type: 'line',
         data: {
-            labels: [
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
-            ],
+            labels: ["{!! implode('","', array_keys($usage)) !!}"],
             datasets: [{
                 data: [
-                    15339,
+                    3333,
                     21345,
                     18483,
-                    24003,
+                    23003,
                     23489,
-                    24092,
+                    23092,
                     12034
                 ],
                 lineTension: 0,
+                label: 'Costs',
                 backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                borderWidth: 4,
-                pointBackgroundColor: '#007bff'
+                borderColor: 'red',
+                borderWidth: 2,
+                pointBackgroundColor: 'red'
             }]
         },
         options: {
@@ -63,7 +53,7 @@ $(document).ready(function() {
                 }]
             },
             legend: {
-                display: false
+                display: true
             }
         }
     });

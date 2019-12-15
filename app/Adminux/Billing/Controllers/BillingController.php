@@ -9,21 +9,23 @@ class BillingController extends Controller
     public function index()
     {
         $usage = $this->getUsage([
-            'from' => '2019-11',
+            'from' => '2019-01',
             'to' => '2019-12',
         ]);
 
+        $prices = $this->getPlanPrices();
+        dd($prices);
 
         foreach($usage as $date => $array) {
-            echo $date.'<hr>';
-            foreach($array as $pdi => $data) {
-                echo $pdi.': '.floor($data->minutes / 60).'<br>';
-            }
+            // $labels[$date] = date('F', strtotime($date));
+            // foreach($array as $pdi => $data) {
+            //     echo $pdi.': '.floor($data->minutes / 60).'<br>';
+            // }
         }
 
-        dd($usage);
+        // dd($usage);
 
-        return view('adminux.pages.billing');
+        return view('adminux.pages.billing')->withUsage($usage);
     }
 
     /**
@@ -36,10 +38,12 @@ class BillingController extends Controller
         $from = (!empty($params['from'])) ? $params['from'] : date('Y-m');
         $to   = (!empty($params['to'])) ? $params['to'] : date('Y-m');
 
+        $hours = [];
         for($i = $from; $i <= $to; $i = date('Y-m', strtotime($i.' +1 month'))) {
             $dates[] = $i;
         }
 
+        if(!empty($dates))
         foreach($dates as $date) {
 
             list($year, $month) = explode('-', $date);
@@ -66,5 +70,13 @@ class BillingController extends Controller
         }
 
         return $hours;
+    }
+
+    public function getPlanPrices()
+    {
+        return \DB::table('services_plans')
+        ->select('services_plans.id','service_id', 'services_plans.price','services_plans.price_history','services.price as cost','services.price_history as cost_history')
+        ->join('services', 'services.id', '=', 'services_plans.service_id')
+        ->get()->keyBy('id')->toArray();
     }
 }
