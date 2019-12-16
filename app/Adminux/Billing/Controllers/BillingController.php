@@ -10,14 +10,13 @@ class BillingController extends Controller
     public function index()
     {
         $currencies = Currency::all()->keyBy('id')->toArray();
-        $prices = $this->getPlanPrices();
+        $plans = $this->getPlanPrices();
         $usage = $this->getUsage([
             'from' => '2019-01',
             'to' => '2019-12',
         ]);
 
         foreach($usage as $date => $array) {
-
             $hours_in_month = date('t', strtotime($date)) * 24;
 
             if($array->isNotEmpty()) {
@@ -25,14 +24,14 @@ class BillingController extends Controller
 
                     $hours_usage = $data->minutes / 60;
 
-                    $sales[$date] = number_format($prices[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
-                    $costs[$date] = number_format($prices[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
+                    $sales[$date] = number_format($plans[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
+                    $costs[$date] = number_format($plans[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
                 }
             }
             else $costs[$date] = $sales[$date] = 0;
         }
 
-        // dump($currencies,$prices,$usage, $costs);
+        // dump($currencies,$plans,$usage, $costs);
 
         return view('adminux.pages.billing')->withUsage($usage)->withCosts($costs)->withSales($sales);
     }
