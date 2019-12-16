@@ -33,7 +33,7 @@ class ServiceController extends AdminuxController
             'disableCreateButton' => 1,
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Service</th>
-                        <th style="min-width:120px">Price</th>
+                        <th style="min-width:120px">Cost</th>
                         <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:120px">Created At</th>',
