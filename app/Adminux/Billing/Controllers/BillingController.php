@@ -3,30 +3,38 @@
 namespace App\Adminux\Billing\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Adminux\Admin\Models\Currency;
 
 class BillingController extends Controller
 {
     public function index()
     {
+        $currencies = Currency::all()->keyBy('id')->toArray();
         $prices = $this->getPlanPrices();
         $usage = $this->getUsage([
             'from' => '2019-01',
             'to' => '2019-12',
         ]);
 
-
-
         foreach($usage as $date => $array) {
-            // $labels[$date] = date('F', strtotime($date));
-            // foreach($array as $pdi => $data) {
-            //     echo $pdi.': '.floor($data->minutes / 60).'<br>';
-            // }
+
+            $hours_in_month = date('t', strtotime($date)) * 24;
+
+            if($array->isNotEmpty()) {
+                foreach($array as $data) {
+
+                    $hours_usage = $data->minutes / 60;
+
+                    $sales[$date] = number_format($prices[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
+                    $costs[$date] = number_format($prices[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
+                }
+            }
+            else $costs[$date] = $sales[$date] = 0;
         }
 
-        dd($prices,$usage);
-        // dd($usage);
+        // dump($currencies,$prices,$usage, $costs);
 
-        return view('adminux.pages.billing')->withUsage($usage);
+        return view('adminux.pages.billing')->withUsage($usage)->withCosts($costs)->withSales($sales);
     }
 
     /**
@@ -77,7 +85,9 @@ class BillingController extends Controller
     public function getPlanPrices()
     {
         return \DB::table('services_plans')
-        ->select('services_plans.id','service_id', 'services_plans.price','services_plans.price_history','services.price as cost','services.price_history as cost_history')
+        ->select('services_plans.id','service_id',
+        'services_plans.price', 'services_plans.currency_id', 'services_plans.interval', 'services_plans.price_history',
+        'services.price as cost', 'services.currency_id as cost_currency_id', 'services.interval as cost_interval', 'services.price_history as cost_history')
         ->join('services', 'services.id', '=', 'services_plans.service_id')
         ->get()->keyBy('id')->toArray();
     }

@@ -27,15 +27,15 @@ $(document).ready(function() {
         data: {
             labels: ["{!! implode('","', array_keys($usage)) !!}"],
             datasets: [{
-                data: [
-                    3333,
-                    21345,
-                    18483,
-                    23003,
-                    23489,
-                    23092,
-                    12034
-                ],
+                data: [{{ implode(',', $sales) }}],
+                lineTension: 0,
+                label: 'Sales',
+                backgroundColor: 'transparent',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointBackgroundColor: 'blue'
+            }, {
+                data: [{{ implode(',', $costs) }}],
                 lineTension: 0,
                 label: 'Costs',
                 backgroundColor: 'transparent',
