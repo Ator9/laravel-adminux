@@ -157,7 +157,7 @@ class AccountProductController extends AdminuxController
     {
         request()->validate([
             'account_id' => 'required',
-            'active' => 'in:Y,""',
+            'active' => 'in:Y,N,""',
         ]);
 
         Helper::validateAccount(request());
