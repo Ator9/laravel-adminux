@@ -5,6 +5,7 @@
 ```sh
 composer create-project laravel/laravel
 composer require yajra/laravel-datatables-oracle
+composer require maatwebsite/excel
 composer require spatie/laravel-permission
 
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"

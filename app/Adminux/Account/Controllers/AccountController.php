@@ -9,6 +9,7 @@ use App\Adminux\AdminuxController;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AccountController extends AdminuxController
 {
@@ -19,6 +20,11 @@ class AccountController extends AdminuxController
      */
     public function index(Account $account)
     {
+        if(request()->filled('csv')) {
+            $array = collect(Datatables::of($account->query()->whereIn('partner_id', Helper::getSelectedPartners())))['data'];
+            return Excel::download(new \App\Adminux\AdminuxExportArray($array), 'accounts.csv');
+        }
+
         if(request()->ajax()) return Datatables::of($account::query()->whereIn('partner_id', Helper::getSelectedPartners()))
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->addColumn('active2', 'adminux.pages.inc.status')
@@ -27,6 +33,7 @@ class AccountController extends AdminuxController
             ->toJson();
 
         return view('adminux.pages.index')->withDatatables([
+            'exportButton' => 1,
             'thead' => '<th style="min-width:30px">ID</th>
                         <th>E-mail</th>
                         <th class="w-25">Account</th>
@@ -37,7 +44,7 @@ class AccountController extends AdminuxController
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "email", name: "email" },
                           { data: "account", name: "account" },
-                          { data: "partner", name: "partner" },
+                          { data: "partner", name: "partner", searchable: false },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);

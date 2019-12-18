@@ -5,11 +5,11 @@
 <link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
 html,body,.container-fluid,.container-fluid .row{height:100%}
-@isset($datatables['enableClickableRow']) #datatable tbody tr{cursor:pointer} @endisset
 .table-responsive{height:calc(100% - 5px);height:-moz-calc(100% - 5px);height:-webkit-calc(100% - 5px);overflow-y:hidden}
 .table thead th{border-bottom-width:1px}
 #datatable_filter input{margin-left:3px}
 </style>
+@isset($datatables['enableClickableRow'])<style>#datatable tbody tr{cursor:pointer}</style>@endisset
 @endsection
 
 @section('body')
@@ -56,12 +56,19 @@ $(document).ready(function() {
     });
 
     @if(method_exists($controller, 'create') and empty($datatables['disableCreateButton']))
-        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper .float-left:first');
+        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper div.float-left:first');
     @endif
+
+    @isset($datatables['exportButton'])
+        $('<a href="#" class="btn btn-primary btn-sm ml-2 float-left" id="exportButton"><span class="feather-adminux" data-feather="file"></span> Export</a>').insertAfter('#datatable_wrapper div.float-left:first');
+        $('#exportButton').on('keyup click', function() {
+            window.location = table.ajax.url()+'&csv=1'+$.param(table.ajax.params());
+        });
+    @endisset
 
     @isset($datatables['enableClickableRow'])
         $('#datatable tbody').on('click', 'tr', function() {
-           location = '{{ Request::url() }}/'+table.row(this).data().id;
+            location = '{{ Request::url() }}/'+table.row(this).data().id;
         });
     @endisset
 
