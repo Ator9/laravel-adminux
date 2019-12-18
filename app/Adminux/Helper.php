@@ -3,6 +3,7 @@
 namespace App\Adminux;
 
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Helper
 {
@@ -134,5 +135,17 @@ class Helper
             $data[] = Str::singular($piece);
         }
         return $data;
+    }
+
+    public static function exportDt($datatables, $params = [])
+    {
+        request()->query->remove('start'); request()->query->remove('length');
+
+        $name = (!empty($params['name'])) ? $params['name'] : 'export.csv';
+
+        $array = collect($datatables)['data'];
+        if(!empty($array)) $array = array_merge(array(array_keys($array[0])), $array);
+
+        return Excel::download(new \App\Adminux\ExportArray($array), $name);
     }
 }

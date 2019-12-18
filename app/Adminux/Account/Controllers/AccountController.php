@@ -9,7 +9,6 @@ use App\Adminux\AdminuxController;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Facades\Excel;
 
 class AccountController extends AdminuxController
 {
@@ -20,18 +19,17 @@ class AccountController extends AdminuxController
      */
     public function index(Account $account)
     {
-        if(request()->filled('export')) {
-            request()->query->remove('start'); request()->query->remove('length');
-            $array = collect(Datatables::of($account->query()->whereIn('partner_id', Helper::getSelectedPartners())))['data'];
-            return Excel::download(new \App\Adminux\AdminuxExportArray($array), 'accounts.csv');
-        }
+        if(request()->ajax() || request()->filled('export')) {
+            $datatables = Datatables::of($account->query()->whereIn('partner_id', Helper::getSelectedPartners()));
 
-        if(request()->ajax()) return Datatables::of($account::query()->whereIn('partner_id', Helper::getSelectedPartners()))
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
-            ->addColumn('active2', 'adminux.pages.inc.status')
-            ->addColumn('partner', function($row) { return @$row->partner->partner; })
-            ->rawColumns(['id2', 'active2'])
-            ->toJson();
+            if(request()->filled('export')) return Helper::exportDt($datatables, [ 'name' => 'accounts.csv' ]);
+
+            return $datatables->addColumn('id2', 'adminux.pages.inc.link_show_link')
+                ->addColumn('active2', 'adminux.pages.inc.status')
+                ->addColumn('partner', function($row) { return @$row->partner->partner; })
+                ->rawColumns(['id2', 'active2'])
+                ->toJson();
+        }
 
         return view('adminux.pages.index')->withDatatables([
             'exportButton' => 1,
