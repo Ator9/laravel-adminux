@@ -62,7 +62,7 @@ $(document).ready(function() {
     @isset($datatables['exportButton'])
         $('<a href="#" class="btn btn-primary btn-sm ml-2 float-left" id="exportButton"><span class="feather-adminux" data-feather="file"></span> Export</a>').insertAfter('#datatable_wrapper div.float-left:first');
         $('#exportButton').on('keyup click', function() {
-            window.location = table.ajax.url()+'&csv=1'+$.param(table.ajax.params());
+            window.location = table.ajax.url()+'&csv=1&'+$.param(table.ajax.params());
         });
     @endisset
 
