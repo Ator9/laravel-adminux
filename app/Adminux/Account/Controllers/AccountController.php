@@ -21,6 +21,8 @@ class AccountController extends AdminuxController
     public function index(Account $account)
     {
         if(request()->filled('csv')) {
+            request()->query->remove('start'); request()->query->remove('length');
+            
             $array = collect(Datatables::of($account->query()->whereIn('partner_id', Helper::getSelectedPartners())))['data'];
             return Excel::download(new \App\Adminux\AdminuxExportArray($array), 'accounts.csv');
         }
