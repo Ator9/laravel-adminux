@@ -4,6 +4,7 @@ namespace App\Adminux\Billing\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Adminux\Admin\Models\Currency;
+use App\Adminux\Helper;
 
 class BillingController extends Controller
 {
@@ -56,17 +57,29 @@ class BillingController extends Controller
 
             list($year, $month) = explode('-', $date);
 
-            $hours[$date] = \DB::table('accounts_products_usage')->where([
-                ['date_start', '>=', $year.'-'.$month.'-01'],
-                ['date_start', '<', date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year))],
-            ])
-            ->orWhere(function ($query) use ($year, $month) {
-                $query->where('date_start', '<', $year.'-'.$month.'-01')->whereNull('date_end');
+            $hours[$date] = \DB::table('accounts_products_usage')->whereIn('partner_id', Helper::getSelectedPartners())
+            ->where(function ($query) use ($year, $month) {
+                $query->where([
+                    ['date_start', '>=', $year.'-'.$month.'-01'],
+                    ['date_start', '<', date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year))],
+                ]);
+                $query->orWhere('date_start', '<', $year.'-'.$month.'-01')->whereNull('date_end');
+                $query->orWhere([
+                    ['date_start', '<', $year.'-'.$month.'-01'],
+                    ['date_end', '>=', $year.'-'.$month.'-01'],
+                ]);
             })
-            ->orWhere([
-                ['date_start', '<', $year.'-'.$month.'-01'],
-                ['date_end', '>=', $year.'-'.$month.'-01'],
-            ])
+            // ->where([
+            //     ['date_start', '>=', $year.'-'.$month.'-01'],
+            //     ['date_start', '<', date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year))],
+            // ])
+            // ->orWhere(function ($query) use ($year, $month) {
+            //     $query->where('date_start', '<', $year.'-'.$month.'-01')->whereNull('date_end');
+            // })
+            // ->orWhere([
+            //     ['date_start', '<', $year.'-'.$month.'-01'],
+            //     ['date_end', '>=', $year.'-'.$month.'-01'],
+            // ])
             ->select('product_id','accounts_products.plan_id')
             ->selectRaw('SUM(TIMESTAMPDIFF(MINUTE,
                             if(date_start < "'.$year.'-'.$month.'-01", "'.$year.'-'.$month.'-01", date_start),
@@ -75,6 +88,7 @@ class BillingController extends Controller
                                 if(date_end, date_end, CURRENT_TIMESTAMP), "'.date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year)).'")
                         )) as minutes')
             ->join('accounts_products', 'accounts_products.id', '=', 'accounts_products_usage.product_id')
+            ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
             ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
         }
 
