@@ -10,12 +10,12 @@ class BillingController extends Controller
 {
     public function index()
     {
+        $date_from = (request()->filled('date_from')) ? request()->date_from : date('Y-m-d', strtotime('-11 months'));
+        $date_to = (request()->filled('date_to')) ? request()->date_to : date('Y-m-d');
+
         $currencies = Currency::all()->keyBy('id')->toArray();
         $plans = $this->getPlanPrices();
-        $usage = $this->getUsage([
-            'from' => '2019-01',
-            'to' => '2019-12',
-        ]);
+        $usage = $this->getUsage(['from' => $date_from, 'to' => $date_to]);
 
         foreach($usage as $date => $array) {
             $hours_in_month = date('t', strtotime($date)) * 24;
@@ -34,7 +34,13 @@ class BillingController extends Controller
 
         // dump($currencies,$plans,$usage, $costs);
 
-        return view('adminux.pages.billing')->withUsage($usage)->withCosts($costs)->withSales($sales);
+        return view('adminux.pages.billing')->with([
+            'usage' => $usage,
+            'costs' => $costs,
+            'sales' => $sales,
+            'date_from' => $date_from,
+            'date_to' => $date_to,
+        ]);
     }
 
     /**
@@ -44,8 +50,8 @@ class BillingController extends Controller
      */
     public function getUsage($params = [])
     {
-        $from = (!empty($params['from'])) ? $params['from'] : date('Y-m');
-        $to   = (!empty($params['to'])) ? $params['to'] : date('Y-m');
+        $from = (!empty($params['from'])) ? date('Y-m', strtotime($params['from'])) : date('Y-m');
+        $to   = (!empty($params['to'])) ? date('Y-m', strtotime($params['to'])) : date('Y-m');
 
         $hours = [];
         for($i = $from; $i <= $to; $i = date('Y-m', strtotime($i.' +1 month'))) {
