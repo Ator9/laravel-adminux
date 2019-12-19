@@ -10,6 +10,11 @@ use Yajra\Datatables\Datatables;
 
 class RoleController extends AdminuxController
 {
+    public function __construct()
+    {
+        $this->middleware('adminux_superuser');
+    }
+
     /**
      * Display a listing of the resource.
      *

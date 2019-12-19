@@ -11,9 +11,9 @@ class LanguageController extends AdminuxController
 {
     public function __construct()
     {
-        $this->middleware('adminux_superuser', ['except' => ['webhook']]);
+        $this->middleware('adminux_superuser');
     }
-    
+
     /**
      * Display a listing of the resource.
      *

@@ -8,6 +8,11 @@ use Yajra\Datatables\Datatables;
 
 class AdminPartnerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminux_superuser');
+    }
+
     public function getIndex($obj)
     {
         if(new \ReflectionClass(new BaseModel) == new \ReflectionClass($obj)) {

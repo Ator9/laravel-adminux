@@ -7,6 +7,11 @@ use Yajra\Datatables\Datatables;
 
 class SoftwareFeatureController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminux_superuser');
+    }
+    
     public function getIndex($obj)
     {
         $model = $obj->features();
