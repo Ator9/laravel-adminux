@@ -216,7 +216,7 @@ class AccountProductController extends AdminuxController
         return [
             $form->display([ 'label' => 'ID' ]),
             $form->select([ 'label' => 'Account', 'allows' => Helper::getEnabledAccountsKeys() ]),
-            $form->select([ 'label' => 'Plan', 'editable' => false ]),
+            $form->select([ 'label' => 'Plan', 'editable' => false, 'allows' => Helper::getEnabledPlansKeys() ]),
             $form->moduleConfig([ 'label' => 'Default Config' ]),
             $form->switch([ 'label' => 'Active' ]),
         ];

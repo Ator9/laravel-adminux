@@ -9,6 +9,11 @@ use Yajra\Datatables\Datatables;
 
 class LanguageController extends AdminuxController
 {
+    public function __construct()
+    {
+        $this->middleware('adminux_superuser', ['except' => ['webhook']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

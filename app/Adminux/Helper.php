@@ -55,6 +55,14 @@ class Helper
         abort_if(!in_array($model->account_id, self::getEnabledAccountsKeys()), 403);
     }
 
+    static function getEnabledPlansKeys()
+    {
+        return (new \App\Adminux\Account\Models\AccountProduct)->query()
+        ->join('services_plans', 'services_plans.id', '=', 'accounts_products.plan_id')
+        ->join('services', 'services.id', '=', 'services_plans.service_id')
+        ->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('plan_id')->keys()->toArray();
+    }
+
     // Validates if the admin is allowed to manipulate the selected account with the selected service (must be same partner):
     static function validateAccountWithService($account_id = 0, $plan_id = 0)
     {
