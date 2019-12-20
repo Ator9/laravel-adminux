@@ -51,14 +51,17 @@
 </div>
 @isset($cards)
     @foreach($cards as $key => $card)
-        <div class="card my-3">
-            <div class="card-header">
-                <h5 class="mb-0">{{$key}}</h5>
+        @if(is_numeric($key)) {!! $card !!}
+        @else
+            <div class="card my-3">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ $key }}</h5>
+                </div>
+                <div class="card-body">
+                    {!! $card !!}
+                </div>
             </div>
-            <div class="card-body">
-                {!! $card !!}
-            </div>
-        </div>
+        @endif
     @endforeach
 @endisset
 

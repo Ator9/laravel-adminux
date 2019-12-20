@@ -123,7 +123,7 @@ class AccountProductController extends AdminuxController
 
         if($this->checkSoftwareClass($product)) return $this->getSoftwareClass($product);
 
-        return view('adminux.pages.show')->withModel($product);
+        return view('adminux.pages.show')->withModel($product)->withCards([(new Helper)->getFileManager($product)]);
     }
 
     /**

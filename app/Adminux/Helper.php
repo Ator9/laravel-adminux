@@ -156,4 +156,26 @@ class Helper
 
         return Excel::download(new \App\Adminux\ExportArray($array), $name);
     }
+
+    public function getFileManager($model, $params = [])
+    {
+        $dir = (!empty($params['dir'])) ? $params['dir'] : $model->getTable().'/'.$model->id;
+
+        $contents = \Storage::files($dir);
+
+        return '<div class="card my-3">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="mb-0">Files</h5>
+                <form>
+                    <input type="file" id="files_'.Str::slug($dir).'">
+                    <button type="button" class="btn btn-primary btn-sm my-n1" onclick="$(\'#files_'.Str::slug($dir).'\').click()">
+                        <span class="feather-adminux" data-feather="upload"></span> Upload
+                    </button>
+                </form>
+            </div>
+            <div class="card-body">
+                {!! $card !!}
+            </div>
+        </div>';
+    }
 }
