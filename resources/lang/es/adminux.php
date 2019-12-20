@@ -64,5 +64,6 @@ return [
     'software_id' => 'Software',
     'superuser' => 'Super Usuario',
     'updated_at' => 'Fecha Actualización',
+    'upload' => 'Subir',
     'url' => 'URL',
 ];

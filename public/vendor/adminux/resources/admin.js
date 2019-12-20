@@ -2,7 +2,12 @@ feather.replace();
 
 function modalDelete(action, title) {
     $('#deleteForm').prop('action', action);
-    $('#modalCenterTitle').html(title);
+    $('#deleteModalCenterTitle').html(title);
+}
+
+function modalUpload(action, title) {
+    $('#uploadForm').prop('action', action);
+    $('#uploadModalCenterTitle').html(title);
 }
 
 function setTitle(txt) {
