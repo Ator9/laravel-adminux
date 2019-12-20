@@ -112,6 +112,21 @@ class AccountProductController extends AdminuxController
         return parent::saveRedirect($product);
     }
 
+    public function fileUpload(Request $request, AccountProduct $product)
+    {
+        Helper::validateAccount($product);
+
+        $path = 'public/'.$product->getTable().'/'.$product->id;
+
+        foreach($request->file('files') as $file) {
+            $name = $file->getClientOriginalName();
+            if(file_exists(storage_path('app/'.$path.'/'.$name))) $name = time().'_'.$name;
+            $file->storeAs($path, $name);
+        }
+
+        return back();
+    }
+
     /**
      * Display the specified resource.
      *
