@@ -28,7 +28,7 @@
             @foreach($files as $value)
                 <tr>
                     <td>{{ substr($value, strrpos($value, '/') + 1) }}</td>
-                    <td><a href="{{ url(str_replace('public', '', $value)) }}" target="_blank">{{ $value }}</a></td>
+                    <td><a href="{{ Storage::url($value) }}" target="_blank">{{ $value }}</a></td>
                     <td>{{ $value }}</td>
                 </tr>
             @endforeach
