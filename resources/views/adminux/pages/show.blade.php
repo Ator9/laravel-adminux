@@ -42,7 +42,7 @@
         @if(method_exists($controller, 'edit'))
         <div class="form-group row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-10">
+            <div class="col-sm-10 pl-0">
                 <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
             </div>
         </div>

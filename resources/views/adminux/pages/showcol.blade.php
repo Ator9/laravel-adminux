@@ -41,7 +41,7 @@
                 @if(method_exists($controller, 'edit'))
                 <div class="form-group row">
                     <div class="col-sm-4"></div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 pl-0">
                         <a href="{{ Request::url() }}/edit" class="btn btn-primary"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
                     </div>
                 </div>
@@ -49,24 +49,40 @@
             </div>
         </div>
     </div>
-    <div class="col">
-        @isset($cards)
-            @foreach($cards as $key => $card)
-                @if(is_numeric($key)) {!! $card !!}
-                @else
-                    <div class="card my-3">
-                        <div class="card-header">
-                            <h5 class="mb-0">{{$key}}</h5>
-                        </div>
-                        <div class="card-body">
-                            {!! $card !!}
-                        </div>
+    @isset($cols)
+        @foreach($cols as $key => $card)
+        <div class="col">
+            @if(is_numeric($key)) {!! $card !!}
+            @else
+                <div class="card my-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">{{$key}}</h5>
                     </div>
-                @endif
-            @endforeach
-        @endisset
-    </div>
+                    <div class="card-body">
+                        {!! $card !!}
+                    </div>
+                </div>
+            @endif
+        </div>
+        @endforeach
+    @endisset
 </div>
+@isset($cards)
+    @foreach($cards as $key => $card)
+        @if(is_numeric($key)) {!! $card !!}
+        @else
+            <div class="card my-3">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ $key }}</h5>
+                </div>
+                <div class="card-body">
+                    {!! $card !!}
+                </div>
+            </div>
+        @endif
+    @endforeach
+@endisset
+
 @isset($relations)
     @push('scripts')
         <script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
