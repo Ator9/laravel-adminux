@@ -4,7 +4,7 @@
         <form method="post" action="{{ Request::url() }}/file-upload" enctype="multipart/form-data">
             <div class="input-group my-n1">
                 <div class="custom-file">
-                    <input type="file" name="files[]" class="custom-file-input" data-toggle="tooltip" data-placement="top" title="Max File: {{ ini_get('upload_max_filesize') }} | Max Form: {{ini_get('post_max_size')}}" id="inputGroupFileUpload" aria-describedby="inputGroupFileAddon" multiple required>
+                    <input type="file" name="files[]" class="custom-file-input" data-toggle="tooltip" data-placement="top" title="Max File: {{ ini_get('upload_max_filesize') }}, Max Form: {{ini_get('post_max_size')}}" id="inputGroupFileUpload" aria-describedby="inputGroupFileAddon" multiple required>
                     <label class="custom-file-label" for="inputGroupFileUpload">Files...</label>
                 </div>
                 <div class="input-group-append">
