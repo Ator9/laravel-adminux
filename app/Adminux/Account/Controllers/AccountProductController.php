@@ -116,6 +116,10 @@ class AccountProductController extends AdminuxController
     {
         Helper::validateAccount($product);
 
+        $request->validate([
+            'files.*' => 'required|max:'.min((int) ini_get('upload_max_filesize'), (int) ini_get('post_max_size')) * 1024,
+        ]);
+
         $path = 'public/'.$product->getTable().'/'.$product->id;
 
         foreach($request->file('files') as $file) {

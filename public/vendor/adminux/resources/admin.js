@@ -1,15 +1,14 @@
 feather.replace();
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 function modalDelete(action, title, name) {
     $('#deleteForm').prop('action', action);
     $('#deleteName').val(name);
     $('#deleteModalCenterTitle').html(title);
 }
-
-// function modalUpload(action, title) {
-//     $('#uploadForm').prop('action', action);
-//     $('#uploadModalCenterTitle').html(title);
-// }
 
 function setTitle(txt) {
     if(txt) document.title = txt;
@@ -28,4 +27,4 @@ $('.continue_editing_form').on('click', function () {
 // Update selected files in input:
 $('#inputGroupFileUpload').on('change',function() {
     $(this).next('.custom-file-label').html($(this).val());
-})
+});
