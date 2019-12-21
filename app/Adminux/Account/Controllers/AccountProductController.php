@@ -127,6 +127,16 @@ class AccountProductController extends AdminuxController
         return back();
     }
 
+    public function fileDelete(Request $request, AccountProduct $product)
+    {
+        Helper::validateAccount($product);
+
+        $path = 'public/'.$product->getTable().'/'.$product->id.'/'.$request->name;
+        \Storage::delete($path);
+
+        return back();
+    }
+
     /**
      * Display the specified resource.
      *

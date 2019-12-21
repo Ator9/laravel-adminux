@@ -16,20 +16,25 @@
             @csrf
         </form>
     </div>
-    <div class="card-body py-0">
-        <table class="table table-hover">
+    <div class="card-body p-0 pl-2">
+        <table class="table table-hover m-0">
             <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>URL</td>
-                    <td>Date</td>
+                    <td class="text-center">Date</td>
+                    <td class="w-25">Name</td>
+                    <td class="w-75">Link</td>
+                    <td></td>
                 </tr>
             </thead>
             @foreach($files as $value)
+                @php $name = substr($value, strrpos($value, '/') + 1); @endphp
                 <tr>
-                    <td>{{ substr($value, strrpos($value, '/') + 1) }}</td>
-                    <td><a href="{{ Storage::url($value) }}" target="_blank">{{ $value }}</a></td>
-                    <td>{{ $value }}</td>
+                    <td class="text-nowrap">{{ date('Y-m-d H:i:s', Storage::lastModified($value)) }}</td>
+                    <td>{{ $name }}</td>
+                    <td><a href="{{ Storage::url($value) }}" target="_blank">{{ Storage::url($value) }}</a></td>
+                    <td>
+                        <a href="#deleteModal" class="badge badge-danger" data-toggle="modal" onclick="modalDelete('{{ Request::url() }}/file-delete', 'Delete {{ $name }}?', '{{ $name }}')">{{ __('adminux.delete') }}</a>
+                    </td>
                 </tr>
             @endforeach
         </table>

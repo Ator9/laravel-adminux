@@ -21,6 +21,7 @@ Route::namespace('\App\Adminux')->group(function() {
 
         Route::get('accounts_products/{product}/edit-software', 'Account\Controllers\AccountProductController@editSoftware');
         Route::post('accounts_products/{product}/file-upload', 'Account\Controllers\AccountProductController@fileUpload');
+        Route::delete('accounts_products/{product}/file-delete', 'Account\Controllers\AccountProductController@fileDelete');
 
         foreach(\File::directories(__DIR__) as $dir) {
             App\Adminux\Helper::buildRouteResource(basename($dir));

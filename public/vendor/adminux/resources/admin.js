@@ -1,7 +1,8 @@
 feather.replace();
 
-function modalDelete(action, title) {
+function modalDelete(action, title, name) {
     $('#deleteForm').prop('action', action);
+    $('#deleteName').val(name);
     $('#deleteModalCenterTitle').html(title);
 }
 

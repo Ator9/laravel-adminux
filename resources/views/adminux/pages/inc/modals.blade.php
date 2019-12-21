@@ -12,6 +12,7 @@
                 <form method="post" id="deleteForm" action="" class="d-inline">
                     @method('DELETE')
                     @csrf
+                    <input type="hidden" name="name" id="deleteName" value="">
                     <button type="submit" class="btn btn-danger my-n1"><span class="feather-adminux" data-feather="trash-2"></span> {{ __('adminux.delete') }}</button>
                 </form>
             </div>
