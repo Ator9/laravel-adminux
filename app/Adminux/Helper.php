@@ -57,10 +57,9 @@ class Helper
 
     static function getEnabledPlansKeys()
     {
-        return (new \App\Adminux\Account\Models\AccountProduct)->query()
-        ->join('services_plans', 'services_plans.id', '=', 'accounts_products.plan_id')
+        return (new \App\Adminux\Service\Models\Plan)->query()->select('services_plans.id')
         ->join('services', 'services.id', '=', 'services_plans.service_id')
-        ->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('plan_id')->keys()->toArray();
+        ->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
     }
 
     // Validates if the admin is allowed to manipulate the selected account with the selected service (must be same partner):
