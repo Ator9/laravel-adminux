@@ -159,7 +159,7 @@ class AccountController extends AdminuxController
             $form->email([ 'label' => 'E-mail' ]),
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'Account' ]),
-            $form->moduleConfig([ 'label' => 'Default Config' ]),
+            // $form->moduleConfig([ 'label' => 'Module Config', 'path' => 'accounts' ]),
             $form->switch([ 'label' => 'Active' ]),
         ];
     }

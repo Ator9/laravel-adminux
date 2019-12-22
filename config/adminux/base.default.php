@@ -12,7 +12,7 @@ return [
             'Accounts' => [
                 'icon' => 'users',
                 'items' => [
-                    [ 'dir'=> 'accounts', 'name' => 'Accounts' ],
+                    [ 'dir'=> 'accounts', 'name' => 'Accounts', /*'module_config' => [ 'emails' => 'mas emails' ]*/ ],
                     [ 'dir'=> 'accounts_products', 'name' => 'Products' ],
                 ]
             ],

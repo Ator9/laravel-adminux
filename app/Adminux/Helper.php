@@ -73,60 +73,19 @@ class Helper
         abort_if($account->partner_id != $service->partner_id, 403);
     }
 
-    static function getNavLeft()
-    {
-        $data = [];
-
-        foreach(\File::directories(__DIR__) as $dir) {
-            $module = basename($dir);
-
-            $config = self::getConfig($module);
-            if(empty($config) || empty($config['navigation']['enabled'])) continue;
-
-            $row = $config['navigation'];
-            $row['dir'] = Str::plural($module);
-
-            $data[] = $row;
-        }
-
-        return $data;
-    }
-
-    static function getNavTop($path = '')
-    {
-        $data = [];
-
-        $array = explode('/', $path);
-        if(!empty($array[1]) && $array[1] == 'dashboard') $data = [ 'dashboard' => 'Dashboard' ];
-        else {
-            $class = explode('_', next($array));
-
-            $config = self::getConfig(ucfirst(Str::singular($class[0])));
-            if(!empty($config['navigation'])) {
-                $row = $config['navigation'];
-
-                $data = [ $class[0] => $row['name'] ];
-                if(!empty($row['submenu'])) $data = $data + $row['submenu'];
-            }
-        }
-
-        return $data;
-    }
-
     // Get module config:
     static function getConfig($path = '')
     {
-        $config = [];
-
-        if(is_file($file = __DIR__.'/'.$path.'/config.php')) require $file;
-        elseif(is_file($file = __DIR__.'/'.$path.'/config.default.php')) require $file;
-        else {
-            $new_path = current(array_filter(preg_split('/(?=[A-Z])/', $path)));
-            if(is_file($file = __DIR__.'/'.$new_path.'/config.php')) require $file;
-            elseif(is_file($file = __DIR__.'/'.$new_path.'/config.default.php')) require $file;
+        $config = config('adminux.base.default.menu');
+        foreach($config as $arr) {
+            foreach($arr as $arr2) {
+                foreach($arr2['items'] as $arr3) {
+                    if($arr3['dir'] == $path && !empty($arr3['module_config']))  return $arr3['module_config'];
+                }
+            }
         }
 
-        return $config;
+        return [];
     }
 
     // Build route resource:
