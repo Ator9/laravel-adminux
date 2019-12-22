@@ -19,4 +19,13 @@ class Language extends Model
     protected $fillable = [
         'language'
     ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'deleted_at'
+    ];
 }

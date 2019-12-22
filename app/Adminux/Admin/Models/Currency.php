@@ -21,6 +21,15 @@ class Currency extends Model
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'deleted_at'
+    ];
+
+    /**
      * Get the software for the currency.
      */
     // public function software()
