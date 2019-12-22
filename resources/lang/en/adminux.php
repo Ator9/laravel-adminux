@@ -20,7 +20,7 @@ return [
     'default_config' => 'Default Config',
     'delete' => 'Delete',
     'deleted_at' => 'Date Deleted',
-    'description' => 'description',
+    'description' => 'Description',
     'details' => 'Details',
     'domain' => 'Domain',
     'edit' => 'Edit',
