@@ -63,6 +63,7 @@ return [
     'software_class' => 'Clase del Software',
     'software_id' => 'Software',
     'superuser' => 'Super Usuario',
+    'title' => 'Título',
     'updated_at' => 'Fecha Actualización',
     'upload' => 'Subir',
     'url' => 'URL',

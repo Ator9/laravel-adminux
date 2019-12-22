@@ -63,6 +63,7 @@ return [
     'software_class' => 'Software Class',
     'software_id' => 'Software',
     'superuser' => 'Superuser',
+    'title' => 'Title',
     'updated_at' => 'Date Updated',
     'upload' => 'Upload',
     'url' => 'URL',
