@@ -20,6 +20,7 @@ return [
     'default_config' => 'Configuración Predeterminada',
     'delete' => 'Eliminar',
     'deleted_at' => 'Fecha Elminación',
+    'description' => 'Descripción',
     'details' => 'Detalles',
     'domain' => 'Dominio',
     'edit' => 'Editar',
