@@ -173,7 +173,7 @@ class CreateAdminux extends Migration
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->mediumInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('services_plans');
-            $table->text('software_config')->nullable()->comment('json config/properties');
+            $table->mediumText('software_config')->nullable()->comment('json config/properties');
             $table->enum('active', ['N', 'Y'])->default('N');
             $table->softDeletes();
             $table->timestamps();
