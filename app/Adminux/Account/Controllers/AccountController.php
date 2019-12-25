@@ -33,6 +33,7 @@ class AccountController extends AdminuxController
 
         return view('adminux.pages.index')->withDatatables([
             'exportButton' => 1,
+            'order' => '[[ 0, "desc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th>E-mail</th>
                         <th class="w-25">Account</th>

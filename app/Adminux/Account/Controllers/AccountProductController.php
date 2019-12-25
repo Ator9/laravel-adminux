@@ -31,7 +31,7 @@ class AccountProductController extends AdminuxController
             ->toJson();
 
         return view('adminux.pages.index')->withDatatables([
-            'order' => '[[ 0, "asc" ]]',
+            'order' => '[[ 0, "desc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">E-mail</th>
                         <th style="min-width:120px">Plan</th>
