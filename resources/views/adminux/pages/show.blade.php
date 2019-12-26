@@ -8,8 +8,10 @@
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <div class="row">
-                <a href="{{ str_replace('/'.$model->id, '', Request::url()) }}"><span data-feather="arrow-left" class="feather-adminux2 mx-3"></span></a>
-                <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
+                @if(method_exists($controller, 'index'))
+                    <a href="{{ str_replace('/'.$model->id, '', Request::url()) }}"><span data-feather="arrow-left" class="feather-adminux2 ml-3"></span></a>
+                @endif
+                <h5 class="mb-0 ml-3">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
             </div>
             <div>
                 @if(method_exists($controller, 'destroy'))

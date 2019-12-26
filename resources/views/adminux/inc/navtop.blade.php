@@ -18,15 +18,7 @@
             @endforeach
         @endforeach
     </ul>
-    <!-- <nav class="w-100" aria-label="breadcrumb">
-        <ol class="breadcrumb m-0 bg-dark">
-            <li class="breadcrumb-item"><a href="{{ asset($prefix.'/dashboard') }}" class="text-white">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="#" class="text-white">Library</a></li>
-            <li class="breadcrumb-item active text-warning" aria-current="page">Data</li>
-        </ol>
-    </nav> -->
-    <!-- <input class="form-control form-control-dark ml-1" id="global_filter" type="text" placeholder="Search" aria-label="Search"> -->
-    <span class="text-white mx-3">{{ auth('adminux')->user()->email }}</span>
+    <span class="text-white mx-3"><a href="{{ asset($prefix.'/profile') }}" class="text-warning">{{ auth('adminux')->user()->email }}</a></span>
     <ul class="navbar-nav mr-3">
         <li class="nav-item">
             <a class="nav-link" href="{{ asset($prefix.'/logout') }}"><span data-feather="log-out"></span></a>
