@@ -209,6 +209,9 @@ class AccountProductController extends AdminuxController
     public function destroy(AccountProduct $product)
     {
         Helper::validateAccount($product);
+
+        $product->update(['active' => 'N']); // Usage table
+
         return parent::destroyRedirect($product);
     }
 
