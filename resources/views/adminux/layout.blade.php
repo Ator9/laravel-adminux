@@ -11,7 +11,7 @@
 </head>
 <body>
 @inject('Helper', 'App\Adminux\Helper')
-@php $prefix = substr(request()->route()->getPrefix(), 1) @endphp
+@php $prefix = explode('/', ltrim(request()->route()->getPrefix(), '/'))[0] @endphp
 @include('adminux.inc.navtop')
 <div class="container-fluid">
     <div class="row">
