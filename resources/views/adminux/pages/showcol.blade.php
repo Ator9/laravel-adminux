@@ -4,6 +4,7 @@
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
 @section('body')
+@include('adminux.inc.errors')
 <div class="row">
     <div class="col">
         <div class="card mt-3">
@@ -21,7 +22,6 @@
                 </div>
             </div>
             <div class="card-body">
-                @include('adminux.inc.errors')
                 @foreach($model->toArray() as $key => $val)
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>

@@ -3,6 +3,7 @@
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.edit'))
 
 @section('body')
+@include('adminux.inc.errors')
 <form method="post" action="{{ str_replace('/edit', '', Request::url()) }}">
     @method('PUT')
     @csrf
@@ -19,7 +20,6 @@
             </div>
         </div>
         <div class="card-body">
-            @include('adminux.inc.errors')
             @foreach($fields as $val)
                 {!! $val !!}
             @endforeach

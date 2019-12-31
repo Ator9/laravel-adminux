@@ -3,6 +3,7 @@
 @section('title', __('adminux.create').' '.(new ReflectionClass($model))->getShortName())
 
 @section('body')
+@include('adminux.inc.errors')
 <form method="post" action="{{ str_replace('/create', '', Request::url()) }}">
     @csrf
     <div class="card mt-3">
@@ -15,7 +16,6 @@
             </div>
         </div>
         <div class="card-body">
-            @include('adminux.inc.errors')
             @foreach($fields as $val)
                 {!! $val !!}
             @endforeach

@@ -4,7 +4,7 @@
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
 @section('body')
-
+@include('adminux.inc.errors')
 <div class="mt-3">
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -22,7 +22,6 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="card border-top-0">
                 <div class="card-body">
-                    @include('adminux.inc.errors')
                     @foreach($model->toArray() as $key => $val)
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
