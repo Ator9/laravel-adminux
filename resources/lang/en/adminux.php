@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array_merge([ // Default file
 
     'account' => 'Account',
     'account_id' => 'Account',
@@ -68,4 +68,4 @@ return [
     'updated_at' => 'Date Updated',
     'upload' => 'Upload',
     'url' => 'URL',
-];
+], (array) @include_once(__DIR__.'/adminux2.php'));
