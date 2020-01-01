@@ -21,10 +21,9 @@ class AccountProductController extends AdminuxController
             ->join('services_plans', 'services_plans.id', '=', 'accounts_products.plan_id')
             ->join('services', 'services.id', '=', 'services_plans.service_id')
             ->join('partners', 'partners.id', '=', 'services.partner_id')
-            ->join('software', 'software.id', '=', 'services.software_id')
             ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
             ->whereIn('services_plans.service_id', Helper::getSelectedServices())
-            ->select('accounts_products.id','accounts_products.active','accounts.email','services_plans.plan','services.service','software.software','partners.partner','accounts_products.created_at'))
+            ->select('accounts_products.id','accounts_products.active','accounts.email','services_plans.plan','services.service','partners.partner','accounts_products.created_at'))
             ->addColumn('active2', 'adminux.pages.inc.status')
             ->addColumn('id2', 'adminux.pages.inc.link_show_link')
             ->rawColumns(['id2', 'active2'])
@@ -36,7 +35,6 @@ class AccountProductController extends AdminuxController
                         <th class="w-75">E-mail</th>
                         <th style="min-width:120px">Plan</th>
                         <th style="min-width:120px">Service</th>
-                        <th style="min-width:120px">Software</th>
                         <th style="min-width:120px">Partner</th>
                         <th style="min-width:60px">Active</th>
                         <th style="min-width:120px">Created At</th>',
@@ -45,7 +43,6 @@ class AccountProductController extends AdminuxController
                           { data: "email", name: "accounts.email" },
                           { data: "plan", name: "services_plans.plan" },
                           { data: "service", name: "services.service" },
-                          { data: "software", name: "software.software" },
                           { data: "partner", name: "partners.partner" },
                           { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "accounts_products.created_at", className: "text-center" }'
@@ -57,23 +54,29 @@ class AccountProductController extends AdminuxController
         $model = $obj->products();
 
         if(request()->ajax()) {
-            $dt = Datatables::of($model)->addColumn('id2', function($row) use ($model) {
+            $dt = Datatables::of($model
+            ->select('accounts_products.id','accounts_products.active','services_plans.plan','accounts_products.created_at')
+            ->join('services_plans', 'services_plans.id', '=', 'accounts_products.plan_id'))
+            ->addColumn('active2', 'adminux.pages.inc.status')
+            ->addColumn('id2', function($row) use ($model) {
                 $params['action'] = url(request()->route()->getPrefix().'/'.$model->getRelated()->getTable().'/'.$row->id);
                 $id = $row->id;
                 return view('adminux.pages.inc.link_show_link', compact('params', 'id'));
             });
 
-            return $dt->rawColumns(['id2'])->toJson();
+            return $dt->rawColumns(['id2', 'active2'])->toJson();
         }
 
         return [
             'model' => $model,
             'dom' => 'rt<"float-left"i>',
             'thead' => '<th style="min-width:30px">ID</th>
-                        <th class="w-100">'.__('adminux.active').'</th>
+                        <th class="w-100">'.__('adminux.plan').'</th>
+                        <th>'.__('adminux.active').'</th>
                         <th style="min-width:120px">Created At</th>',
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
-                          { data: "active", name: "active" },
+                          { data: "plan", name: "plan" },
+                          { data: "active2", name: "active", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ];
     }
