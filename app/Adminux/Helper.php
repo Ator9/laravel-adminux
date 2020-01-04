@@ -94,6 +94,11 @@ class Helper
         \Route::resource($uri_prefix.Str::plural(strtolower($model)), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
     }
 
+    static function getPrefix()
+    {
+        return explode('/', ltrim(request()->route()->getPrefix(), '/'))[0];
+    }
+
     static function getUriSingular($uri = '')
     {
         $pieces = explode('_', $uri);
