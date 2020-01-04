@@ -12,8 +12,13 @@ function modalDelete(action, title, name) {
 
 function setTitle(txt) {
     if(txt) document.title = txt;
-    // else document.title = $('ul ul a.active').text().replace('─', '');
     else document.title = $('.text-white').html();
+}
+
+function linkBox() {
+    $('.dt_link_box').addClass('d-block');
+    $('.dt_link_box').css('margin', '-'+$('.dt_link_box').parent().css('padding'));
+    $('.dt_link_box').css('padding', $('.dt_link_box').parent().css('padding'));
 }
 
 $('#partner_select').on('change', function () {
