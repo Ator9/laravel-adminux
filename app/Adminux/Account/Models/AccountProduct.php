@@ -32,6 +32,13 @@ class AccountProduct extends Model
      */
     protected $casts = [ 'module_config' => 'array', 'software_config' => 'array' ];
 
+    // Custom field:
+    protected $appends = array('product');
+    public function getProductAttribute()
+    {
+        return $this->plan->plan;
+    }
+
     /**
      * Get the account.
      */
