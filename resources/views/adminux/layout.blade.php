@@ -1,3 +1,5 @@
+@inject('Helper', 'App\Adminux\Helper')
+@php $prefix = $Helper::getPrefix() @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -6,12 +8,10 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>@yield('title')</title>
 <link href="{{ asset('vendor/adminux/resources/libs/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('vendor/adminux/resources/admin.css') }}" rel="stylesheet">
+<link href="{{ $Helper::getVersionedAsset('vendor/adminux/resources/admin.css') }}" rel="stylesheet">
 @yield('head')
 </head>
 <body>
-@inject('Helper', 'App\Adminux\Helper')
-@php $prefix = $Helper::getPrefix() @endphp
 @include('adminux.inc.navtop')
 <div class="container-fluid">
     <div class="row">
@@ -28,7 +28,7 @@
 var host = '{{ url('/') }}';
 var admin_url = host+'/{{ $prefix }}';
 </script>
-<script src="{{ asset('vendor/adminux/resources/admin.js') }}"></script>
+<script src="{{ $Helper::getVersionedAsset('vendor/adminux/resources/admin.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

@@ -99,6 +99,13 @@ class Helper
         return explode('/', ltrim(request()->route()->getPrefix(), '/'))[0];
     }
 
+    // Asset with filemtime like style.95123123.css:
+    static function getVersionedAsset($file, $enabled = true)
+    {
+        if($enabled !== true) return asset($file);
+        return asset(preg_replace('{\\.([^./]+)$}', '.'.filemtime(public_path($file)).'.$1', $file));
+    }
+
     static function getUriSingular($uri = '')
     {
         $pieces = explode('_', $uri);
