@@ -23,7 +23,7 @@ class AccountProduct extends Model
      *
      * @var array
      */
-    protected $hidden = [ 'software_config', 'deleted_at' ];
+    protected $hidden = [ 'product', 'software_config', 'deleted_at' ];
 
     /**
      * The attributes that should be cast to native types.
@@ -36,7 +36,7 @@ class AccountProduct extends Model
     protected $appends = array('product');
     public function getProductAttribute()
     {
-        return @$this->plan->plan; // @ to avoid datatables error
+        return @(clone $this)->plan->plan; // @ to avoid datatables error
     }
 
     /**
