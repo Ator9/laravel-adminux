@@ -36,7 +36,7 @@ class AccountProduct extends Model
     protected $appends = array('product');
     public function getProductAttribute()
     {
-        return $this->plan->plan;
+        return @$this->plan->plan; // @ to avoid datatables error
     }
 
     /**
