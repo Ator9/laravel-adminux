@@ -75,17 +75,6 @@ class BillingController extends Controller
                     ['date_end', '>=', $year.'-'.$month.'-01'],
                 ]);
             })
-            // ->where([
-            //     ['date_start', '>=', $year.'-'.$month.'-01'],
-            //     ['date_start', '<', date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year))],
-            // ])
-            // ->orWhere(function ($query) use ($year, $month) {
-            //     $query->where('date_start', '<', $year.'-'.$month.'-01')->whereNull('date_end');
-            // })
-            // ->orWhere([
-            //     ['date_start', '<', $year.'-'.$month.'-01'],
-            //     ['date_end', '>=', $year.'-'.$month.'-01'],
-            // ])
             ->select('product_id','accounts_products.plan_id')
             ->selectRaw('SUM(TIMESTAMPDIFF(MINUTE,
                             if(date_start < "'.$year.'-'.$month.'-01", "'.$year.'-'.$month.'-01", date_start),
