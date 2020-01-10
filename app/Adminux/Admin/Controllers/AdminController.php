@@ -34,6 +34,7 @@ class AdminController extends AdminuxController
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th style="min-width:60px">Active</th>
+                        <th style="min-width:120px">Last Login</th>
                         <th style="min-width:120px">Created At</th>',
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
@@ -41,6 +42,7 @@ class AdminController extends AdminuxController
                           { data: "firstname", name: "firstname" },
                           { data: "lastname", name: "lastname" },
                           { data: "active2", name: "active", className: "text-center" },
+                          { data: "last_login_at", name: "last_login_at", className: "text-center" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
         ]);
     }
