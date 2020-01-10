@@ -126,8 +126,8 @@ class CreateAdminux extends Migration
             $table->string('domain', 255)->nullable();
             $table->smallInteger('currency_id')->unsigned();
             $table->foreign('currency_id')->references('id')->on('admins_currencies');
-            $table->decimal('price', 9, 2)->default(0)->unsigned();
-            $table->enum('interval', ['daily', 'monthly ', 'yearly', 'onetime'])->default('monthly');
+            $table->decimal('price', 10, 3)->default(0)->unsigned();
+            $table->enum('interval', ['perunit', 'daily', 'monthly ', 'yearly', 'onetime'])->default('monthly');
             $table->text('price_history')->nullable()->comment('json old prices');
             $table->softDeletes();
             $table->timestamps();
@@ -141,8 +141,8 @@ class CreateAdminux extends Migration
             $table->string('plan', 100)->default('');
             $table->smallInteger('currency_id')->unsigned();
             $table->foreign('currency_id')->references('id')->on('admins_currencies');
-            $table->decimal('price', 9, 2)->default(0)->unsigned();
-            $table->enum('interval', ['daily', 'monthly ', 'yearly', 'onetime'])->default('monthly');
+            $table->decimal('price', 10, 3)->default(0)->unsigned();
+            $table->enum('interval', ['perunit', 'daily', 'monthly ', 'yearly', 'onetime'])->default('monthly');
             $table->text('price_history')->nullable()->comment('json old prices');
             $table->softDeletes();
             $table->timestamps();
