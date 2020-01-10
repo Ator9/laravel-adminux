@@ -10,13 +10,11 @@ class BillingController extends Controller
 {
     public function index()
     {
+        $plans = $this->getPlanPrices(); $currencies = Currency::all()->keyBy('id')->toArray();
         $date_from = (request()->filled('date_from')) ? request()->date_from : date('Y-m-d', strtotime('-11 months'));
         $date_to = (request()->filled('date_to')) ? request()->date_to : date('Y-m-d');
 
-        $currencies = Currency::all()->keyBy('id')->toArray();
-        $plans = $this->getPlanPrices();
         $usage = $this->getUsage(['from' => $date_from, 'to' => $date_to]);
-
         foreach($usage as $date => $array) {
             $hours_in_month = date('t', strtotime($date)) * 24;
 
