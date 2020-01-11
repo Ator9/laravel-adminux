@@ -95,7 +95,7 @@ class AccountController extends AdminuxController
 
         if(request()->ajax()) return (new AccountProductController)->getIndex($account);
 
-        return view('adminux.pages.show')->withModel($account)->withRelations([(new AccountProductController)->getIndex($account)]);
+        return view('adminux.pages.show')->withModel($account)->withRelations([(new AccountProductController)->getIndex($account)])->withColRelation((new AccountProductController)->getIndex($account));
     }
 
     /**

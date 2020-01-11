@@ -1,12 +1,4 @@
-@section('head')
-<link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-<style>
-.table thead th{border-top-width:0;border-bottom-width:0}
-#datatable_filter input{margin-left:3px;margin-top:3px}
-</style>
-@endsection
-
-<div class="card my-3">
+<div class="card mt-3">
     <div class="card-header">
         <h5 class="mb-0">
             @if(isset($datatables['title']))
