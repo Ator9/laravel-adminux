@@ -40,6 +40,7 @@
             </div>
             <div class="card-body">
                 @foreach($model->toArray() as $key => $val)
+                @if(isset($except) && in_array($key, $except)) @continue @endif
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
                     <div class="col-sm-8 form-control-plaintext">
