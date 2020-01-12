@@ -22,7 +22,7 @@
             @foreach($menu[$name] as $name => $module)
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link{{ (Request::is($prefix.'/'.$module['items'][0]['dir']) or Illuminate\Support\Str::contains(Request::path(), [$prefix.'/'.$module['items'][0]['dir'], $prefix.'/'.$module['items'][0]['dir'].'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.$module['items'][0]['dir']) }}">
+                        <a class="nav-link{{ (Request::is($prefix.'/'.$module['items'][0]['dir']) or Illuminate\Support\Str::contains(Request::path(), [$prefix.'/'.$module['items'][0]['dir'].'_', $prefix.'/'.$module['items'][0]['dir'].'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.$module['items'][0]['dir']) }}">
                             <span data-feather="{{ $module['icon'] }}"></span> {{ $name }}
                         </a>
                     </li>
