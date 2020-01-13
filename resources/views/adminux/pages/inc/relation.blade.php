@@ -1,5 +1,5 @@
 <div class="card mt-3">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between">
         <h5 class="mb-0">
             @if(isset($datatables['title']))
                 {{ $datatables['title'] }}
@@ -13,6 +13,7 @@
                 {{ ucfirst($datatables['model']->getRelated()->getTable()) }}
             @endif
         </h5>
+        {!! $datatables['header_form'] !!}
     </div>
     <div class="card-body">
         <div class="table-responsive">
