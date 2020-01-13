@@ -42,7 +42,7 @@ $(document).ready(function() {
         dom: @isset($datatables['dom']) '{!! $datatables['dom'] !!}' @else '<"float-left"f>rt<"float-left"i>p' @endisset,
         language: {
            search: '',
-           searchPlaceholder: '{{ __('adminux.add') }}...'
+           searchPlaceholder: @isset($datatables['searchPlaceholder']) '{{ $datatables['searchPlaceholder'] }}' @else '{{ __('adminux.add') }}...' @endisset
         },
         initComplete: function(settings, json) {
             feather.replace();
