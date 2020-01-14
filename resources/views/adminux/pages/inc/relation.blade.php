@@ -13,7 +13,7 @@
                 {{ ucfirst($datatables['model']->getRelated()->getTable()) }}
             @endif
         </h5>
-        {!! $datatables['header_form'] !!}
+        @isset($datatables['header_form']) {!! $datatables['header_form'] !!} @endisset
     </div>
     <div class="card-body">
         <div class="table-responsive">
