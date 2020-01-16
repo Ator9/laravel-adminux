@@ -173,9 +173,11 @@ class AdminController extends AdminuxController
      */
     public function logs()
     {
+        $file = storage_path().'/logs/laravel-'.date('Y-m-d').'.log';
+        
         return view('adminux.pages.card', [
             'header' => 'Logs',
-            'body'   => nl2br(\File::get(storage_path().'/logs/laravel-'.date('Y-m-d').'.log'))
+            'body'   => \File::exists($file) ? nl2br(\File::get($file)) : 'No errors today :)'
         ]);
     }
 
