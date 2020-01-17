@@ -20,14 +20,20 @@ class BillingController extends Controller
 
             if($array->isNotEmpty()) {
                 foreach($array as $data) {
-                    $hours_usage = $data->minutes / 60;
+                    $hours_usage = !empty($data->minutes) ? $data->minutes / 60 : 0;
 
                     if($plans[$data->plan_id]->interval == 'monthly') {
                         $sales[$date] = number_format($plans[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
                     }
-
                     if($plans[$data->plan_id]->cost_interval == 'monthly') {
                         $costs[$date] = number_format($plans[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
+                    }
+
+                    if($plans[$data->plan_id]->interval == 'perunit') {
+                        $sales[$date] = number_format($plans[$data->plan_id]->price * $data->units, 2) + @$sales[$date];
+                    }
+                    if($plans[$data->plan_id]->cost_interval == 'perunit') {
+                        $costs[$date] = number_format($plans[$data->plan_id]->cost * $data->units, 2) + @$costs[$date];
                     }
                 }
             }
@@ -95,7 +101,13 @@ class BillingController extends Controller
             ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
             ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
         }
-        dd($hours, $units);
+
+        foreach($units as $date => $array) {
+            $hours[$date] = $hours[$date]->union($units[$date]);
+            foreach($array as $pid => $data) {
+                $hours[$date][$pid]->units = $units[$date][$pid]->units;
+            }
+        }
 
         return $hours;
     }
