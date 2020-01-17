@@ -53,7 +53,7 @@ class BillingController extends Controller
         $from = (!empty($params['from'])) ? date('Y-m', strtotime($params['from'])) : date('Y-m');
         $to   = (!empty($params['to'])) ? date('Y-m', strtotime($params['to'])) : date('Y-m');
 
-        $hours = [];
+        $hours = $units = [];
         for($i = $from; $i <= $to; $i = date('Y-m', strtotime($i.' +1 month'))) {
             $dates[] = $i;
         }
@@ -87,7 +87,15 @@ class BillingController extends Controller
             ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
 
             // Units:
+            $units[$date] = \DB::table('billing_units')->whereIn('partner_id', Helper::getSelectedPartners())
+            ->whereDate('date', $year.'-'.$month.'-01')
+            ->select('product_id','accounts_products.plan_id')
+            ->selectRaw('SUM(units) as units')
+            ->join('accounts_products', 'accounts_products.id', '=', 'billing_units.product_id')
+            ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
+            ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
         }
+        dd($hours, $units);
 
         return $hours;
     }
