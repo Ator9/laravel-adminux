@@ -20,11 +20,15 @@ class BillingController extends Controller
 
             if($array->isNotEmpty()) {
                 foreach($array as $data) {
-
                     $hours_usage = $data->minutes / 60;
 
-                    $sales[$date] = number_format($plans[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
-                    $costs[$date] = number_format($plans[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
+                    if($plans[$data->plan_id]->interval == 'monthly') {
+                        $sales[$date] = number_format($plans[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
+                    }
+
+                    if($plans[$data->plan_id]->cost_interval == 'monthly') {
+                        $costs[$date] = number_format($plans[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
+                    }
                 }
             }
             else $costs[$date] = $sales[$date] = 0;
