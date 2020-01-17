@@ -34,8 +34,6 @@ class BillingController extends Controller
             else $costs[$date] = $sales[$date] = 0;
         }
 
-        // dump($currencies,$plans,$usage, $costs);
-
         return view('adminux.pages.billing')->with([
             'usage' => $usage,
             'costs' => $costs,
@@ -62,10 +60,10 @@ class BillingController extends Controller
 
         if(!empty($dates))
         foreach($dates as $date) {
-
             list($year, $month) = explode('-', $date);
 
-            $hours[$date] = \DB::table('accounts_products_usage')->whereIn('partner_id', Helper::getSelectedPartners())
+            // Usage:
+            $hours[$date] = \DB::table('billing_usage')->whereIn('partner_id', Helper::getSelectedPartners())
             ->where(function ($query) use ($year, $month) {
                 $query->where([
                     ['date_start', '>=', $year.'-'.$month.'-01'],
@@ -84,9 +82,11 @@ class BillingController extends Controller
                                 if(date_end, date_end, CURRENT_TIMESTAMP) < "'.date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year)).'",
                                 if(date_end, date_end, CURRENT_TIMESTAMP), "'.date('Y-m-01', mktime(0, 0, 0, $month+1, 1, $year)).'")
                         )) as minutes')
-            ->join('accounts_products', 'accounts_products.id', '=', 'accounts_products_usage.product_id')
+            ->join('accounts_products', 'accounts_products.id', '=', 'billing_usage.product_id')
             ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
             ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
+
+            // Units:
         }
 
         return $hours;

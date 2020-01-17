@@ -180,7 +180,16 @@ class CreateAdminux extends Migration
         });
 
 
-        Schema::create('accounts_products_usage', function (Blueprint $table) {
+        Schema::create('billing_units', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->mediumInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('accounts_products')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('date')->nullable();
+            $table->unique(['date', 'product_id'], 'product_date');
+        });
+
+
+        Schema::create('billing_usage', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->mediumInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('accounts_products')->onDelete('cascade')->onUpdate('cascade');
@@ -188,27 +197,26 @@ class CreateAdminux extends Migration
             $table->timestamp('date_end')->nullable();
         });
 
-
         DB::unprepared('CREATE TRIGGER accounts_products_after_insert AFTER
             INSERT ON accounts_products FOR EACH ROW
             IF(NEW.active = "Y") THEN
-                INSERT INTO accounts_products_usage (product_id)
+                INSERT INTO billing_usage (product_id)
                 VALUES (NEW.id);
             END IF;');
 
         DB::unprepared('CREATE TRIGGER accounts_products_after_update AFTER
             UPDATE ON accounts_products FOR EACH ROW
             IF(NEW.active = "Y") THEN
-            	IF((SELECT product_id FROM accounts_products_usage WHERE product_id = NEW.id LIMIT 1) IS NULL) THEN
-            		INSERT INTO accounts_products_usage (product_id) VALUES (NEW.id);
+            	IF((SELECT product_id FROM billing_usage WHERE product_id = NEW.id LIMIT 1) IS NULL) THEN
+            		INSERT INTO billing_usage (product_id) VALUES (NEW.id);
             	ELSE
-					IF((SELECT COUNT(*) - SUM(IF(date_end IS NULL, 0, 1)) FROM accounts_products_usage WHERE product_id = NEW.id) = 0) THEN
-        			    INSERT INTO accounts_products_usage (product_id) VALUES (NEW.id);
+					IF((SELECT COUNT(*) - SUM(IF(date_end IS NULL, 0, 1)) FROM billing_usage WHERE product_id = NEW.id) = 0) THEN
+        			    INSERT INTO billing_usage (product_id) VALUES (NEW.id);
             		END IF;
             	END IF;
             ELSE
-            	IF((SELECT product_id FROM accounts_products_usage WHERE product_id = NEW.id AND date_end IS NULL LIMIT 1) IS NOT NULL) THEN
-            		UPDATE accounts_products_usage SET date_end = CURRENT_TIMESTAMP() WHERE product_id = NEW.id AND date_end IS NULL;
+            	IF((SELECT product_id FROM billing_usage WHERE product_id = NEW.id AND date_end IS NULL LIMIT 1) IS NOT NULL) THEN
+            		UPDATE billing_usage SET date_end = CURRENT_TIMESTAMP() WHERE product_id = NEW.id AND date_end IS NULL;
             	END IF;
             END IF');
     }
@@ -222,7 +230,9 @@ class CreateAdminux extends Migration
     {
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('accounts_products');
-        Schema::dropIfExists('accounts_products_usage');
+
+        Schema::dropIfExists('billing_units');
+        Schema::dropIfExists('billing_usage');
 
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_currencies');
