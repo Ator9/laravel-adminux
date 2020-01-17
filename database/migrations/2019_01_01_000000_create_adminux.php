@@ -185,6 +185,7 @@ class CreateAdminux extends Migration
             $table->mediumInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('accounts_products')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date')->nullable();
+            $table->integer('units')->unsigned();
             $table->unique(['date', 'product_id'], 'product_date');
         });
 
