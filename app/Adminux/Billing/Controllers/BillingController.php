@@ -30,10 +30,10 @@ class BillingController extends Controller
                     }
 
                     if($plans[$data->plan_id]->interval == 'perunit') {
-                        $sales[$date] = number_format($plans[$data->plan_id]->price * $data->units, 2) + @$sales[$date];
+                        $sales[$date] = number_format($plans[$data->plan_id]->price * @$data->units, 2) + @$sales[$date];
                     }
                     if($plans[$data->plan_id]->cost_interval == 'perunit') {
-                        $costs[$date] = number_format($plans[$data->plan_id]->cost * $data->units, 2) + @$costs[$date];
+                        $costs[$date] = number_format($plans[$data->plan_id]->cost * @$data->units, 2) + @$costs[$date];
                     }
                 }
             }
