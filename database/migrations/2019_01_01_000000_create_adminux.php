@@ -187,6 +187,7 @@ class CreateAdminux extends Migration
             $table->date('date')->nullable();
             $table->integer('units')->unsigned()->default(0);
             $table->unique(['date', 'product_id'], 'product_date');
+            $table->timestamps();
         });
 
 
