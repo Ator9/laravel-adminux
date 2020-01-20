@@ -1,6 +1,7 @@
 # Requirements
 - <a href="https://github.com/laravel/laravel">Laravel</a>
 - <a href="https://github.com/yajra/laravel-datatables">Laravel Datatables</a>
+- <a href="https://github.com/Maatwebsite/Laravel-Excel">Laravel Excel</a>
 - <a href="https://github.com/spatie/laravel-permission">Laravel Permission</a>
 ```sh
 composer create-project laravel/laravel
