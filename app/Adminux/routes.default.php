@@ -7,6 +7,11 @@ Route::namespace('\App\Adminux')->group(function() {
     Route::get('login', 'LoginController@showLoginForm');
     Route::get('logout', 'LoginController@logout');
 
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::post('password/reset', 'ResetPasswordController@reset')->name('password.update');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+
     Route::middleware(App\Adminux\Authenticate::class)->group(function() {
         Route::get('', function() { return redirect()->route('login'); });
         Route::get('dashboard', 'Admin\Controllers\AdminDashboardController@dashboard');

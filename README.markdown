@@ -38,6 +38,13 @@ php artisan migrate
     'driver' => 'eloquent',
     'model' => App\Adminux\Admin\Models\Admin::class,
 ],
+
+// passwords:
+'adminux' => [
+    'provider' => 'adminux',
+    'table' => 'password_resets',
+    'expire' => 60,
+],
 ```
 - Add to /routes/web.php:
 ```php
