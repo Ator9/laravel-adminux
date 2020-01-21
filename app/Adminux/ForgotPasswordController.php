@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
+// Update .env APP_URL because it uses that to generate the reset password link
 class ForgotPasswordController extends Controller
 {
     /*
