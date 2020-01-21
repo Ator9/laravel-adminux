@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>{{ config('adminux.base.default.project_name', 'Admin') }}</title>
+<title>{{ config('adminux.base.default.project_name', 'Adminux') }}</title>
 <link href="{{ asset('vendor/adminux/resources//libs/bootstrap.min.css') }}" rel="stylesheet" />
 <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ config('adminux.base.default.project_name', 'Admin') }}</div>
+                        <div class="card-header">{{ config('adminux.base.default.project_name', 'Adminux') }}</div>
                         <div class="card-body">
                             <form method="post" action="{{ route('login') }}">
                                 @csrf
@@ -53,6 +53,11 @@
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
