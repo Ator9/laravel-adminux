@@ -32,6 +32,17 @@ class Admin extends Authenticatable
     ];
 
     /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new \App\Adminux\ResetPasswordNotification($token, $this->email));
+    }
+
+    /**
      * Get the partners for the admin.
      */
     public function partners()
