@@ -5,6 +5,10 @@ namespace App\Adminux;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// TODO
+// Update .env APP_URL because it uses that to generate the reset password link
+// Update config/mail.php from name
+// https://laravel.com/docs/notifications#mail-notifications
 class ResetPasswordNotification extends Notification
 {
     public $token;
