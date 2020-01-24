@@ -65,6 +65,7 @@ return array_merge([ // Default file
     'software_id' => 'Software',
     'superuser' => 'Superuser',
     'title' => 'Title',
+    'type' => 'Type',
     'updated_at' => 'Date Updated',
     'upload' => 'Upload',
     'url' => 'URL',
