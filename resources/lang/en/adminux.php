@@ -63,6 +63,7 @@ return array_merge([ // Default file
     'software' => 'Software',
     'software_class' => 'Software Class',
     'software_id' => 'Software',
+    'status' => 'Status',
     'superuser' => 'Superuser',
     'title' => 'Title',
     'type' => 'Type',

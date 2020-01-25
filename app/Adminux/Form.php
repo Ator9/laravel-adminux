@@ -48,7 +48,7 @@ class Form
     public function moduleConfig($params)
     {
         $path = (!empty($params['path'])) ? $params['path'] : class_basename($this->_model);
-        
+
         $config = \App\Adminux\Helper::getConfig($path);
         if(!empty($config)) {
             $values = json_decode($this->getValue($params), true);
@@ -88,6 +88,29 @@ class Form
                             '.@implode('', $options).'
                             </select>';
         return $this->getFormGroup($params);
+    }
+
+    public function selectProduct($params)
+    {
+        $values = (new \App\Adminux\Account\Models\AccountProduct)
+        ->select('accounts_products.id','accounts_products.account_id','accounts.email','services_plans.plan','services.service','partners.partner')
+        ->join('services_plans', 'services_plans.id', '=', 'accounts_products.plan_id')
+        ->join('services', 'services.id', '=', 'services_plans.service_id')
+        ->join('software', 'software.id', '=', 'services.software_id')
+        ->join('partners', 'partners.id', '=', 'services.partner_id')
+        ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
+        ->whereIn('services_plans.service_id', Helper::getSelectedServices())
+        ->whereIn('software.software', $params['software'])
+        ->orderBy('partners.partner', 'asc')
+        ->orderBy('accounts_products.account_id', 'asc')
+        ->get();
+
+        foreach($values as $product) {
+            $sel = ($product->id == $this->getValue($params)) ? ' selected' : '';
+            $params['options'][] = '<option value="'.$product->id.'"'.$sel.'>'.$product->partner.' > '.$product->account_id.' - '.$product->email.' > '.$product->id.' - '.$product->plan.'</option>';
+        }
+
+        return $this->select($params);
     }
 
     public function switch($params)
