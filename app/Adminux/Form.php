@@ -45,6 +45,15 @@ class Form
         return $this->select($params);
     }
 
+    public function file($params)
+    {
+        $params['input'] = '<div class="input-group">
+                                <input type="file" class="custom-file-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">
+                                <label class="custom-file-label" for="'.$this->getId($params).'">Choose file</label>
+                            </div>';
+        return $this->getFormGroup($params);
+    }
+
     public function moduleConfig($params)
     {
         $path = (!empty($params['path'])) ? $params['path'] : class_basename($this->_model);

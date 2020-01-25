@@ -26,6 +26,8 @@ return array_merge([ // Default file
     'edit' => 'Edit',
     'email' => 'E-mail',
     'feature' => 'Feature',
+    'file' => 'File',
+    'files' => 'Files',
     'firstname' => 'First Name',
     'guard_name' => 'Guard Name',
     'home' => 'Home',
