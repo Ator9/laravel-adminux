@@ -4,7 +4,7 @@
 
 @section('body')
 @include('adminux.inc.errors')
-<form method="post" action="{{ str_replace('/edit', '', Request::url()) }}">
+<form method="post" action="{{ str_replace('/edit', '', Request::url()) }}" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="card mt-3">
