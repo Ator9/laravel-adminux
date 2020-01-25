@@ -33,7 +33,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
     public function saveRedirect($model)
     {
         if(request()->filled('continue_editing_form')) return back();
-        return redirect(route(explode('/', request()->path())[1].'.show', $model));
+        return redirect(route(explode('/', request()->path())[1].'.show', $model)); // model with data: $model = $model->create();
     }
 
     // Destroy Redirect:
