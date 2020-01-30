@@ -1,17 +1,30 @@
 @extends('adminux.layout')
 
-@section('head')
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
-@endsection
-
 @section('body')
+@include('adminux.inc.errors')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 my-3 border-bottom">
     <h1 class="h2">Billing</h1>
     <form action="" method="get">
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <input type="text" name="date_from" id="date_from" class="form-control mr-2 text-center" style="width:140px" value="{{ $date_from }}">
-                <input type="text" name="date_to" id="date_to" class="form-control text-center" style="width:140px" value="{{ $date_to }}">
+                <select class="custom-select mr-2" name="date_from">
+                @for($i = 1; $i <= 12; $i++)
+                    @php
+                    $date = date('Y-m', strtotime('-'.$i.' months', strtotime(date('Y-m'))));
+                    $sel = ($date == $date_from) ? 'selected' : '';
+                    @endphp
+                    <option value="{{ $date }}" {{ $sel }}>{{ $date }}</option>
+                @endfor
+                </select>
+                <select class="custom-select" name="date_to">
+                @for($i = 0; $i <= 11; $i++)
+                    @php
+                    $date = date('Y-m', strtotime('-'.$i.' months', strtotime(date('Y-m'))));
+                    $sel = ($date == $date_to) ? 'selected' : '';
+                    @endphp
+                    <option value="{{ $date }}" {{ $sel }}>{{ $date }}</option>
+                @endfor
+                </select>
             </div>
             <button type="submit" class="btn btn-sm btn-primary"><span data-feather="calendar"></span> Filter</button>
         </div>
@@ -61,12 +74,5 @@ $(document).ready(function() {
         }
     });
 });
-
-$(function() {
-    $('#date_from,#date_to').datepicker({
-        dateFormat: 'yy-mm-dd'
-    });
-});
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 @endpush

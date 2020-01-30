@@ -11,8 +11,10 @@ class BillingController extends Controller
     public function index()
     {
         $plans = $this->getPlanPrices(); $currencies = Currency::all()->keyBy('id')->toArray();
-        $date_from = (request()->filled('date_from')) ? request()->date_from : date('Y-m-d', strtotime('-11 months'));
-        $date_to = (request()->filled('date_to')) ? request()->date_to : date('Y-m-d');
+        $date_from = (request()->filled('date_from')) ? request()->date_from : date('Y-m', strtotime('-12 months', strtotime(date('Y-m'))));
+        $date_to = (request()->filled('date_to')) ? request()->date_to : date('Y-m');
+
+        if($date_from > $date_to) return back()->withErrors(['msg' => '"From Date" must be earlier than "To Date".']);
 
         $usage = $this->getUsage(['from' => $date_from, 'to' => $date_to]);
         foreach($usage as $date => $array) {
