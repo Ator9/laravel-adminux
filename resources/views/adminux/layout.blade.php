@@ -30,5 +30,6 @@ var admin_url = host+'/{{ $prefix }}';
 </script>
 <script src="{{ $Helper::getVersionedAsset('vendor/adminux/resources/admin.js') }}"></script>
 @stack('scripts')
+@yield('scripts')
 </body>
 </html>
