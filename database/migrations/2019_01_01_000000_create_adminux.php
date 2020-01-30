@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Carbon\Carbon;
 
 class CreateAdminux extends Migration
 {
@@ -21,8 +20,8 @@ class CreateAdminux extends Migration
             $table->timestamps();
         });
         DB::table('admins_languages')->insert([
-            ['language' => 'en', 'created_at' => Carbon::now()],
-            ['language' => 'es', 'created_at' => Carbon::now()],
+            ['language' => 'en', 'created_at' => now()],
+            ['language' => 'es', 'created_at' => now()],
         ]);
 
 
@@ -48,7 +47,7 @@ class CreateAdminux extends Migration
             'language_id' => 1,
             'superuser'   => 'Y',
             'active'      => 'Y',
-            'created_at'  => Carbon::now() // DB::raw('now()')
+            'created_at'  => now()
         ]);
 
 
@@ -66,7 +65,7 @@ class CreateAdminux extends Migration
             'partner'    => 'Adminux',
             'language_id' => 1,
             'active'     => 'Y',
-            'created_at' => Carbon::now()
+            'created_at' => now()
         ]);
 
 
@@ -82,7 +81,7 @@ class CreateAdminux extends Migration
         DB::table('admin_partner')->insert([
             'admin_id'   => 1,
             'partner_id' => 1,
-            'created_at' => Carbon::now()
+            'created_at' => now()
         ]);
 
 
@@ -93,7 +92,7 @@ class CreateAdminux extends Migration
             $table->timestamps();
         });
         DB::table('admins_currencies')->insert([
-            ['currency' => 'USD', 'created_at' => Carbon::now()]
+            ['currency' => 'USD', 'created_at' => now()]
         ]);
 
 
