@@ -50,6 +50,8 @@ class BillingController extends Controller
             'sales' => $sales,
             'date_from' => $date_from,
             'date_to' => $date_to,
+            'active_accounts' => \DB::table('accounts')->where('active', '=', 'Y')->count(),
+            'active_products' => \DB::table('accounts_products')->where('active', '=', 'Y')->count(),
         ]);
     }
 

@@ -2,8 +2,42 @@
 
 @section('body')
 @include('adminux.inc.errors')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 my-3 border-bottom">
-    <h1 class="h2">Billing</h1>
+<div class="row my-3">
+    <div class="col-sm-3">
+        <div class="card text-white bg-primary text-center">
+            <div class="card-header"><strong>Sales</strong></div>
+            <div class="card-body">
+                <h1 class="card-title">${{ $sales[date('Y-m')] }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card text-white bg-info text-center">
+            <div class="card-header">Active Accounts</div>
+            <div class="card-body">
+                <h1 class="card-title">{{ $active_accounts }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card text-white bg-info text-center">
+            <div class="card-header">Active Products</div>
+            <div class="card-body">
+                <h1 class="card-title">{{ $active_products }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card text-white bg-danger text-center">
+            <div class="card-header">Costs</div>
+            <div class="card-body">
+                <h1 class="card-title">${{ $costs[date('Y-m')] }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+    <h2>Billing</h2>
     <form action="" method="get">
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
@@ -47,17 +81,17 @@ $(document).ready(function() {
                 lineTension: 0,
                 label: 'Sales',
                 backgroundColor: 'transparent',
-                borderColor: 'blue',
+                borderColor: '#007bff',
                 borderWidth: 2,
-                pointBackgroundColor: 'blue'
+                pointBackgroundColor: '#007bff'
             }, {
                 data: [{{ implode(',', $costs) }}],
                 lineTension: 0,
                 label: 'Costs',
                 backgroundColor: 'transparent',
-                borderColor: 'red',
+                borderColor: '#dc3545',
                 borderWidth: 2,
-                pointBackgroundColor: 'red'
+                pointBackgroundColor: '#dc3545'
             }]
         },
         options: {
