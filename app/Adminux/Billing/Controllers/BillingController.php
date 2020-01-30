@@ -98,7 +98,9 @@ class BillingController extends Controller
 
             // Units:
             $units[$date] = \DB::table('billing_units')->whereIn('partner_id', Helper::getSelectedPartners())
-            ->whereDate('date', $year.'-'.$month.'-01')
+            // ->whereDate('date', $year.'-'.$month)
+            ->whereYear('date', $year)
+            ->whereMonth('date', $month)
             ->select('product_id','accounts_products.plan_id')
             ->selectRaw('SUM(units) as units')
             ->join('accounts_products', 'accounts_products.id', '=', 'billing_units.product_id')
