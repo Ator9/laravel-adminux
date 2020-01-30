@@ -42,7 +42,9 @@ class AdminuxSeeder extends Seeder
         ]);
 
         $product = DB::table('accounts_products')->insertGetId([ 'account_id' => $account, 'plan_id' => 2, 'active' => 'Y' ]);
+        DB::table('billing_usage')->insertGetId([ 'product_id' => $product, 'date_start' => $faker->dateTimeBetween('-11 months', 'now'), 'date_end' => now() ]);
 
-        DB::table('billing_usage')->insertGetId([ 'product_id' => $product, 'date_start' => $faker->dateTimeBetween('-1 year', 'now'), 'date_end' => now() ]);
+        $product = DB::table('accounts_products')->insertGetId([ 'account_id' => $account, 'plan_id' => 3, 'active' => 'Y' ]);
+        DB::table('billing_units')->insertGetId([ 'product_id' => $product, 'units' => mt_rand(1, 10000), 'date' => date('Y-m-01', strtotime('-'.mt_rand(0, 11).' months')) ]);
     }
 }

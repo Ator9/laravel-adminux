@@ -16,28 +16,30 @@ class BillingController extends Controller
 
         $usage = $this->getUsage(['from' => $date_from, 'to' => $date_to]);
         foreach($usage as $date => $array) {
-            $hours_in_month = date('t', strtotime($date)) * 24;
+            $hours_in_month = date('t', strtotime($date)) * 24; $sales[$date] = 0; $costs[$date] = 0;
 
             if($array->isNotEmpty()) {
                 foreach($array as $data) {
                     $hours_usage = !empty($data->minutes) ? $data->minutes / 60 : 0;
 
                     if($plans[$data->plan_id]->interval == 'monthly') {
-                        $sales[$date] = number_format($plans[$data->plan_id]->price * $hours_usage / $hours_in_month, 2) + @$sales[$date];
+                        $sales[$date]+= $plans[$data->plan_id]->price * $hours_usage / $hours_in_month;
                     }
                     if($plans[$data->plan_id]->cost_interval == 'monthly') {
-                        $costs[$date] = number_format($plans[$data->plan_id]->cost * $hours_usage / $hours_in_month, 2) + @$costs[$date];
+                        $costs[$date]+= $plans[$data->plan_id]->cost * $hours_usage / $hours_in_month;
                     }
 
                     if($plans[$data->plan_id]->interval == 'perunit') {
-                        $sales[$date] = number_format($plans[$data->plan_id]->price * @$data->units, 2) + @$sales[$date];
+                        $sales[$date]+= $plans[$data->plan_id]->price * @$data->units;
                     }
                     if($plans[$data->plan_id]->cost_interval == 'perunit') {
-                        $costs[$date] = number_format($plans[$data->plan_id]->cost * @$data->units, 2) + @$costs[$date];
+                        $costs[$date]+= $plans[$data->plan_id]->cost * @$data->units;
                     }
                 }
             }
-            else $costs[$date] = $sales[$date] = 0;
+
+            $sales[$date] = round($sales[$date], 2);
+            $costs[$date] = round($costs[$date], 2);
         }
 
         return view('adminux.pages.billing')->with([
