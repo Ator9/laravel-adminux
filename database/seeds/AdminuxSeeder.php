@@ -16,6 +16,12 @@ class AdminuxSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
+        DB::table('software')->insert([
+            [ 'software' => 'Custom' ],
+            [ 'software' => 'Website' ],
+            [ 'software' => 'Mailer' ],
+        ]);
+
         DB::table('accounts')->insert([
             'partner_id' => 1,
             'email' => $faker->unique()->safeEmail,
