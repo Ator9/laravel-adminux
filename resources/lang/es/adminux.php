@@ -22,6 +22,7 @@ return array_merge([ // Default file
     'default_config' => 'Configuración Predeterminada',
     'delete' => 'Eliminar',
     'deleted_at' => 'Fecha Elminación',
+    'delimiter' => 'Delimitador',
     'description' => 'Descripción',
     'details' => 'Detalles',
     'domain' => 'Dominio',
