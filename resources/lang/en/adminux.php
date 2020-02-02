@@ -50,7 +50,7 @@ return array_merge([ // Default file
     'partner' => 'Partner',
     'partner_id' => 'Partner',
     'partners' => 'Partners',
-    'phone' => 'Teléfono',
+    'phone' => 'Phone',
     'plan' => 'Plan',
     'plan_id' => 'Plan',
     'plans' => 'Plans',
