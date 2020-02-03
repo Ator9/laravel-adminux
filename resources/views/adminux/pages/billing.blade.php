@@ -5,7 +5,7 @@
 <div class="row my-3">
     <div class="col-sm-3">
         <div class="card text-white bg-primary text-center">
-            <div class="card-header">Sales</div>
+            <div class="card-header">Sales this month</div>
             <div class="card-body">
                 <h1 class="card-title">${{ $sales[date('Y-m')] }}</h1>
             </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="col-sm-3">
         <div class="card text-white bg-danger text-center">
-            <div class="card-header">Costs</div>
+            <div class="card-header">Costs this month</div>
             <div class="card-body">
                 <h1 class="card-title">${{ $costs[date('Y-m')] }}</h1>
             </div>
@@ -37,7 +37,7 @@
     </div>
 </div>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
-    <h2>Billing</h2>
+    <h3>Billing History</h3>
     <form action="" method="get">
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
