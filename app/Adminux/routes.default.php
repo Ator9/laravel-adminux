@@ -28,6 +28,8 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::post('accounts_products/{product}/file-upload', 'Account\Controllers\AccountProductController@fileUpload');
         Route::delete('accounts_products/{product}/file-delete', 'Account\Controllers\AccountProductController@fileDelete');
 
+        Route::get('billings_accounts-summary', 'Billing\Controllers\BillingController@accountsSummary');
+
         Route::get('profile', 'Admin\Controllers\AdminProfileController@show')->name('profile.show');
         Route::get('profile/edit', 'Admin\Controllers\AdminProfileController@edit');
         Route::put('profile', 'Admin\Controllers\AdminProfileController@update');

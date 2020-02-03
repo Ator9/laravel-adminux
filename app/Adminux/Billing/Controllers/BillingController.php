@@ -5,6 +5,8 @@ namespace App\Adminux\Billing\Controllers;
 use App\Http\Controllers\Controller;
 use App\Adminux\Admin\Models\Currency;
 use App\Adminux\Helper;
+use App\Adminux\Account\Models\Account;
+use Yajra\Datatables\Datatables;
 
 class BillingController extends Controller
 {
@@ -44,6 +46,8 @@ class BillingController extends Controller
             $costs[$date] = round($costs[$date], 2);
         }
 
+        // dd($plans);
+
         return view('adminux.pages.billing')->with([
             'usage' => $usage,
             'costs' => $costs,
@@ -52,6 +56,35 @@ class BillingController extends Controller
             'date_to' => $date_to,
             'active_accounts' => \DB::table('accounts')->where('active', '=', 'Y')->count(),
             'active_products' => \DB::table('accounts_products')->where('active', '=', 'Y')->count(),
+        ]);
+    }
+
+    public function accountsSummary(Account $account)
+    {
+        if(request()->ajax() || request()->filled('export')) {
+            $datatables = Datatables::of($account->query()->whereIn('partner_id', Helper::getSelectedPartners()));
+
+            if(request()->filled('export')) return Helper::exportDt($datatables, [ 'name' => 'accounts.csv' ]);
+
+            return $datatables->addColumn('id2', 'adminux.pages.inc.link_show_link')
+                ->addColumn('active2', 'adminux.pages.inc.status')
+                ->addColumn('partner', function($row) { return @$row->partner->partner; })
+                ->rawColumns(['id2', 'active2'])
+                ->toJson();
+        }
+
+        return view('adminux.pages.index')->withDatatables([
+            'exportButton' => 1,
+            'order' => '[[ 0, "desc" ]]',
+            'thead' => '<th style="min-width:30px">ID</th>
+                        <th>E-mail</th>
+                        <th style="min-width:120px">Partner</th>
+                        <th style="min-width:60px">Active</th>',
+
+            'columns' => '{ data: "id2", name: "id", className: "text-center" },
+                          { data: "email", name: "email" },
+                          { data: "partner", name: "partner", searchable: false },
+                          { data: "active2", name: "active", className: "text-center" }'
         ]);
     }
 
