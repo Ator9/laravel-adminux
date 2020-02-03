@@ -44,6 +44,13 @@ class Helper
         abort_if(!in_array($model->service_id, self::getEnabledServicesKeys()), 403);
     }
 
+    static function getEnabledSoftwareName()
+    {
+        return (new \App\Adminux\Software\Models\Software)->query()
+        ->join('services', 'software.id', '=', 'services.software_id')
+        ->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('software')->keys()->toArray();
+    }
+
     static function getEnabledAccountsKeys()
     {
         return (new \App\Adminux\Account\Models\Account)->query()->whereIn('partner_id', self::getEnabledPartnersKeys())->get()->keyBy('id')->keys()->toArray();
