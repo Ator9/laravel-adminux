@@ -6,6 +6,7 @@ return [
 
     'project_name' => 'Adminux',
     'login_redirect' => 'dashboard',
+    'menu_software' => [], // list software name == menu name
 
     // Left menu:
     'menu' => [
