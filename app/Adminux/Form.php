@@ -48,8 +48,10 @@ class Form
     public function file($params)
     {
         $tooltip = 'data-toggle="tooltip" data-placement="top" title="Max File: '.ini_get('upload_max_filesize').', Max Form: '.ini_get('post_max_size').'"';
+        $types = !empty($params['accept'] && is_array($params['accept'])) ? 'accept="'.implode(',', $params['accept']).'"' : '';
+
         $params['input'] = '<div class="input-group">
-                                <input type="file" class="custom-file-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$tooltip.'>
+                                <input type="file" class="custom-file-input" '.$types.' id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$tooltip.'>
                                 <label class="custom-file-label" for="'.$this->getId($params).'">Choose file</label>
                             </div>';
         return $this->getFormGroup($params);
