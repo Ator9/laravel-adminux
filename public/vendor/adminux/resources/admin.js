@@ -30,6 +30,6 @@ $('.continue_editing_form').on('click', function () {
 });
 
 // Update selected files in input:
-$('#inputGroupFileUpload').on('change',function() {
+$('.custom-file-input').on('change',function() {
     $(this).next('.custom-file-label').html($(this).val());
 });
