@@ -25,7 +25,7 @@ class Form
 
     public function email($params)
     {
-        $params['input'] = '<input type="email" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        $params['input'] = '<input type="email" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
     }
 
@@ -139,7 +139,7 @@ class Form
 
     public function text($params)
     {
-        $params['input'] = '<input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        $params['input'] = '<input type="text" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
     }
 
@@ -150,7 +150,7 @@ class Form
 
     public function url($params)
     {
-        $params['input'] = '<input type="url" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
+        $params['input'] = '<input type="url" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
     }
 
