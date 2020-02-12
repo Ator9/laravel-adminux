@@ -46,7 +46,7 @@
                     <div class="col-sm-8 form-control-plaintext">
                         @if(strpos($key, '_id') !== false && $rel = str_replace('_id', '', $key))
                             @isset($model->{$rel})
-                                <a href="{{ url(request()->route()->getPrefix().'/'.$model->{$rel}->getTable()) }}/{{ $model->{$rel}->id }}">{{ $model->{$rel}->id }} - {{ $model->{$rel}->{$rel} }}</a>
+                                <a href="{{ url(request()->route()->getPrefix().'/'.$model->{$rel}->getTable()) }}/{{ $model->{$rel}->id }}">{{ $model->{$rel}->id }} - {{ $model->{$rel}->{$rel} ?? $model->{$rel}->name }}</a>
                             @endisset
                         @elseif(strpos($key, 'url') !== false && $val) <a href="{{ $val }}" target="_blank">{{ $val }}</a>
                         @elseif(is_array($val)) {{ json_encode($val) }}
