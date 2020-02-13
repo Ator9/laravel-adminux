@@ -10,7 +10,7 @@ class AdminPartnerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('adminux_superuser');
+        $this->middleware('adminux_superuser', ['except' => ['setPartner']]);
     }
 
     public function getIndex($obj)
@@ -52,6 +52,14 @@ class AdminPartnerController extends Controller
             'columns' => '{ data: "'.$column.'", name: "'.$column.'" },
                           { data: "actions", name: "actions", className: "text-center", orderable: false }'
         ];
+    }
+
+    static function setPartner()
+    {
+        if(in_array(request()->partner_id, \App\Adminux\Helper::getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
+        else session(['partner_id' => '']);
+
+        return back();
     }
 
     /**

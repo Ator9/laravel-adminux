@@ -12,7 +12,7 @@ class AdminController extends AdminuxController
 {
     public function __construct()
     {
-        $this->middleware('adminux_superuser', ['except' => ['webhook', 'setPartner']]);
+        $this->middleware('adminux_superuser', ['except' => ['webhook']]);
     }
 
     /**
@@ -260,13 +260,5 @@ class AdminController extends AdminuxController
         }
 
         return view('adminux.pages.blank')->withBody('<iframe src="?sync" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
-    }
-
-    static function setPartner()
-    {
-        if(in_array(request()->partner_id, \App\Adminux\Helper::getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
-        else session(['partner_id' => '']);
-
-        return back();
     }
 }
