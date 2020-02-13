@@ -83,12 +83,4 @@ class AdminPartnerController extends Controller
 
         return back();
     }
-
-    static function setPartner()
-    {
-        if(in_array(request()->partner_id, \App\Adminux\Helper::getEnabledPartnersKeys())) session(['partner_id' => request()->partner_id]);
-        else session(['partner_id' => '']);
-
-        return back();
-    }
 }
