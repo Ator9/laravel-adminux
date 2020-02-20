@@ -220,6 +220,67 @@ class CreateAdminux extends Migration
             		UPDATE billing_usage SET date_end = CURRENT_TIMESTAMP() WHERE product_id = NEW.id AND date_end IS NULL;
             	END IF;
             END IF');
+
+
+        Schema::create('tickets_categories', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('name', 50);
+            $table->string('color', 20)->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create('tickets_priorities', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('name', 50);
+            $table->string('color', 20)->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+        
+
+        Schema::create('tickets_statuses', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('name', 50);
+            $table->string('color', 20)->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->mediumIncrements('id');
+            $table->mediumInteger('admin_id')->unsigned()->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->mediumInteger('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->mediumInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('accounts_products');
+            $table->string('title', 255)->nullable();
+            $table->text('description')->nullable();
+            $table->smallInteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('tickets_categories');
+            $table->smallInteger('priority_id')->unsigned();
+            $table->foreign('priority_id')->references('id')->on('tickets_priorities');
+            $table->smallInteger('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('tickets_statuses');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+
+        Schema::create('tickets_comments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->mediumInteger('ticket_id')->unsigned();
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->mediumInteger('admin_id')->unsigned()->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->mediumInteger('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->text('description')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -238,12 +299,18 @@ class CreateAdminux extends Migration
         Schema::dropIfExists('admins');
         Schema::dropIfExists('admins_currencies');
         Schema::dropIfExists('admins_languages');
+        Schema::dropIfExists('partners');
         Schema::dropIfExists('admin_partner');
 
-        Schema::dropIfExists('partners');
         Schema::dropIfExists('services');
         Schema::dropIfExists('services_plans');
         Schema::dropIfExists('software');
         Schema::dropIfExists('software_features');
+
+        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('tickets_categories');
+        Schema::dropIfExists('tickets_priorities');
+        Schema::dropIfExists('tickets_statuses');
+        Schema::dropIfExists('tickets_comments');
     }
 }

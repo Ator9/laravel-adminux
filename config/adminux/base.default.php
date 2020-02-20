@@ -32,6 +32,12 @@ return [
                     [ 'dir'=> 'services_plans', 'name' => 'Plans' ],
                 ]
             ],
+            'Tickets' => [
+                'icon' => 'check-square',
+                'items' => [
+                    [ 'dir'=> 'tickets', 'name' => 'Tickets' ],
+                ]
+            ],
         ],
 
         'superuser' => [ // This checks superuser == 'Y' to show
