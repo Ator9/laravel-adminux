@@ -175,8 +175,14 @@ class AdminController extends AdminuxController
     {
         $file = storage_path().'/logs/laravel-'.date('Y-m-d').'.log';
 
+        if(isset($_GET['delete'])) {
+            \File::delete($file);
+            return back();
+        }
+
         return view('adminux.pages.card', [
             'header' => 'Logs',
+            'header_buttons' => '<a href="?delete" class="btn btn-danger btn-sm my-n1"><span class="feather-adminux" data-feather="trash-2"></span> '.__('adminux.delete').'</a>',
             'body'   => \File::exists($file) ? nl2br(\File::get($file)) : 'No errors today :)'
         ]);
     }
