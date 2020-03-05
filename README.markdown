@@ -1,11 +1,12 @@
 # Requirements
 - <a href="https://github.com/laravel/laravel">Laravel</a>
+- <a href="https://github.com/laravel/ui">Laravel UI</a>
 - <a href="https://github.com/yajra/laravel-datatables">Laravel Datatables</a>
 - <a href="https://github.com/Maatwebsite/Laravel-Excel">Laravel Excel</a>
 - <a href="https://github.com/spatie/laravel-permission">Laravel Permission</a>
 ```sh
 composer create-project laravel/laravel
-composer require yajra/laravel-datatables-oracle maatwebsite/excel spatie/laravel-permission
+composer require laravel/ui yajra/laravel-datatables-oracle maatwebsite/excel spatie/laravel-permission
 
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 ```
