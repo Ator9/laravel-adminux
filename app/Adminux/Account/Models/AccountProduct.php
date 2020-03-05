@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AccountProduct extends Model
 {
+    use \App\Adminux\AdminuxModelTrait;
     use SoftDeletes;
 
     protected $table = 'accounts_products';

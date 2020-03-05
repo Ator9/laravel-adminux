@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Partner extends Model
 {
+    use \App\Adminux\AdminuxModelTrait;
     use SoftDeletes;
 
     /**

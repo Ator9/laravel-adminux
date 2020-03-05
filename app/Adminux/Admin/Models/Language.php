@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Language extends Model
 {
+    use \App\Adminux\AdminuxModelTrait;
     use SoftDeletes;
 
     protected $table = 'admins_languages';

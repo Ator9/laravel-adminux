@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Feature extends Model
 {
+    use \App\Adminux\AdminuxModelTrait;
     use SoftDeletes;
 
     protected $table = 'software_features';

@@ -9,6 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
+    use \App\Adminux\AdminuxModelTrait;
     use Notifiable;
     use SoftDeletes;
     use HasRoles;

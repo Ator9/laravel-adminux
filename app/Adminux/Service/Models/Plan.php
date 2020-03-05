@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plan extends Model
 {
+    use \App\Adminux\AdminuxModelTrait;
     use SoftDeletes;
 
     protected $table = 'services_plans';

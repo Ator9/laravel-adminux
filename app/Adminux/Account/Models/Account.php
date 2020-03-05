@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Authenticatable
 {
+    use \App\Adminux\AdminuxModelTrait;
     use Notifiable;
     use SoftDeletes;
 
