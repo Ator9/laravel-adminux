@@ -1,7 +1,7 @@
 <div class="card my-3">
     <div class="card-header d-flex justify-content-between">
         <h5 class="mb-0">Files</h5>
-        <form method="post" action="{{ Request::url() }}/file-upload" enctype="multipart/form-data">
+        <form method="post" action="{{ str_replace('/file-manager', '', Request::url()) }}/file-upload" enctype="multipart/form-data">
             <div class="input-group my-n1">
                 <div class="custom-file">
                     <input type="file" name="files[]" class="custom-file-input" data-toggle="tooltip" data-placement="top" title="Max File: {{ ini_get('upload_max_filesize') }}, Max Form: {{ini_get('post_max_size')}}" id="inputGroupFileUpload" aria-describedby="inputGroupFileAddon" multiple required>
