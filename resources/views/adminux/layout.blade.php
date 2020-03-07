@@ -12,15 +12,19 @@
 @yield('head')
 </head>
 <body>
-@include('adminux.inc.navtop')
-<div class="container-fluid">
-    <div class="row">
-        @include('adminux.inc.navleft')
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
-            @yield('body')
-        </main>
+@empty($nonav)
+    @include('adminux.inc.navtop')
+    <div class="container-fluid">
+        <div class="row">
+            @include('adminux.inc.navleft')
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
+                @yield('body')
+            </main>
+        </div>
     </div>
-</div>
+@else
+    <div class="container-fluid">@yield('body')</div>
+@endempty
 <script src="{{ asset('vendor/adminux/resources/libs/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/adminux/resources/libs/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('vendor/adminux/resources/libs/feather.min.js') }}"></script>

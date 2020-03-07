@@ -38,7 +38,7 @@
                     <td class="text-right">{{ round(Storage::size($value) / 1000, 2) }} KB</td>
                     <td class="text-nowrap">{{ date('Y-m-d H:i:s', Storage::lastModified($value)) }}</td>
                     <td>
-                        <a href="#deleteModal" class="badge badge-danger" data-toggle="modal" onclick="modalDelete('{{ Request::url() }}/file-delete', 'Delete {{ $name }}?', '{{ $name }}')">{{ __('adminux.delete') }}</a>
+                        <a href="#deleteModal" class="badge badge-danger" data-toggle="modal" onclick="modalDelete('{{ str_replace('/file-manager', '', Request::url()) }}/file-delete', 'Delete {{ $name }}?', '{{ $name }}')">{{ __('adminux.delete') }}</a>
                     </td>
                 </tr>
             @endforeach
