@@ -20,7 +20,6 @@
         <table class="table table-hover m-0">
             <thead>
                 <tr>
-                    <td class="w-25">Name</td>
                     <td class="w-75">Link</td>
                     <td class="text-right">Size</td>
                     <td class="text-center">Date</td>
@@ -33,9 +32,8 @@
                     $size = @$size + Storage::size($value);
                 @endphp
                 <tr>
-                    <td>{{ $name }}</td>
-                    <td><a href="{{ Storage::url($value) }}" target="_blank">{{ Storage::url($value) }}</a></td>
-                    <td class="text-right">{{ round(Storage::size($value) / 1000, 2) }} KB</td>
+                    <td><a href="{{ Storage::url($value) }}" target="_blank">{{ $name }}</a></td>
+                    <td class="text-nowrap text-right">{{ round(Storage::size($value) / 1000, 2) }} KB</td>
                     <td class="text-nowrap">{{ date('Y-m-d H:i:s', Storage::lastModified($value)) }}</td>
                     <td>
                         <a href="#deleteModal" class="badge badge-danger" data-toggle="modal" onclick="modalDelete('{{ str_replace('/file-manager', '', Request::url()) }}/file-delete', 'Delete {{ $name }}?', '{{ $name }}')">{{ __('adminux.delete') }}</a>
@@ -44,7 +42,6 @@
             @endforeach
                 @if(!empty($size))
                 <tr>
-                    <td></td>
                     <td></td>
                     <td class="text-nowrap text-info">Total: {{ round($size / 1000, 2) }} KB</td>
                     <td></td>
