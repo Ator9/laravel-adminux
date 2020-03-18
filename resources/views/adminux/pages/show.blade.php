@@ -29,10 +29,10 @@
                         <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
                     </div>
                     <div>
-                        @if(method_exists($controller, 'destroy'))
+                        @if(method_exists($controller, 'destroy') && empty($params['hide_delete']))
                             <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')"><span class="feather-adminux" data-feather="trash-2"></span></button>
                         @endif
-                        @if(method_exists($controller, 'edit') && !isset($cols) && !isset($colRelation))
+                        @if(method_exists($controller, 'edit') && !isset($cols) && !isset($colRelation) && empty($params['hide_edit']))
                             <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>
                         @endif
                     </div>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 @endforeach
-                @if(method_exists($controller, 'edit'))
+                @if(method_exists($controller, 'edit') && empty($params['hide_edit']))
                 <div class="form-group row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8 pl-0">
