@@ -35,6 +35,7 @@ $(document).ready(function() {
         scrollResize: true,
         scrollY: '100vh',
         scrollCollapse: true,
+        scrollX: @isset($datatables['scrollX']) true @else false @endisset,
         pageLength: @isset($datatables['pageLength']) {{ $datatables['pageLength'] }} @else {{ 50 }} @endisset,
         ajax: '{{ Request::url() }}?datatables=1',
         serverSide: true,
