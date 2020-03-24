@@ -5,6 +5,7 @@ if(file_exists(__DIR__.'/base.php')) return require(__DIR__.'/base.php');
 return [
 
     'project_name' => 'Adminux',
+    'custom_route_location' => app_path('Adminux/your_routes_path.php'),
     'login_redirect' => 'dashboard',
     'menu_software' => [], // list software name == menu name
 

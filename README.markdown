@@ -50,7 +50,7 @@ php artisan migrate
 - Add to /routes/web.php:
 ```php
 Route::prefix('adminux')->group(function($router) {
-    require base_path('app/Adminux/routes.default.php');
+    require base_path('app/Adminux/routes.php');
 });
 ```
 - Access AdminUX with "/adminux":
