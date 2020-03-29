@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-Route::namespace('\App\Adminux')->group(function() {
+Route::namespace('\App\Adminux\Panel')->group(function() {
     Route::post('login', 'LoginController@login')->name('panel.login');
     Route::get('login', 'LoginController@showLoginForm')->name('panel.showLoginForm');
     Route::get('logout', 'LoginController@logout')->name('panel.logout');
