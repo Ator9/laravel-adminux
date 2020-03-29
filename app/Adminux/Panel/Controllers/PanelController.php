@@ -8,5 +8,8 @@ use App\Adminux\Helper;
 
 class PanelController extends Controller
 {
-
+    public function dashboard()
+    {
+        return view('adminux.panel.dashboard');
+    }
 }

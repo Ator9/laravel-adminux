@@ -14,7 +14,7 @@ Route::namespace('\App\Adminux\Panel')->group(function() {
 
     Route::middleware(App\Adminux\Panel\Authenticate::class)->group(function() {
         Route::get('', function() { return redirect()->route('panel.login'); });
-        Route::get('dashboard', 'Admin\Controllers\AdminDashboardController@panel.dashboard');
+        Route::get('dashboard', 'Controllers\PanelController@dashboard');
 
         // Your custom routes. You can override "\App\Adminux" like "\App\Xxx\Yyy\Controller@method":
         if(file_exists(config('adminux.base.default.custom_routespanel'))) require(config('adminux.base.default.custom_routespanel'));
