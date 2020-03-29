@@ -155,6 +155,8 @@ class CreateAdminux extends Migration
             $table->string('email', 75)->default('')->index();
             $table->string('password')->default('');
             $table->string('account', 75)->nullable();
+            $table->smallInteger('language_id')->unsigned();
+            $table->foreign('language_id')->references('id')->on('admins_languages');
             $table->enum('active', ['N', 'Y'])->default('Y');
             $table->rememberToken();
             $table->string('last_login_ip', 75)->default('');
@@ -237,7 +239,7 @@ class CreateAdminux extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-        
+
 
         Schema::create('tickets_statuses', function (Blueprint $table) {
             $table->smallIncrements('id');

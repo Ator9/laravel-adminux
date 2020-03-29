@@ -48,4 +48,12 @@ class Account extends Authenticatable
     {
         return $this->hasMany('App\Adminux\Account\Models\AccountProduct');
     }
+
+    /**
+     * Get the language.
+     */
+    public function language()
+    {
+        return $this->belongsTo('App\Adminux\Admin\Models\Language')->withTrashed();
+    }
 }

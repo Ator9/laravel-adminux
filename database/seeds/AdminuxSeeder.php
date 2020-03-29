@@ -39,6 +39,7 @@ class AdminuxSeeder extends Seeder
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'),
             'account' => $faker->name,
+            'language_id' => 1,
         ]);
 
         $product = DB::table('accounts_products')->insertGetId([ 'account_id' => $account, 'plan_id' => 2, 'active' => 'Y' ]);
