@@ -35,7 +35,7 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::put('profile', 'Admin\Controllers\AdminProfileController@update');
 
         foreach(\File::directories(__DIR__) as $dir) {
-            App\Adminux\Helper::buildRouteResource(basename($dir));
+            if(basename($dir) != 'Panel') App\Adminux\Helper::buildRouteResource(basename($dir)); // Skips front end panel
         }
 
         // Automated URL based on request (example: admins_partners):
