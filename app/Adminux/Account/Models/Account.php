@@ -34,6 +34,17 @@ class Account extends Authenticatable
     protected $casts = [  'module_config' => 'array' ];
 
     /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new \App\Adminux\Panel\ResetPasswordNotification($token, $this->email));
+    }
+
+    /**
      * Get the partner.
      */
     public function partner()
