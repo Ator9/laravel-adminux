@@ -12,21 +12,21 @@ class AdminuxController extends \App\Http\Controllers\Controller
     //     }
     //     if(request()->ajax()) return (new AccountPlanController)->getIndex($account);
     //
-    //     return view('adminux.pages.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
+    //     return view('adminux.backend.pages.show')->withModel($account)->withRelations([(new AccountPlanController)->getIndex($account)]);
     // }
 
     public function createView($model, $params = [])
     {
         $fields = !empty($params['fields']) ? $params['fields'] : $this->getFields($model);
 
-        return view('adminux.pages.create')->withModel($model)->withFields($fields);
+        return view('adminux.backend.pages.create')->withModel($model)->withFields($fields);
     }
 
     public function editView($model, $params = [])
     {
         $fields = !empty($params['fields']) ? $params['fields'] : $this->getFields($model);
 
-        return view('adminux.pages.edit')->withModel($model)->withFields($fields);
+        return view('adminux.backend.pages.edit')->withModel($model)->withFields($fields);
     }
 
     // Store / Update Redirect:

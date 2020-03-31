@@ -24,12 +24,12 @@ class AccountProductController extends AdminuxController
             ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
             ->whereIn('services_plans.service_id', Helper::getSelectedServices())
             ->select('accounts_products.id','accounts_products.active','accounts.email','services_plans.plan','services.service','partners.partner','accounts_products.created_at'))
-            ->addColumn('active2', 'adminux.pages.inc.status')
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('active2', 'adminux.backend.pages.inc.status')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 0, "desc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">E-mail</th>
@@ -57,11 +57,11 @@ class AccountProductController extends AdminuxController
             $dt = Datatables::of($model
             ->select('accounts_products.id','accounts_products.active','services_plans.plan','accounts_products.created_at')
             ->join('services_plans', 'services_plans.id', '=', 'accounts_products.plan_id'))
-            ->addColumn('active2', 'adminux.pages.inc.status')
+            ->addColumn('active2', 'adminux.backend.pages.inc.status')
             ->addColumn('id2', function($row) use ($model) {
                 $params['action'] = url(request()->route()->getPrefix().'/'.$model->getRelated()->getTable().'/'.$row->id);
                 $id = $row->id;
-                return view('adminux.pages.inc.link_show_link', compact('params', 'id'));
+                return view('adminux.backend.pages.inc.link_show_link', compact('params', 'id'));
             });
 
             return $dt->rawColumns(['id2', 'active2'])->toJson();
@@ -155,7 +155,7 @@ class AccountProductController extends AdminuxController
 
         if($this->checkSoftwareClass($product)) return $this->getSoftwareClass($product);
 
-        return view('adminux.pages.show')->withModel($product)->withCards([(new Helper)->getFileManager($product)]);
+        return view('adminux.backend.pages.show')->withModel($product)->withCards([(new Helper)->getFileManager($product)]);
     }
 
     /**

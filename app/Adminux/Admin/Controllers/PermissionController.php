@@ -23,11 +23,11 @@ class PermissionController extends AdminuxController
     public function index(Permission $permission)
     {
         if(request()->ajax()) return Datatables::of($permission::query())
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Name</th>
@@ -79,7 +79,7 @@ class PermissionController extends AdminuxController
     {
         // if(request()->ajax()) return (new AdminRoleController)->getIndex($permission);
 
-        return view('adminux.pages.show')->withModel($permission);
+        return view('adminux.backend.pages.show')->withModel($permission);
     }
 
     /**

@@ -48,7 +48,7 @@ class BillingController extends Controller
 
         // dd($plans);
 
-        return view('adminux.pages.billing')->with([
+        return view('adminux.backend.pages.billing')->with([
             'usage' => $usage,
             'costs' => $costs,
             'sales' => $sales,
@@ -69,14 +69,14 @@ class BillingController extends Controller
 
             if(request()->filled('export')) return Helper::exportDt($datatables, [ 'name' => 'accounts.csv' ]);
 
-            return $datatables->addColumn('id2', 'adminux.pages.inc.link_show_link')
-                ->addColumn('active2', 'adminux.pages.inc.status')
+            return $datatables->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
+                ->addColumn('active2', 'adminux.backend.pages.inc.status')
                 ->addColumn('partner', function($row) { return @$row->partner->partner; })
                 ->rawColumns(['id2', 'active2'])
                 ->toJson();
         }
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'exportButton' => 1,
             'order' => '[[ 0, "desc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>

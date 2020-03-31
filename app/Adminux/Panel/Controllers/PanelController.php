@@ -10,6 +10,6 @@ class PanelController extends Controller
 {
     public function dashboard()
     {
-        return view('adminux.panel.dashboard');
+        return view('adminux.frontend.dashboard');
     }
 }

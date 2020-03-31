@@ -18,7 +18,7 @@ class AdminProfileController extends AdminuxController
     {
         $admin = $admin->find(auth('adminux')->user()->id);
 
-        return view('adminux.pages.show')->withModel($admin);
+        return view('adminux.backend.pages.show')->withModel($admin);
     }
 
     /**

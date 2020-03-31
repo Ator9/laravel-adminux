@@ -1,4 +1,4 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
@@ -16,7 +16,7 @@
 @endpush
 
 @section('body')
-@include('adminux.inc.errors')
+@include('adminux.backend.inc.errors')
 <div class="row">
     <div class="col">
         <div class="card mt-3">
@@ -86,7 +86,7 @@
     @endisset
     @isset($colRelation)
         <div class="col">
-            @include('adminux.pages.inc.relation', [ 'datatables' => $colRelation, 'counter' => 999 ])
+            @include('adminux.backend.pages.inc.relation', [ 'datatables' => $colRelation, 'counter' => 999 ])
         </div>
     @endisset
 </div>
@@ -108,9 +108,9 @@
 
 @isset($relations)
     @foreach($relations as $key => $relation)
-        @include('adminux.pages.inc.relation', [ 'datatables' => $relation, 'counter' => $key ])
+        @include('adminux.backend.pages.inc.relation', [ 'datatables' => $relation, 'counter' => $key ])
     @endforeach
 @endisset
 
-@include('adminux.pages.inc.modals')
+@include('adminux.backend.pages.inc.modals')
 @endsection

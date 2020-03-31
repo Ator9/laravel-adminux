@@ -15,7 +15,7 @@ class PlanServiceController extends Controller
             $dt = Datatables::of($model)->addColumn('id2', function($row) use ($model) {
                 $params['action'] = url(request()->route()->getPrefix().'/'.$model->getRelated()->getTable().'/'.$row->id);
                 $id = $row->id;
-                return view('adminux.pages.inc.link_show_link', compact('params', 'id'));
+                return view('adminux.backend.pages.inc.link_show_link', compact('params', 'id'));
             });
 
             return $dt->rawColumns(['id2'])->toJson();

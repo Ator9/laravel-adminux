@@ -1,9 +1,9 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.edit'))
 
 @section('body')
-@include('adminux.inc.errors')
+@include('adminux.backend.inc.errors')
 <form method="post" action="{{ str_replace('/edit', '', Request::url()) }}" enctype="multipart/form-data">
     @method('PUT')
     @csrf

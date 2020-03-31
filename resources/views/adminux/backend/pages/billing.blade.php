@@ -1,7 +1,7 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 
 @section('body')
-@include('adminux.inc.errors')
+@include('adminux.backend.inc.errors')
 <div class="row my-3">
     <div class="col-sm-3">
         <div class="card text-white bg-primary text-center">

@@ -22,11 +22,11 @@ class SoftwareController extends AdminuxController
     public function index(Software $software)
     {
         if(request()->ajax()) return Datatables::of($software::query())
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Software</th>
@@ -74,7 +74,7 @@ class SoftwareController extends AdminuxController
     {
         if(request()->ajax()) return (new SoftwareFeatureController)->getIndex($software);
 
-        return view('adminux.pages.show')->withModel($software)->withRelations([(new SoftwareFeatureController)->getIndex($software)]);
+        return view('adminux.backend.pages.show')->withModel($software)->withRelations([(new SoftwareFeatureController)->getIndex($software)]);
     }
 
     /**

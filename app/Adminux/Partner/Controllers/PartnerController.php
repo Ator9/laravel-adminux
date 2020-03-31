@@ -24,12 +24,12 @@ class PartnerController extends AdminuxController
     public function index(Partner $partner)
     {
         if(request()->ajax()) return Datatables::of($partner::query())
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
-            ->addColumn('active2', 'adminux.pages.inc.status')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
+            ->addColumn('active2', 'adminux.backend.pages.inc.status')
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 1, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Partner</th>
@@ -86,7 +86,7 @@ class PartnerController extends AdminuxController
             // elseif(request()->table == 'services') return (new ServiceController)->getIndex($partner);
         }
 
-        return view('adminux.pages.show')->withModel($partner)->withRelations([
+        return view('adminux.backend.pages.show')->withModel($partner)->withRelations([
             (new AdminPartnerController)->getIndex($partner),
             // (new ServiceController)->getIndex($partner)
         ]);

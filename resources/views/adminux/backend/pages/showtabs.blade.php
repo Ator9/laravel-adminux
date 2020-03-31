@@ -1,10 +1,10 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
 @section('body')
-@include('adminux.inc.errors')
+@include('adminux.backend.inc.errors')
 <div class="mt-3">
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -81,7 +81,7 @@
     </div>
 </div>
 
-@include('adminux.pages.inc.modals')
+@include('adminux.backend.pages.inc.modals')
 
 <style>
 .nav-item h5{cursor:pointer}

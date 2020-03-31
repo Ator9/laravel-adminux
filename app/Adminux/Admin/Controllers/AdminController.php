@@ -23,12 +23,12 @@ class AdminController extends AdminuxController
     public function index(Admin $admin)
     {
         if(request()->ajax()) return Datatables::of($admin::query())
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
-            ->addColumn('active2', 'adminux.pages.inc.status')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
+            ->addColumn('active2', 'adminux.backend.pages.inc.status')
             ->rawColumns(['id2', 'active2'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-25">E-mail</th>
                         <th>First Name</th>
@@ -94,7 +94,7 @@ class AdminController extends AdminuxController
             else return (new AdminRoleController)->getIndex($admin);
         }
 
-        return view('adminux.pages.show')->withModel($admin)->withRelations([
+        return view('adminux.backend.pages.show')->withModel($admin)->withRelations([
             (new AdminPartnerController)->getIndex($admin),
             (new AdminRoleController)->getIndex($admin),
         ]);
@@ -180,7 +180,7 @@ class AdminController extends AdminuxController
             return back();
         }
 
-        return view('adminux.pages.card', [
+        return view('adminux.backend.pages.card', [
             'header' => 'Logs',
             'header_buttons' => '<a href="?delete" class="btn btn-danger btn-sm my-n1"><span class="feather-adminux" data-feather="trash-2"></span> '.__('adminux.delete').'</a>',
             'body'   => \File::exists($file) ? nl2br(\File::get($file)) : 'No errors today :)'
@@ -199,7 +199,7 @@ class AdminController extends AdminuxController
             return;
         }
 
-        return view('adminux.pages.blank')->withBody('<iframe src="?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+        return view('adminux.backend.pages.blank')->withBody('<iframe src="?raw=1" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 
     public function composer()
@@ -217,7 +217,7 @@ class AdminController extends AdminuxController
             return;
         }
 
-        return view('adminux.pages.blank')->withBody('<button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?sync\')">
+        return view('adminux.backend.pages.blank')->withBody('<button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?sync\')">
         Run Composer Install</button><iframe id="run" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 
@@ -265,6 +265,6 @@ class AdminController extends AdminuxController
             return;
         }
 
-        return view('adminux.pages.blank')->withBody('<iframe src="?sync" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+        return view('adminux.backend.pages.blank')->withBody('<iframe src="?sync" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
     }
 }

@@ -1,4 +1,4 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('head')

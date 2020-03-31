@@ -32,11 +32,11 @@ class PlanController extends AdminuxController
             ->addColumn('currency_cost', function($row) {
                 return '<small>'.$row->interval2.'</small> '.@$row->currency2.' '.$row->price2;
             })
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
             ->rawColumns(['id2', 'currency_price', 'currency_cost'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Plan</th>
@@ -97,7 +97,7 @@ class PlanController extends AdminuxController
     public function show(Plan $plan)
     {
         Helper::validateService($plan);
-        return view('adminux.pages.show')->withModel($plan);
+        return view('adminux.backend.pages.show')->withModel($plan);
     }
 
     /**

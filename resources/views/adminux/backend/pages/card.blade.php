@@ -1,4 +1,4 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 
 @section('body')
 <div class="card mt-3">

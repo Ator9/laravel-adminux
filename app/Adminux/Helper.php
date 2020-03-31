@@ -140,6 +140,6 @@ class Helper
 
         $files = \Storage::files($dir);
 
-        return view('adminux.pages.inc.card_upload')->withModel($model)->withFiles($files);
+        return view('adminux.backend.pages.inc.card_upload')->withModel($model)->withFiles($files);
     }
 }

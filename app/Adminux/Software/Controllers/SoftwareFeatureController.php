@@ -20,7 +20,7 @@ class SoftwareFeatureController extends Controller
             $dt = Datatables::of($model)->addColumn('id2', function($row) use ($obj) {
                 $params['action'] = url(request()->route()->getPrefix().'/software_features/'.$row->id);
                 $id = $row->id;
-                return view('adminux.pages.inc.link_show_link', compact('params', 'id'));
+                return view('adminux.backend.pages.inc.link_show_link', compact('params', 'id'));
             });
 
             return $dt->rawColumns(['id2'])->toJson();

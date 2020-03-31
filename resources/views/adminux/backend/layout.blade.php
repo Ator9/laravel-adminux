@@ -13,10 +13,10 @@
 </head>
 <body>
 @empty($nonav)
-    @include('adminux.inc.navtop')
+    @include('adminux.backend.inc.navtop')
     <div class="container-fluid">
         <div class="row">
-            @include('adminux.inc.navleft')
+            @include('adminux.backend.inc.navleft')
             <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
                 @yield('body')
             </main>

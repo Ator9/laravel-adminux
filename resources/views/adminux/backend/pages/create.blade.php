@@ -1,9 +1,9 @@
-@extends('adminux.layout')
+@extends('adminux.backend.layout')
 
 @section('title', __('adminux.create').' '.(new ReflectionClass($model))->getShortName())
 
 @section('body')
-@include('adminux.inc.errors')
+@include('adminux.backend.inc.errors')
 <form method="post" action="{{ str_replace('/create', '', Request::url()) }}" enctype="multipart/form-data">
     @csrf
     <div class="card mt-3">

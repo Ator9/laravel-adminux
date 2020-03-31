@@ -24,7 +24,7 @@ class ServiceController extends AdminuxController
     public function index(Service $service)
     {
         if(request()->ajax()) return Datatables::of($service::query()->whereIn('partner_id', Helper::getSelectedPartners()))
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
             ->addColumn('partner', function($row) { return @$row->partner->partner; })
             ->addColumn('software', function($row) { return @$row->software->software; })
             ->addColumn('currency_price', function($row) {
@@ -33,7 +33,7 @@ class ServiceController extends AdminuxController
             ->rawColumns(['id2', 'currency_price'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Service</th>
@@ -95,7 +95,7 @@ class ServiceController extends AdminuxController
 
         if(request()->ajax()) return (new PlanServiceController)->getIndex($service);
 
-        return view('adminux.pages.show')->withModel($service)->withRelations([(new PlanServiceController)->getIndex($service)]);
+        return view('adminux.backend.pages.show')->withModel($service)->withRelations([(new PlanServiceController)->getIndex($service)]);
     }
 
     /**

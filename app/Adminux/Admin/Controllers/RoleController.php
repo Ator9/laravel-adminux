@@ -23,11 +23,11 @@ class RoleController extends AdminuxController
     public function index(Role $role)
     {
         if(request()->ajax()) return Datatables::of($role::query())
-            ->addColumn('id2', 'adminux.pages.inc.link_show_link')
+            ->addColumn('id2', 'adminux.backend.pages.inc.link_show_link')
             ->rawColumns(['id2'])
             ->toJson();
 
-        return view('adminux.pages.index')->withDatatables([
+        return view('adminux.backend.pages.index')->withDatatables([
             'order' => '[[ 0, "asc" ]]',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-75">Name</th>
@@ -79,7 +79,7 @@ class RoleController extends AdminuxController
     {
         // if(request()->ajax()) return (new AdminRoleController)->getIndex($role);
 
-        return view('adminux.pages.show')->withModel($role);
+        return view('adminux.backend.pages.show')->withModel($role);
     }
 
     /**

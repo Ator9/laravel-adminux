@@ -27,13 +27,13 @@ class PermissionRoleController extends Controller
                     $params['table'] = $obj->getTable();
                     $params['id'] = $obj->id;
                     $params['related_id'] = $row->id;
-                    return view('adminux.pages.inc.link_add_button', compact('params'));
+                    return view('adminux.backend.pages.inc.link_add_button', compact('params'));
                 });
             } else {
                 $dt = Datatables::of($model)->addColumn('actions', function($row) use ($column) {
                     $params['action'] = url(request()->route()->getPrefix().'/adminpartner/'.$row->id);
                     $params['title']  = 'Delete '.$row->{$column}.'?';
-                    return view('adminux.pages.inc.link_delete_button', compact('params'));
+                    return view('adminux.backend.pages.inc.link_delete_button', compact('params'));
                 });
             }
 
