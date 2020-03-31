@@ -10,4 +10,9 @@ class ForgotPasswordController extends \App\Adminux\ForgotPasswordController
     {
         return Password::broker('adminuxpanel');
     }
+
+    public function showLinkRequestForm()
+    {
+        return view('adminux.password-email')->withTitle(config('adminux.base.default.panel_name', 'Panel'));
+    }
 }

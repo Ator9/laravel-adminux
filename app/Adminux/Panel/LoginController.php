@@ -12,6 +12,6 @@ class LoginController extends \App\Adminux\LoginController
     public function showLoginForm()
     {
         if($this->guard()->check()) return redirect($this->redirectTo().'/dashboard');
-        return view('adminux.login');
+        return view('adminux.login')->withTitle(config('adminux.base.default.panel_name', 'Panel'));
     }
 }

@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if($this->guard()->check()) return redirect($this->redirectTo().'/'.config('adminux.base.default.login_redirect', 'dashboard'));
-        return view('adminux.login');
+        return view('adminux.login')->withTitle(config('adminux.base.default.project_name', 'Admin'));
     }
 
     protected function loggedOut(Request $request)

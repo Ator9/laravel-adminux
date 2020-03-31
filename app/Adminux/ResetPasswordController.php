@@ -25,8 +25,10 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('adminux.password-reset')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
+        return view('adminux.password-reset')->with([
+            'token' => $token,
+            'email' => $request->email,
+            'title' => config('adminux.base.default.project_name', 'Admin'),
+        ]);
     }
 }

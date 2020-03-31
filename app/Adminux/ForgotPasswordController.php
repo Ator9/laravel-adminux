@@ -17,6 +17,6 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        return view('adminux.password-email');
+        return view('adminux.password-email')->withTitle(config('adminux.base.default.project_name', 'Admin'));
     }
 }

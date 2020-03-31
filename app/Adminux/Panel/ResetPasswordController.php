@@ -13,4 +13,13 @@ class ResetPasswordController extends \App\Adminux\ResetPasswordController
     {
         return Password::broker('adminuxpanel');
     }
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('adminux.password-reset')->with([
+            'token' => $token,
+            'email' => $request->email,
+            'title' => config('adminux.base.default.panel_name', 'Panel'),
+        ]);
+    }
 }
