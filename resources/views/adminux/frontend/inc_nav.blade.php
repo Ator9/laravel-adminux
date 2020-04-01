@@ -30,10 +30,10 @@
                     <a class="nav-link" href="">adaddasd</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="get" action="">
-                <input class="form-control form-control-sm mr-sm-2" name="search" type="text" placeholder="..." value="Search" aria-label="Search" required>
-                <button class="btn btn-warning btn-sm my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <div class="row">
+                <span class="text-warning mx-3">{{ auth('adminuxpanel')->user()->email }}</span>
+                <a class="text-secondary" href="{{ asset($prefix.'/logout') }}"><span data-feather="log-out"></span></a>
+            </div>
         </div>
     </div>
 </nav><br><br><br>

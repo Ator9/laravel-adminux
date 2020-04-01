@@ -1,3 +1,5 @@
+@inject('Helper', 'App\Adminux\Helper')
+@php $prefix = $Helper::getPrefix() @endphp
 <!doctype html>
 <html lang="">
 <head>
@@ -26,10 +28,12 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha256-OUFW7hFO0/r5aEGTQOz9F/aXQOt+TwqI1Z4fbVvww04=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.26.0/feather.min.js" integrity="sha256-eQlMOzbcwVddZVfW/9Oldo9GDwjNXQmFt683d3zfcrs=" crossorigin="anonymous"></script>
 <script>
 $(function() {
-  $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
 })
+feather.replace();
 </script>
 @stack('scripts')
 @yield('scripts')
