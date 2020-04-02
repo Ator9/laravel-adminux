@@ -17,7 +17,7 @@ class Account extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [ 'partner_id', 'email', 'password', 'account', 'module_config', 'active' ];
+    protected $fillable = [ 'partner_id', 'email', 'password', 'account', 'language_id', 'module_config', 'active' ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -42,6 +42,15 @@ class Account extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new \App\Adminux\Panel\ResetPasswordNotification($token, $this->email));
+    }
+
+    // Custom field:
+    protected $appends = array('panel');
+    public function getPanelAttribute()
+    {
+        if($this->active == 'N') return '<small class="text-danger">Account not active</small>';
+
+        return '<small><a href="'.request()->url().'/login_panel" target="_blank">Control Panel <span class="ml-1" data-feather="external-link"></span></a></small>';
     }
 
     /**

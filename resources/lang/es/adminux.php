@@ -47,6 +47,7 @@ return array_merge([ // Default file
     'logs' => 'Logs',
     'module_config' => 'Configuración de Módulo',
     'name' => 'Nombre',
+    'panel' => 'Panel',
     'partner' => 'Partner',
     'partner_id' => 'Partner',
     'partners' => 'Partners',

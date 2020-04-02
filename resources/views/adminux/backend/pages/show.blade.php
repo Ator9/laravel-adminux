@@ -51,7 +51,7 @@
                         @elseif(strpos($key, 'url') !== false && $val) <a href="{{ $val }}" target="_blank">{{ $val }}</a>
                         @elseif(is_array($val)) {{ json_encode($val) }}
                         @else
-                            {{ $val }}
+                            {!! $val !!}
                         @endif
                     </div>
                 </div>

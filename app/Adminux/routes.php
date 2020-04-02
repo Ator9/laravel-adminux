@@ -24,6 +24,8 @@ Route::namespace('\App\Adminux')->group(function() {
         Route::post('adminpartner', 'Admin\Controllers\AdminPartnerController@store');
         Route::delete('adminpartner/{id}', 'Admin\Controllers\AdminPartnerController@destroy');
 
+        Route::get('accounts/{account}/login_panel', 'Account\Controllers\AccountController@loginPanel');
+
         Route::get('accounts_products/{product}/edit-software', 'Account\Controllers\AccountProductController@editSoftware');
         Route::post('accounts_products/{product}/file-upload', 'Account\Controllers\AccountProductController@fileUpload');
         Route::delete('accounts_products/{product}/file-delete', 'Account\Controllers\AccountProductController@fileDelete');

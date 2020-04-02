@@ -73,6 +73,7 @@ class AccountController extends AdminuxController
             'email' => 'required|email|unique:'.$account->getTable().',email,NULL,NULL,partner_id,'.$request->partner_id,
             'password' => 'required',
             'account' => 'nullable|unique:'.$account->getTable().',account,NULL,NULL,partner_id,'.$request->partner_id,
+            'language_id' => 'required',
             'active' => 'in:Y,""',
         ]);
 
@@ -121,6 +122,7 @@ class AccountController extends AdminuxController
             'partner_id' => 'required|in:'.implode(',', Helper::getEnabledPartnersKeys()),
             'email' => 'required|email|unique:'.$account->getTable().',email,'.$account->id.',id,partner_id,'.$request->partner_id,
             'account' => 'nullable|unique:'.$account->getTable().',account,'.$account->id.',id,partner_id,'.$request->partner_id,
+            'language_id' => 'required',
             'active' => 'in:Y,""',
         ]);
 
@@ -146,6 +148,16 @@ class AccountController extends AdminuxController
         return parent::destroyRedirect($account);
     }
 
+    // Login account into Control Panel:
+    public function loginPanel(Account $account)
+    {
+        Helper::validatePartner($account);
+
+        auth('adminuxpanel')->login($account);
+
+        return redirect(url('panel'));
+    }
+
     /**
      * Build Blade edit & create form fields
      *
@@ -161,6 +173,7 @@ class AccountController extends AdminuxController
             $form->password([ 'label' => 'Password' ]),
             $form->text([ 'label' => 'Account' ]),
             // $form->moduleConfig([ 'label' => 'Module Config', 'path' => 'accounts' ]),
+            $form->select([ 'label' => 'Language' ]),
             $form->switch([ 'label' => 'Active' ]),
         ];
     }
