@@ -226,7 +226,6 @@ class AdminController extends AdminuxController
      *
      * sudo -u user ssh-keygen
      * sudo -u user git clone git@bitbucket.org:xxx/yyy.git .
-     * sudo chown -R user:group .
      * sudo chmod -R 777 storage
      *
      * sudo -u user ln -s /var/www/site.com/private/public/ /var/www/site.com/web/
@@ -240,6 +239,7 @@ class AdminController extends AdminuxController
      * php artisan key:generate
      * php artisan migrate
      * sudo -u user php artisan storage:link
+     * sudo chown -R user:group .
      *
      * ispconfig > Apache Directives: DocumentRoot "{DOCROOT_CLIENT}/public"
      *
