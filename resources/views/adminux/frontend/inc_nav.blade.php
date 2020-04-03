@@ -22,8 +22,8 @@
                     <a class="nav-link" href="">{{ __('adminux.account') }}</a>
                 </li>
             </ul>
-            <div class="row">
-                <span class="text-warning mx-3">{{ auth('adminuxpanel')->user()->email }}</span>
+            <div>
+                <span class="text-warning mr-3">{{ auth('adminuxpanel')->user()->email }}</span>
                 <a class="text-secondary" href="{{ asset($prefix.'/logout') }}"><span data-feather="log-out"></span></a>
             </div>
         </div>
