@@ -7,8 +7,6 @@
 ```sh
 composer create-project laravel/laravel
 composer require laravel/ui yajra/laravel-datatables-oracle maatwebsite/excel spatie/laravel-permission
-
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 ```
 
 # Install AdminUX
@@ -17,8 +15,9 @@ git init
 git remote add adminux https://github.com/Ator9/laravel-adminux.git
 git pull adminux master
 ```
-- Database:
+- Config / Database:
 ```sh
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 php artisan migrate
 ```
 - Add to /app/Http/Kernel.php:
