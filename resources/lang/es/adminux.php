@@ -58,6 +58,7 @@ return array_merge([ // Default file
     'price' => 'Precio',
     'price_history' => 'Historial de Precios',
     'product' => 'Producto',
+    'products' => 'Productos',
     'product_id' => 'Producto',
     'role' => 'Rol',
     'role_id' => 'Rol',
