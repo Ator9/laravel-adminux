@@ -173,6 +173,7 @@ class AdminController extends AdminuxController
      */
     public function logs()
     {
+        // config/logging.php: 'channels' => ['daily']
         $file = storage_path().'/logs/laravel-'.date('Y-m-d').'.log';
 
         if(isset($_GET['delete'])) {
