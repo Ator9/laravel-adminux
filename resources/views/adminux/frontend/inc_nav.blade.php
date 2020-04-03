@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="dd">Panel</a>
+        <a class="navbar-brand" href="{{ url('panel') }}">Panel</a>
         <div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto mr-auto">
                 <li class="nav-item{% if nav == 'home'%} active{% endif %}">
-                    <a class="nav-link" href="">{{ __('adminux.home') }}</a>
+                    <a class="nav-link" href="{{ url('panel') }}">{{ __('adminux.home') }}</a>
                 </li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('adminux.products') }}</a>
