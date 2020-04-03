@@ -229,7 +229,7 @@ class AdminController extends AdminuxController
      * sudo chown -R user:group .
      * sudo chmod -R 777 storage
      *
-     * sudo -u user ln -s /var/www/site.com/private/public/ web/
+     * sudo -u user ln -s /var/www/site.com/private/public/ /var/www/site.com/web/
      * sudo -u user git pull
      *
      * sudo -u user cp .env.example .env
