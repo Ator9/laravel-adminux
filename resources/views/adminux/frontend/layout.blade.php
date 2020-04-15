@@ -11,18 +11,27 @@
 @yield('head')
 </head>
 <body>
-@include('adminux.frontend.inc_nav')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form method="get" action="" class="mb-3">
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="" required>
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-warning">Search</button>
+<div class="container-fluid p-0">
+    @include('adminux.frontend.inc_nav')
+    <div class="container p-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="get" action="" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="" required>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-warning">Search</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

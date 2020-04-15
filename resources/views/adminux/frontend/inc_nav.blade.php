@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ url('panel') }}">Panel</a>
         <div>
@@ -28,4 +28,4 @@
             </div>
         </div>
     </div>
-</nav><br><br><br>
+</nav>
