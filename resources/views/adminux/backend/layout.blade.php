@@ -9,6 +9,7 @@
 <title>@yield('title')</title>
 <link href="{{ asset('vendor/adminux/resources/libs/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ $Helper::getVersionedAsset('vendor/adminux/resources/admin.css') }}" rel="stylesheet">
+<link rel="shortcut icon" href="{{ asset('vendor/adminux/resources/favicon.ico') }}">
 @yield('head')
 </head>
 <body>
