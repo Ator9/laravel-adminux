@@ -207,7 +207,7 @@ class AdminController extends AdminuxController
     {
         if(isset($_GET['command'])) {
 
-            echo date('Y-m-d H:i:s').'<br>';
+            echo date('Y-m-d H:i:s').'<br><br>';
             echo 'Current User: '.exec('whoami').'<br>';
             echo 'Current Path: '.exec('pwd').'<br><br>';
 
@@ -215,6 +215,10 @@ class AdminController extends AdminuxController
                 case 'composer_install':
                     echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && composer install';
                     exec($command." 2>&1", $output);
+                    break;
+
+                case 'config_clear':
+                    $output = \Artisan::call('config:clear');
                     break;
 
                 case 'config_cache':
@@ -226,13 +230,28 @@ class AdminController extends AdminuxController
             return;
         }
 
-        $body = '<button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_cache\')">
-                    php artisan config:cache
-                </button>
-                <button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?command=composer_install\')">
-                    composer install
-                </button>
-                <iframe id="run" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>';
+        $body = '<div class="container-fluid">
+                    <div class="card mt-3">
+                        <div class="card-header">Information</div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Env: '.env('APP_ENV').'</li>
+                                <li class="list-group-item">Cache: '.env('CACHE_DRIVER').'</li>
+                            </ul>
+
+                            <button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_clear\')">
+                                php artisan config:clear
+                            </button>
+                            <button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_cache\')">
+                                php artisan config:cache
+                            </button>
+                            <button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?command=composer_install\')">
+                                composer install
+                            </button>
+                        </div>
+                    </div>
+                    <iframe id="run" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>
+                </div>';
 
         return view('adminux.backend.pages.blank')->withBody($body);
     }
