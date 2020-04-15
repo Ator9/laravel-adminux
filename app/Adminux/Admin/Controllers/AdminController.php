@@ -205,21 +205,36 @@ class AdminController extends AdminuxController
 
     public function composer()
     {
-        if(isset($_GET['sync'])) {
+        if(isset($_GET['command'])) {
 
             echo date('Y-m-d H:i:s').'<br>';
             echo 'Current User: '.exec('whoami').'<br>';
             echo 'Current Path: '.exec('pwd').'<br><br>';
 
-            echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && composer install';
-            exec($command." 2>&1", $output);
-            dd($output);
+            switch($_GET['command']) {
+                case 'composer_install':
+                    echo $command = 'cd /var/www/'.$_SERVER['HTTP_HOST'].'/private && composer install';
+                    exec($command." 2>&1", $output);
+                    break;
 
+                case 'config_cache':
+                    $output = \Artisan::call('config:cache');
+                    break;
+            }
+
+            dd($output);
             return;
         }
 
-        return view('adminux.backend.pages.blank')->withBody('<button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?sync\')">
-        Run Composer Install</button><iframe id="run" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>');
+        $body = '<button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_cache\')">
+                    php artisan config:cache
+                </button>
+                <button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?command=composer_install\')">
+                    composer install
+                </button>
+                <iframe id="run" style="height:calc(100vh - 64px);width:100%;border:none"></iframe>';
+
+        return view('adminux.backend.pages.blank')->withBody($body);
     }
 
     /**
