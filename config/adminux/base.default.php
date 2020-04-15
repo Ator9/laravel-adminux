@@ -4,10 +4,12 @@ if(file_exists(__DIR__.'/base.php')) return require(__DIR__.'/base.php');
 
 return [
 
-    'project_name' => 'Adminux',
+    'admin_name' => 'Adminux',
     'panel_name' => 'Panel',
     'custom_routes' => app_path('Adminux/your_routes_path.php'),
     'custom_routespanel' => app_path('Adminux/your_routespanel_path.php'),
+    'admin_favicon' => asset('vendor/adminux/resources/favicon.ico'),
+    'panel_favicon' => asset('vendor/adminux/frontend/favicon.ico'),
     'login_redirect' => 'dashboard',
     'menu_software' => [], // list software name == menu name
 
