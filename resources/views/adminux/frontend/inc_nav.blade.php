@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('panel') }}">Panel</a>
+        <a class="navbar-brand" href="{{ url($prefix) }}">Panel</a>
         <div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,17 +9,17 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto mr-auto">
                 <li class="nav-item{% if nav == 'home'%} active{% endif %}">
-                    <a class="nav-link" href="{{ url('panel') }}">{{ __('adminux.home') }}</a>
+                    <a class="nav-link" href="{{ url($prefix) }}">{{ __('adminux.home') }}</a>
                 </li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('adminux.products') }}</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item active" href="">Cat</a>
-                        <a class="dropdown-item active" href="">Cat</a>
+                        <a class="dropdown-item active" href="{{ url($prefix.'/products/2') }}">Cat</a>
+                        <a class="dropdown-item active" href="{{ url($prefix.'/products/2') }}">Cat</a>
                     </div>
                 </li>
                 <li class="nav-item{% if nav == 'report'%} active{% endif %}">
-                    <a class="nav-link" href="">{{ __('adminux.account') }}</a>
+                    <a class="nav-link" href="{{ url($prefix) }}/profile">{{ __('adminux.account') }}</a>
                 </li>
             </ul>
             <div>
