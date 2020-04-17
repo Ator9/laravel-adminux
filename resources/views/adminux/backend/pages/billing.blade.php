@@ -41,6 +41,7 @@
     <form action="" method="get">
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
+                <input type="number" class="form-control mr-2" min="0" name="account_id" value="{{ $account_id }}" placeholder="Account ID">
                 <select class="custom-select mr-2" name="date_from">
                 @for($i = 1; $i <= 12; $i++)
                     @php

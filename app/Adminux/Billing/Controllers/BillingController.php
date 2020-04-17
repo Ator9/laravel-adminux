@@ -15,10 +15,11 @@ class BillingController extends Controller
         $plans = $this->getPlanPrices(); $currencies = Currency::all()->keyBy('id')->toArray();
         $date_from = (request()->filled('date_from')) ? request()->date_from : date('Y-m', strtotime('-12 months', strtotime(date('Y-m'))));
         $date_to = (request()->filled('date_to')) ? request()->date_to : date('Y-m');
+        $account_id = (request()->filled('account_id')) ? (int) request()->account_id : '';
 
         if($date_from > $date_to) return back()->withErrors(['msg' => '"From Date" must be earlier than "To Date".']);
 
-        $usage = $this->getUsage(['from' => $date_from, 'to' => $date_to]);
+        $usage = $this->getUsage(['from' => $date_from, 'to' => $date_to, 'account_id' => $account_id]);
         foreach($usage as $date => $array) {
             $hours_in_month = date('t', strtotime($date)) * 24; $sales[$date] = 0; $costs[$date] = 0;
 
@@ -54,6 +55,7 @@ class BillingController extends Controller
             'sales' => $sales,
             'date_from' => $date_from,
             'date_to' => $date_to,
+            'account_id' => $account_id,
             'active_accounts' => \DB::table('accounts')->where('active', '=', 'Y')->whereIn('partner_id', Helper::getSelectedPartners())->count(),
             'active_products' => \DB::table('accounts_products')
                                 ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
@@ -132,6 +134,7 @@ class BillingController extends Controller
                         )) as minutes')
             ->join('accounts_products', 'accounts_products.id', '=', 'billing_usage.product_id')
             ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
+            ->whereRaw($params['account_id'] > 0 ? 'accounts.id = '.$params['account_id'] : '1=1')
             ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
 
             // Units:
@@ -143,6 +146,7 @@ class BillingController extends Controller
             ->selectRaw('SUM(units) as units')
             ->join('accounts_products', 'accounts_products.id', '=', 'billing_units.product_id')
             ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
+            ->whereRaw($params['account_id'] > 0 ? 'accounts.id = '.$params['account_id'] : '1=1')
             ->groupBy('product_id','plan_id')->get()->keyBy('product_id');
         }
 
