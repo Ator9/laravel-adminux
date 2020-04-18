@@ -56,11 +56,16 @@ class BillingController extends Controller
             'date_from' => $date_from,
             'date_to' => $date_to,
             'account_id' => $account_id,
-            'active_accounts' => \DB::table('accounts')->where('active', '=', 'Y')->whereIn('partner_id', Helper::getSelectedPartners())->count(),
+            'active_accounts' => \DB::table('accounts')->where('active', '=', 'Y')
+                                ->whereIn('partner_id', Helper::getSelectedPartners())
+                                ->whereRaw($account_id > 0 ? 'accounts.id = '.$account_id : '1=1')
+                                ->count(),
             'active_products' => \DB::table('accounts_products')
                                 ->join('accounts', 'accounts.id', '=', 'accounts_products.account_id')
                                 ->whereIn('partner_id', Helper::getSelectedPartners())
-                                ->where('accounts_products.active', '=', 'Y')->count(),
+                                ->where('accounts_products.active', '=', 'Y')
+                                ->whereRaw($account_id > 0 ? 'accounts.id = '.$account_id : '1=1')
+                                ->count(),
         ]);
     }
 
