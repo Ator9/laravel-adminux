@@ -72,7 +72,7 @@ class Form
                                     </tr>';
             }
 
-            $params['input'] = '<table class="w-100">'.implode('<br>', $params['input']).'</table>';
+            $params['input'] = '<table class="w-100">'.implode('', $params['input']).'</table>';
             return $this->getFormGroup($params);
         }
     }
