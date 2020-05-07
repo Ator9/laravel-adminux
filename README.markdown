@@ -15,7 +15,7 @@ git init
 git remote add adminux https://github.com/Ator9/laravel-adminux.git
 git pull adminux master
 ```
-- Config / Database:
+- Configuration / Database:
 ```sh
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 php artisan migrate
