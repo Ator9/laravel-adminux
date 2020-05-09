@@ -1,5 +1,8 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow-sm">
-    <a class="navbar-brand col-sm-2 col-md-2 mr-0" href="{{ asset($prefix.'/dashboard') }}">{{ config('adminux.base.default.admin_name', 'Admin') }}</a>
+    <span class="navbar-brand col-sm-2 col-md-2 mr-0 nav-fill">
+        <a class="text-white" href="{{ asset($prefix.'/dashboard') }}">{{ config('adminux.base.default.admin_name', 'Admin') }}</a>
+        <a href="{{url('')}}" class="float-right text-warning" target="_blank"><span data-feather="external-link"></span></a>
+    </span>
     <ul class="nav w-100">
         @php $menu = config('adminux.base.default.menu'); @endphp
         @foreach($menu as $module)
