@@ -145,7 +145,8 @@ class Form
 
     public function textarea($params)
     {
-
+        $params['input'] = '<textarea class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" '.$this->getEditable($params).'>'.$this->getValue($params).'</textarea>';
+        return $this->getFormGroup($params);
     }
 
     public function url($params)
