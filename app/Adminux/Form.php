@@ -77,6 +77,12 @@ class Form
         }
     }
 
+    public function number($params)
+    {
+        $params['input'] = '<input type="number" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        return $this->getFormGroup($params);
+    }
+
     public function password($params)
     {
         $params['input'] = '<input type="password" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'">';
