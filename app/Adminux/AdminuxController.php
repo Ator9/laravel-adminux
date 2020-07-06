@@ -42,4 +42,29 @@ class AdminuxController extends \App\Http\Controllers\Controller
         if(!empty($model)) $model->delete();
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
+
+    public function fileManagerUpload($model)
+    {
+        request()->validate([
+            'files.*' => 'required|max:'.min((int) ini_get('upload_max_filesize'), (int) ini_get('post_max_size')) * 1024,
+        ]);
+
+        $path = 'public/'.$model->getTable().'/'.$model->id;
+
+        foreach(request()->file('files') as $file) {
+            $name = $file->getClientOriginalName();
+            if(file_exists(storage_path('app/'.$path.'/'.$name))) $name = time().'_'.$name;
+            $file->storeAs($path, $name);
+        }
+
+        return back();
+    }
+
+    public function fileManagerDelete($model)
+    {
+        $path = 'public/'.$model->getTable().'/'.$model->id.'/'.request()->name;
+        \Storage::delete($path);
+
+        return back();
+    }
 }
