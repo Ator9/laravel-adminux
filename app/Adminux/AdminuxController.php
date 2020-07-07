@@ -43,6 +43,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
         return redirect(route(explode('/', request()->path())[1].'.index'));
     }
 
+    // php artisan storage:link
     public function fileManagerUpload($model)
     {
         request()->validate([
