@@ -43,7 +43,7 @@
                 @if(!empty($size))
                 <tr>
                     <td></td>
-                    <td class="text-nowrap text-info">Total: {{ round($size / 1000, 2) }} KB</td>
+                    <td class="text-nowrap text-info text-right">Total: {{ round($size / 1000, 2) }} KB</td>
                     <td></td>
                     <td></td>
                 </tr>
