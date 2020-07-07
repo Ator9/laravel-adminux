@@ -44,6 +44,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
     }
 
     // php artisan storage:link
+    // env('FILESYSTEM_DRIVER', 'public')
     public function fileManagerUpload($model)
     {
         request()->validate([
