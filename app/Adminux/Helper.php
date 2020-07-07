@@ -136,7 +136,7 @@ class Helper
 
     public function getFileManager($model, $params = [])
     {
-        $dir = (!empty($params['dir'])) ? $params['dir'] : 'public/'.$model->getTable().'/'.$model->id;
+        $dir = (!empty($params['dir'])) ? $params['dir'] : $model->getTable().'/'.$model->id;
 
         $files = \Storage::files($dir);
 

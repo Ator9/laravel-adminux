@@ -50,11 +50,11 @@ class AdminuxController extends \App\Http\Controllers\Controller
             'files.*' => 'required|max:'.min((int) ini_get('upload_max_filesize'), (int) ini_get('post_max_size')) * 1024,
         ]);
 
-        $path = 'public/'.$model->getTable().'/'.$model->id;
+        $path = $model->getTable().'/'.$model->id;
 
         foreach(request()->file('files') as $file) {
             $name = $file->getClientOriginalName();
-            if(file_exists(storage_path('app/'.$path.'/'.$name))) $name = time().'_'.$name;
+            if(file_exists(storage_path('app/public/'.$path.'/'.$name))) $name = time().'_'.$name;
             $file->storeAs($path, $name);
         }
 
@@ -63,7 +63,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
 
     public function fileManagerDelete($model)
     {
-        $path = 'public/'.$model->getTable().'/'.$model->id.'/'.request()->name;
+        $path = $model->getTable().'/'.$model->id.'/'.request()->name;
         \Storage::delete($path);
 
         return back();
