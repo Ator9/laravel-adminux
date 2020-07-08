@@ -64,6 +64,8 @@ class Form
         $config = \App\Adminux\Helper::getConfig($path);
         if(!empty($config)) {
             $values = @json_decode($this->getValue($params), true);
+            if($values === null) $values = @json_decode($this->_model->getAttributes()[$this->getName($params)], true);
+
             foreach($config as $key => $desc) {
                 $params['input'][] = '<tr>
                                         <td>'.$key.'</td>
