@@ -19,22 +19,26 @@ class Form
 
     public function date($params)
     {
-        if(!empty($params['value'])) $params['value'] = date('Y-m-d', strtotime($params['value']));
-        $params['input'] = '<input type="date" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        $value = $this->getValue($params);
+        if(!empty($value)) $value = date('Y-m-d', strtotime($this->getValue($params)));
+        $params['input'] = '<input type="date" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
     }
 
     public function time($params)
     {
-        if(!empty($params['value'])) $params['value'] = date('H:i:s', strtotime($params['value']));
-        $params['input'] = '<input type="time" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        $value = $this->getValue($params);
+        dump($value);
+        if(!empty($value)) $value = date('H:i:s', strtotime($this->getValue($params)));
+        $params['input'] = '<input type="time" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
     }
 
     public function datetime($params)
     {
-        if(!empty($params['value'])) $params['value'] = str_replace(' ', 'T', $params['value']);
-        $params['input'] = '<input type="datetime-local" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        $value = $this->getValue($params);
+        if(!empty($value)) $value = date('Y-m-d\TH:i:s', strtotime($this->getValue($params)));
+        $params['input'] = '<input type="datetime-local" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
     }
 
