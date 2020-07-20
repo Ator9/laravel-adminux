@@ -17,6 +17,27 @@ class Form
         $this->_model = $model;
     }
 
+    public function date($params)
+    {
+        if(!empty($params['value'])) $params['value'] = date('Y-m-d', strtotime($params['value']));
+        $params['input'] = '<input type="date" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        return $this->getFormGroup($params);
+    }
+
+    public function time($params)
+    {
+        if(!empty($params['value'])) $params['value'] = date('H:i:s', strtotime($params['value']));
+        $params['input'] = '<input type="time" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        return $this->getFormGroup($params);
+    }
+
+    public function datetime($params)
+    {
+        if(!empty($params['value'])) $params['value'] = str_replace(' ', 'T', $params['value']);
+        $params['input'] = '<input type="datetime-local" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'" '.$this->getEditable($params).'>';
+        return $this->getFormGroup($params);
+    }
+
     public function display($params)
     {
         $params['input'] = '<input type="text" readonly class="form-control-plaintext" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$this->getValue($params).'">';
