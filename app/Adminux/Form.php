@@ -28,7 +28,6 @@ class Form
     public function time($params)
     {
         $value = $this->getValue($params);
-        dump($value);
         if(!empty($value)) $value = date('H:i:s', strtotime($this->getValue($params)));
         $params['input'] = '<input type="time" class="form-control" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'" '.$this->getEditable($params).'>';
         return $this->getFormGroup($params);
