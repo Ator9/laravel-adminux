@@ -11,6 +11,7 @@ return [
     'admin_favicon' => env('APP_URL').'/vendor/adminux/resources/favicon.ico',
     'panel_favicon' => env('APP_URL').'/vendor/adminux/frontend/favicon.ico',
     'login_redirect' => 'dashboard',
+    'panel_redirect' => 'dashboard',
     'menu_software' => [], // list software name == menu name
 
     // Left menu:
