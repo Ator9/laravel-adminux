@@ -218,7 +218,8 @@ class AdminController extends AdminuxController
                     break;
 
                 case 'config_clear':
-                    $output = \Artisan::call('config:clear');
+                    $output = \Artisan::call('cache:clear');
+                    $output.= \Artisan::call('config:clear');
                     break;
 
                 case 'config_cache':
@@ -240,7 +241,7 @@ class AdminController extends AdminuxController
                             </ul>
 
                             <button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_clear\')">
-                                php artisan config:clear
+                                cache:clear | config:clear
                             </button>
                             <button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_cache\')">
                                 php artisan config:cache
