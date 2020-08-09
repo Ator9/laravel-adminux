@@ -55,6 +55,11 @@ class AdminuxController extends \App\Http\Controllers\Controller
 
         foreach(request()->file('files') as $file) {
             $name = $file->getClientOriginalName();
+            $filename = request()->filled('replace_name') ? request()->replace_name : pathinfo($name, PATHINFO_FILENAME);
+            $extension = pathinfo($name, PATHINFO_EXTENSION);
+
+            $name = $filename.'.'.$extension;
+
             if(file_exists(storage_path('app/public/'.$path.'/'.$name))) $name = time().'_'.$name;
             $file->storeAs($path, $name);
         }

@@ -7,6 +7,9 @@
                     <input type="file" name="files[]" class="custom-file-input" data-toggle="tooltip" data-placement="top" title="Max File: {{ ini_get('upload_max_filesize') }}, Max Form: {{ini_get('post_max_size')}}" id="inputGroupFileUpload" aria-describedby="inputGroupFileAddon" multiple required>
                     <label class="custom-file-label" for="inputGroupFileUpload">Files...</label>
                 </div>
+                <div class="input-group-append w-25">
+                    <input type="text" name="replace_name" class="px-3 border" placeholder="Replace Name...">
+                </div>
                 <div class="input-group-append">
                     <button class="btn btn-primary btn-sm" type="submit" id="inputGroupFileAddon">
                         <span class="feather-adminux" data-feather="upload"></span> Upload
