@@ -101,6 +101,15 @@ class Helper
         \Route::resource($uri_prefix.Str::plural(strtolower($model)), ucfirst($pieces[0]).'\Controllers\\'.$model.'Controller');
     }
 
+    // Build Upload route: example "admins":
+    static function buildUploadRoutes($dir = '')
+    {
+        $singular = Str::singular($dir);
+
+        \Route::post($dir.'/{'.$singular.'}/file-upload', ucfirst($singular).'\Controllers\\'.ucfirst($singular).'Controller@fileUpload');
+        \Route::delete($dir.'/{'.$singular.'}/file-delete', ucfirst($singular).'\Controllers\\'.ucfirst($singular).'Controller@fileDelete');
+    }
+
     static function getPrefix()
     {
         return explode('/', ltrim(request()->route()->getPrefix(), '/'))[0];
