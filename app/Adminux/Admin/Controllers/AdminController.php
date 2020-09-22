@@ -233,21 +233,20 @@ class AdminController extends AdminuxController
 
         $body = '<div class="container-fluid">
                     <div class="card mt-3">
-                        <div class="card-header">Information</div>
+                        <div class="card-header">Information | Laravel '.app()->version().'</div>
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Env: '.env('APP_ENV').'</li>
                                 <li class="list-group-item">Cache: '.env('CACHE_DRIVER').'</li>
                             </ul>
-
+                            <button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?command=composer_install\')">
+                                composer install
+                            </button>
                             <button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_clear\')">
                                 cache:clear | config:clear
                             </button>
                             <button class="m-3 btn btn-warning" onclick="$(\'#run\').attr(\'src\',\'?command=config_cache\')">
                                 php artisan config:cache
-                            </button>
-                            <button class="m-3 btn btn-danger" onclick="$(\'#run\').attr(\'src\',\'?command=composer_install\')">
-                                composer install
                             </button>
                         </div>
                     </div>
