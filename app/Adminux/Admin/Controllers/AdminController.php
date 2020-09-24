@@ -174,6 +174,7 @@ class AdminController extends AdminuxController
     public function logs()
     {
         // config/logging.php: 'channels' => ['daily']
+        // 'permission' => 0666, // to avoid logs writted by root and then user cant overwrite. 500 error
         $file = storage_path().'/logs/laravel-'.date('Y-m-d').'.log';
 
         if(isset($_GET['delete'])) {
