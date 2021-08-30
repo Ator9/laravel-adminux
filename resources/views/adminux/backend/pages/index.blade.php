@@ -2,9 +2,10 @@
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('head')
-<link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/dataTables.min.css') }}" rel="stylesheet">
 <style>
-html,body,.container-fluid,.container-fluid .row{height:100%}
+html,body{height:calc(100% - 24px)}
+.container-fluid,.container-fluid .row{height:100%}
 .table-responsive{height:calc(100% - 5px);height:-moz-calc(100% - 5px);height:-webkit-calc(100% - 5px);overflow-y:hidden}
 .table thead th{border-bottom-width:1px}
 #datatable_filter input{margin-left:3px}
@@ -25,8 +26,7 @@ html,body,.container-fluid,.container-fluid .row{height:100%}
 @endsection
 
 @push('scripts')
-<script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 setTitle();
@@ -42,7 +42,7 @@ $(document).ready(function() {
         processing: true,
         columns: [ {!! $datatables['columns'] !!} ],
         order: @isset($datatables['order']) {!! $datatables['order'] !!} @else [[ 0, 'desc' ]] @endisset,
-        dom: @isset($datatables['dom']) '{!! $datatables['dom'] !!}' @else '<"float-left"f>rt<"float-left"i>p' @endisset,
+        dom: @isset($datatables['dom']) '{!! $datatables['dom'] !!}' @else '<"float-start"f>rt<"float-start"i>p' @endisset,
         language: {
            search: '',
            searchPlaceholder: '{{ __('adminux.search') }}...'
@@ -54,11 +54,11 @@ $(document).ready(function() {
     });
 
     @if(method_exists($controller, 'create') and empty($datatables['disableCreateButton']))
-        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm mr-1 float-left"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper div.float-left:first');
+        $('<a href="{{ Request::url() }}/create" class="btn btn-primary btn-sm me-1 float-start"><span class="feather-adminux" data-feather="plus"></span> Create</a>').insertBefore('#datatable_wrapper div.float-start:first');
     @endif
 
     @isset($datatables['exportButton'])
-        $('<a href="#" class="btn btn-primary btn-sm ml-2 float-left" id="exportButton"><span class="feather-adminux" data-feather="file"></span> Export</a>').insertAfter('#datatable_wrapper div.float-left:first');
+        $('<a href="#" class="btn btn-primary btn-sm ms-2 float-start" id="exportButton"><span class="feather-adminux" data-feather="file"></span> Export</a>').insertAfter('#datatable_wrapper div.float-start:first');
         $('#exportButton').on('keyup click', function() {
             window.location = table.ajax.url()+'&export=1&'+$.param(table.ajax.params());
         });

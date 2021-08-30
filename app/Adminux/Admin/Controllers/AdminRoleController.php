@@ -13,7 +13,7 @@ class AdminRoleController extends Controller
 
         return [
             'model' => $obj->roles(),
-            'dom' => 'rt<"float-left"i>p',
+            'dom' => 'rt<"float-start"i>p',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-100">Role</th>',
             'columns' => '{ data: "role_id", name: "role_id", className: "text-center" },

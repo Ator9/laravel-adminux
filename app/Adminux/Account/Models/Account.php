@@ -50,7 +50,7 @@ class Account extends Authenticatable
     {
         if($this->active == 'N') return '<small class="text-danger">Account not active</small>';
 
-        return '<small><a href="'.request()->url().'/login_panel" target="_blank">Control Panel <span class="ml-1" data-feather="external-link"></span></a></small>';
+        return '<small><a href="'.request()->url().'/login_panel" target="_blank">Control Panel <span class="ms-1" data-feather="external-link"></span></a></small>';
     }
 
     /**

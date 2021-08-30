@@ -4,15 +4,14 @@
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
 @section('head')
-<link href="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/dataTables.min.css') }}" rel="stylesheet">
 <style>
 .table thead th{border-top-width:0;border-bottom-width:0}
 #datatable_filter input{margin-left:3px;margin-top:3px}
 </style>
 @endsection
 @push('scripts')
-<script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/dataTables.min.js') }}"></script>
 @endpush
 
 @section('body')
@@ -41,9 +40,9 @@
             <div class="card-body">
                 @foreach($model->toArray() as $key => $val)
                 @if(isset($except) && in_array($key, $except)) @continue @endif
-                <div class="form-group row">
+                <div class="row mb-3">
                     <label class="col-sm-4 col-form-label text-muted">{{ __('adminux.'.$key) }}</label>
-                    <div class="col-sm-8 form-control-plaintext">
+                    <div class="col-sm-8 form-text">
                         @if(strpos($key, '_id') !== false && $rel = str_replace('_id', '', $key))
                             @isset($model->{$rel})
                                 <a href="{{ url(request()->route()->getPrefix().'/'.$model->{$rel}->getTable()) }}/{{ $model->{$rel}->id }}">{{ $model->{$rel}->id }} - {{ $model->{$rel}->{$rel} ?? $model->{$rel}->name }}</a>

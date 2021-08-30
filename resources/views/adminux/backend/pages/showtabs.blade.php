@@ -58,8 +58,7 @@
 
         @isset($relations)
             @push('scripts')
-                <script src="{{ asset('vendor/adminux/resources/libs/jquery.dataTables.min.js') }}"></script>
-                <script src="{{ asset('vendor/adminux/resources/libs/dataTables.bootstrap4.min.js') }}"></script>
+                <script src="{{ asset('vendor/adminux/resources/libs/dataTables.min.js') }}"></script>
             @endpush
 
             @foreach($relations as $key => $relation)

@@ -163,10 +163,10 @@ class Form
         $value   = (!empty($params['value'])) ? $params['value'] : $this->_checkbox_value;
         $checked = (in_array(strtolower($this->getValue($params)), $this->_checked_if)) ? ' checked' : '';
 
-        $this->_input_cls.= ' custom-control custom-switch';
+        $this->_input_cls.= ' form-check form-switch ps-5';
         $params['input'] = '<input type="hidden" name="'.$this->getName($params).'">
-                            <input type="checkbox" class="custom-control-input" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
-                            <label class="custom-control-label ml-3 mt-1" for="'.$this->getId($params).'"></label>';
+                            <input type="checkbox" class="form-check-input mt-2" id="'.$this->getId($params).'" name="'.$this->getName($params).'" value="'.$value.'"'.$checked.'>
+                            <label class="form-check-label" for="'.$this->getId($params).'"></label>';
         return $this->getFormGroup($params);
     }
 
@@ -190,7 +190,7 @@ class Form
 
     public function getFormGroup($params = [])
     {
-        return '<div class="form-group row">
+        return '<div class="row mb-3">
                     <label class="'.$this->_label_cls.'" for="'.$this->getId($params).'">'.$params['label'].'</label>
                     <div class="'.$this->_input_cls.'">'.$params['input'].'</div>
                 </div>';

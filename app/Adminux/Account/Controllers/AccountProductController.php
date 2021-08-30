@@ -69,7 +69,7 @@ class AccountProductController extends AdminuxController
 
         return [
             'model' => $model,
-            'dom' => 'rt<"float-left"i>',
+            'dom' => 'rt<"float-start"i>',
             'thead' => '<th style="min-width:30px">ID</th>
                         <th class="w-100">'.__('adminux.plan').'</th>
                         <th>'.__('adminux.active').'</th>
