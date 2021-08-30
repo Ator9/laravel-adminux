@@ -9,7 +9,7 @@ composer create-project laravel/laravel
 composer require laravel/ui yajra/laravel-datatables-oracle maatwebsite/excel spatie/laravel-permission
 ```
 
-# Install AdminUX
+# Install AdminUX1
 ```sh
 git init
 git remote add adminux https://github.com/Ator9/laravel-adminux.git
