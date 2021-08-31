@@ -147,7 +147,7 @@ class Helper
     {
         $dir = (!empty($params['dir'])) ? $params['dir'] : $model->getTable().'/'.$model->id;
 
-        $files = \Storage::files('public/'.$dir);
+        $files = \Storage::files($dir);
 
         return view('adminux.backend.pages.inc.card_upload')->withModel($model)->withFiles($files);
     }

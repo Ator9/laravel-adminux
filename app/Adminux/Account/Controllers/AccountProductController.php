@@ -115,33 +115,18 @@ class AccountProductController extends AdminuxController
         return parent::saveRedirect($product);
     }
 
-    public function fileUpload(Request $request, AccountProduct $product)
+    public function fileUpload(AccountProduct $product)
     {
         Helper::validateAccount($product);
 
-        $request->validate([
-            'files.*' => 'required|max:'.min((int) ini_get('upload_max_filesize'), (int) ini_get('post_max_size')) * 1024,
-        ]);
-
-        $path = 'public/'.$product->getTable().'/'.$product->id;
-
-        foreach($request->file('files') as $file) {
-            $name = $file->getClientOriginalName();
-            if(file_exists(storage_path('app/'.$path.'/'.$name))) $name = time().'_'.$name;
-            $file->storeAs($path, $name);
-        }
-
-        return back();
+        return parent::fileManagerUpload($product);
     }
 
-    public function fileDelete(Request $request, AccountProduct $product)
+    public function fileDelete(AccountProduct $product)
     {
         Helper::validateAccount($product);
 
-        $path = 'public/'.$product->getTable().'/'.$product->id.'/'.$request->name;
-        \Storage::delete($path);
-
-        return back();
+        return parent::fileManagerDelete($product);
     }
 
     /**

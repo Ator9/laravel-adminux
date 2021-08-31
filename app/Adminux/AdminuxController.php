@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Adminux;
+use Illuminate\Support\Str;
 
 class AdminuxController extends \App\Http\Controllers\Controller
 {
@@ -55,7 +56,7 @@ class AdminuxController extends \App\Http\Controllers\Controller
 
         foreach(request()->file('files') as $file) {
             $name = $file->getClientOriginalName();
-            $filename = request()->filled('replace_name') ? \Str::slug(request()->replace_name, '-') : pathinfo($name, PATHINFO_FILENAME);
+            $filename = request()->filled('replace_name') ? Str::slug(request()->replace_name, '-') : pathinfo($name, PATHINFO_FILENAME);
             $extension = pathinfo($name, PATHINFO_EXTENSION);
 
             $name = $filename.'.'.$extension;

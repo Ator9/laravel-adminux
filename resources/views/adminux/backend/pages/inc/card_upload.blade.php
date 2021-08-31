@@ -2,19 +2,14 @@
     <div class="card-header d-flex justify-content-between">
         <h5 class="mb-0">Files</h5>
         <form method="post" action="{{ str_replace('/file-manager', '', Request::url()) }}/file-upload" enctype="multipart/form-data">
-            <div class="input-group my-n1">
-                <div class="custom-file">
-                    <input type="file" name="files[]" class="custom-file-input" data-toggle="tooltip" data-placement="top" title="Max File: {{ ini_get('upload_max_filesize') }}, Max Form: {{ini_get('post_max_size')}}" id="inputGroupFileUpload" aria-describedby="inputGroupFileAddon" multiple required>
-                    <label class="custom-file-label" for="inputGroupFileUpload">Files...</label>
-                </div>
-                <div class="input-group-append w-25">
-                    <input type="text" name="replace_name" class="px-3 border" placeholder="Replace Name...">
-                </div>
-                <div class="input-group-append">
-                    <button class="btn btn-primary btn-sm" type="submit" id="inputGroupFileAddon">
-                        <span class="feather-adminux" data-feather="upload"></span> Upload
-                    </button>
-                </div>
+            <div class="input-group">
+                <input type="file" name="files[]" class="form-control" data-toggle="tooltip" data-placement="top" title="Max File: {{ ini_get('upload_max_filesize') }}, Max Form: {{ini_get('post_max_size')}}" id="inputGroupFileUpload" aria-describedby="inputGroupFileAddon" multiple required>
+                <label class="custom-file-label" for="inputGroupFileUpload"></label>
+                
+                <input type="text" name="replace_name" class=" form-control" placeholder="Replace Name...">
+                <button class="btn btn-primary " type="submit" id="inputGroupFileAddon">
+                    <span class="feather-adminux" data-feather="upload"></span> Upload
+                </button>
             </div>
             @csrf
         </form>
