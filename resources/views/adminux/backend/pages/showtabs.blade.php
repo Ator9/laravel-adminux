@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <div class="col-sm-2 pt-2">
                             @if(method_exists($controller, 'destroy'))
-                                <a href="#" class="badge badge-pill badge-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')">Delete ?</a>
+                                <a href="#" class="badge rounded-pill bg-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')">Delete ?</a>
                             @endif
                         </div>
                         <div class="col-sm-10">

@@ -1,1 +1,1 @@
-<span class="badge badge-pill badge-{{ $active == 'Y' ? 'success' : 'danger' }} px-2">{{$active}}</span>
+<span class="badge rounded-pill bg-{{ $active == 'Y' ? 'success' : 'danger' }} px-2">{{$active}}</span>
