@@ -18,7 +18,7 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('vendor/adminux/resources/libs/Chart.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/chart.min.js') }}"></script>
 <script>
 setTitle();
 $(document).ready(function() {

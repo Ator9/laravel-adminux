@@ -21,15 +21,15 @@
         <div class="card mt-3">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
-                    <div class="row">
+                    <div>
                         @if(method_exists($controller, 'index'))
-                            <a href="{{ str_replace('/'.$model->id, '', Request::url()) }}"><span data-feather="arrow-left" class="feather-adminux2 mx-3"></span></a>
+                            <a href="{{ str_replace('/'.$model->id, '', Request::url()) }}"><span data-feather="arrow-left" class="feather-adminux2 me-2 mt-1"></span></a>
                         @endif
-                        <h5 class="mb-0">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
+                        <h5 class="d-inline">{{(new ReflectionClass($model))->getShortName()}} {{ __('adminux.details') }}</h5>
                     </div>
                     <div>
                         @if(method_exists($controller, 'destroy') && empty($params['hide_delete']))
-                            <button type="button" class="btn btn-danger btn-sm my-n1" data-toggle="modal" data-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')"><span class="feather-adminux" data-feather="trash-2"></span></button>
+                            <button type="button" class="btn btn-danger btn-sm my-n1" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="modalDelete('{{ Request::url() }}', 'Delete item #{{ $model->id }}?')"><span class="feather-adminux" data-feather="trash-2"></span></button>
                         @endif
                         @if(method_exists($controller, 'edit') && !isset($cols) && !isset($colRelation) && empty($params['hide_edit']))
                             <a href="{{ Request::url() }}/edit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="edit"></span> {{ __('adminux.edit') }}</a>

@@ -9,7 +9,7 @@
     <div class="card mt-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h5 class="mb-0">{{ __('adminux.create') }} {{(new ReflectionClass($model))->getShortName()}}</h5>
+                <h5 class="d-inline mt-1 mb-0">{{ __('adminux.create') }} {{(new ReflectionClass($model))->getShortName()}}</h5>
                 <div>
                     <button type="submit" class="btn btn-primary btn-sm my-n1"><span class="feather-adminux" data-feather="save"></span> Create</button>
                 </div>
