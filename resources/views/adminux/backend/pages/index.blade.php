@@ -2,7 +2,7 @@
 @php list($controller) = explode('@', Route::current()->getAction()['controller']); @endphp
 
 @section('head')
-<link href="{{ asset('vendor/adminux/resources/libs/dataTables.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/datatables.min.css') }}" rel="stylesheet">
 <style>
 html,body{height:calc(100% - 24px)}
 .container-fluid,.container-fluid .row{height:100%}
@@ -26,7 +26,7 @@ html,body{height:calc(100% - 24px)}
 @endsection
 
 @push('scripts')
-<script src="{{ asset('vendor/adminux/resources/libs/dataTables.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/datatables.min.js') }}"></script>
 <script src="{{ asset('vendor/adminux/resources/libs/dataTables.pageResize.min.js') }}"></script>
 <script>
 setTitle();

@@ -4,14 +4,14 @@
 @section('title', (new ReflectionClass($model))->getShortName().' #'.$model->id.' - '.__('adminux.details'))
 
 @section('head')
-<link href="{{ asset('vendor/adminux/resources/libs/dataTables.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/adminux/resources/libs/datatables.min.css') }}" rel="stylesheet">
 <style>
 .table thead th{border-top-width:0;border-bottom-width:0}
 #datatable_filter input{margin-left:3px;margin-top:3px}
 </style>
 @endsection
 @push('scripts')
-<script src="{{ asset('vendor/adminux/resources/libs/dataTables.min.js') }}"></script>
+<script src="{{ asset('vendor/adminux/resources/libs/datatables.min.js') }}"></script>
 @endpush
 
 @section('body')
