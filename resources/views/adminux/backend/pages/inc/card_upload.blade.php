@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <td class="w-75">Link</td>
-                    <td class="text-right">Size</td>
+                    <td class="text-end">Size</td>
                     <td class="text-center">Date</td>
                     <td></td>
                 </tr>
@@ -31,7 +31,7 @@
                 @endphp
                 <tr>
                     <td><a href="{{ Storage::url($value) }}" target="_blank">{{ $name }}</a></td>
-                    <td class="text-nowrap text-right">{{ round(Storage::size($value) / 1000, 2) }} KB</td>
+                    <td class="text-nowrap text-end">{{ round(Storage::size($value) / 1000, 2) }} KB</td>
                     <td class="text-nowrap">{{ date('Y-m-d H:i:s', Storage::lastModified($value)) }}</td>
                     <td>
                         <a href="#deleteModal" class="badge bg-danger" data-bs-toggle="modal" onclick="modalDelete('{{ str_replace('/file-manager', '', Request::url()) }}/file-delete', 'Delete {{ $name }}?', '{{ $name }}')">{{ __('adminux.delete') }}</a>
@@ -41,7 +41,7 @@
                 @if(!empty($size))
                 <tr>
                     <td></td>
-                    <td class="text-nowrap text-info text-right">Total: {{ round($size / 1000, 2) }} KB</td>
+                    <td class="text-nowrap text-info text-end">Total: {{ round($size / 1000, 2) }} KB</td>
                     <td></td>
                     <td></td>
                 </tr>

@@ -49,8 +49,8 @@ class PlanController extends AdminuxController
 
             'columns' => '{ data: "id2", name: "services_plans.id", className: "text-center" },
                           { data: "plan", name: "services_plans.plan" },
-                          { data: "currency_price", name: "currency_price", className: "text-right" },
-                          { data: "currency_cost", name: "currency_cost", className: "text-right" },
+                          { data: "currency_price", name: "currency_price", className: "text-end" },
+                          { data: "currency_cost", name: "currency_cost", className: "text-end" },
                           { data: "service", name: "services.service" },
                           { data: "software", name: "software.software" },
                           { data: "partner", name: "partners.partner" },

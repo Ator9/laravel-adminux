@@ -40,7 +40,7 @@ class ServiceController extends AdminuxController
 
             'columns' => '{ data: "id2", name: "id", className: "text-center" },
                           { data: "service", name: "service" },
-                          { data: "currency_price", name: "currency_price", className: "text-right" },
+                          { data: "currency_price", name: "currency_price", className: "text-end" },
                           { data: "software", name: "software" },
                           { data: "partner", name: "partner" },
                           { data: "created_at", name: "created_at", className: "text-center" }'
