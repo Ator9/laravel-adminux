@@ -1,4 +1,4 @@
-#ISPConfig - Bitbucket Install
+# ISPConfig - Bitbucket Install
 
 Apache Directives (ISPConfig)
 DocumentRoot "{DOCROOT_CLIENT}/public"
