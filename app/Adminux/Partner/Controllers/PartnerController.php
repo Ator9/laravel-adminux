@@ -145,7 +145,7 @@ class PartnerController extends AdminuxController
             $form->display([ 'label' => 'ID' ]),
             $form->text([ 'label' => 'Partner' ]),
             $form->select([ 'label' => 'Language' ]),
-            $form->moduleConfig([ 'label' => 'Module Config' ]),
+            $form->moduleConfig([ 'label' => 'Module Config', 'path' => 'partners' ]),
             $form->switch([ 'label' => 'Active' ]),
         ];
     }
