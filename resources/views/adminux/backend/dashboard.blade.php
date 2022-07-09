@@ -55,13 +55,7 @@ $(document).ready(function() {
             }]
         },
         options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }]
-            },
+
             legend: {
                 display: false
             }
