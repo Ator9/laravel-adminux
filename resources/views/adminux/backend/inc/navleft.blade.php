@@ -7,6 +7,7 @@
                 </a>
             </li>
             @php $menu = config('adminux.base.default.menu'); @endphp
+            @if(!empty($menu['default']))
             @foreach($menu['default'] as $name => $module)
                 <li class="nav-item">
                     <a class="nav-link{{ (Request::is($prefix.'/'.$module['items'][0]['dir']) or Illuminate\Support\Str::contains(Request::path(), [$prefix.'/'.$module['items'][0]['dir'].'_', $prefix.'/'.$module['items'][0]['dir'].'/'])) ? ' active' : '' }}" href="{{ asset($prefix.'/'.$module['items'][0]['dir']) }}">
@@ -14,6 +15,7 @@
                     </a>
                 </li>
             @endforeach
+            @endif
         </ul>
         @foreach($menu as $name => $module)
             @if($name == 'default') @continue; @endif
