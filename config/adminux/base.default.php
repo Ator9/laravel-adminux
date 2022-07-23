@@ -6,7 +6,7 @@ return [
 
     'admin_name' => 'Adminux',
     'panel_name' => 'Panel',
-    'custom_routes' => app_path('Adminux/your_routes_path.php'),
+    'custom_routes' => [ app_path('Adminux/your_routes_path.php') ],
     'custom_routespanel' => app_path('Adminux/your_routespanel_path.php'),
     'admin_favicon' => env('APP_URL').'/vendor/adminux/resources/favicon.ico',
     'panel_favicon' => env('APP_URL').'/vendor/adminux/frontend/favicon.ico',

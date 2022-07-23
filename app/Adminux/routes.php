@@ -59,6 +59,10 @@ Route::namespace('\App\Adminux')->group(function() {
         }
 
         // Your custom routes. You can override "\App\Adminux" like "\App\Xxx\Yyy\Controller@method":
-        if(file_exists(config('adminux.base.default.custom_routes'))) require(config('adminux.base.default.custom_routes'));
+        if(!empty(config('adminux.base.default.custom_routes'))) {
+            foreach(config('adminux.base.default.custom_routes') as $route) {
+                require($route);
+            }
+        }
     });
 });
