@@ -10,6 +10,7 @@ php artisan key:generate
 sudo chmod -R 777 storage
 
 sudo -u web135 ln -s /var/www/site/private/public/ /var/www/site/web/
+sudo -u web135 php artisan storage:link
 php artisan migrate:fresh
 ```
 
