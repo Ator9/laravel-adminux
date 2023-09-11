@@ -5,7 +5,7 @@
 - <a href="https://github.com/Maatwebsite/Laravel-Excel">Laravel Excel</a>
 - <a href="https://github.com/spatie/laravel-permission">Laravel Permission</a>
 ```sh
-composer create-project laravel/laravel
+composer create-project laravel/laravel .
 composer require laravel/ui yajra/laravel-datatables-oracle maatwebsite/excel spatie/laravel-permission
 ```
 
