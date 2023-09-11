@@ -57,3 +57,11 @@ Route::prefix('adminux')->group(function($router) {
 Email: admin@localhost
 Password: test
 ```
+- public/.htaccess (optional)
+```sh
+RewriteEngine On
+
+<IfVersion < 2.4.57>
+RewriteBase /filament/public
+</IfVersion>
+```
