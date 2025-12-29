@@ -7,7 +7,6 @@ sudo -u web135 git clone git@bitbucket.org:xxx/yyy.git .
 sudo -u web135 cp .env.example .env
 sudo -u web135 composer install
 php artisan key:generate
-sudo chmod -R 777 storage
 
 sudo -u web135 ln -s /var/www/site/private/public/ /var/www/site/web/
 sudo -u web135 php artisan storage:link
