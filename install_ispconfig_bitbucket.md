@@ -9,7 +9,6 @@ sudo -u web135 composer install
 php artisan key:generate
 
 sudo -u web135 ln -s /var/www/site/private/public/ /var/www/site/web/
-sudo -u web135 php artisan storage:link
 php artisan migrate:fresh
 ```
 
